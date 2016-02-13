@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/alopezsanchez/agfa-webapp.svg?branch=master)](https://travis-ci.org/alopezsanchez/agfa-webapp)
-
 # agfa-webapp
 
 ## Getting Started
