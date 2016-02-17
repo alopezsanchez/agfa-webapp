@@ -19,7 +19,6 @@
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
       <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-      <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -46,8 +45,8 @@
     <navbar></navbar>
     <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
 
-      <md-toolbar layout="row" class="md-whiteframe-z1" ng-controller="NavbarController as nav">
-        <md-button id="main" class="menu" hide-gt-sm ng-click="$mdSidenav('left').toggle()" aria-label="Mostrar acciones">
+      <md-toolbar layout="row" class="md-whiteframe-z1">
+        <md-button id="main" class="menu" hide-gt-sm aria-label="Mostrar acciones">
           <md-icon md-svg-icon="menu" ></md-icon>
         </md-button>
         <h3>Asociación Gallega de Fútbol Americano</h3>
@@ -97,7 +96,7 @@
       <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/angular-aria/angular-aria.js"></script>
       <script src="bower_components/angular-messages/angular-messages.js"></script>
-      <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+      <script src="bower_components/angular-material/angular-material.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->

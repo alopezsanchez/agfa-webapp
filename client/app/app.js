@@ -17,6 +17,6 @@ angular.module('agfaWebappApp', [
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
-    $mdIconProvider.icon("menu", "./assets/images/menu.svg" , 24)
+    $mdIconProvider.icon('menu', './assets/images/menu.svg' , 24);
 
   });

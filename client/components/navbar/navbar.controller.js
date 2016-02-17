@@ -17,7 +17,7 @@ class NavbarController {
   /**
    * Hide or Show the 'left' sideNav area
    */
-  function toggleList() {
+  toggleList() {
     $mdSidenav('left').toggle();
   }
 
@@ -29,5 +29,4 @@ class NavbarController {
   }
 }
 
-angular.module('agfaWebappApp')
-  .controller('NavbarController', ['$mdSidenav'],NavbarController);
+angular.module('agfaWebappApp').controller('NavbarController',NavbarController,['$mdSidenav']);
