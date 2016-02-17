@@ -5,10 +5,22 @@ class NavbarController {
   menu = [{
     'title': 'Home',
     'state': 'main'
+  },
+  {
+    'title' : 'Competiciones',
+    'state' : 'competition'
   }];
 
   isCollapsed = true;
   //end-non-standard
+
+  /**
+   * Hide or Show the 'left' sideNav area
+   */
+  function toggleList() {
+    $mdSidenav('left').toggle();
+  }
+
 
   constructor(Auth) {
     this.isLoggedIn = Auth.isLoggedIn;
@@ -18,4 +30,4 @@ class NavbarController {
 }
 
 angular.module('agfaWebappApp')
-  .controller('NavbarController', NavbarController);
+  .controller('NavbarController', ['$mdSidenav'],NavbarController);

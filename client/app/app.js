@@ -9,11 +9,14 @@ angular.module('agfaWebappApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
+  'ngMaterial',
   'validation.match'
 ])
-  .config(function($urlRouterProvider, $locationProvider) {
+  .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider) {
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
+    $mdIconProvider.icon("menu", "./assets/images/menu.svg" , 24)
+
   });

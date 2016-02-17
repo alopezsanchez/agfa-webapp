@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
+<!-- <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
@@ -12,7 +12,7 @@
     <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <li ng-repeat="item in nav.menu" ui-sref-active="active">
-            <a ui-sref="{{item.state}}">{{item.title}}</a>
+            <a ui-sref="{{item.state}}" ng-hide="!nav.isAdmin()">{{item.title}}</a>
         </li>
         <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
       </ul>
@@ -27,3 +27,22 @@
     </div>
   </div>
 </div>
+-->
+
+<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+      md-component-id="left"
+      ng-click="nav.toggleList()"
+      aria-label="Show User List"
+      md-is-locked-open="$mdMedia('gt-sm')">
+
+    <md-toolbar class="md-whiteframe-z1">
+      <h3>Menú</h3>
+    </md-toolbar>
+
+    <md-list>
+      <md-list-item ng-repeat="it in nav.menu">
+          <md-button> {{it.title}}</md-button>
+      </md-list-item>
+    </md-list>
+
+  </md-sidenav>
