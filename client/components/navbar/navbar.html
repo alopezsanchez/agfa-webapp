@@ -41,8 +41,11 @@
 
     <md-list>
       <md-list-item ng-repeat="it in nav.menu">
-          <md-button> {{it.title}}</md-button>
-          
+          <md-button>
+            <md-icon md-svg-icon={{it.icon}} class="icon"></md-icon>
+            {{it.title}}
+          </md-button>
+
       </md-list-item>
     </md-list>
 

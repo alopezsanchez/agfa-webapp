@@ -4,11 +4,13 @@ class NavbarController {
   //start-non-standard
   menu = [{
     'title': 'Home',
-    'state': 'main'
+    'state': 'main',
+    'icon' : 'home'
   },
   {
     'title' : 'Competiciones',
-    'state' : 'competition'
+    'state' : 'competition',
+    'icon'  : 'competition'
   }];
 
   isCollapsed = true;
@@ -17,9 +19,9 @@ class NavbarController {
   /**
    * Hide or Show the 'left' sideNav area
    */
-  toggleList() {
+  /*toggleList() {
     $mdSidenav('left').toggle();
-  }
+  }*/
 
 
   constructor(Auth) {
@@ -29,4 +31,4 @@ class NavbarController {
   }
 }
 
-angular.module('agfaWebappApp').controller('NavbarController',NavbarController,['$mdSidenav']);
+angular.module('agfaWebappApp').controller('NavbarController',/*['$mdSidenav'],*/NavbarController);

@@ -17,6 +17,8 @@ angular.module('agfaWebappApp', [
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
-    $mdIconProvider.icon('menu', './assets/images/menu.svg' , 24);
+    $mdIconProvider.icon('menu', './assets/images/menu.svg' , 24)
+                    .icon('home', './assets/images/ic_home_black_36px.svg')
+                    .icon('competition', './assets/images/trophy.svg');
 
   });

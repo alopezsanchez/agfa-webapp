@@ -28,6 +28,10 @@ md-icon.avatar {
   margin-right: 20px;
 }
 
+md-icon.icon {
+  margin-right: 20px;
+}
+
   md-list .md-button.selected {
     color: #03a9f4;
   }
