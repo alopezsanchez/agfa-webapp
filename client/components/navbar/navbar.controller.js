@@ -3,6 +3,16 @@
 class NavbarController {
   //start-non-standard
   menu = [{
+    'title' : 'Iniciar sesion',
+    'state' : 'login',
+    'icon'  : 'login'
+  },
+  {
+    'title' : 'Registrar usuario',
+    'state' : 'signup',
+    'icon'  : 'signup'
+  }
+  ,{
     'title': 'Home',
     'state': 'main',
     'icon' : 'home'
