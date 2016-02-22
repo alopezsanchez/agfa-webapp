@@ -29,7 +29,7 @@
 </div>
 -->
 
-<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+<md-sidenav flex class="site-sidenav md-sidenav-left md-whiteframe-z2"
       md-component-id="left"
       ng-click="nav.toggleList()"
       aria-label="Show User List"
@@ -39,7 +39,18 @@
       <h4>Menú</h4>
     </md-toolbar>
 
-    <md-list>
+    <md-list flex>
+      <header class="nav-header">
+      <a ng-href="/" class="docs-logo" href="/">
+        <div class="logo">
+          <a href="/">
+            <img src="././assets/images/agfa.jpg" alt="">
+          </a>
+        </div>
+      </a>
+    </header>
+
+      <md-subheader class="md-no-sticky">Usuarios</md-subheader>
       <md-list-item ng-repeat="it in nav.menu">
           <md-button>
             <md-icon md-svg-icon={{it.icon}} class="icon"></md-icon>

@@ -24,6 +24,7 @@
     <!-- build:css({.tmp,client}) app/app.css -->
       <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
+      <link rel="stylesheet" href="app/account/login/login.css">
       <link rel="stylesheet" href="app/admin/admin.css">
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/main/main.css">
@@ -43,16 +44,24 @@
 
 
     <navbar></navbar>
-    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" ng-controller"NavbarController as nav">
 
       <md-toolbar layout="row" class="md-whiteframe-z1">
         <md-button id="main" class="menu" hide-gt-sm aria-label="Mostrar acciones">
           <md-icon md-svg-icon="menu" ></md-icon>
         </md-button>
+
         <h4>Asociación Gallega de Fútbol Americano</h4>
+
+        <md-button class="buttonText" aria-label="Iniciar sesión" ui-sref="login">
+          <md-icon md-svg-icon="login" class="icon"></md-icon>
+          <!-- <a ui-sref="login"></a> -->
+          Iniciar Sesión
+        </md-button>
+
       </md-toolbar>
 
-      <div flex ui-view="">
+      <div class="mainContainer" flex ui-view="">
 
       </div>
       <footer></footer>

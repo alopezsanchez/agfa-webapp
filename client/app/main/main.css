@@ -25,3 +25,25 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+div.mainContainer {
+  background-color: #edecec;
+
+}
+
+div.mainContainer div.paddedBlock {
+  padding: 6% 10%;
+}
+
+.paddedForm {
+  padding: 10px;
+  width: 100%;
+}
+
+.submitBtn {
+  text-align: center;
+}
+
+.loginForm {
+  width: 100%;
+}

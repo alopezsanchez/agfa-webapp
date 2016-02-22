@@ -1,6 +1,17 @@
 .toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
   color: white; }
 
+/* links on md-buttons */
+a.md-button, a.md-button:hover, a.md-button:active, a.md-button:visited { color: white; }
+
+/* md-button */
+a.md-button {
+  line-height: 52px;
+}
+
+
+
+
 /* Toolbar area */
 
 .menu {
@@ -9,6 +20,20 @@
   height: 38px;
   margin: 16px;
   width: 36px;
+}
+
+div.logo{
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/* resize images */
+.logo img {
+    width: 100%;
+    height: auto;
 }
 
 md-toolbar h4 {
@@ -23,6 +48,15 @@ h4{
      -ms-hyphens: auto;
      -o-hyphens: auto;
      hyphens: auto;
+     cursor: default;
+
+     -webkit-touch-callout: none; /* iOS Safari */
+     -webkit-user-select: none;   /* Chrome/Safari/Opera */
+     -khtml-user-select: none;    /* Konqueror */
+     -moz-user-select: none;      /* Firefox */
+     -ms-user-select: none;       /* IE/Edge */
+     user-select: none;
+
 }
 
 /* Sidenav area */
