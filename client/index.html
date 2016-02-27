@@ -19,6 +19,7 @@
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
       <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+      <link rel="stylesheet" href="bower_components/Angular-Hero/angular-hero.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -31,6 +32,7 @@
       <link rel="stylesheet" href="components/footer/footer.css">
       <link rel="stylesheet" href="components/modal/modal.css">
       <link rel="stylesheet" href="components/oauth-buttons/oauth-buttons.css">
+      <link rel="stylesheet" href="components/topbar/topbar.css">
       <!-- endinjector -->
     <!-- endbuild -->
 
@@ -44,30 +46,46 @@
 
 
     <navbar></navbar>
-    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" ng-controller"NavbarController as nav">
+    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" ng-controller="NavbarController as nav">
 
+      <!-- <topbar></topbar> -->
       <md-toolbar layout="row" class="md-whiteframe-z1">
         <md-button id="main" class="menu" hide-gt-sm aria-label="Mostrar acciones">
-          <md-icon md-svg-icon="menu" ></md-icon>
+            <md-icon md-svg-icon="menu" ></md-icon>
         </md-button>
 
-        <h4>Asociación Gallega de Fútbol Americano</h4>
+        <h4 class="mainHeader" class="md-title" ng-class="{mainHeaderNotLogged:!nav.isLoggedIn()}">Asociación Gallega de Fútbol Americano</h4>
+        
+         <h5 ng-show="nav.isLoggedIn()">
+            <span>Hola, {{ nav.getCurrentUser().name }}</span>
+         </h5>
+         
+        <md-button ng-show="nav.isLoggedIn()" class="md-icon-button" aria-label="Settings" ui-sref="settings">
+            <md-icon md-svg-icon="settings"></md-icon>
+        </md-button>
 
-        <md-button class="buttonText" aria-label="Iniciar sesión" ui-sref="login">
-          <md-icon md-svg-icon="login" class="icon"></md-icon>
-          <!-- <a ui-sref="login"></a> -->
-          Iniciar Sesión
+        <md-button ng-hide="nav.isLoggedIn()" nav.class="buttonText" aria-label="Iniciar sesión" ui-sref="login">
+            <md-icon md-svg-icon="login" class="icon"></md-icon>
+            <!-- <a ui-sref="login"></a> -->
+            Iniciar Sesión
+        </md-button>
+        
+        <md-button ng-show="nav.isLoggedIn()" nav.class="buttonText" aria-label="Cerrar sesión" ui-sref="logout">
+            <md-icon md-svg-icon="logout" class="icon"></md-icon>
+            <!-- <a ui-sref="login"></a> -->
+            Cerrar Sesión
         </md-button>
 
       </md-toolbar>
 
-      <div class="mainContainer" flex ui-view="">
+
+      <div class="mainContainer page-transition hero-transition" flex ui-view="">
 
       </div>
+
       <footer></footer>
 
     </div>
-
 
 
 
@@ -106,6 +124,7 @@
       <script src="bower_components/angular-aria/angular-aria.js"></script>
       <script src="bower_components/angular-messages/angular-messages.js"></script>
       <script src="bower_components/angular-material/angular-material.js"></script>
+      <script src="bower_components/Angular-Hero/angular-hero.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
@@ -114,7 +133,7 @@
       <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/auth/interceptor.service.js"></script>
+      <script src="components/auth/router.decorator.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.js"></script>
       <script src="app/admin/admin.router.js"></script>
@@ -123,8 +142,8 @@
       <script src="app/main/main.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
+      <script src="components/auth/interceptor.service.js"></script>
       <script src="app/account/login/login.controller.js"></script>
-      <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
       <script src="components/modal/modal.service.js"></script>
@@ -133,6 +152,8 @@
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
+      <script src="components/topbar/topbar.controller.js"></script>
+      <script src="components/topbar/topbar.directive.js"></script>
       <script src="app/account/signup/signup.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->

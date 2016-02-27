@@ -9,7 +9,13 @@ a.md-button {
   line-height: 52px;
 }
 
+.md-button.md-icon-button {
+    margin: auto;
+}
 
+.mainHeader.mainHeaderNotLogged {
+    width: 90%;
+}
 
 
 /* Toolbar area */
@@ -29,6 +35,42 @@ div.logo{
     margin-left: auto;
     margin-right: auto
 }
+
+.mainHeader {
+    width: 80%;
+    text-align: center;
+    /* width: 20%; */
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 10%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
+/* LOGIN */
+
+.inputdemoIcons {
+  /*
+.right-icon {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  left: auto;
+  margin-top: 0;
+}
+*/ }
+  .inputdemoIcons .inputIconDemo {
+    min-height: 48px; }
+  .inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.email {
+    color: green; }
+  .inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.name {
+    color: dodgerblue; }
+  .inputdemoIcons md-input-container.md-input-invalid > md-icon.email,
+  .inputdemoIcons md-input-container.md-input-invalid > md-icon.name {
+    color: red; }
+
 
 /* resize images */
 .logo img {
