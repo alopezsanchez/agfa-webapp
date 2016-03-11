@@ -13,8 +13,27 @@ a.md-button {
     margin: auto;
 }
 
+a.buttonText.loginBtn {
+    min-width: 140px;
+}
+
+a.buttonText.exitBtn {
+    min-width: 100px;
+}
+
 .mainHeader.mainHeaderNotLogged {
     width: 90%;
+}
+
+.hiLogged {
+    width: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+.spanLogged {
+    word-break: break-all;
+    margin: auto;
 }
 
 
@@ -128,6 +147,10 @@ button#main {
 
 md-sidenav > md-toolbar {
   height:64px;
+}
+
+md-sidenav {
+   width: 300px; 
 }
 
 md-list-item {

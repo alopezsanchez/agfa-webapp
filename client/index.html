@@ -56,24 +56,22 @@
 
         <h4 class="mainHeader" class="md-title" ng-class="{mainHeaderNotLogged:!nav.isLoggedIn()}">Asociación Gallega de Fútbol Americano</h4>
         
-         <h5 ng-show="nav.isLoggedIn()">
-            <span>Hola, {{ nav.getCurrentUser().name }}</span>
+         <h5 class="hiLogged" ng-show="nav.isLoggedIn()">
+            <span class="spanLogged">Hola, {{ nav.getCurrentUser().name }}</span>
          </h5>
          
         <md-button ng-show="nav.isLoggedIn()" class="md-icon-button" aria-label="Settings" ui-sref="settings">
             <md-icon md-svg-icon="settings"></md-icon>
         </md-button>
 
-        <md-button ng-hide="nav.isLoggedIn()" nav.class="buttonText" aria-label="Iniciar sesión" ui-sref="login">
+        <md-button ng-hide="nav.isLoggedIn()" class="buttonText loginBtn" aria-label="Iniciar sesión" ui-sref="login">
             <md-icon md-svg-icon="login" class="icon"></md-icon>
-            <!-- <a ui-sref="login"></a> -->
-            Iniciar Sesión
+            Acceder
         </md-button>
         
-        <md-button ng-show="nav.isLoggedIn()" nav.class="buttonText" aria-label="Cerrar sesión" ui-sref="logout">
+        <md-button ng-show="nav.isLoggedIn()" class="buttonText exitBtn" aria-label="Cerrar sesión" ui-sref="logout">
             <md-icon md-svg-icon="logout" class="icon"></md-icon>
-            <!-- <a ui-sref="login"></a> -->
-            Cerrar Sesión
+            Salir
         </md-button>
 
       </md-toolbar>
