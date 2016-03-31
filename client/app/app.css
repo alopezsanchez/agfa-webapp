@@ -9,6 +9,11 @@ a.md-button {
   line-height: 52px;
 }
 
+md-list a.md-button {
+    color: black !important;
+    text-align: left;
+}
+
 .md-button.md-icon-button {
     margin: auto;
 }
@@ -31,10 +36,21 @@ a.buttonText.exitBtn {
     text-align: center;
 }
 
+md-menu-item {
+    color: black;
+}
+
 .spanLogged {
     word-break: break-all;
     margin: auto;
 }
+
+/* Body */
+
+body {
+    overflow-x: hidden;
+}
+
 
 
 /* Toolbar area */

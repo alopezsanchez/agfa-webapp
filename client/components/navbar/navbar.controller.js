@@ -2,12 +2,12 @@
 
 class NavbarController {
   //start-non-standard
-  menu = [{
-    
-    'title' : 'Competiciones',
-    'state' : 'competition',
-    'icon'  : 'competition'
-  }];
+
+  
+  /*this.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);  
+  };*/
 
   isCollapsed = true;
   //end-non-standard
@@ -18,13 +18,24 @@ class NavbarController {
   /*toggleList() {
     $mdSidenav('left').toggle();
   }*/
-
+  openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);  
+  };
+    
 
   constructor(Auth) {
+    this.menu = [{  
+        'title' : 'Competiciones',
+        'state' : 'competition',
+        'icon'  : 'competition'
+    }];
+    
+    var originatorEv;
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
   }
 }
 
-angular.module('agfaWebappApp').controller('NavbarController',/*['$mdSidenav'],*/NavbarController);
+angular.module('agfaWebappApp').controller('NavbarController',NavbarController,/*['$mdDialog']*/);

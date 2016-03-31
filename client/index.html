@@ -28,6 +28,8 @@
       <link rel="stylesheet" href="app/account/login/login.css">
       <link rel="stylesheet" href="app/admin/admin.css">
       <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/competitions/competitions.css">
+      <link rel="stylesheet" href="app/competitions/create/create.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="components/footer/footer.css">
       <link rel="stylesheet" href="components/modal/modal.css">
@@ -56,7 +58,7 @@
 
         <h4 class="mainHeader" class="md-title" ng-class="{mainHeaderNotLogged:!nav.isLoggedIn()}">Asociación Gallega de Fútbol Americano</h4>
         
-         <h5 class="hiLogged" ng-show="nav.isLoggedIn()">
+        <h5 class="hiLogged" ng-show="nav.isLoggedIn()">
             <span class="spanLogged">Hola, {{ nav.getCurrentUser().name }}</span>
          </h5>
          
@@ -68,6 +70,24 @@
             <md-icon md-svg-icon="login" class="icon"></md-icon>
             Acceder
         </md-button>
+        
+       <!-- <md-menu-bar class="hiLogged adminSettingsMenu" ng-show="nav.isLoggedIn()">
+            <md-menu>
+                <md-button ng-show="nav.isLoggedIn()" class="buttonText exitBtn" aria-label="Cerrar sesión" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-svg-icon="login" class="icon"></md-icon>
+                    Hola, {{ nav.getCurrentUser().name }}
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button class="md-icon-button" aria-label="Settings" ui-sref="settings">
+                            <md-icon md-svg-icon="settings" class="icon"></md-icon>
+                            Preferencias
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            
+            </md-menu>
+        </md-menu-bar> -->
         
         <md-button ng-show="nav.isLoggedIn()" class="buttonText exitBtn" aria-label="Cerrar sesión" ui-sref="logout">
             <md-icon md-svg-icon="logout" class="icon"></md-icon>
@@ -136,17 +156,20 @@
       <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/auth/router.decorator.js"></script>
+      <script src="components/auth/auth.service.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.js"></script>
       <script src="app/admin/admin.router.js"></script>
       <script src="app/app.constant.js"></script>
+      <script src="app/competitions/competitions.controller.js"></script>
+      <script src="app/competitions/competitions.js"></script>
+      <script src="app/competitions/create/create.controller.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
-      <script src="components/auth/auth.service.js"></script>
-      <script src="components/auth/interceptor.service.js"></script>
       <script src="app/account/login/login.controller.js"></script>
+      <script src="components/auth/interceptor.service.js"></script>
+      <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
       <script src="components/modal/modal.service.js"></script>
