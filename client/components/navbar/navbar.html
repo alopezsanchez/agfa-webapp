@@ -50,7 +50,7 @@
       </a>
     </header>
 
-      <md-list-item ng-repeat="it in nav.menu">
+      <md-list-item ng-show="nav.isLoggedIn()" ng-repeat="it in nav.menu">
           <md-button ui-sref="newCompetition" flex>
             <md-icon md-svg-icon={{it.icon}} class="icon"></md-icon>
             {{it.title}}

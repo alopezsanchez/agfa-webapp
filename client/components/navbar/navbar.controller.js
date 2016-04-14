@@ -4,27 +4,8 @@ class NavbarController {
   //start-non-standard
 
   
-  /*this.openMenu = function($mdOpenMenu, ev) {
-      originatorEv = ev;
-      $mdOpenMenu(ev);  
-  };*/
 
-  isCollapsed = true;
-  //end-non-standard
-
-  /**
-   * Hide or Show the 'left' sideNav area
-   */
-  /*toggleList() {
-    $mdSidenav('left').toggle();
-  }*/
-  openMenu = function($mdOpenMenu, ev) {
-      originatorEv = ev;
-      $mdOpenMenu(ev);  
-  };
-    
-
-  constructor(Auth) {
+  constructor(Auth,$scope, $mdSidenav) {
     this.menu = [{  
         'title' : 'Competiciones',
         'state' : 'competition',
@@ -35,7 +16,23 @@ class NavbarController {
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
+	
+	
+	
   }
+  
+  $scope.showMobileMainHeader = true;
+    $scope.openSideNavPanel = function() {
+        $mdSidenav('left').open();
+    };
+    $scope.closeSideNavPanel = function() {
+        $mdSidenav('left').close();
+    };
+	
+	$scope.toggleSideNavPanel = function() {
+        $mdSidenav('left').toggle();
+    };
 }
 
-angular.module('agfaWebappApp').controller('NavbarController',NavbarController,/*['$mdDialog']*/);
+angular.module('agfaWebappApp').controller('NavbarController',NavbarController);
+	
