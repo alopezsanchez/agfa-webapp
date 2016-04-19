@@ -52,11 +52,8 @@
 
       <!-- <topbar></topbar> -->
       <md-toolbar layout="row" class="md-whiteframe-z1">
-        <!--<md-button id="main" class="menu" hide-gt-sm aria-label="Mostrar acciones">
-            <md-icon md-svg-icon="menu" ></md-icon>
-        </md-button> -->
 		
-		<md-button class="md-icon-button" hide-gt-sm aria-label="Side Panel" ng-click="openSideNavPanel()">
+		<md-button class="md-icon-button" ng-show="nav.isLoggedIn()" hide-gt-sm aria-label="Side Panel" ng-click="openSideNavPanel()">
      		<md-tooltip>Side Panel</md-tooltip>
      		<md-icon md-svg-icon="menu" ></md-icon>
 		</md-button>

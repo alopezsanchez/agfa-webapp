@@ -1,27 +1,19 @@
 'use strict';
 
-class NavbarController {
-  //start-non-standard
-
-  
-
-  constructor(Auth,$scope, $mdSidenav) {
+var NavbarController = function ($scope, Auth, $mdSidenav) {
+    
     this.menu = [{  
         'title' : 'Competiciones',
         'state' : 'competition',
         'icon'  : 'competition'
     }];
     
-    var originatorEv;
+    
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
-	
-	
-	
-  }
-  
-  $scope.showMobileMainHeader = true;
+    
+    $scope.showMobileMainHeader = true;
     $scope.openSideNavPanel = function() {
         $mdSidenav('left').open();
     };
@@ -32,7 +24,8 @@ class NavbarController {
 	$scope.toggleSideNavPanel = function() {
         $mdSidenav('left').toggle();
     };
-}
+    
+} 
 
 angular.module('agfaWebappApp').controller('NavbarController',NavbarController);
 	

@@ -29,7 +29,7 @@
 </div>
 -->
 
-<md-sidenav flex class="site-sidenav md-sidenav-left md-whiteframe-z2"
+<md-sidenav ng-show="nav.isLoggedIn()"flex class="site-sidenav md-sidenav-left md-whiteframe-z2"
       md-component-id="left"
       ng-click="nav.toggleList()"
       aria-label="Show User List"
@@ -44,14 +44,15 @@
       <a ng-href="/" class="docs-logo" href="/">
         <div class="logo">
           <a href="/">
-            <img src="././assets/images/agfa.jpg" alt="">
+            <!-- <img src="././assets/images/agfa.jpg" alt=""> -->
+			<img src="http://localhost:3001/250/250/agfa.jpg" alt="">
           </a>
         </div>
       </a>
     </header>
 
       <md-list-item ng-show="nav.isLoggedIn()" ng-repeat="it in nav.menu">
-          <md-button ui-sref="newCompetition" flex>
+          <md-button ui-sref="competitions" flex>
             <md-icon md-svg-icon={{it.icon}} class="icon"></md-icon>
             {{it.title}}
           </md-button>
