@@ -4,13 +4,21 @@
 
 class MainController {
 
-  constructor($http) {
+  constructor($http, Auth, $state) {
+	this.$state = $state;
     this.$http = $http;
     this.awesomeThings = [];
+	
+	if (!Auth.isLoggedIn()) {
+		//$state.transitionTo('login');
+		this.$state.go('login');
+	}
 
-    $http.get('/api/things').then(response => {
+    /*$http.get('/api/things').then(response => {
       this.awesomeThings = response.data;
-    });
+    });*/
+	
+	
   }
 
   addThing() {

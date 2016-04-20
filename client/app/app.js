@@ -29,5 +29,8 @@ angular.module('agfaWebappApp', [
                     .icon('password', './assets/icons/password.svg')
 					.icon('add', './assets/icons/add.svg')
                     .icon('login', './assets/icons/login.svg');
+					
+	$mdThemingProvider.theme('default').primaryPalette('indigo')
+    .accentPalette('orange');
 
   });

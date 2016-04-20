@@ -8,6 +8,8 @@ class LoginController {
 
     this.Auth = Auth;
     this.$state = $state;
+	
+	$('div.mainContainer').addClass('login-style');	
   }
 
   login(form) {
@@ -20,6 +22,7 @@ class LoginController {
       })
       .then(() => {
         // Logged in, redirect to home
+		$('div.mainContainer').removeClass('login-style');
         this.$state.go('main');
       })
       .catch(err => {

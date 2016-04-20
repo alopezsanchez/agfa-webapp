@@ -51,7 +51,7 @@
     <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" ng-controller="NavbarController as nav">
 
       <!-- <topbar></topbar> -->
-      <md-toolbar layout="row" class="md-whiteframe-z1">
+      <md-toolbar id="topbar" layout="row" class="md-whiteframe-z1" ng-show="nav.isLoggedIn()">
 		
 		<md-button class="md-icon-button" ng-show="nav.isLoggedIn()" hide-gt-sm aria-label="Side Panel" ng-click="openSideNavPanel()">
      		<md-tooltip>Side Panel</md-tooltip>
@@ -108,7 +108,7 @@
    </div>
 </div> -->
 
-      <footer></footer>
+      <footer ng-show="nav.isLoggedIn()"></footer>
 
     </div>
 
