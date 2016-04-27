@@ -28,6 +28,8 @@ angular.module('agfaWebappApp', [
                     .icon('email', './assets/icons/email.svg')
                     .icon('password', './assets/icons/password.svg')
 					.icon('add', './assets/icons/add.svg')
+					.icon('person', './assets/icons/person.svg')
+					.icon('delete', './assets/icons/delete.svg')
                     .icon('login', './assets/icons/login.svg');
 					
 	$mdThemingProvider.theme('default').primaryPalette('indigo')

@@ -1,10 +1,9 @@
 /* Login screen */
 
 .login-style {
-	/*background-color: #3F51B5 !important; */
-	background-color: #FF4081 !important;
+	background-color: #3F51B5 !important;
 }
 
-.paddedBlock.loginBlock {
-	
+#loginContent {
+	width: 35% !important;	
 }

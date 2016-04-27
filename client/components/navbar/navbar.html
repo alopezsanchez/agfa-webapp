@@ -52,7 +52,7 @@
     </header>
 
       <md-list-item ng-show="nav.isLoggedIn()" ng-repeat="it in nav.menu">
-          <md-button ui-sref="competitions" flex>
+          <md-button ui-sref={{it.state}} flex>
             <md-icon md-svg-icon={{it.icon}} class="icon"></md-icon>
             {{it.title}}
           </md-button>

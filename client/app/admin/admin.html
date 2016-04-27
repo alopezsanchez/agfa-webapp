@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
   <ul class="list-group user-list">
     <li class="list-group-item" ng-repeat="user in admin.users">
@@ -10,3 +10,29 @@
     </li>
   </ul>
 </div>
+-->
+<div class="paddedBlock" layout="column" ng-cloak class="md-inline-form">
+	<md-toolbar class="md-whiteframe-z1">
+		<h4>Lista de usuarios</h4>
+	</md-toolbar>
+	<md-content class="paddedForm" layout-padding>
+		<md-list>
+			<md-list-item class="md-2-line" ng-repeat="user in admin.users" ng-click="">
+				<!-- <img alt="{{user.name }}" ng-src="{{ person.img }}" class="md-avatar"> -->
+				<!-- <md-icon md-svg-icon="person" class="icon md-avatar"></md-icon> -->
+				<img src="http://localhost:3001/250/250/agfa.jpg" alt="{{user.name}}" class="md-avatar">
+				<div class="md-list-item-text">
+					<strong>{{ user.name }}</strong>
+					<p>{{ user.email }}</p>
+				</div>
+
+				<md-button class="md-icon-button" aria-label="Settings" ng-click="admin.delete(user)">
+					<md-icon md-svg-icon="delete" class="icon"></md-icon>
+				</md-button>
+			</md-list-item>
+		</md-list>
+</div>
+
+<md-button class="md-fab md-mini md-hue-2 new-button" ui-sref="signup" aria-label="Nueva competición">
+	<md-icon md-svg-icon="add"></md-icon>
+</md-button>

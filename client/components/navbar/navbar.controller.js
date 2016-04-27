@@ -2,10 +2,16 @@
 
 var NavbarController = function ($scope, Auth, $mdSidenav) {
     
-    this.menu = [{  
-        'title' : 'Competiciones',
-        'state' : 'competition',
-        'icon'  : 'competition'
+    this.menu = [
+		{
+			'title' : 'Usuarios',
+			'state' : 'admin',
+			'icon' : 'person'
+		},
+		{  
+			'title' : 'Competiciones',
+			'state' : 'competitions',
+			'icon'  : 'competition'
     }];
     
     
