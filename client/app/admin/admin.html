@@ -20,7 +20,7 @@
 			<md-list-item class="md-2-line" ng-repeat="user in admin.users" ng-click="">
 				<!-- <img alt="{{user.name }}" ng-src="{{ person.img }}" class="md-avatar"> -->
 				<!-- <md-icon md-svg-icon="person" class="icon md-avatar"></md-icon> -->
-				<img src="http://localhost:3001/250/250/agfa.jpg" alt="{{user.name}}" class="md-avatar">
+				<img src="http://localhost:3001/250/250/images/agfa.jpg" alt="{{user.name}}" class="md-avatar">
 				<div class="md-list-item-text">
 					<strong>{{ user.name }}</strong>
 					<p>{{ user.email }}</p>
@@ -29,7 +29,7 @@
 				<!-- <md-button class="md-icon-button" aria-label="Settings" ng-click="admin.delete(user)">
 					<md-icon md-svg-icon="delete" class="icon"></md-icon>
 				</md-button> -->
-				<md-button class="md-icon-button" aria-label="Settings" ng-click="admin.showConfirm(event,user)">
+				<md-button class="md-icon-button" aria-label="Settings" ng-click="admin.showConfirm($event,user)">
 					<md-icon md-svg-icon="delete" class="icon"></md-icon>
 				</md-button>
 			</md-list-item>
