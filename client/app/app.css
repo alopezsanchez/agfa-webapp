@@ -9,6 +9,11 @@ a.md-button {
   line-height: 52px;
 }
 
+.form {
+	width : 50% !important;
+	margin: 0 auto;
+}
+
 md-list a.md-button {
     color: black !important;
     text-align: left;

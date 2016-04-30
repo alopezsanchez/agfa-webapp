@@ -86,10 +86,10 @@
 </div>
 -->
 <div class="paddedBlock" layout="column" ng-cloak class="md-inline-form">
-  <md-toolbar class="md-whiteframe-z1">
+  <md-toolbar class="md-whiteframe-z1 form">
     <h4>Nuevo usuario</h4>
   </md-toolbar>
-  <md-content class="paddedForm" layout-padding>
+  <md-content class="paddedForm form" layout-padding>
     <div>
       <form name="newUserForm" ng-submit="vm.register(newUserForm)" novalidate>
 	<div layout-gt-xs="row">
@@ -130,7 +130,7 @@
             
             <p class="help-block">{{ vm.errors.other }}</p>
             <section class="submitBtn" layout-phone="column" layout-align="center center">
-              <md-button type="submit" class="md-raised md-primary">Iniciar sesión</md-button>
+              <md-button type="submit" class="md-raised md-primary">Registrar</md-button>
             </section>
           </div>
 

@@ -14,8 +14,9 @@ angular.module('agfaWebappApp')
         referrer: 'main',
         template: '',
         controller: function($state, Auth) {
-          var referrer = $state.params.referrer ||
-                          $state.current.referrer ||
+		  // quiero que cuando me deslogueo vaya al main (de momento)
+          var referrer = //$state.params.referrer ||
+                          //$state.current.referrer ||
                           'main';
           Auth.logout();
           $state.go(referrer);

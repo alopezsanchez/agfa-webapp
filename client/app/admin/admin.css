@@ -1,1 +1,14 @@
-
+.list md-list-item > p,
+ .list md-list-item > .md-list-item-inner > p,
+ .list md-list-item .md-list-item-inner > p,
+ .list md-list-item .md-list-item-inner > .md-list-item-inner > p {
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */ }
+ .list .secondary-button-padding p {
+    padding-right: 100px; }

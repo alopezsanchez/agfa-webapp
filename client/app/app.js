@@ -12,9 +12,10 @@ angular.module('agfaWebappApp', [
   'ui.bootstrap',
   'ngMaterial',
   'alAngularHero',
-  'validation.match'
+  'validation.match',
+  'pascalprecht.translate'
 ])
-  .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider) {
+  .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider) {
     $urlRouterProvider
       .otherwise('/');
 
@@ -34,5 +35,13 @@ angular.module('agfaWebappApp', [
 					
 	$mdThemingProvider.theme('default').primaryPalette('indigo')
     .accentPalette('orange');
+	
+	$translateProvider.translations('es', {
+    	HEADLINE: 'Asociación Gallega de Fútbol Americano',
+    	INTRO_TEXT: 'And it has i18n support!'
+  	});
+	  
+	$translateProvider.preferredLanguage('es');
+	$translateProvider.useSanitizeValueStrategy(null);
 
   });

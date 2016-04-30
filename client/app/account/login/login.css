@@ -5,5 +5,7 @@
 }
 
 #loginContent {
-	width: 35% !important;	
+	width: 35% !important;
+	margin: 0 auto;
+    margin-top: 15%;
 }
