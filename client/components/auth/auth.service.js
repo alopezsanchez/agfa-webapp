@@ -64,7 +64,7 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
           return safeCb(callback)(null, user);
         },
         function(err) {
-          Auth.logout();
+          //Auth.logout();
           return safeCb(callback)(err);
         }).$promise;
     },

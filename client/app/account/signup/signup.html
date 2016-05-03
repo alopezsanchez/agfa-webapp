@@ -86,57 +86,61 @@
 </div>
 -->
 <div class="paddedBlock" layout="column" ng-cloak class="md-inline-form">
-  <md-toolbar class="md-whiteframe-z1 form">
-    <h4>Nuevo usuario</h4>
-  </md-toolbar>
-  <md-content class="paddedForm form" layout-padding>
-    <div>
-      <form name="newUserForm" ng-submit="vm.register(newUserForm)" novalidate>
-	<div layout-gt-xs="row">
+	<md-toolbar class="md-whiteframe-z1 form">
+		<h4>Nuevo usuario</h4>
+	</md-toolbar>
+	<md-content class="paddedForm form" layout-padding>
+		<div>
+			<form name="newUserForm" ng-submit="vm.register(newUserForm)" novalidate>
+				<div layout-gt-xs="row">
 
-		<div class="loginForm" layout-gt-sm="column">
+					<div class="loginForm" layout-gt-sm="column">
 
-			<md-input-container class="md-block" flex-gt-sm>
-				<label>Nombre</label>
-				<md-icon md-svg-icon="person" class="icon"></md-icon>
-				<input type="text" name="name" class="form-control" ng-model="vm.user.name" required/>
-				<div ng-messages="newUserForm.name.$error">
-					<div ng-message="required">Campo requerido</div>
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Nombre</label>
+							<md-icon md-svg-icon="person" class="icon"></md-icon>
+							<input type="text" name="name" class="form-control" ng-model="vm.user.name" required/>
+							<div ng-messages="newUserForm.name.$error">
+								<div ng-message="required">Campo requerido</div>
+							</div>
+						</md-input-container>
+
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>E-mail</label>
+							<md-icon md-svg-icon="email" class="icon"></md-icon>
+							<input type="email" name="email" ng-model="vm.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
+							<div ng-messages="newUserForm.email.$error">
+								<div ng-message="required">Campo requerido</div>
+								<div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
+								<div ng-message="mongoose">{{ vm.errors.email }}</div>
+							</div>
+							<div ng-messages="newUserForm.email.$error.mongoose">
+								<div ng-message="mongoose">{{ vm.errors.email }}</div>
+							</div>
+						</md-input-container>
+
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Contraseña</label>
+							<md-icon md-svg-icon="password" class="password"></md-icon>
+							<input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
+							<div ng-messages="userForm.password.$error">
+								<div ng-message="required">Campo requerido</div>
+							</div>
+						</md-input-container>
+
+
+						<p class="help-block">{{ vm.errors.other }}</p>
+						
+						<section class="submitBtn" layout-phone="column" layout-align="center center">
+							<md-button type="submit" class="md-raised md-primary">Registrar</md-button>
+						</section>
+					</div>
+
+
 				</div>
-			</md-input-container>
-			  
-			  
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>E-mail</label>
-              <md-icon md-svg-icon="email" class="icon"></md-icon>
-              <input type="email" name="email" ng-model="vm.user.email" 
-                ng-pattern="/^.+@.+\..+$/" ng-required="true">
-              <div ng-messages="userForm.email.$error">
-                <div ng-message="required">Campo requerido</div>
-                <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
-              </div>
-            </md-input-container>
-             
-
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Contraseña</label>
-              <md-icon md-svg-icon="password" class="password"></md-icon>
-              <input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
-              <div ng-messages="userForm.password.$error">
-                <div ng-message="required">Campo requerido</div>
-              </div>
-            </md-input-container>
-            
-            
-            <p class="help-block">{{ vm.errors.other }}</p>
-            <section class="submitBtn" layout-phone="column" layout-align="center center">
-              <md-button type="submit" class="md-raised md-primary">Registrar</md-button>
-            </section>
-          </div>
-
-
-        </div>
-      </form>
-    </div>
-  </md-content>
+			</form>
+		</div>
+	</md-content>
 </div>
