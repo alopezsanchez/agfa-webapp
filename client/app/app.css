@@ -1,6 +1,14 @@
 .toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
   color: white; }
-
+  
+/* color icons */
+md-input-container:not(.md-input-invalid) > md-icon {
+    color: green; }
+md-input-container:not(.md-input-invalid) > md-icon {
+    color: dodgerblue; }
+md-input-container.md-input-invalid > md-icon {
+    color: red; }
+	
 /* links on md-buttons */
 a.md-button, a.md-button:hover, a.md-button:active, a.md-button:visited { color: white; }
 

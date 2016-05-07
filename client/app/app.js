@@ -31,6 +31,7 @@ angular.module('agfaWebappApp', [
 					.icon('add', './assets/icons/add.svg')
 					.icon('person', './assets/icons/person.svg')
 					.icon('delete', './assets/icons/delete.svg')
+					.icon('image', './assets/icons/image.svg')
                     .icon('login', './assets/icons/login.svg');
 					
 	$mdThemingProvider.theme('default').primaryPalette('indigo')
