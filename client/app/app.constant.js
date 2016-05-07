@@ -3,7 +3,7 @@
 
 angular.module('agfaWebappApp.constants', [])
 
-.constant('appConfig', {userRoles:['guest','user','admin']})
+.constant('appConfig', {userRoles:['user','admin','club','referee']})
 
 ;
 })(angular);

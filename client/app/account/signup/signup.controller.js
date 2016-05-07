@@ -5,11 +5,13 @@ class SignupController {
 	user = {};
 	errors = {};
 	submitted = false;
+	roles = [];
 	//end-non-standard
 
-	constructor(Auth, $state) {
+	constructor(Auth, $state, appConfig) {
 		this.Auth = Auth;
 		this.$state = $state;
+		this.roles = appConfig.userRoles;
 	}
 
 	register(form) {
@@ -19,7 +21,8 @@ class SignupController {
 			this.Auth.createUser({
 				name: this.user.name,
 				email: this.user.email,
-				password: this.user.password
+				password: this.user.password,
+				role: this.user.role
 			})
 				.then(() => {
 					// Account created, redirect to home
@@ -27,7 +30,7 @@ class SignupController {
 				})
 				.catch(err => {
 					err = err.data;
-					this.errors = {};
+					this.errors = {err};
 
 					// Update validity of form fields that match the mongoose errors
 					angular.forEach(err.errors, (error, field) => {

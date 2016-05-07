@@ -33,6 +33,7 @@ export function index(req, res) {
 
 /**
  * Creates a new user
+ * restriction: 'admin'
  */
 export function create(req, res, next) {
   var newUser = new User(req.body);

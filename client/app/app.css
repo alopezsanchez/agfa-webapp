@@ -4,6 +4,11 @@
 /* links on md-buttons */
 a.md-button, a.md-button:hover, a.md-button:active, a.md-button:visited { color: white; }
 
+/* md-select */
+md-select.option {
+	width: 15%;
+}
+
 /* md-button */
 a.md-button {
   line-height: 52px;
