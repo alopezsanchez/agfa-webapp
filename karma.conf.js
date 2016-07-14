@@ -32,6 +32,7 @@ module.exports = function(config) {
       'client/bower_components/angular-messages/angular-messages.js',
       'client/bower_components/angular-material/angular-material.js',
       'client/bower_components/Angular-Hero/angular-hero.js',
+      'client/bower_components/angular-translate/angular-translate.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',
@@ -98,6 +99,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true
   });
 };

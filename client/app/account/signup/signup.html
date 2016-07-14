@@ -158,7 +158,7 @@
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Imagen</label>
 							<md-icon md-svg-icon="image" class="icon"></md-icon>
-							<input type="image" name="image" ng-model="vm.user.image" required>
+							<input type="file" name="image" ng-model="vm.user.image" required>
 							<div ng-messages="newUserForm.image.$error">
 								<div ng-message="required">Campo requerido</div>
 							</div>

@@ -21,7 +21,7 @@ class MainController {
 	
   }
 
-  addThing() {
+  /*addThing() {
     if (this.newThing) {
       this.$http.post('/api/things', { name: this.newThing });
       this.newThing = '';
@@ -30,7 +30,7 @@ class MainController {
 
   deleteThing(thing) {
     this.$http.delete('/api/things/' + thing._id);
-  }
+  }*/
 }
 
 angular.module('agfaWebappApp')
