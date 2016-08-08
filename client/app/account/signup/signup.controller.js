@@ -13,6 +13,10 @@ class SignupController {
 		this.$state = $state;
 		this.roles = appConfig.userRoles;
 	}
+	
+	upload() {
+		angular.element(document.querySelector('#input-file-id')).click();
+	}
 
 	register(form) {
 		this.submitted = true;
@@ -22,7 +26,8 @@ class SignupController {
 				name: this.user.name,
 				email: this.user.email,
 				password: this.user.password,
-				role: this.user.role
+				role: this.user.role,
+				image: this.user.image
 			})
 				.then(() => {
 					// Account created, redirect to home

@@ -26,7 +26,8 @@ angular.module('agfaWebappApp')
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        authenticate: true
       })
       .state('settings', {
         url: '/settings',

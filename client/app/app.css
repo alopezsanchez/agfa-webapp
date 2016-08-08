@@ -69,7 +69,13 @@ body {
     overflow-x: hidden;
 }
 
+#subBody {
+ 	overflow-y: auto;
+}
 
+.paddedBlock {
+	flex: 1;
+}
 
 /* Toolbar area */
 

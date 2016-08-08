@@ -18,15 +18,6 @@ body {
   letter-spacing: -1px;
 }
 
-.hero-unit {
-  position: relative;
-  padding: 30px 15px;
-  color: #F5F5F5;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: #4393B9;
-}
-
 .navbar-text {
   margin-left: 15px;
 }
@@ -34,6 +25,9 @@ body {
 div.mainContainer {
   background-color: #edecec;
   position: relative;
+  /* border: 1px solid red; */
+  height: 100%;
+  overflow-y: auto;
 }
 
 div.mainContainer div.paddedBlock {
@@ -43,6 +37,7 @@ div.mainContainer div.paddedBlock {
 .paddedForm {
   padding: 10px;
   width: 100%;
+  margin-bottom: -50px;
 }
 
 .submitBtn {

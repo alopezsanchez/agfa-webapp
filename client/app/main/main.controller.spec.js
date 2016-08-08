@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 describe('Controller: MainController', function() {
 
@@ -15,8 +15,7 @@ describe('Controller: MainController', function() {
   // Initialize the controller and a mock scope
   beforeEach(inject(function(_$httpBackend_, $controller, $rootScope, $state, $location) {
     $httpBackend = _$httpBackend_;
-    $httpBackend.expectPOST('/auth/local')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+    $httpBackend.expectGET('/login');
 
     scope = $rootScope.$new();
     state = $state;
@@ -34,4 +33,4 @@ describe('Controller: MainController', function() {
     //expect(state.current.name).to.equal('/login');
     state.expectTransitionTo('login');
   });
-});*/
+});
