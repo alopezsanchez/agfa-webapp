@@ -3,7 +3,7 @@
 
 angular.module('agfaWebappApp.constants', [])
 
-.constant('appConfig', {userRoles:['guest','user','admin']})
+.constant('appConfig', {userRoles:['guest','user','club','admin'],imagesServer:'http://localhost:3002'})
 
 ;
 })(angular);

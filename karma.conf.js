@@ -33,6 +33,7 @@ module.exports = function(config) {
       'client/bower_components/angular-material/angular-material.js',
       'client/bower_components/Angular-Hero/angular-hero.js',
       'client/bower_components/angular-translate/angular-translate.js',
+      'client/bower_components/ng-file-upload/ng-file-upload.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

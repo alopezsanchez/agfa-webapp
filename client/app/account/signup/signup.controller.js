@@ -6,17 +6,30 @@ class SignupController {
 	errors = {};
 	submitted = false;
 	roles = [];
+	file = null;
 	//end-non-standard
 
-	constructor(Auth, $state, appConfig) {
+	constructor(Auth, $state, appConfig, Upload) {
 		this.Auth = Auth;
 		this.$state = $state;
 		this.roles = appConfig.userRoles;
+		this.upload = Upload;
 	}
-	
-	upload() {
-		angular.element(document.querySelector('#input-file-id')).click();
-	}
+
+	// upload on file select or drop
+	uploadImage (file) {
+	        this.upload.upload({
+	            url: '/api/upload-images',
+	            data: {file: file, 'userId': this.user.name}
+	        }).then(function (resp) {
+	            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+	        }, function (resp) {
+	            console.log('Error status: ' + resp.status);
+	        }, function (evt) {
+	            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+	            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+	        });
+	  }
 
 	register(form) {
 		this.submitted = true;
@@ -27,10 +40,10 @@ class SignupController {
 				email: this.user.email,
 				password: this.user.password,
 				role: this.user.role,
-				image: this.user.image
 			})
 				.then(() => {
-					// Account created, redirect to home
+					// Account created, redirect to home and upload the image file if exists
+					this.uploadImage(this.file);
 					this.$state.go('main');
 				})
 				.catch(err => {

@@ -11,6 +11,7 @@ angular.module('agfaWebappApp', [
   'ui.router',
   'ui.bootstrap',
   'ngMaterial',
+  'ngFileUpload',
   'alAngularHero',
   'validation.match',
   'pascalprecht.translate'
@@ -32,7 +33,8 @@ angular.module('agfaWebappApp', [
       .icon('person', './assets/icons/person.svg')
       .icon('delete', './assets/icons/delete.svg')
       .icon('image', './assets/icons/image.svg')
-      .icon('login', './assets/icons/login.svg');
+      .icon('login', './assets/icons/login.svg')
+      .icon('file_upload', './assets/icons/file_upload.svg');
 
     $mdThemingProvider.theme('default').primaryPalette('indigo')
       .accentPalette('orange');
@@ -45,4 +47,8 @@ angular.module('agfaWebappApp', [
     $translateProvider.preferredLanguage('es');
     $translateProvider.useSanitizeValueStrategy(null);
 
+  })
+  .run(function ($rootScope, appConfig) {
+    // add images server base URL to rootScope
+    $rootScope.imagesServer = appConfig.imagesServer;
   });
