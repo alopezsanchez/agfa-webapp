@@ -16,26 +16,21 @@
 			this.users.splice(this.users.indexOf(user), 1);
 			let _this = this;
 
-			_this.scope.showSimpleToast = function () {
-				_this.toast.toast.show(
+			this.showSimpleToast = function () {
+				_this.toast.show(
 					_this.toast.simple()
+						.parent(angular.element('.main-container'))
 						.textContent('Usuario eliminado')
-						.position({
-							bottom: false,
-							top: true,
-							left: false,
-							right: true
-						})
+						.position('top right')
 						.hideDelay(3000)
 					);
 			};
-			
-			_this.scope.showSimpleToast();
+
+			this.showSimpleToast();
 		}
 
 
 		showConfirm(ev, user) {
-			console.log(user);
 			let _this = this;
 			var userName = user.name;
 			// Appending dialog to document.body to cover sidenav in docs app

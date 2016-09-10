@@ -9,11 +9,12 @@ class SignupController {
 	file = null;
 	//end-non-standard
 
-	constructor(Auth, $state, appConfig, Upload) {
+	constructor(Auth, $state, $mdToast, appConfig, Upload) {
 		this.Auth = Auth;
 		this.$state = $state;
 		this.roles = appConfig.userRoles;
 		this.upload = Upload;
+		this.toast = $mdToast;
 	}
 
 	// upload on file select or drop
@@ -33,7 +34,13 @@ class SignupController {
 
 	register(form) {
 		this.submitted = true;
-
+		/*$.post({
+			url: '/api/upload-images',
+			data: {file: this.file, 'userId': 'hola'}
+		});*/
+		if (this.file) {
+			this.uploadImage(this.file);
+		}
 		if (form.$valid) {
 			this.Auth.createUser({
 				name: this.user.name,
@@ -43,7 +50,19 @@ class SignupController {
 			})
 				.then(() => {
 					// Account created, redirect to home and upload the image file if exists
-					this.uploadImage(this.file);
+					//this.uploadImage(this.file);
+					this.showSimpleToast = function () {
+						this.toast.show(
+							this.toast.simple()
+								.parent(angular.element('.main-container'))
+								.textContent('Usuario registrado correctamente')
+								.position('top right')
+								.hideDelay(3000)
+							);
+					};
+
+					this.showSimpleToast();
+
 					this.$state.go('main');
 				})
 				.catch(err => {
