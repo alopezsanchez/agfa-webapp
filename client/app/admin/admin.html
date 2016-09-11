@@ -20,7 +20,7 @@
 			<md-list-item class="md-2-line" ng-repeat="user in admin.users" ng-click="">
 				<!-- <img alt="{{user.name }}" ng-src="{{ person.img }}" class="md-avatar"> -->
 				<!-- <md-icon md-svg-icon="person" class="icon md-avatar"></md-icon> -->
-				<img ng-src="{{imagesServer}}/250/250/images/agfa.jpg" alt="{{user.name}}" class="md-avatar">
+				<img ng-src="{{imagesServer}}/250/250/uploads/{{user.avatar}}?fit=true&force=true" alt="{{user.name}}" class="md-avatar">
 				<div class="md-list-item-text">
 					<strong>{{ user.name }}</strong>
 					<p>{{ user.email }}</p>

@@ -9,6 +9,8 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
+import path from 'path';
+var rootDir = path.join(__dirname, '../');
 
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -22,6 +24,7 @@ if (config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
+app.rootDir = rootDir;
 var server = http.createServer(app);
 require('./config/express')(app);
 require('./routes')(app);

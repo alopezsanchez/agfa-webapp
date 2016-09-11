@@ -10,7 +10,11 @@
 'use strict';
 
 import _ from 'lodash';
+import express from 'express';
+import mime from 'mime';
 import UploadImage from './upload-image.model';
+import User from '../user/user.model';
+
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -82,8 +86,18 @@ export function show(req, res) {
 }*/
 
 export function create(req, res) {
-  console.log(req);
-  respondWithResult(res, 201);
+  console.log(req.file);
+  console.log(req.file.filename);
+  //respondWithResult(res);
+  if (req.body._id) {
+    delete req.body._id;
+  }
+  User.findOne({email: req.body.email}, '-salt -password').exec()
+    .then(
+      req.file ? saveUpdates({avatar: req.file.filename}) : saveUpdates({avatar: 'default.jpg'})
+    )
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
 // Updates an existing UploadImage in the DB

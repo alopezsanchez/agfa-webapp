@@ -18,10 +18,10 @@ class SignupController {
 	}
 
 	// upload on file select or drop
-	uploadImage (file) {
+	uploadImage (file, _id) {
 	        this.upload.upload({
 	            url: '/api/upload-images',
-	            data: {file: file, 'userId': this.user.name}
+	            data: {file: file, email: this.user.email, _id: _id}
 	        }).then(function (resp) {
 	            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
 	        }, function (resp) {
@@ -34,13 +34,6 @@ class SignupController {
 
 	register(form) {
 		this.submitted = true;
-		/*$.post({
-			url: '/api/upload-images',
-			data: {file: this.file, 'userId': 'hola'}
-		});*/
-		if (this.file) {
-			this.uploadImage(this.file);
-		}
 		if (form.$valid) {
 			this.Auth.createUser({
 				name: this.user.name,
@@ -48,9 +41,12 @@ class SignupController {
 				password: this.user.password,
 				role: this.user.role,
 			})
-				.then(() => {
+				.then((user) => {
+					console.log(user);
 					// Account created, redirect to home and upload the image file if exists
-					//this.uploadImage(this.file);
+					if (this.file) {
+						this.uploadImage(this.file, user._id);
+					}
 					this.showSimpleToast = function () {
 						this.toast.show(
 							this.toast.simple()

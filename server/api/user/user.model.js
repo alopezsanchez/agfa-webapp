@@ -19,6 +19,7 @@ var UserSchema = new Schema({
   password: String,
   provider: String,
   salt: String,
+  avatar: String,
   google: {},
   github: {}
 });

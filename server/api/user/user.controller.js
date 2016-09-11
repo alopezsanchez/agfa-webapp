@@ -4,6 +4,8 @@ import User from './user.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import redis from 'redis';
+var client = redis.createClient(6379, 'localhost',{'return_buffers': true});
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -43,7 +45,7 @@ export function create(req, res, next) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresIn: 60 * 60 * 5
       });
-      res.json({ token });
+      res.json({ token, _id : user._id });
     })
     .catch(validationError(res));
 }
@@ -65,7 +67,7 @@ export function show(req, res, next) {
 }
 
 /**
- * Deletes a user
+ * Deletes a user. Remove the avatar redis keys also.
  * restriction: 'admin'
  */
 export function destroy(req, res) {

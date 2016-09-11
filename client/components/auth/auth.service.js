@@ -60,9 +60,9 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
       return User.save(user,
         function(data) {
           /*$cookies.put('token', data.token);
-          currentUser = User.get();
-          return safeCb(callback)(null, user);*/
-		  console.log('User created',data);
+          currentUser = User.get();*/
+          console.log('User created',data);
+          return safeCb(callback)(null, user);
         },
         function(err) {
           //Auth.logout();
