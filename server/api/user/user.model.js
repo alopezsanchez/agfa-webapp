@@ -14,12 +14,13 @@ var UserSchema = new Schema({
   },
   role: {
     type: String,
-    default: 'user'
+    default: 'club'
   },
   password: String,
   provider: String,
   salt: String,
   avatar: String,
+  signUpToken: String,
   google: {},
   github: {}
 });

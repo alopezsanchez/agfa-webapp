@@ -3,5 +3,6 @@
 exports = module.exports = {
   // List of user roles
   userRoles: ['guest', 'user', 'club', 'admin'],
-  imagesServer: 'http://localhost:3002'
+  imagesServer: 'http://localhost:3002',
+  defaultAvatar: 'default.jpg'
 };

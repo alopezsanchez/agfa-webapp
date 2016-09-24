@@ -5,6 +5,8 @@ import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import redis from 'redis';
+import randomstring from 'randomstring';
+
 var client = redis.createClient(6379, 'localhost',{'return_buffers': true});
 
 function validationError(res, statusCode) {
@@ -40,6 +42,8 @@ export function index(req, res) {
 export function create(req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
+  // create a random signUpToken
+  newUser.signUpToken = randomstring.generate();
   newUser.saveAsync()
     .spread(function(user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
@@ -116,6 +120,24 @@ export function me(req, res, next) {
     })
     .catch(err => next(err));
 }
+
+
+/**
+ * Get user by his signup token
+ */
+export function getUserBySignupToken(req, res, next) {
+  var signupToken = req.params.token;
+
+  User.findOneAsync({ signupToken: signupToken }, '-salt -password')
+    .then(user => { // don't ever give out the password or salt
+      if (!user) {
+        return res.status(401).end();
+      }
+      res.json(user);
+    })
+    .catch(err => next(err));
+}
+
 
 /**
  * Authentication callback

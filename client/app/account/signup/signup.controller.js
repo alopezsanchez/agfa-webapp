@@ -15,6 +15,7 @@ class SignupController {
 		this.roles = appConfig.userRoles;
 		this.upload = Upload;
 		this.toast = $mdToast;
+		this.defaultAvatar = appConfig.defaultAvatar;
 	}
 
 	// upload on file select or drop
@@ -38,7 +39,8 @@ class SignupController {
 			this.Auth.createUser({
 				name: this.user.name,
 				email: this.user.email,
-				password: this.user.password,
+				avatar: this.defaultAvatar,
+				//password: this.user.password,
 				role: this.user.role,
 			})
 				.then((user) => {

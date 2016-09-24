@@ -79,12 +79,6 @@ export function show(req, res) {
 }
 
 // Creates a new UploadImage in the DB
-/*export function create(req, res) {
-  return UploadImage.create(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
-}*/
-
 export function create(req, res) {
   console.log(req.file);
   console.log(req.file.filename);

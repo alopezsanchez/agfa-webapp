@@ -8,8 +8,8 @@ class LoginController {
 
     this.Auth = Auth;
     this.$state = $state;
-	
-	$('div.mainContainer').addClass('login-style');	
+
+	  $('div.mainContainer').addClass('login-style');	
   }
 
   login(form) {

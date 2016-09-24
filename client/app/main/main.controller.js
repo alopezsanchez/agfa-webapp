@@ -7,8 +7,7 @@ class MainController {
   constructor($http, Auth, $state) {
 	this.$state = $state;
     this.$http = $http;
-    this.awesomeThings = [];
-	
+
 	if (!Auth.isLoggedIn()) {
 		//$state.transitionTo('login');
 		this.$state.go('login');
@@ -17,8 +16,8 @@ class MainController {
     /*$http.get('/api/things').then(response => {
       this.awesomeThings = response.data;
     });*/
-	
-	
+
+
   }
 
   /*addThing() {

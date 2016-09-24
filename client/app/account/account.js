@@ -35,6 +35,13 @@ angular.module('agfaWebappApp')
         controller: 'SettingsController',
         controllerAs: 'vm',
         authenticate: true
+      })
+      .state('confirmSignup', {
+        url: '/confirm/:token',
+        templateUrl: 'app/account/confirmSignup/confirm.html',
+        controller: 'ConfirmController',
+        controllerAs: 'vm',
+        authenticate: false
       });
   })
   .run(function($rootScope) {

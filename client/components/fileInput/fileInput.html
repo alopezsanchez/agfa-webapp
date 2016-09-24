@@ -3,4 +3,4 @@
   <md-icon md-svg-icon="file_upload"></md-icon>
 </md-button>
 <md-input-container md-no-float> <input id="textInput" type="text" ng-readonly="true" aria-label="text input"></md-input-container>
-<img id="preview" src="#" alt="Imagen seleccionada" />
+<img id="preview" ngf-src="!vm.file.$error && vm.file" class="md-avatar" alt="Imagen seleccionada" />

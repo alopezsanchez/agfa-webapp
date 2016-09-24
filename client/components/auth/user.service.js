@@ -17,6 +17,12 @@ function UserResource($resource) {
       params: {
         id: 'me'
       }
+    },
+    getBySignupToken: {
+      method: 'GET',
+      params: {
+        controller: 'signUpToken' 
+      }
     }
   });
 }
