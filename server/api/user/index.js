@@ -11,6 +11,8 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.get('/:token/signUpToken', controller.getUserBySignupToken);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+router.put('/:id', controller.changePassword);
+router.put('/:id/update', controller.updateProfile);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.hasRole('admin'),controller.create);
 

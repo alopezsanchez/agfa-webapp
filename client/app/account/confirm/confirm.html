@@ -4,7 +4,7 @@
 	</md-toolbar>
 	<md-content class="paddedForm form" layout-padding>
 		<div>
-			<form name="confirmUserForm" ng-submit="vm.confirm(confirmUserForm)" enctype="multipart/form-data" novalidate>
+			<form name="confirmUserForm" ng-submit="cc.confirm(confirmUserForm)" enctype="multipart/form-data" novalidate>
 				<div layout-gt-xs="row">
 
 					<div class="loginForm" layout-gt-sm="column">
@@ -12,9 +12,9 @@
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Nombre</label>
 							<md-icon md-svg-icon="person" class="icon"></md-icon>
-							<input type="text" name="name" ng-model="vm.user.name" ng-value="vm.user.name" required/>
-							<div ng-messages="newUserForm.name.$error">
-								<div ng-message="required">Campo requerido</div>
+							<input type="text" name="name" ng-model="cc.user.name" required/>
+							<div ng-messages="confirmUserForm.name.$error">
+								<div ng-message="required">Campo obligatorio</div>
 							</div>
 						</md-input-container>
 
@@ -22,14 +22,14 @@
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>E-mail</label>
 							<md-icon md-svg-icon="email" class="icon"></md-icon>
-							<input type="email" name="email" ng-model="vm.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
-							<div ng-messages="newUserForm.email.$error">
-								<div ng-message="required">Campo requerido</div>
+							<input type="email" name="email" ng-model="cc.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
+							<div ng-messages="confirmUserForm.email.$error">
+								<div ng-message="required">Campo obligatorio</div>
 								<div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
-								<div ng-message="mongoose">{{ vm.errors.email }}</div>
+								<div ng-message="mongoose">{{ cc.errors.email }}</div>
 							</div>
-							<div ng-messages="newUserForm.email.$error.mongoose">
-								<div ng-message="mongoose">{{ vm.errors.email }}</div>
+							<div ng-messages="confirmUserForm.email.$error.mongoose">
+								<div ng-message="mongoose">{{ cc.errors.email }}</div>
 							</div>
 						</md-input-container>
 
@@ -37,22 +37,22 @@
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Contraseña</label>
 							<md-icon md-svg-icon="password" class="password"></md-icon>
-							<input type="password" name="password" ng-minlength="3" ng-model="vm.user.password" required mongoose-error/>
-							<div ng-messages="newUserForm.password.$error">
-								<div ng-message="required">Campo requerido</div>
-								<div ng-message="minlength">La contraseña debe tener como mínimo 3 caracteres</div>
-								<div ng-message="mongoose">{{ vm.errors.password }}</div>
+							<input type="password" name="password" ng-minlength="6" ng-model="cc.user.password" required mongoose-error/>
+							<div ng-messages="confirmUserForm.password.$error">
+								<div ng-message="required">Campo obligatorio</div>
+								<div ng-message="minlength">La contraseña debe tener como mínimo 6 caracteres</div>
+								<div ng-message="mongoose">{{ cc.errors.password }}</div>
 							</div>
 						</md-input-container>
 
 						<md-input-container class="md-block" flex-gt-sm>
 							<label> Confirmar nueva contraseña</label>
 							<md-icon md-svg-icon="password" class="password"></md-icon>
-							<input type="password" name="confirmPassword" ng-model="vm.user.confirmPassword" ng-minlength="3" match="vm.user.password"
+							<input type="password" name="confirmPassword" ng-model="cc.user.confirmPassword" ng-minlength="3" match="cc.user.password"
 								required>
-							<div ng-messages="newUserForm.confirmPassword.$error">
-								<div ng-message="required">Campo requerido</div>
-								<div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
+							<div ng-messages="confirmUserForm.confirmPassword.$error">
+								<div ng-message="required">Campo obligatorio</div>
+								<div ng-message="minlength">La nueva contraseña debe tener mínimo 6 caracteres</div>
 								<div ng-message="match">Las contraseñas deben coincidir</div>
 							</div>
 						</md-input-container>
@@ -60,11 +60,11 @@
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Rol</label>
 							<md-icon md-svg-icon="person" class="icon"></md-icon>
-							<md-select name="role" class="option" ng-model="vm.user.role">
-								<md-option ng-repeat="role in vm.roles" value="{{role}}">{{role}}</md-option>
+							<md-select name="role" class="option md-no-underline" ng-model="cc.user.role" disabled>
+								<md-option ng-repeat="role in cc.roles" value="{{role}}">{{role}}</md-option>
 							</md-select>
-							<div ng-messages="newUserForm.role.$error">
-								<div ng-message="required">Campo requerido</div>
+							<div ng-messages="confirmUserForm.role.$error">
+								<div ng-message="required">Campo obligatorio</div>
 							</div>
 						</md-input-container>
 
@@ -73,14 +73,13 @@
 							<md-content layout-padding layout="row" layout-align="start end">
 								<file-input></file-input>
 							</md-content>
-
 						</md-input-container>
 
 
-						<p class="help-block">{{ vm.errors.other }}</p>
+						<p class="help-block">{{ cc.errors.other }}</p>
 
 						<section class="submitBtn" layout-phone="column" layout-align="center center">
-							<md-button type="submit" class="md-raised md-primary">Registrar</md-button>
+							<md-button id="buttonRegister" type="submit" class="md-raised md-primary">Registrar</md-button>
 						</section>
 					</div>
 

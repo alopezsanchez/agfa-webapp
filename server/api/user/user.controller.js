@@ -7,18 +7,18 @@ import jwt from 'jsonwebtoken';
 import redis from 'redis';
 import randomstring from 'randomstring';
 
-var client = redis.createClient(6379, 'localhost',{'return_buffers': true});
+var client = redis.createClient(6379, 'localhost', { 'return_buffers': true });
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
-  return function(err) {
+  return function (err) {
     res.status(statusCode).json(err);
   }
 }
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
-  return function(err) {
+  return function (err) {
     res.status(statusCode).send(err);
   };
 }
@@ -45,11 +45,11 @@ export function create(req, res, next) {
   // create a random signUpToken
   newUser.signUpToken = randomstring.generate();
   newUser.saveAsync()
-    .spread(function(user) {
+    .spread(function (user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresIn: 60 * 60 * 5
       });
-      res.json({ token, _id : user._id });
+      res.json({ token, _id: user._id });
     })
     .catch(validationError(res));
 }
@@ -76,10 +76,32 @@ export function show(req, res, next) {
  */
 export function destroy(req, res) {
   User.findByIdAndRemoveAsync(req.params.id)
-    .then(function() {
+    .then(function () {
       res.status(204).end();
     })
     .catch(handleError(res));
+}
+
+/**
+ * Update users information
+ */
+export function updateProfile(req, res, next) {
+  var userUpdated = req.body;
+  var userId = req.body._id;
+
+  User.findByIdAsync(userId)
+    .then(user => {
+      Object.keys(userUpdated).forEach(function (key) {
+        user[key] = userUpdated[key];
+      });
+      user.signUpToken = '';
+      user.confirmado = true;
+      return user.saveAsync()
+        .then(() => {
+          return res.status(200).end();
+        })
+        .catch(validationError(res));
+    });
 }
 
 /**
@@ -128,11 +150,9 @@ export function me(req, res, next) {
 export function getUserBySignupToken(req, res, next) {
   var signupToken = req.params.token;
 
-  User.findOneAsync({ signupToken: signupToken }, '-salt -password')
+  User.findOneAsync({ signUpToken: signupToken }, '-salt -password')
     .then(user => { // don't ever give out the password or salt
-      if (!user) {
-        return res.status(401).end();
-      }
+      console.log(user);
       res.json(user);
     })
     .catch(err => next(err));

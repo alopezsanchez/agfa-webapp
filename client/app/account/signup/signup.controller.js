@@ -18,20 +18,6 @@ class SignupController {
 		this.defaultAvatar = appConfig.defaultAvatar;
 	}
 
-	// upload on file select or drop
-	uploadImage (file, _id) {
-	        this.upload.upload({
-	            url: '/api/upload-images',
-	            data: {file: file, email: this.user.email, _id: _id}
-	        }).then(function (resp) {
-	            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-	        }, function (resp) {
-	            console.log('Error status: ' + resp.status);
-	        }, function (evt) {
-	            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-	            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-	        });
-	  }
 
 	register(form) {
 		this.submitted = true;

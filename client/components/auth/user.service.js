@@ -6,6 +6,12 @@ function UserResource($resource) {
   return $resource('/api/users/:id/:controller', {
     id: '@_id'
   }, {
+    updateUser: {
+      method: 'PUT',
+      params: {
+        controller: 'update'
+      }
+    },
     changePassword: {
       method: 'PUT',
       params: {
@@ -21,7 +27,7 @@ function UserResource($resource) {
     getBySignupToken: {
       method: 'GET',
       params: {
-        controller: 'signUpToken' 
+        controller: 'signUpToken'
       }
     }
   });

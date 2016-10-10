@@ -14,7 +14,7 @@ angular.module('agfaWebappApp')
         referrer: 'main',
         template: '',
         controller: function($state, Auth) {
-		  // quiero que cuando me deslogueo vaya al main (de momento)
+		      // quiero que cuando me deslogueo vaya al main (de momento)
           var referrer = //$state.params.referrer ||
                           //$state.current.referrer ||
                           'main';
@@ -36,11 +36,11 @@ angular.module('agfaWebappApp')
         controllerAs: 'vm',
         authenticate: true
       })
-      .state('confirmSignup', {
+      .state('confirm', {
         url: '/confirm/:token',
-        templateUrl: 'app/account/confirmSignup/confirm.html',
+        templateUrl: 'app/account/confirm/confirm.html',
         controller: 'ConfirmController',
-        controllerAs: 'vm',
+        controllerAs: 'cc',
         authenticate: false
       });
   })

@@ -21,6 +21,7 @@ var UserSchema = new Schema({
   salt: String,
   avatar: String,
   signUpToken: String,
+  confirmado: Boolean,
   google: {},
   github: {}
 });

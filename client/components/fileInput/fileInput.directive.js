@@ -31,8 +31,12 @@ angular.module('agfaWebappApp')
         return {
             templateUrl: 'components/fileInput/fileInput.html',
             restrict: 'E',
-            controller: 'SignupController',
-            controllerAs: 'vm',
+            scope: {
+              file: '='
+            },
+            controller: function () {
+              this.file = null;
+            },
             link: fileInputLink
         };
     });

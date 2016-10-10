@@ -1,6 +1,8 @@
-<input id="fileInput"  ngf-select type="file" name="file" ng-model="vm.file" class="ng-hide" aria-label="file input">
+<input id="fileInput"  ngf-select type="file" name="file" ng-model="$parent.file" class="ng-hide" aria-label="file input">
+
 <md-button id="uploadButton" class="md-fab md-mini" aria-label="attach_file">
   <md-icon md-svg-icon="file_upload"></md-icon>
 </md-button>
+
 <md-input-container md-no-float> <input id="textInput" type="text" ng-readonly="true" aria-label="text input"></md-input-container>
-<img id="preview" ngf-src="!vm.file.$error && vm.file" class="md-avatar" alt="Imagen seleccionada" />
+<img id="preview" ngf-src="!vm.file.$error && $parent.file" class="md-avatar" alt="Imagen seleccionada" />
