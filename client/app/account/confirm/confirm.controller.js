@@ -48,12 +48,27 @@ class ConfirmController {
 	confirm(form) {
 		this.submitted = true;
 		if (form.$valid) {
-			this.Auth.updateUser(this.user)
+			this.$http.put(`/api/users/${this.user._id}/update`,this.user)
+			//this.Auth.updateUser(this.user)
 				.then(() => {
 					// Account confirmed, redirect to home and upload the image file if exists
 					if (this.$scope.file) {
 						this.uploadImage(this.$scope.file, this.user._id);
 					}
+
+					this.showSimpleToast = function () {
+						this.toast.show(
+							this.toast.simple()
+								.parent(angular.element('.main-container'))
+								.textContent('Usuario registrado correctamente')
+								.position('top right')
+								.hideDelay(3000)
+							);
+					};
+
+					this.showSimpleToast();
+					
+					this.$state.go('main');
 
 					// TODO: Send mail to admins confirmating registration
 				})

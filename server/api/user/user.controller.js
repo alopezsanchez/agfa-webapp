@@ -74,6 +74,7 @@ export function show(req, res, next) {
  * Deletes a user. Remove the avatar redis keys also.
  * restriction: 'admin'
  */
+// TODO: delete redis keys
 export function destroy(req, res) {
   User.findByIdAndRemoveAsync(req.params.id)
     .then(function () {
