@@ -6,6 +6,8 @@ import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import redis from 'redis';
 import randomstring from 'randomstring';
+import mail from '../../components/sendmail/mail.js';
+import url from 'url';
 
 var client = redis.createClient(6379, 'localhost', { 'return_buffers': true });
 
@@ -44,6 +46,10 @@ export function create(req, res, next) {
   newUser.provider = 'local';
   // create a random signUpToken
   newUser.signUpToken = randomstring.generate();
+  var hostname = req.headers.host;
+  var pathname = `/confirm/${newUser.signUpToken}`;
+  var confirmLink = `${req.protocol}://${hostname}${pathname}`;
+  mail.sendConfirm(newUser.name, newUser.email, confirmLink);
   newUser.saveAsync()
     .spread(function (user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
@@ -99,6 +105,8 @@ export function updateProfile(req, res, next) {
       user.confirmado = true;
       return user.saveAsync()
         .then(() => {
+          mail.sendMailUserConfirmed(user.name);
+          console.log('holaaaa');
           return res.status(200).end();
         })
         .catch(validationError(res));
