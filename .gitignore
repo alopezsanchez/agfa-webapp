@@ -8,3 +8,4 @@ dist
 npm-debug.log
 coverage
 /client/assets/uploads/
+*.DS_Store

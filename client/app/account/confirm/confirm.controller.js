@@ -23,9 +23,6 @@ class ConfirmController {
 
 	}
 
-	hola() {
-		console.log(this.$scope.file);
-	}
 	// upload on file select or drop
 	uploadImage(file, _id) {
 		this.upload.upload({
@@ -67,7 +64,7 @@ class ConfirmController {
 					};
 
 					this.showSimpleToast();
-					
+
 					this.$state.go('main');
 
 					// TODO: Send mail to admins confirmating registration
@@ -90,4 +87,3 @@ class ConfirmController {
 
 angular.module('agfaWebappApp')
 	.controller('ConfirmController', ConfirmController);
-
