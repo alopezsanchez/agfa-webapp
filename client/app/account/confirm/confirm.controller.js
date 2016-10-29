@@ -24,48 +24,58 @@ class ConfirmController {
 	}
 
 	// upload on file select or drop
-	uploadImage(file, _id) {
-		this.upload.upload({
-			url: '/api/upload-images',
-			data: {
-				file: file,
-				email: this.user.email,
-				_id: _id
+	uploadImage(file, _id, form) {
+		if (file.type.indexOf('image/') !== -1) {
+			this.upload.upload({
+				url: '/api/upload-images',
+				data: {
+					file: file,
+					email: this.user.email,
+					_id: _id
+				}
+			}).then((resp) => {
+					console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+					this.updateUser(form);
+				})
+				.catch((resp) => {
+					this.errors.other = 'Error al subir la imagen.';
+					console.log('Error status: ' + resp.status);
+				});
 			}
-		}).then(function (resp) {
-			console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-		}, function (resp) {
-			console.log('Error status: ' + resp.status);
-		}, function (evt) {
-			var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-			console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-		});
-	}
+			else {
+				this.errors.other = 'Formato incorrecto. Por favor, inserta una imagen.';
+			}
+		}
 
-	confirm(form) {
-		this.submitted = true;
-		if (form.$valid) {
-			this.$http.put(`/api/users/${this.user._id}/update`,this.user)
-			//this.Auth.updateUser(this.user)
+		confirm(form) {
+			this.submitted = true;
+			if (form.$valid) {
+				if (this.$scope.file) {
+					// Upload file and update user
+					this.uploadImage(this.$scope.file, this.user._id, form);
+				} else {
+					this.updateUser(form);
+				}
+			}
+		}
+
+		updateUser(form) {
+			this.$http.put(`/api/users/${this.user._id}/update`, this.user)
 				.then(() => {
-					// Account confirmed, redirect to home and upload the image file if exists
-					if (this.$scope.file) {
-						this.uploadImage(this.$scope.file, this.user._id);
-					}
-
-					this.showSimpleToast = function () {
+					// Account confirmed
+					this.showSimpleToast = function() {
 						this.toast.show(
 							this.toast.simple()
-								.parent(angular.element('.main-container'))
-								.textContent('Usuario registrado correctamente')
-								.position('top right')
-								.hideDelay(3000)
-							);
+							.parent(angular.element('.main-container'))
+							.textContent('¡Te has registrado correctamente!')
+							.position('top right')
+							.hideDelay(3000)
+						);
 					};
 
 					this.showSimpleToast();
 
-					this.$state.go('main');
+					this.state.go('main');
 
 					// TODO: Send mail to admins confirmating registration
 				})
@@ -83,7 +93,8 @@ class ConfirmController {
 				});
 		}
 	}
-}
 
-angular.module('agfaWebappApp')
-	.controller('ConfirmController', ConfirmController);
+
+
+	angular.module('agfaWebappApp')
+		.controller('ConfirmController', ConfirmController);

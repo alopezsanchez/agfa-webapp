@@ -1,8 +1,8 @@
-<div class="paddedBlock" layout="column" ng-cloak class="md-inline-form">
+<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
 	<md-toolbar class="md-whiteframe-z1 form">
 		<h4>Nuevo usuario</h4>
 	</md-toolbar>
-	<md-content class="paddedForm form" layout-padding>
+	<md-content class="paddedForm" layout-padding>
 		<div>
 			<form name="newUserForm" ng-submit="vm.register(newUserForm)" enctype="multipart/form-data" novalidate>
 				<div layout-gt-xs="row">
@@ -32,30 +32,6 @@
 							</div>
 						</md-input-container>
 
-
-						<!-- <md-input-container class="md-block" flex-gt-sm>
-							<label>Contraseña</label>
-							<md-icon md-svg-icon="password" class="password"></md-icon>
-							<input type="password" name="password" ng-minlength="3" ng-model="vm.user.password" required mongoose-error/>
-							<div ng-messages="newUserForm.password.$error">
-								<div ng-message="required">Campo requerido</div>
-								<div ng-message="minlength">La contraseña debe tener como mínimo 3 caracteres</div>
-								<div ng-message="mongoose">{{ vm.errors.password }}</div>
-							</div>
-						</md-input-container>
-
-						<md-input-container class="md-block" flex-gt-sm>
-							<label> Confirmar nueva contraseña</label>
-							<md-icon md-svg-icon="password" class="password"></md-icon>
-							<input type="password" name="confirmPassword" ng-model="vm.user.confirmPassword" ng-minlength="3" match="vm.user.password"
-								required>
-							<div ng-messages="newUserForm.confirmPassword.$error">
-								<div ng-message="required">Campo requerido</div>
-								<div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
-								<div ng-message="match">Las contraseñas deben coincidir</div>
-							</div>
-						</md-input-container> -->
-
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Rol</label>
 							<md-icon md-svg-icon="person" class="icon"></md-icon>
@@ -67,21 +43,12 @@
 							</div>
 						</md-input-container>
 
-					<!-- 	<md-input-container class="md-block" flex-gt-sm>
-							<md-content layout-padding layout="row" layout-align="start end">
-								<file-input></file-input>
-							</md-content>
-
-						</md-input-container> -->
-
 						<p class="help-block">{{ vm.errors.other }}</p>
 
 						<section class="submitBtn" layout-phone="column" layout-align="center center">
 							<md-button type="submit" class="md-raised md-primary">Enviar mail de registro</md-button>
 						</section>
 					</div>
-
-
 				</div>
 			</form>
 		</div>

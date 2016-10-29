@@ -4,24 +4,19 @@
 'use strict';
 
 import nodemailer from 'nodemailer';
+import config from '../../config/environment';
 
 exports.sendMailUserConfirmed = (userName) => {
 
-	var transporter = nodemailer.createTransport('SMTP', {
-		service: 'Gmail',
-		auth: {
-			user: "alopezsanchez18@gmail.com",
-			pass: "zxkcvjfvbdoxkddd"
-		}
-	});
+	var transporter = nodemailer.createTransport('smtps://alopezsanchez18%40gmail.com:zxkcvjfvbdoxkddd@smtp.gmail.com');
 
 	transporter.sendMail({
-		from: 'a.lopez.sanchez@udc.es',
-		to: 'alopezsanchez18@gmail.com',
+		from: '"Asociación Gallega de Fútbol Americano" <no-reply-agfa@agfa.gal>',
+		to: config.adminMail,
 		subject: `Confirmación de registro de ${userName}`,
-		html: `Hola.
+		html: `Hola.\n
                 Se informa que el usuario <b>${userName}</b> ha completado su registro correctamente.`,
-		text: `Hola.
+		text: `Hola.\n
                 Se informa que el usuario ${userName} ha completado su registro correctamente.`
 	});
 }
@@ -34,15 +29,15 @@ exports.sendConfirm = (userName, mail, link) => {
   var transporter = nodemailer.createTransport('smtps://alopezsanchez18%40gmail.com:zxkcvjfvbdoxkddd@smtp.gmail.com');
 
 	var mailOptions = {
-		from: 'a.lopez.sanchez@udc.es',
+		from: '"Asociación Gallega de Fútbol Americano" <no-reply-agfa@agfa.gal>',
 		to: mail,
 		subject: `Confirmación de registro en AGFA`,
-		html: `Hola ${userName}.
+		html: `Hola ${userName}.\n
                 Accede al siguiente enlace o cópialo en tu navegador para completar tu registro en AGFA:
-                <a href="${link}">${link}</a>`,
-		text: `Hola ${userName}.
+                \n<a href="${link}">${link}</a>`,
+		text: `Hola ${userName}.\n
                 Accede al siguiente enlace o cópialo en tu navegador para completar tu registro en AGFA:
-                ${link}`
+                \n${link}`
 	};
 
 	transporter.sendMail(mailOptions, function(error, info) {

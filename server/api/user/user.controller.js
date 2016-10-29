@@ -9,6 +9,7 @@ import randomstring from 'randomstring';
 import mail from '../../components/sendmail/mail.js';
 import url from 'url';
 
+// TODO: eliminar ocurrencias de redis al modificar o borrar usuario
 var client = redis.createClient(6379, 'localhost', { 'return_buffers': true });
 
 function validationError(res, statusCode) {
@@ -106,7 +107,6 @@ export function updateProfile(req, res, next) {
       return user.saveAsync()
         .then(() => {
           mail.sendMailUserConfirmed(user.name);
-          console.log('holaaaa');
           return res.status(200).end();
         })
         .catch(validationError(res));

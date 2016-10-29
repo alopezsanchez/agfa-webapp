@@ -16,6 +16,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'club'
   },
+  address: String,
   password: String,
   provider: String,
   salt: String,

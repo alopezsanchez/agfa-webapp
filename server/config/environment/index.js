@@ -13,6 +13,9 @@ function requiredProcessEnv(name) {
 // All configurations will extend these options
 // ============================================
 var all = {
+
+  adminMail : 'alopezsanchez18@gmail.com',
+
   env: process.env.NODE_ENV,
 
   // Root path of server

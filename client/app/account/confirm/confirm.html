@@ -11,7 +11,7 @@
 
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Nombre</label>
-							<md-icon md-svg-icon="person" class="icon"></md-icon>
+							<md-icon>person</md-icon>
 							<input type="text" name="name" ng-model="cc.user.name" required/>
 							<div ng-messages="confirmUserForm.name.$error">
 								<div ng-message="required">Campo obligatorio</div>
@@ -21,7 +21,7 @@
 
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>E-mail</label>
-							<md-icon md-svg-icon="email" class="icon"></md-icon>
+							<md-icon>mail</md-icon>
 							<input type="email" name="email" ng-model="cc.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
 							<div ng-messages="confirmUserForm.email.$error">
 								<div ng-message="required">Campo obligatorio</div>
@@ -35,8 +35,18 @@
 
 
 						<md-input-container class="md-block" flex-gt-sm>
+							<label>Dirección</label>
+							<md-icon>location_city</md-icon>
+							<input type="text" name="address" ng-model="cc.user.address" ng-required="true"/>
+							<div ng-messages="confirmUserForm.address.$error">
+								<div ng-message="required">Campo obligatorio</div>
+							</div>
+						</md-input-container>
+
+
+						<md-input-container class="md-block" flex-gt-sm>
 							<label>Contraseña</label>
-							<md-icon md-svg-icon="password" class="password"></md-icon>
+							<md-icon>vpn_key</md-icon>
 							<input type="password" name="password" ng-minlength="6" ng-model="cc.user.password" required mongoose-error/>
 							<div ng-messages="confirmUserForm.password.$error">
 								<div ng-message="required">Campo obligatorio</div>
@@ -47,7 +57,7 @@
 
 						<md-input-container class="md-block" flex-gt-sm>
 							<label> Confirmar nueva contraseña</label>
-							<md-icon md-svg-icon="password" class="password"></md-icon>
+							<md-icon>vpn_key</md-icon>
 							<input type="password" name="confirmPassword" ng-model="cc.user.confirmPassword" ng-minlength="3" match="cc.user.password"
 								required>
 							<div ng-messages="confirmUserForm.confirmPassword.$error">
@@ -59,7 +69,7 @@
 
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Rol</label>
-							<md-icon md-svg-icon="person" class="icon"></md-icon>
+							<md-icon>group_work</md-icon>
 							<md-select name="role" class="option md-no-underline" ng-model="cc.user.role" disabled>
 								<md-option ng-repeat="role in cc.roles" value="{{role}}">{{role}}</md-option>
 							</md-select>
@@ -69,21 +79,17 @@
 						</md-input-container>
 
 						<md-input-container class="md-block" flex-gt-sm>
-							<!-- <md-icon md-svg-icon="image" class="icon"></md-icon> -->
-							<md-content layout-padding layout="row" layout-align="start end">
+								<h4>Avatar</h4>
 								<file-input></file-input>
-							</md-content>
 						</md-input-container>
 
 
-						<p class="help-block">{{ cc.errors.other }}</p>
+						<p class="errorMessage">{{ cc.errors.other }}</p>
 
 						<section class="submitBtn" layout-phone="column" layout-align="center center">
 							<md-button id="buttonRegister" type="submit" class="md-raised md-primary">Registrar</md-button>
 						</section>
 					</div>
-
-
 				</div>
 			</form>
 		</div>
