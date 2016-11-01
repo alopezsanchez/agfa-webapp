@@ -22,9 +22,6 @@ exports.sendMailUserConfirmed = (userName) => {
 }
 
 exports.sendConfirm = (userName, mail, link) => {
-	console.log(userName);
-	console.log(mail);
-	console.log(link);
 
   var transporter = nodemailer.createTransport('smtps://alopezsanchez18%40gmail.com:zxkcvjfvbdoxkddd@smtp.gmail.com');
 
