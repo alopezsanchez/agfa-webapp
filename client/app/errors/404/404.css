@@ -1,0 +1,12 @@
+div.errorContainer {
+  position: absolute;
+  text-align:center;
+  top: 35%;
+  left: 30%;
+  right: 30%;
+}
+
+h1 {
+  margin: auto;
+  vertical-align: middle;
+}

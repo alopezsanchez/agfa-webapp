@@ -18,7 +18,7 @@ angular.module('agfaWebappApp', [
 ])
   .config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('/404');
 
     $locationProvider.html5Mode(true);
     $mdIconProvider.icon('menu', './assets/icons/menu.svg', 24)
@@ -51,4 +51,8 @@ angular.module('agfaWebappApp', [
   .run(function ($rootScope, appConfig) {
     // add images server base URL to rootScope
     $rootScope.imagesServer = appConfig.imagesServer;
+
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+      $rootScope.$previousState = from;
+    });
   });

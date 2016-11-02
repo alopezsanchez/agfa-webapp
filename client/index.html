@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="app/app.css">
   <link rel="stylesheet" href="app/competitions/competitions.css">
   <link rel="stylesheet" href="app/competitions/create/create.css">
+  <link rel="stylesheet" href="app/errors/404/404.css">
   <link rel="stylesheet" href="app/main/main.css">
   <link rel="stylesheet" href="components/fileInput/fileInput.css">
   <link rel="stylesheet" href="components/footer/footer.css">
@@ -138,10 +139,10 @@
   <!-- build:js(.tmp) app/app.js -->
   <script src="app/app.js"></script>
   <!-- injector:js -->
-  <script src="app/admin/admin.module.js"></script>
   <script src="components/auth/auth.module.js"></script>
+  <script src="app/admin/admin.module.js"></script>
   <script src="components/util/util.module.js"></script>
-  <script src="components/auth/auth.service.js"></script>
+  <script src="app/account/profile/profile.controller.js"></script>
   <script src="app/account/settings/settings.controller.js"></script>
   <script src="app/account/signup/signup.controller.js"></script>
   <script src="app/admin/admin.controller.js"></script>
@@ -151,10 +152,12 @@
   <script src="app/competitions/competitions.controller.js"></script>
   <script src="app/competitions/competitions.js"></script>
   <script src="app/competitions/create/create.controller.js"></script>
+  <script src="app/errors/404/404.controller.js"></script>
+  <script src="app/errors/errors.js"></script>
   <script src="app/main/main.controller.js"></script>
   <script src="app/main/main.js"></script>
-  <script src="app/account/login/login.controller.js"></script>
   <script src="app/account/confirm/confirm.controller.js"></script>
+  <script src="components/auth/auth.service.js"></script>
   <script src="components/auth/interceptor.service.js"></script>
   <script src="components/auth/router.decorator.js"></script>
   <script src="components/auth/user.service.js"></script>
@@ -168,7 +171,7 @@
   <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
   <script src="components/topbar/topbar.controller.js"></script>
   <script src="components/topbar/topbar.directive.js"></script>
-  <script src="app/account/profile/profile.controller.js"></script>
+  <script src="app/account/login/login.controller.js"></script>
   <script src="components/util/util.service.js"></script>
   <!-- endinjector -->
   <!-- endbuild -->
