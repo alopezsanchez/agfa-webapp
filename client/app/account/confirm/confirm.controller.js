@@ -18,6 +18,9 @@ class ConfirmController {
 
 		this.$http.get('/api/users/' + $stateParams.token + '/signUpToken').then((response) => {
 			//$scope.user = response.data;
+			if (!response.data) {
+				return;
+			}
 			this.user = response.data;
 		});
 

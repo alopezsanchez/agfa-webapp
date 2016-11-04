@@ -161,7 +161,9 @@ export function getUserBySignupToken(req, res, next) {
 
   User.findOneAsync({ signUpToken: signupToken }, '-salt -password')
     .then(user => { // don't ever give out the password or salt
-      console.log(user);
+      if (!user) {
+        return res.status(400).send();
+      }
       res.json(user);
     })
     .catch(err => next(err));

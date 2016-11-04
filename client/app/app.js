@@ -18,7 +18,7 @@ angular.module('agfaWebappApp', [
 ])
   .config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider) {
     $urlRouterProvider
-      .otherwise('/404');
+      .otherwise('/error/404');
 
     $locationProvider.html5Mode(true);
     $mdIconProvider.icon('menu', './assets/icons/menu.svg', 24)

@@ -14,12 +14,16 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
       return config;
     },
 
-    // Intercept 401s and redirect you to login
     responseError(response) {
+      // Intercept 401s and redirect you to login
       if (response.status === 401) {
         (state || (state = $injector.get('$state'))).go('login');
         // remove any stale tokens
         $cookies.remove('token');
+      }
+      // Intercept 400s and redirect you to login
+      if (response.status === 400) {
+        (state || (state = $injector.get('$state'))).go('400');
       }
       return $q.reject(response);
     }
