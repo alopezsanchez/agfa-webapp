@@ -38,7 +38,8 @@ class ConfirmController {
 				}
 			}).then((resp) => {
 					console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-					this.updateUser(form);
+					// Include new avatar filename to avoid override
+					this.updateUser(form, resp.data.avatar);
 				})
 				.catch((resp) => {
 					this.errors.other = 'Error al subir la imagen.';
@@ -50,7 +51,7 @@ class ConfirmController {
 			}
 		}
 
-		confirm(form) {
+		confirm(form, avatar) {
 			this.submitted = true;
 			if (form.$valid) {
 				if (this.$scope.file) {
@@ -62,7 +63,9 @@ class ConfirmController {
 			}
 		}
 
-		updateUser(form) {
+		updateUser(form, avatar) {
+			// update avatar filename before the request
+			this.user.avatar = avatar;
 			this.$http.put(`/api/users/${this.user._id}/update`, this.user)
 				.then(() => {
 					// Account confirmed
