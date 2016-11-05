@@ -17,9 +17,25 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
     responseError(response) {
       // Intercept 401s and redirect you to login
       if (response.status === 401) {
-        (state || (state = $injector.get('$state'))).go('login');
+
         // remove any stale tokens
-        $cookies.remove('token');
+        //$cookies.remove('token');
+        if (response.data.indexOf('jwt expired') !== -1) {
+          var $mdDialog = $injector.get('$mdDialog');
+
+          var alert = $mdDialog.alert({
+            title: 'Atención',
+            textContent: 'Su sesión ha caducado. Por favor, inicie sesión de nuevo',
+            ok: 'Entendido'
+          });
+
+          $injector.get('Auth').logout();
+          (state || (state = $injector.get('$state'))).go('login');
+
+          $mdDialog.show(alert);
+        } else {
+          (state || (state = $injector.get('$state'))).go('login');
+        }
       }
       // Intercept 400s and redirect you to login
       if (response.status === 400) {

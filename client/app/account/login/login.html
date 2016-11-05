@@ -11,7 +11,7 @@
               <label>E-mail</label>
               <md-icon md-svg-icon="email" class="email"></md-icon>
               <input type="email" name="email" ng-model="vm.user.email"
-                ng-pattern="/^.+@.+\..+$/" ng-required="true">
+                ng-pattern="/^.+@.+\..+$/" ng-required="true" autofocus>
               <div ng-messages="userForm.email.$error">
                 <div ng-message="required">Campo requerido</div>
                 <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>

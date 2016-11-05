@@ -7,12 +7,7 @@ class ErrorController {
   }
 
   goBack() {
-    try {
-      this.state.go(this.rootScope.$previousState.name);
-    } catch(e) {
-      this.state.go('main');
-    }
-
+    this.state.go('main');
   }
 }
 
