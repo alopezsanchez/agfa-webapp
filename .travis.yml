@@ -8,4 +8,6 @@ matrix:
 before_script:
   - npm install -g bower grunt-cli
   - bower install
-services: mongodb
+services:
+  - mongodb
+  - redis
