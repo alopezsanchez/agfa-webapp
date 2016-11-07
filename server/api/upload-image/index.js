@@ -7,7 +7,6 @@ var fs = require('fs');
 var mime = require('mime');
 var uuid = require('uuid');
 var multer = require('multer');
-var imager = require('multer-imager');
 
 // get rootDir to specify upload folder on client
 var rootDir = path.join(__dirname, '../../../');

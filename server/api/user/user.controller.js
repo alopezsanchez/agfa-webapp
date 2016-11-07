@@ -9,7 +9,6 @@ import randomstring from 'randomstring';
 import mail from '../../components/sendmail/mail.js';
 import url from 'url';
 
-// TODO: eliminar ocurrencias de redis al modificar o borrar usuario
 var client = redis.createClient(6379, 'localhost', { 'return_buffers': true });
 
 function validationError(res, statusCode) {
@@ -78,10 +77,9 @@ export function show(req, res, next) {
 }
 
 /**
- * Deletes a user. Remove the avatar redis keys also.
+ * Deletes a user.
  * restriction: 'admin'
  */
-// TODO: delete redis keys
 export function destroy(req, res) {
   User.findByIdAndRemoveAsync(req.params.id)
     .then(function () {
