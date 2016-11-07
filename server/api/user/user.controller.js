@@ -50,6 +50,7 @@ export function create(req, res, next) {
   var pathname = `/confirm/${newUser.signUpToken}`;
   var confirmLink = `${req.protocol}://${hostname}${pathname}`;
   mail.sendConfirm(newUser.name, newUser.email, confirmLink);
+  newUser.confirmed = false;
   newUser.saveAsync()
     .spread(function (user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
@@ -101,7 +102,7 @@ export function updateProfile(req, res, next) {
         user[key] = userUpdated[key];
       });
       user.signUpToken = '';
-      user.confirmado = true;
+      user.confirmed = true;
       return user.saveAsync()
         .then(() => {
           mail.sendMailUserConfirmed(user.name);

@@ -11,26 +11,25 @@
   </ul>
 </div>
 -->
+
 <div class="paddedBlock md-inline-form" layout="column" ng-cloak>
 	<md-toolbar class="md-whiteframe-z1">
 		<h4>Lista de usuarios</h4>
 	</md-toolbar>
 	<md-content class="paddedForm" layout-padding>
-		<md-list class="list">
-			<md-list-item class="md-2-line" ng-repeat="user in admin.users" ng-click="">
-				<!-- <img alt="{{user.name }}" ng-src="{{ person.img }}" class="md-avatar"> -->
-				<!-- <md-icon md-svg-icon="person" class="icon md-avatar"></md-icon> -->
+		<md-list class="md-dense">
+			<md-list-item class="md-3-line" ng-repeat="user in admin.users" ng-click="">
 				<img ng-src="{{imagesServer}}/250/250/uploads/{{user.avatar}}?fit=true&force=true" alt="{{user.name}}" class="md-avatar">
 				<div class="md-list-item-text">
 					<strong>{{ user.name }}</strong>
 					<p>{{ user.email }}</p>
+					<small ng-if="!user.confirmed">
+						Pendiente de confirmación
+					</small>
 				</div>
 
-				<!-- <md-button class="md-icon-button" aria-label="Settings" ng-click="admin.delete(user)">
-					<md-icon md-svg-icon="delete" class="icon"></md-icon>
-				</md-button> -->
 				<md-button class="md-icon-button" aria-label="Settings" ng-click="admin.showConfirm($event,user)">
-					<md-icon md-svg-icon="delete" class="icon"></md-icon>
+					<md-icon>delete</md-icon>
 				</md-button>
 			</md-list-item>
 		</md-list>
