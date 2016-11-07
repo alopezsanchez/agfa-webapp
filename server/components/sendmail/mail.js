@@ -8,22 +8,29 @@ import config from '../../config/environment';
 
 exports.sendMailUserConfirmed = (userName) => {
 
-	var transporter = nodemailer.createTransport('smtps://alopezsanchez18%40gmail.com:zxkcvjfvbdoxkddd@smtp.gmail.com');
+	var transporter = nodemailer.createTransport(config.mailTransport);
 
-	transporter.sendMail({
-		from: '"Asociación Gallega de Fútbol Americano" <no-reply-agfa@agfa.gal>',
-		to: config.adminMail,
+	var mailOptions = {
+		from: `"Asociación Gallega de Fútbol Americano" <${config.from}>`,
+		to: config.adminEMail,
 		subject: `Confirmación de registro de ${userName}`,
 		html: `Hola.\n
                 Se informa que el usuario <b>${userName}</b> ha completado su registro correctamente.`,
 		text: `Hola.\n
                 Se informa que el usuario ${userName} ha completado su registro correctamente.`
+	};
+
+	transporter.sendMail(mailOptions, function (error, info) {
+		if (error) {
+			return console.log(error);
+		}
+		transporter.close();
 	});
 }
 
 exports.sendConfirm = (userName, mail, link) => {
 
-  var transporter = nodemailer.createTransport('smtps://alopezsanchez18%40gmail.com:zxkcvjfvbdoxkddd@smtp.gmail.com');
+  var transporter = nodemailer.createTransport(config.mailTransport);
 
 	var mailOptions = {
 		from: '"Asociación Gallega de Fútbol Americano" <no-reply-agfa@agfa.gal>',
@@ -41,7 +48,6 @@ exports.sendConfirm = (userName, mail, link) => {
 		if (error) {
 			return console.log(error);
 		}
-		console.log('Message sent: ' + info.response);
-		//transporter.close();
+		transporter.close();
 	});
 }

@@ -14,8 +14,6 @@ function requiredProcessEnv(name) {
 // ============================================
 var all = {
 
-  adminMail : 'alopezsanchez18@gmail.com',
-
   env: process.env.NODE_ENV,
 
   // Root path of server
@@ -56,4 +54,5 @@ var all = {
 module.exports = _.merge(
   all,
   require('./shared'),
+  require('./local.env.js'),
   require('./' + process.env.NODE_ENV + '.js') || {});
