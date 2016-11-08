@@ -54,5 +54,4 @@ var all = {
 module.exports = _.merge(
   all,
   require('./shared'),
-  require('./local.env.js'),
   require('./' + process.env.NODE_ENV + '.js') || {});
