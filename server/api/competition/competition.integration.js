@@ -7,9 +7,9 @@ import request from 'supertest';
 var newCompetition;
 
 describe('Competition API:', function() {
-  
+
   /* Create user for testig auth */
-  
+
   var user;
   var token;
 
@@ -19,24 +19,25 @@ describe('Competition API:', function() {
       user = new User({
         name: 'Fake User',
         email: 'test@example.com',
-        password: 'password'
+        password: 'password',
+        role: 'admin'
       });
 
       return user.saveAsync();
     });
   });
-  
+
   // Clear users after testing
   after(function() {
     return User.removeAsync();
   });
-  
-  
+
+
   /* ******************************************** */
 
   describe('GET /api/competitions', function() {
     var competitions;
-    
+
     before(function(done) {
       request(app)
         .post('/auth/local')
@@ -74,7 +75,7 @@ describe('Competition API:', function() {
   });
 
   describe('POST /api/competitions', function() {
-    
+
     before(function(done) {
       request(app)
         .post('/auth/local')
@@ -89,7 +90,7 @@ describe('Competition API:', function() {
           done();
         });
     });
-    
+
     beforeEach(function(done) {
       request(app)
         .post('/api/competitions')
@@ -118,7 +119,7 @@ describe('Competition API:', function() {
 
   describe('GET /api/competitions/:id', function() {
     var competition;
-    
+
     before(function(done) {
       request(app)
         .post('/auth/local')
@@ -162,7 +163,7 @@ describe('Competition API:', function() {
 
   describe('PUT /api/competitions/:id', function() {
     var updatedCompetition;
-    
+
     before(function(done) {
       request(app)
         .post('/auth/local')
@@ -210,7 +211,7 @@ describe('Competition API:', function() {
   });
 
   describe('DELETE /api/competitions/:id', function() {
-    
+
     before(function(done) {
       request(app)
         .post('/auth/local')

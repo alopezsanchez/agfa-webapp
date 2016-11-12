@@ -1,0 +1,59 @@
+<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
+	<md-toolbar class="md-whiteframe-z1 form">
+		<h4>Nuevo equipo</h4>
+	</md-toolbar>
+	<md-content class="paddedForm form" layout-padding>
+		<div>
+			<form name="newTeamForm" ng-submit="ctc.create(newTeamForm)" enctype="multipart/form-data" novalidate>
+				<div layout-gt-xs="row">
+
+					<div class="newTeamForm" layout-gt-sm="column">
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Nombre</label>
+							<md-icon md-svg-icon="helmet"></md-icon>
+							<input type="text" name="name" ng-model="ctc.team.name" required/>
+							<div ng-messages="newTeamForm.name.$error">
+								<div ng-message="required">Campo obligatorio</div>
+							</div>
+						</md-input-container>
+
+            <div class="autocomplete-container">
+              <md-autocomplete flex required
+                md-input-name="club"
+                md-selected-item="ctc.team.club"
+                md-search-text="ctc.searchText"
+                md-items="item in ctc.querySearch(ctc.searchText)"
+                md-selected-item-change="ctc.selectedItemChange(item)"
+                md-item-text="item.name"
+                md-min-length="0"
+                md-menu-class="autocomplete-custom-template"
+                md-floating-label="Club">
+                  <md-item-template>
+                    <span md-highlight-text="ctc.searchText">{{item.name}}</span>
+                  </md-item-template>
+                  <div ng-messages="newTeamForm.club.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                  </div>
+  						</md-autocomplete>
+            </div>
+
+						<!-- <md-input-container class="md-block" flex-gt-sm>
+              <label>Equipo padre</label>
+              <md-select name="parentTeam" class="option md-no-underline" ng-model="ctc.team.parentTeam" disabled>
+								<md-option ng-repeat="team in ctc.clubTeams" value="{{team.name}}">{{team.name}}</md-option>
+							</md-select>
+						</md-input-container> -->
+
+
+						<p class="errorMessage">{{ cc.errors.other }}</p>
+
+						<section class="submitBtn" layout-phone="column" layout-align="center center">
+							<md-button id="buttonRegister" type="submit" class="md-raised md-primary">Registrar</md-button>
+						</section>
+					</div>
+				</div>
+			</form>
+		</div>
+	</md-content>
+</div>

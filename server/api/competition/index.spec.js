@@ -68,7 +68,7 @@ describe('Competition API Router:', function() {
 
     it('should be authenticated and route to competition.controller.create', function() {
       expect(routerStub.post
-        .withArgs('/', 'authService.isAuthenticated', 'competitionCtrl.create')
+        .withArgs('/', 'authService.hasRole.admin', 'competitionCtrl.create')
         ).to.have.been.calledOnce;
     });
 
@@ -78,7 +78,7 @@ describe('Competition API Router:', function() {
 
     it('should be authenticated and route to competition.controller.update', function() {
       expect(routerStub.put
-        .withArgs('/:id', 'authService.isAuthenticated', 'competitionCtrl.update')
+        .withArgs('/:id', 'authService.hasRole.admin', 'competitionCtrl.update')
         ).to.have.been.calledOnce;
     });
 
@@ -88,7 +88,7 @@ describe('Competition API Router:', function() {
 
     it('should be authenticated and route to competition.controller.update', function() {
       expect(routerStub.patch
-        .withArgs('/:id', 'authService.isAuthenticated', 'competitionCtrl.update')
+        .withArgs('/:id', 'authService.hasRole.admin', 'competitionCtrl.update')
         ).to.have.been.calledOnce;
     });
 
@@ -98,7 +98,7 @@ describe('Competition API Router:', function() {
 
     it('should be authenticated and route to competition.controller.destroy', function() {
       expect(routerStub.delete
-        .withArgs('/:id', 'authService.isAuthenticated', 'competitionCtrl.destroy')
+        .withArgs('/:id', 'authService.hasRole.admin', 'competitionCtrl.destroy')
         ).to.have.been.calledOnce;
     });
 

@@ -34,7 +34,10 @@ angular.module('agfaWebappApp', [
       .icon('delete', './assets/icons/delete.svg')
       .icon('image', './assets/icons/image.svg')
       .icon('login', './assets/icons/login.svg')
-      .icon('file_upload', './assets/icons/file_upload.svg');
+      .icon('file_upload', './assets/icons/file_upload.svg')
+      .icon('football', './assets/icons/football.svg')
+      .icon('shield', './assets/icons/shield.svg')
+      .icon('helmet', './assets/icons/helmet.svg');
 
     $mdThemingProvider.theme('default').primaryPalette('indigo')
       .accentPalette('orange');

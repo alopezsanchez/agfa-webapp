@@ -168,6 +168,17 @@ export function getUserBySignupToken(req, res, next) {
     .catch(err => next(err));
 }
 
+/**
+ * Get all users with role: 'club'
+ * restriction: 'admin'
+ */
+export function getClubs (req, res, next) {
+  User.findAsync({role: 'club', confirmed: true}, '-salt -password')
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(handleError(res));
+}
 
 /**
  * Authentication callback

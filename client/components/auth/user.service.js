@@ -29,6 +29,12 @@ function UserResource($resource) {
       params: {
         controller: 'signUpToken'
       }
+    },
+    getClubs: {
+      method: 'GET',
+      params: {
+        id: 'clubs'
+      }
     }
   });
 }
