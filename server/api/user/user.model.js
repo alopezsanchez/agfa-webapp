@@ -23,6 +23,7 @@ var UserSchema = new Schema({
   avatar: String,
   signUpToken: String,
   confirmed: Boolean,
+  teams: [{type: Schema.Types.ObjectId, ref: 'Club'}],
   google: {},
   github: {}
 });
@@ -80,19 +81,19 @@ UserSchema
   .path('email')
   .validate(function(value, respond) {
     var self = this;
-    return this.constructor.findOneAsync({ email: value })
-      .then(function(user) {
-        if (user) {
-          if (self.id === user.id) {
-            return respond(true);
+      return this.constructor.findOneAsync({ email: value })
+        .then(function(user) {
+          if (user) {
+            if (self.id === user.id) {
+              return respond(true);
+            }
+            return respond(false);
           }
-          return respond(false);
-        }
-        return respond(true);
-      })
-      .catch(function(err) {
-        throw err;
-      });
+          return respond(true);
+        })
+        .catch(function(err) {
+          throw err;
+        });
   }, 'The specified email address is already in use.');
 
 var validatePresenceOf = function(value) {

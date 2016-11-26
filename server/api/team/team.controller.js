@@ -10,6 +10,7 @@
 
 'use strict';
 
+import _ from 'lodash';
 import jsonpatch from 'fast-json-patch';
 import Team from './team.model';
 
@@ -20,6 +21,16 @@ function respondWithResult(res, statusCode) {
       return res.status(statusCode).json(entity);
     }
     return null;
+  };
+}
+
+function saveUpdates(updates) {
+  return function(entity) {
+    var updated = _.merge(entity, updates);
+    return updated.save()
+      .then(updated => {
+        return updated;
+      });
   };
 }
 
@@ -65,14 +76,14 @@ function handleError(res, statusCode) {
 
 // Gets a list of Teams
 export function index(req, res) {
-  return Team.find().exec()
+  return Team.find(req.query).populate('club').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 // Gets a single Team from the DB
 export function show(req, res) {
-  return Team.findById(req.params.id).exec()
+  return Team.findById(req.params.id).populate('club').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

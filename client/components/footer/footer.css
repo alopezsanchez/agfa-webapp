@@ -1,8 +1,9 @@
 .footer {
   margin-left: 300px;
+}
 
-  /* TODO: arreglar @media */
-  @media (max-width: 960px) {
+@media(max-width: 960px) {
+  .footer {
     margin-left: 0px;
   }
 }

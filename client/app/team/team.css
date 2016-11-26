@@ -1,0 +1,7 @@
+md-card.team-card .card-media img{
+  border-radius: 50%;
+}
+
+md-card {
+  display: inline-block;
+}

@@ -7,7 +7,7 @@
 			<form name="newTeamForm" ng-submit="ctc.create(newTeamForm)" enctype="multipart/form-data" novalidate>
 				<div layout-gt-xs="row">
 
-					<div class="newTeamForm" layout-gt-sm="column">
+					<div class="loginForm" layout-gt-sm="column">
 
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Nombre</label>
@@ -15,13 +15,14 @@
 							<input type="text" name="name" ng-model="ctc.team.name" required/>
 							<div ng-messages="newTeamForm.name.$error">
 								<div ng-message="required">Campo obligatorio</div>
+								<div ng-message="mongoose">{{ ctc.errors.name }}</div>
 							</div>
 						</md-input-container>
 
             <div class="autocomplete-container">
               <md-autocomplete flex required
                 md-input-name="club"
-                md-selected-item="ctc.team.club"
+                md-selected-item="ctc.clubSelected"
                 md-search-text="ctc.searchText"
                 md-items="item in ctc.querySearch(ctc.searchText)"
                 md-selected-item-change="ctc.selectedItemChange(item)"
@@ -38,18 +39,18 @@
   						</md-autocomplete>
             </div>
 
-						<!-- <md-input-container class="md-block" flex-gt-sm>
+						<md-input-container class="md-block no-icon" flex-gt-sm>
               <label>Equipo padre</label>
-              <md-select name="parentTeam" class="option md-no-underline" ng-model="ctc.team.parentTeam" disabled>
-								<md-option ng-repeat="team in ctc.clubTeams" value="{{team.name}}">{{team.name}}</md-option>
+              <md-select name="parentTeam" md-container-class="select-padding" placeholder="Equipo padre" ng-model="ctc.parentTeam" ng-disabled="!ctc.selectParentTeam">
+								<md-option ng-repeat="team in ctc.clubTeams" value="{{team}}">{{team.name}}</md-option>
 							</md-select>
-						</md-input-container> -->
+						</md-input-container>
 
 
-						<p class="errorMessage">{{ cc.errors.other }}</p>
+						<p class="errorMessage">{{ ctc.errors.other }}</p>
 
 						<section class="submitBtn" layout-phone="column" layout-align="center center">
-							<md-button id="buttonRegister" type="submit" class="md-raised md-primary">Registrar</md-button>
+							<md-button id="buttonRegister" type="submit" class="md-raised md-primary">Crear</md-button>
 						</section>
 					</div>
 				</div>

@@ -1,1 +1,11 @@
+.autocomplete-container {
+  padding-left: 36px;
+}
 
+md-input-container.no-icon {
+  margin-left: 36px;
+}
+
+.select-padding {
+  padding-right: 15px;
+}
