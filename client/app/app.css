@@ -13,6 +13,11 @@ md-input-container.md-input-invalid > md-icon {
     color: red;
 }
 
+/* md-toast error */
+md-toast.toast-error .md-toast-content {
+  background-color: red;
+}
+
 /* links on md-buttons */
 a.md-button, a.md-button:hover, a.md-button:active, a.md-button:visited { color: white; }
 

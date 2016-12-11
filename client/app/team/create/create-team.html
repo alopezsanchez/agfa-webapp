@@ -19,7 +19,18 @@
 							</div>
 						</md-input-container>
 
-            <div class="autocomplete-container">
+						<md-input-container class="md-block no-icon" flex-gt-sm>
+							<label>Categoría</label>
+							<md-select name="categories" md-container-class="select-padding" ng-model="ctc.categoriesSelected" required multiple>
+						 			<md-option ng-value="categorie.name" ng-repeat="categorie in ctc.allCategories">{{categorie.name}}</md-option>
+							</md-select>
+							<div ng-messages="newTeamForm.categories.$error">
+								<div ng-message="required">Campo obligatorio</div>
+								<div ng-message="mongoose">{{ ctc.errors.categorie }}</div>
+							</div>
+						</md-input-container>
+
+            <div class="autocomplete-container md-block no icon">
               <md-autocomplete flex required
                 md-input-name="club"
                 md-selected-item="ctc.clubSelected"
@@ -45,7 +56,6 @@
 								<md-option ng-repeat="team in ctc.clubTeams" value="{{team}}">{{team.name}}</md-option>
 							</md-select>
 						</md-input-container>
-
 
 						<p class="errorMessage">{{ ctc.errors.other }}</p>
 

@@ -76,14 +76,14 @@ function handleError(res, statusCode) {
 
 // Gets a list of Teams
 export function index(req, res) {
-  return Team.find(req.query).populate('club').exec()
+  return Team.find(req.query).populate('club').populate('parentTeam').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 // Gets a single Team from the DB
 export function show(req, res) {
-  return Team.findById(req.params.id).populate('club').exec()
+  return Team.findById(req.params.id).populate('club').populate('parentTeam').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -117,6 +117,25 @@ export function patch(req, res) {
     .then(patchUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
+}
+
+export function update(req, res) {
+  Team.findByIdAsync(req.params.id)
+  .then((team) => {
+    team.name = req.body.name;
+    team.club = req.body.club;
+    team.parentTeam = req.body.parentTeam;
+    team.categories = req.body.categories;
+
+    return team.saveAsync()
+      .then(() => {
+        res.status(204).end();
+      })
+      .catch(handleError(res));
+  })
+  .catch(err => {
+    handleError(res);
+  })
 }
 
 // Deletes a Team from the DB

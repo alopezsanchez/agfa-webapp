@@ -41,6 +41,23 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
       if (response.status === 400) {
         (state || (state = $injector.get('$state'))).go('400');
       }
+
+      // Intercept 500s and show error toast
+      if (response.status === 500) {
+        var $mdToast = $injector.get('$mdToast');
+        var showSimpleToast = () => {
+          $mdToast.show(
+            $mdToast.simple()
+              .parent(angular.element('.main-container'))
+              .textContent('Ha ocurrido un error en el servidor. Por favor, inténtalo más tarde.')
+              .position('top right')
+              .hideDelay(3000)
+              .toastClass('toast-error')
+            );
+        };
+
+        showSimpleToast();
+      }
       return $q.reject(response);
     }
   };

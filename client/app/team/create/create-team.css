@@ -1,5 +1,8 @@
 .autocomplete-container {
   padding-left: 36px;
+  max-height: 58px;
+  margin-top: 18px;
+  margin-bottom: 18px;
 }
 
 md-input-container.no-icon {

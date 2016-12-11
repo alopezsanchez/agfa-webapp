@@ -12,7 +12,8 @@ var TeamSchema = new mongoose.Schema({
   parentTeam: {
     type: String,
     ref: 'Team'
-  }
+  },
+  categories: [String]
 });
 
 // Validate name is not taken

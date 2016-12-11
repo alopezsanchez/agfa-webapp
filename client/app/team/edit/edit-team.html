@@ -1,0 +1,71 @@
+<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
+	<md-toolbar class="md-whiteframe-z1 form">
+		<h4>Actualizar equipo</h4>
+	</md-toolbar>
+	<md-content class="paddedForm form" layout-padding>
+		<div>
+			<form name="editTeamForm" ng-submit="etc.create(editTeamForm)" enctype="multipart/form-data" novalidate>
+				<div layout-gt-xs="row">
+
+					<div class="loginForm" layout-gt-sm="column">
+
+						<md-input-container class="md-block" flex-gt-sm>
+							<label>Nombre</label>
+							<md-icon md-svg-icon="helmet"></md-icon>
+							<input type="text" name="name" ng-model="etc.team.name" required/>
+							<div ng-messages="editTeamForm.name.$error">
+								<div ng-message="required">Campo obligatorio</div>
+								<div ng-message="mongoose">{{ etc.errors.name }}</div>
+							</div>
+						</md-input-container>
+
+						<md-input-container class="md-block no-icon" flex-gt-sm>
+							<label>Categoría</label>
+							<md-select name="categories" md-container-class="select-padding" ng-model="etc.categoriesSelected" required multiple>
+						 			<md-option ng-selected="{{etc.categoriesSelected.indexOf(categorie.name) ? true : false}}" ng-value="categorie.name" ng-repeat="categorie in etc.allCategories">{{categorie.name}}</md-option>
+							</md-select>
+							<div ng-messages="editTeamForm.categories.$error">
+								<div ng-message="required">Campo obligatorio</div>
+								<div ng-message="mongoose">{{ etc.errors.categorie }}</div>
+							</div>
+						</md-input-container>
+
+            <div class="autocomplete-container">
+              <md-autocomplete flex required
+                md-input-name="club"
+                md-selected-item="etc.clubSelected"
+                md-search-text="etc.searchText"
+                md-items="item in etc.querySearch(etc.searchText)"
+                md-selected-item-change="etc.selectedItemChange(item)"
+                md-item-text="item.name"
+                md-min-length="0"
+                md-menu-class="autocomplete-custom-template"
+                md-floating-label="Club">
+                  <md-item-template>
+                    <span md-highlight-text="etc.searchText">{{item.name}}</span>
+                  </md-item-template>
+                  <div ng-messages="editTeamForm.club.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                  </div>
+  						</md-autocomplete>
+            </div>
+
+						<md-input-container class="md-block no-icon" flex-gt-sm>
+              <label>Equipo padre</label>
+              <md-select name="parentTeam" md-container-class="select-padding" placeholder="Equipo padre" ng-model="etc.parentTeam" ng-disabled="!etc.selectParentTeam">
+								<md-option ng-selected="{{team._id === etc.parentTeam._id ? true : false}}" ng-repeat="team in etc.clubTeams" value="{{team}}">{{team.name}}</md-option>
+							</md-select>
+						</md-input-container>
+
+
+						<p class="errorMessage">{{ etc.errors.other }}</p>
+
+						<section class="submitBtn" layout-phone="column" layout-align="center center">
+							<md-button id="buttonRegister" type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+						</section>
+					</div>
+				</div>
+			</form>
+		</div>
+	</md-content>
+</div>

@@ -7,14 +7,14 @@
   				<span class="md-subhead">{{team.club.name}}</span>
   			</md-card-title-text>
   			<md-card-title-media>
-  				<div class="md-media-sm card-media">
+  				<div class="md-media-md card-media">
   				  <img ng-src="{{imagesServer}}/100/100/uploads/{{team.club.avatar}}?fit=true&force=true" alt="{{team.name}}" class="md-avatar" />
   				</div>
   			</md-card-title-media>
   		</md-card-title>
   		<md-card-actions layout="row" layout-align="end center">
-  			<md-button>Action 1</md-button>
-  			<md-button>Action 2</md-button>
+  			<md-button ng-click="tc.goToEdit(team._id)">Editar</md-button>
+  			<md-button ng-click="tc.showConfirm($event, team)" class="md-warn">Eliminar</md-button>
   		</md-card-actions>
   	</md-card>
   </div>

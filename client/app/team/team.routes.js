@@ -14,5 +14,11 @@ angular.module('agfaWebappApp')
       templateUrl: 'app/team/create/create-team.html',
       controller: 'CreateTeamCtrl',
       controllerAs: 'ctc'
+    })
+    .state('editTeam', {
+      url: '/teams/edit/:id',
+      templateUrl: 'app/team/edit/edit-team.html',
+      controller: 'EditTeamCtrl',
+      controllerAs: 'etc'
     });
   });
