@@ -53,6 +53,7 @@
 						<md-input-container class="md-block no-icon" flex-gt-sm>
               <label>Equipo padre</label>
               <md-select name="parentTeam" md-container-class="select-padding" placeholder="Equipo padre" ng-model="etc.parentTeam" ng-disabled="!etc.selectParentTeam">
+								<md-option ng-selected="{{!etc.parentTeam}}" value="">Ninguno</md-option>
 								<md-option ng-selected="{{team._id === etc.parentTeam._id ? true : false}}" ng-repeat="team in etc.clubTeams" value="{{team}}">{{team.name}}</md-option>
 							</md-select>
 						</md-input-container>

@@ -7,12 +7,8 @@ var Club = mongoose.model('User').schema;
 
 var TeamSchema = new mongoose.Schema({
   name: String,
-  //club: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   club: {type: Schema.Types.ObjectId, ref: 'User'},
-  parentTeam: {
-    type: String,
-    ref: 'Team'
-  },
+  parentTeam: {type: Schema.Types.ObjectId, ref: 'Team'},
   categories: [String]
 });
 

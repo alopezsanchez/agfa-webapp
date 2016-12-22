@@ -83,7 +83,11 @@ class EditTeamController {
     create(form) {
       if (form.$valid) {
         this.team.club = this.clubSelected;
-        this.team.parentTeam = JSON.parse(this.parentTeam);
+        if (this.parentTeam) {
+          this.team.parentTeam = JSON.parse(this.parentTeam);
+        } else {
+          this.team.parentTeam = null;
+        }
         this.team.categories = this.categoriesSelected;
         this.$http.put(`/api/teams/${this.team._id}`, this.team)
         .then(() => {
