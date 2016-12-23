@@ -1,17 +1,47 @@
 'use strict';
 
 var app = require('../..');
+import User from '../user/user.model';
 import request from 'supertest';
 
 var newTeam;
+var user;
+var token;
 
 describe('Team API:', function() {
+
+  before(function(done) {
+    User.removeAsync().then(function() {
+      user = new User({
+        name: 'Fake User',
+        email: 'test@example.com',
+        password: 'password'
+      });
+
+      user.saveAsync();
+
+      request(app)
+        .post('/auth/local')
+        .send({
+          email: 'test@example.com',
+          password: 'password'
+        })
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          token = res.body.token;
+          done();
+        });
+    });
+  });
   describe('GET /api/teams', function() {
     var teams;
 
     beforeEach(function(done) {
+
       request(app)
         .get('/api/teams')
+        .set('authorization', 'Bearer ' + token)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -24,6 +54,7 @@ describe('Team API:', function() {
     });
 
     it('should respond with JSON array', function() {
+      console.log(teams);
       expect(teams).to.be.instanceOf(Array);
     });
   });

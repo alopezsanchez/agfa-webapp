@@ -7,8 +7,18 @@ var teamCtrlStub = {
   show: 'teamCtrl.show',
   create: 'teamCtrl.create',
   upsert: 'teamCtrl.upsert',
+  update: 'teamCtrl.update',
   patch: 'teamCtrl.patch',
   destroy: 'teamCtrl.destroy'
+};
+
+var authServiceStub = {
+  isAuthenticated() {
+    return 'authService.isAuthenticated';
+  },
+  hasRole(role) {
+    return 'authService.hasRole.' + role;
+  }
 };
 
 var routerStub = {
@@ -26,7 +36,8 @@ var teamIndex = proxyquire('./index.js', {
       return routerStub;
     }
   },
-  './team.controller': teamCtrlStub
+  './team.controller': teamCtrlStub,
+  '../../auth/auth.service': authServiceStub
 });
 
 describe('Team API Router:', function() {
@@ -37,7 +48,7 @@ describe('Team API Router:', function() {
   describe('GET /api/teams', function() {
     it('should route to team.controller.index', function() {
       expect(routerStub.get
-        .withArgs('/', 'teamCtrl.index')
+        .withArgs('/', 'authService.hasRole.admin', 'teamCtrl.index')
         ).to.have.been.calledOnce;
     });
   });
@@ -45,7 +56,7 @@ describe('Team API Router:', function() {
   describe('GET /api/teams/:id', function() {
     it('should route to team.controller.show', function() {
       expect(routerStub.get
-        .withArgs('/:id', 'teamCtrl.show')
+        .withArgs('/:id', 'authService.hasRole.admin', 'teamCtrl.show')
         ).to.have.been.calledOnce;
     });
   });
@@ -53,7 +64,7 @@ describe('Team API Router:', function() {
   describe('POST /api/teams', function() {
     it('should route to team.controller.create', function() {
       expect(routerStub.post
-        .withArgs('/', 'teamCtrl.create')
+        .withArgs('/', 'authService.hasRole.admin', 'teamCtrl.create')
         ).to.have.been.calledOnce;
     });
   });
@@ -61,7 +72,7 @@ describe('Team API Router:', function() {
   describe('PUT /api/teams/:id', function() {
     it('should route to team.controller.upsert', function() {
       expect(routerStub.put
-        .withArgs('/:id', 'teamCtrl.upsert')
+        .withArgs('/:id', 'authService.hasRole.admin', 'teamCtrl.update')
         ).to.have.been.calledOnce;
     });
   });
@@ -69,7 +80,7 @@ describe('Team API Router:', function() {
   describe('PATCH /api/teams/:id', function() {
     it('should route to team.controller.patch', function() {
       expect(routerStub.patch
-        .withArgs('/:id', 'teamCtrl.patch')
+        .withArgs('/:id', 'authService.hasRole.admin', 'teamCtrl.patch')
         ).to.have.been.calledOnce;
     });
   });
@@ -77,7 +88,7 @@ describe('Team API Router:', function() {
   describe('DELETE /api/teams/:id', function() {
     it('should route to team.controller.destroy', function() {
       expect(routerStub.delete
-        .withArgs('/:id', 'teamCtrl.destroy')
+        .withArgs('/:id', 'authService.hasRole.admin', 'teamCtrl.destroy')
         ).to.have.been.calledOnce;
     });
   });
