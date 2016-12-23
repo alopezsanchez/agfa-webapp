@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/alopezsanchez/agfa-webapp.svg?branch=master)](https://travis-ci.org/alopezsanchez/agfa-webapp)
+[![Build Status](https://travis-ci.org/alopezsanchez/agfa-webapp.svg?branch=master)](https://travis-ci.org/alopezsanchez/agfa-webapp) [![Coverage Status](https://coveralls.io/repos/github/alopezsanchez/agfa-webapp/badge.svg?branch=master)](https://coveralls.io/github/alopezsanchez/agfa-webapp?branch=master)
+
 # agfa-webapp
 
 ## Getting Started
