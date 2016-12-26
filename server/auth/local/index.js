@@ -17,7 +17,8 @@ router.post('/', function(req, res, next) {
     }
 
     var token = signToken(user._id, user.role);
-    res.json({ token });
+    var id = user._id;
+    res.json({ token, id });
   })(req, res, next)
 });
 

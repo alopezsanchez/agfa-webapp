@@ -32,7 +32,6 @@
 
 		showConfirm(ev, user) {
 			let _this = this;
-			var userName = user.name;
 			// Appending dialog to document.body to cover sidenav in docs app
 			var confirm = this.dialog.confirm()
 				.title('¿Está seguro de eliminar el usuario ' + user.name + '?')

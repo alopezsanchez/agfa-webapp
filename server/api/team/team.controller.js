@@ -3,8 +3,7 @@
  * GET     /api/teams              ->  index
  * POST    /api/teams              ->  create
  * GET     /api/teams/:id          ->  show
- * PUT     /api/teams/:id          ->  upsert
- * PATCH   /api/teams/:id          ->  patch
+ * PUT     /api/teams/:id          ->  update
  * DELETE  /api/teams/:id          ->  destroy
  */
 
@@ -31,18 +30,6 @@ function saveUpdates(updates) {
       .then(updated => {
         return updated;
       });
-  };
-}
-
-function patchUpdates(patches) {
-  return function(entity) {
-    try {
-      jsonpatch.apply(entity, patches, /*validate*/ true);
-    } catch(err) {
-      return Promise.reject(err);
-    }
-
-    return entity.save();
   };
 }
 
@@ -107,18 +94,6 @@ export function upsert(req, res) {
     .catch(handleError(res));
 }
 
-// Updates an existing Team in the DB
-export function patch(req, res) {
-  if(req.body._id) {
-    delete req.body._id;
-  }
-  return Team.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(patchUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
 export function update(req, res) {
   Team.findByIdAsync(req.params.id)
   .then((team) => {
@@ -128,9 +103,7 @@ export function update(req, res) {
     team.categories = req.body.categories;
 
     return team.saveAsync()
-      .then(() => {
-        res.status(204).end();
-      })
+      .then(respondWithResult(res, 200))
       .catch(handleError(res));
   })
   .catch(err => {

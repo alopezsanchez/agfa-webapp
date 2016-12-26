@@ -30,7 +30,7 @@ function handleError(res, statusCode) {
  * restriction: 'admin'
  */
 export function index(req, res) {
-  User.findAsync({}, '-salt -password')
+  User.findAsync(req.query, '-salt -password')
     .then(users => {
       res.status(200).json(users);
     })
@@ -67,7 +67,7 @@ export function create(req, res, next) {
 export function show(req, res, next) {
   var userId = req.params.id;
 
-  User.findByIdAsync(userId)
+  User.findByIdAsync(userId, '-salt -password')
     .then(user => {
       if (!user) {
         return res.status(404).end();

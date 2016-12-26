@@ -36,6 +36,6 @@ var NavbarController = function ($scope, Auth, $mdSidenav) {
         $mdSidenav('left').toggle();
     };
 
-}
+};
 
 angular.module('agfaWebappApp').controller('NavbarController',NavbarController);

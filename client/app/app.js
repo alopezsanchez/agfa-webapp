@@ -55,7 +55,7 @@ angular.module('agfaWebappApp', [
     // add images server base URL to rootScope
     $rootScope.imagesServer = appConfig.imagesServer;
 
-    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from) {
       $rootScope.$previousState = from;
     });
   });

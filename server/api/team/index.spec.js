@@ -8,7 +8,6 @@ var teamCtrlStub = {
   create: 'teamCtrl.create',
   upsert: 'teamCtrl.upsert',
   update: 'teamCtrl.update',
-  patch: 'teamCtrl.patch',
   destroy: 'teamCtrl.destroy'
 };
 
@@ -24,7 +23,6 @@ var authServiceStub = {
 var routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
-  patch: sinon.spy(),
   post: sinon.spy(),
   delete: sinon.spy()
 };
@@ -73,14 +71,6 @@ describe('Team API Router:', function() {
     it('should route to team.controller.upsert', function() {
       expect(routerStub.put
         .withArgs('/:id', 'authService.hasRole.admin', 'teamCtrl.update')
-        ).to.have.been.calledOnce;
-    });
-  });
-
-  describe('PATCH /api/teams/:id', function() {
-    it('should route to team.controller.patch', function() {
-      expect(routerStub.patch
-        .withArgs('/:id', 'authService.hasRole.admin', 'teamCtrl.patch')
         ).to.have.been.calledOnce;
     });
   });

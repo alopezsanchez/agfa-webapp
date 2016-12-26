@@ -51,7 +51,7 @@ class ConfirmController {
 			}
 		}
 
-		confirm(form, avatar) {
+		confirm(form) {
 			this.submitted = true;
 			if (form.$valid) {
 				if (this.$scope.file) {
