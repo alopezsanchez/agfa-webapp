@@ -106,7 +106,7 @@
   },
   "scripts": {
     "start": "node server",
-    "test": "grunt test && grunt test:coverage",
+    "test": "grunt test && grunt test:coverage && grunt coveralls",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true

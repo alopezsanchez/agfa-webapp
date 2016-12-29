@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 			},
 			your_target: {
 				// LCOV coverage file (can be string, glob or array)
-				src: 'coverage/**/*.info'
+				src: 'coverage/server/integration/*.info'
 			},
 		},
 
@@ -736,8 +736,7 @@ module.exports = function(grunt) {
 					'env:all',
 					'env:test',
 					'mocha_istanbul',
-					'istanbul_check_coverage',
-					'coveralls'
+					'istanbul_check_coverage'
 				]);
 			}
 

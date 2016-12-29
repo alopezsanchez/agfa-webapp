@@ -7,8 +7,6 @@ import request from 'supertest';
 
 describe('Team API:', function() {
 
-	/* Create user for testig auth */
-
 	var user;
   var newClub;
 	var club;
@@ -101,38 +99,35 @@ describe('Team API:', function() {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           token = res.body.token;
-          done();
+
+					request(app)
+						.get('/api/users?_id='+newClub._id)
+						.set('authorization', 'Bearer ' + token)
+						.expect(201)
+						.end((err, res) => {
+							club = res.body[0];
+							request(app)
+								.post('/api/teams')
+				        .set('authorization', 'Bearer ' + token)
+								.send({
+									name: 'New Team',
+									club: club,
+									categories: ['Tackle masculino', 'Flag'],
+									parentTeam: null
+								})
+								.expect(201)
+								.expect('Content-Type', /json/)
+								.end((err, res) => {
+									if (err) {
+										return done(err);
+									}
+									newTeam = res.body;
+									done();
+								});
+						});
+
         });
     });
-
-		beforeEach(function(done) {
-			var team;
-			request(app)
-				.get('/api/users?_id='+newClub._id)
-				.set('authorization', 'Bearer ' + token)
-				.expect(201)
-				.end((err, res) => {
-					club = res.body[0];
-					request(app)
-						.post('/api/teams')
-		        .set('authorization', 'Bearer ' + token)
-						.send({
-							name: 'New Team',
-							club: club,
-							categories: ['Tackle masculino', 'Flag'],
-							parentTeam: null
-						})
-						.expect(201)
-						.expect('Content-Type', /json/)
-						.end((err, res) => {
-							if (err) {
-								return done(err);
-							}
-							newTeam = res.body;
-							done();
-						});
-				});
-		});
 
 		it('should respond with the newly created team', () => {
 			expect(newTeam.name).to.equal('New Team');
@@ -140,6 +135,25 @@ describe('Team API:', function() {
       expect(newTeam.categories[0]).to.be.equal('Tackle masculino');
 			expect(newTeam.categories[1]).to.be.equal('Flag');
 			expect(newTeam.club).to.be.equal(newClub._id.toString());
+		});
+
+		it('should not create the team if the name is already in use', function(done) {
+			request(app)
+				.post('/api/teams')
+				.set('authorization', 'Bearer ' + token)
+				.send({
+					name: 'New Team',
+					club: club,
+					categories: ['Tackle masculino', 'Flag'],
+					parentTeam: null
+				})
+				.expect(500)
+				.end(err => {
+					if (err) {
+						return done(err);
+					}
+					done();
+				});
 		});
 	});
 
@@ -185,6 +199,7 @@ describe('Team API:', function() {
 			expect(newTeam.categories[1]).to.be.equal('Flag');
 			expect(newTeam.club).to.be.equal(newClub._id.toString());
 		});
+
 	});
 
 	describe('PUT /api/teams/:id', function() {
@@ -246,6 +261,39 @@ describe('Team API:', function() {
 					expect(team.name).to.equal('Updated Team');
 
 					done();
+				});
+		});
+
+		it('should not update the team if the name is already in use', function(done) {
+
+			request(app)
+				.post('/api/teams')
+				.set('authorization', 'Bearer ' + token)
+				.send({
+					name: 'Team 2',
+					club: club,
+					categories: ['Tackle masculino', 'Flag'],
+					parentTeam: null
+				})
+				.expect(201)
+				.expect('Content-Type', /json/)
+				.end((err, res) => {
+					if (err) {
+						return done(err);
+					}
+
+					newTeam.name = 'Team 2';
+					request(app)
+						.put(`/api/teams/${newTeam._id}`)
+						.set('authorization', 'Bearer ' + token)
+						.send(newTeam)
+						.expect(500)
+						.end(err => {
+							if (err) {
+								return done(err);
+							}
+							done();
+						});
 				});
 		});
 	});

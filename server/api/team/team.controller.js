@@ -23,16 +23,6 @@ function respondWithResult(res, statusCode) {
   };
 }
 
-function saveUpdates(updates) {
-  return function(entity) {
-    var updated = _.merge(entity, updates);
-    return updated.save()
-      .then(updated => {
-        return updated;
-      });
-  };
-}
-
 function removeEntity(res) {
   return function(entity) {
     if(entity) {
@@ -80,17 +70,6 @@ export function show(req, res) {
 export function create(req, res) {
   return Team.create(req.body)
     .then(respondWithResult(res, 201))
-    .catch(handleError(res));
-}
-
-// Upserts the given Team in the DB at the specified ID
-export function upsert(req, res) {
-  if(req.body._id) {
-    delete req.body._id;
-  }
-  return Team.findOneAndUpdate({_id: req.params.id}, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
-
-    .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
