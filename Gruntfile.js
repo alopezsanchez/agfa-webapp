@@ -736,7 +736,8 @@ module.exports = function(grunt) {
 					'env:all',
 					'env:test',
 					'mocha_istanbul',
-					'istanbul_check_coverage'
+					'istanbul_check_coverage',
+					'coveralls'
 				]);
 			}
 
@@ -768,8 +769,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', [
 		'newer:jshint',
-		'test:coverage',
-    'coveralls',
+		'test',
 		'build'
 	]);
 };
