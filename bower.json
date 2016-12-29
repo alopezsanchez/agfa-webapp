@@ -16,6 +16,7 @@
     "angular-ui-router": "~0.2.15",
     "angular-validation-match": "~1.5.2",
     "angular-material": "^1.0.0",
+    "angular-animate": "1.5.8",
     "Angular-Hero": "angular-hero#^0.0.7",
     "angular-translate": "^2.11.0",
     "ng-file-upload": "^12.2.5"
@@ -24,7 +25,7 @@
     "angular-mocks": "~1.4.0"
   },
   "resolutions": {
-    "angular-animate": "^1.4.8",
-    "angular": "1.5.8"
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8"
   }
 }
