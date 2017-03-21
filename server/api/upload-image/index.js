@@ -7,16 +7,16 @@ var fs = require('fs');
 var mime = require('mime');
 var uuid = require('uuid');
 var multer = require('multer');
+import * as auth from '../../auth/auth.service';
 
 // get rootDir to specify upload folder on client
 var rootDir = path.join(__dirname, '../../../');
 
+// TODO: destination as a parameter
 var multerOptions = multer.diskStorage({
 	destination: rootDir+'client/assets/uploads/',
   	filename: function (req, file, cb) {
-		console.log(mime.extension(file.mimetype));
     	cb(null, uuid.v4() + '.' + mime.extension(file.mimetype));
-		//return file.fieldname + '.' + mime.extension(file.mimetype);
 	}
 });
 
@@ -24,11 +24,6 @@ var upload = multer({storage: multerOptions});
 
 var router = express.Router();
 
-router.get('/', controller.index);
-router.get('/:id', controller.show);
-router.post('/',  upload.single('file'), controller.create);
-router.put('/:id', controller.update);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.destroy);
+router.post('/',  auth.hasRole('admin'), upload.single('file'), controller.create);
 
 module.exports = router;
