@@ -1,19 +1,21 @@
-#preview {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  float: right;
-  margin-right: 30%;
-  margin-bot: 10%;
+/* Login screen */
+
+.login-style {
+    background-color: #3F51B5 !important;
 }
 
-#fileInput {
-  display: none;
+.loginBlock {
+    padding: 13% 30%;
+}
+
+.genericForm {
+    width: 100%;
+}
+
+fileInput {
+    display: none;
 }
 
 #textInput {
-  vertical-align: middle;
+    vertical-align: middle;
 }

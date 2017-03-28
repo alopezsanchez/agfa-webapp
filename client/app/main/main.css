@@ -1,38 +1,33 @@
-.thing-form {
-  margin: 20px 0;
-}
-
-
-body {
-    overflow-x: hidden;
-}
+/* Banner */
 
 #banner {
-  border-bottom: none;
-  margin-top: -20px;
+    border-bottom: none;
+    margin-top: -20px;
 }
 
 #banner h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-.navbar-text {
-  margin-left: 15px;
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
 }
 
 div.mainContainer {
-  background-color: #edecec;
-  position: relative;
-  /* height: 100%;  */
-  overflow-y: auto;
+    background-color: #edecec;
+    position: relative;
+    /* height: 100%;  */
+    overflow-y: auto;
 }
+
+
+/* Submit button */
 
 .submitBtn {
-  text-align: center;
+    text-align: center;
 }
 
-.loginForm {
-  width: 100%;
+
+/* Generic form */
+
+.genericForm {
+    width: 100%;
 }

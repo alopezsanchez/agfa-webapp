@@ -1,0 +1,10 @@
+.hiLogged {
+    width: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+.spanLogged {
+    word-break: break-all;
+    margin: auto;
+}
