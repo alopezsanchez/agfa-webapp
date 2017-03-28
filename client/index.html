@@ -16,9 +16,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-
+  
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(client) app/vendor.css -->
   <!-- bower:css -->
@@ -29,7 +27,6 @@
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css({.tmp,client}) app/app.css -->
-  <link rel="stylesheet" href="app/app.css">
   <!-- injector:css -->
   <link rel="stylesheet" href="app/account/login/login.css">
   <link rel="stylesheet" href="app/account/profile/profile.css">
@@ -60,46 +57,15 @@
   <!-- Add your site or application content here -->
   <div id="subBody" layout="row" flex>
     <navbar></navbar>
-    <div flex layout="column" tabindex="-1" role="main" class="md-whiteframe-z2" ng-controller="NavbarController as nav">
-
-      <!-- <topbar></topbar> -->
-      <md-toolbar id="topbar" layout="row" class="md-whiteframe-z1" ng-show="nav.isLoggedIn()">
-
-        <md-button class="md-icon-button" ng-show="nav.isLoggedIn()" hide-gt-sm aria-label="Panel lateral" ng-click="openSideNavPanel()">
-          <md-tooltip>Panel lateral</md-tooltip>
-          <md-icon md-svg-icon="menu"></md-icon>
-        </md-button>
-
-        <h4 class="mainHeader md-title" ng-class="{mainHeaderNotLogged:!nav.isLoggedIn()}">{{ 'HEADLINE' | translate }}</h4>
-
-        <h5 class="hiLogged" ng-show="nav.isLoggedIn()">
-            <span class="spanLogged">Hola, {{ nav.getCurrentUser().name }}</span>
-         </h5>
-
-        <md-button ng-show="nav.isLoggedIn()" class="md-icon-button" aria-label="Settings" ui-sref="settings">
-          <md-icon md-svg-icon="settings"></md-icon>
-        </md-button>
-
-        <md-button ng-hide="nav.isLoggedIn()" class="buttonText loginBtn" aria-label="Iniciar sesión" ui-sref="login">
-          <md-icon md-svg-icon="login" class="icon"></md-icon>
-          Acceder
-        </md-button>
-
-        <md-button ng-show="nav.isLoggedIn()" class="buttonText exitBtn" aria-label="Cerrar sesión" ui-sref="logout">
-          <md-icon md-svg-icon="logout" class="icon"></md-icon>
-          Salir
-        </md-button>
-
-      </md-toolbar>
-
-
+    <div flex layout="column" tabindex="-1" role="main" class="md-whiteframe-z2">
+      <agfa-topbar></agfa-topbar>
       <div class="mainContainer ui-view-container" flex>
         <div ui-view></div>
       </div>
     </div>
   </div>
 
-  <footer ng-show="nav.isLoggedIn()"></footer>
+  <!--<footer ng-show="nav.isLoggedIn()"></footer> -->
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <script>
@@ -175,12 +141,12 @@
   <script src="components/footer/footer.directive.js"></script>
   <script src="components/modal/modal.service.js"></script>
   <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+  <script src="components/navbar/navbar.component.js"></script>
   <script src="components/navbar/navbar.controller.js"></script>
-  <script src="components/navbar/navbar.directive.js"></script>
   <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
   <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
+  <script src="components/topbar/topbar.component.js"></script>
   <script src="components/topbar/topbar.controller.js"></script>
-  <script src="components/topbar/topbar.directive.js"></script>
   <script src="app/account/profile/profile.controller.js"></script>
   <script src="components/util/util.service.js"></script>
   <!-- endinjector -->

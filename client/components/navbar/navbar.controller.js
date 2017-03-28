@@ -1,41 +1,43 @@
 'use strict';
 
-var NavbarController = function ($scope, Auth, $mdSidenav) {
+var NavbarController = function ($scope, Auth, $mdSidenav, appConfig) {
 
     this.menu = [
-		{
-			'title' : 'Usuarios',
-			'state' : 'admin',
-			'icon'  : 'person'
-		},
-		{
-			'title' : 'Competiciones',
-			'state' : 'competitions',
-			'icon'  : 'competition'
-    },
-    {
-      'title' : 'Equipos',
-      'state' : 'teams',
-      'icon'  : 'helmet'
-    }];
-
+        {
+            'title': 'Usuarios',
+            'state': 'admin',
+            'icon': 'person'
+        }, {
+            'title': 'Competiciones',
+            'state': 'competitions',
+            'icon': 'competition'
+        }, {
+            'title': 'Equipos',
+            'state': 'teams',
+            'icon': 'helmet'
+        }
+    ];
 
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
 
+    this.imagesServer = appConfig.imagesServer;
+
     $scope.showMobileMainHeader = true;
-    $scope.openSideNavPanel = function() {
+    this.openSideNavPanel = function () {
         $mdSidenav('left').open();
     };
-    $scope.closeSideNavPanel = function() {
+    this.closeSideNavPanel = function () {
         $mdSidenav('left').close();
     };
 
-	$scope.toggleSideNavPanel = function() {
+    this.toggleSideNavPanel = function () {
         $mdSidenav('left').toggle();
     };
 
 };
 
-angular.module('agfaWebappApp').controller('NavbarController',NavbarController);
+angular
+    .module('agfaWebappApp')
+    .controller('NavbarController', NavbarController);

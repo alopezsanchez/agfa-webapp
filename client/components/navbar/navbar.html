@@ -1,34 +1,3 @@
-<!-- <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">agfa-webapp</a>
-    </div>
-    <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in nav.menu" ui-sref-active="active">
-            <a ui-sref="{{item.state}}" ng-hide="!nav.isAdmin()">{{item.title}}</a>
-        </li>
-        <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
-        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li>
-        <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
--->
-
 <md-sidenav ng-show="nav.isLoggedIn()" flex class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-click="nav.toggleList()" aria-label="Menú" md-is-locked-open="$mdMedia('gt-sm')">
 
 	<md-toolbar class="md-whiteframe-z1">
@@ -40,7 +9,7 @@
 			<a ng-href="/" class="docs-logo" href="/">
 				<div class="logo">
 					<a href="/">
-						<img ng-src="{{imagesServer}}/250/250/images/agfa.jpg" alt="">
+						<img ng-src="{{nav.imagesServer}}/250/250/images/agfa.jpg" alt="">
 					</a>
 				</div>
 			</a>

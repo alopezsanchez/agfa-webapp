@@ -1,30 +1,22 @@
 'use strict';
 
 class TopbarController {
-  //start-non-standard
-  /* menu = [{
-
-    'title' : 'Competiciones',
-    'state' : 'competition',
-    'icon'  : 'competition'
-  }]; */
-
   isCollapsed = true;
-  //end-non-standard
+  Auth = null;
 
-  /**
-   * Hide or Show the 'left' sideNav area
-   */
-  /*toggleList() {
-    $mdSidenav('left').toggle();
-  }*/
+  toggleSidenav() {
+    this.$mdSidenav('left').toggle();
+  }
 
-
-  constructor(Auth) {
-    this.isLoggedIn = Auth.isLoggedIn;
-    this.isAdmin = Auth.isAdmin;
-    this.getCurrentUser = Auth.getCurrentUser;
+  constructor($scope, Auth, $mdSidenav) {
+    this.Auth = Auth;
+    this.isLoggedIn = this.Auth.isLoggedIn;
+    this.isAdmin = this.Auth.isAdmin;
+    this.getCurrentUser = this.Auth.getCurrentUser;
+    this.$mdSidenav = $mdSidenav;
   }
 }
 
-angular.module('agfaWebappApp').controller('TopbarController',/*['$mdSidenav'],*/TopbarController);
+angular
+  .module('agfaWebappApp')
+  .controller('TopbarController', TopbarController);
