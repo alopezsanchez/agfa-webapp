@@ -2,18 +2,19 @@
 
 body {
     overflow-x: hidden;
+    display: flex;
 }
 
-#subBody {
-    overflow-y: auto;
-}
 
-body {
-    overflow-x: hidden;
-}
 
 div[ui-view] {
     height: 100%;
+}
+
+/* Main container */
+
+.mainContainer {
+    flex: 1;
 }
 
 

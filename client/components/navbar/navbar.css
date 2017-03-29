@@ -1,3 +1,13 @@
 .icon-sidenav {
     color: black;
 }
+
+navbar {
+    position: relative;
+    z-index: 2;
+}
+
+md-sidenav {
+    background-color: #eee;
+    height: 100%;
+}

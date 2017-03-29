@@ -11,14 +11,6 @@
     letter-spacing: -1px;
 }
 
-div.mainContainer {
-    background-color: #edecec;
-    position: relative;
-    /* height: 100%;  */
-    overflow-y: auto;
-}
-
-
 /* Submit button */
 
 .submitBtn {
