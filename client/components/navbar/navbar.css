@@ -1,13 +1,72 @@
-.icon-sidenav {
-    color: black;
-}
-
 navbar {
     position: relative;
     z-index: 2;
 }
 
 md-sidenav {
-    background-color: #eee;
+    background-color: #607D8B;
     height: 100%;
+    color: white;
+    width: 200px;
+    overflow: hidden;
+}
+
+.navbar-profile-info {
+    height: 176px;
+}
+
+.avatar {
+    /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+    -webkit-border-radius: 50%;
+    /* Firefox 1-3.6 */
+    -moz-border-radius: 50%;
+    /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+    border-radius: 50%;
+    display: flex;
+}
+
+.navbar-user-view {
+    position: relative;
+    padding: 32px 32px 0;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.user-name {
+    margin-top: 16px;
+    font-weight: 500;
+    display: flex;
+}
+
+.user-email {
+    font-weight: 400;
+}
+
+md-list-item .md-list-item-inner md-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    margin: 0 16px 0 0;
+    color: #CFD8DC;
+}
+
+md-list-item .md-list-item-inner md-icon svg {
+    fill: #CFD8DC;
+}
+
+md-list-item .md-list-item-inner span {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.logo-container {
+    height: 70px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0 auto;
+}
+
+.logo {
+    margin: 0 auto;
 }

@@ -1,28 +1,35 @@
-<md-toolbar id="topbar" layout="row" class="md-whiteframe-z1" ng-show="topbarCtrl.isLoggedIn()">
+<!--<md-toolbar id="topbar" layout="row" class="md-whiteframe-z1" ng-show="topbarCtrl.isLoggedIn()">
 
-  <md-button class="md-icon-button" ng-show="topbarCtrl.isLoggedIn()" hide-gt-sm aria-label="Panel lateral" ng-click="topbarCtrl.toggleSidenav()">
-    <md-tooltip>Panel lateral</md-tooltip>
-    <md-icon md-svg-icon="menu"></md-icon>
-  </md-button>
+    <md-button class="md-icon-button" ng-show="topbarCtrl.isLoggedIn()" hide-gt-sm aria-label="Panel lateral" ng-click="topbarCtrl.toggleSidenav()">
+        <md-tooltip>Panel lateral</md-tooltip>
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
 
-<!--  <h4 class="mainHeader md-title" ng-class="{mainHeaderNotLogged:!topbarCtrl.isLoggedIn()}">{{ 'HEADLINE' | translate }}</h4>-->
+    <h4 class="mainHeader md-title" ng-class="{mainHeaderNotLogged:!topbarCtrl.isLoggedIn()}">{{ 'HEADLINE' | translate }}</h4>
 
-  <h5 class="hiLogged" ng-show="topbarCtrl.isLoggedIn()">
-    <span class="spanLogged">Hola, {{ topbarCtrl.getCurrentUser().name }}</span>
-  </h5>
+    <h5 class="hiLogged" ng-show="topbarCtrl.isLoggedIn()">
+        <span class="spanLogged">Hola, {{ topbarCtrl.getCurrentUser().name }}</span>
+    </h5>
 
-  <md-button ng-show="topbarCtrl.isLoggedIn()" class="md-icon-button" aria-label="Settings" ui-sref="settings">
-    <md-icon md-svg-icon="settings"></md-icon>
-  </md-button>
+    <md-button ng-show="topbarCtrl.isLoggedIn()" class="md-icon-button" aria-label="Settings" ui-sref="settings">
+        <md-icon md-svg-icon="settings"></md-icon>
+    </md-button>
 
-  <md-button ng-hide="topbarCtrl.isLoggedIn()" class="buttonText loginBtn" aria-label="Iniciar sesión" ui-sref="login">
-    <md-icon md-svg-icon="login" class="icon"></md-icon>
-    Acceder
-  </md-button>
+    <md-button ng-hide="topbarCtrl.isLoggedIn()" class="buttonText loginBtn" aria-label="Iniciar sesión" ui-sref="login">
+        <md-icon md-svg-icon="login" class="icon"></md-icon>
+        Acceder
+    </md-button>
 
-  <md-button ng-show="topbarCtrl.isLoggedIn()" class="buttonText exitBtn" aria-label="Cerrar sesión" ui-sref="logout">
-    <md-icon md-svg-icon="logout" class="icon"></md-icon>
-    Salir
-  </md-button>
+    <md-button ng-show="topbarCtrl.isLoggedIn()" class="buttonText exitBtn" aria-label="Cerrar sesión" ui-sref="logout">
+        <md-icon md-svg-icon="logout" class="icon"></md-icon>
+        Salir
+    </md-button>
+
+</md-toolbar>-->
+
+<md-toolbar md-scroll-shrink>
+    <div class="item-container">
+        <h3 class="md-headline">Inicio</h3>
+    </div>
 
 </md-toolbar>

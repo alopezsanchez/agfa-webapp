@@ -1,38 +1,44 @@
 'use strict';
 
-var NavbarController = function ($scope, Auth, $mdSidenav, appConfig) {
+var NavbarController = function($scope, Auth, $mdSidenav, appConfig) {
 
-    this.menu = [
-        {
-            'title': 'Usuarios',
-            'state': 'admin',
-            'icon': 'person'
-        }, {
-            'title': 'Competiciones',
-            'state': 'competitions',
-            'icon': 'competition'
-        }, {
-            'title': 'Equipos',
-            'state': 'teams',
-            'icon': 'helmet'
-        }
-    ];
+    this.userSettings = [{
+        title: 'Mi perfil',
+        state: 'settings',
+        icon: 'settings'
+    }];
+
+    this.menu = [{
+        'title': 'Usuarios',
+        'state': 'admin',
+        'icon': 'person'
+    }, {
+        'title': 'Competiciones',
+        'state': 'competitions',
+        'icon': 'competition'
+    }, {
+        'title': 'Equipos',
+        'state': 'teams',
+        'icon': 'helmet'
+    }];
 
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
-    this.getCurrentUser = Auth.getCurrentUser;
+    Auth.getCurrentUser((user) => {
+        this.user = user;
+    });
 
     this.imagesServer = appConfig.imagesServer;
 
     $scope.showMobileMainHeader = true;
-    this.openSideNavPanel = function () {
+    this.openSideNavPanel = function() {
         $mdSidenav('left').open();
     };
-    this.closeSideNavPanel = function () {
+    this.closeSideNavPanel = function() {
         $mdSidenav('left').close();
     };
 
-    this.toggleSideNavPanel = function () {
+    this.toggleSideNavPanel = function() {
         $mdSidenav('left').toggle();
     };
 

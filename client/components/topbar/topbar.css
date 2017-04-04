@@ -1,4 +1,4 @@
-.hiLogged {
+/*.hiLogged {
     width: 200px;
     margin: auto;
     text-align: center;
@@ -7,4 +7,19 @@
 .spanLogged {
     word-break: break-all;
     margin: auto;
+} */
+
+md-toolbar {
+    background-color: transparent !important;
+    box-shadow: none;
+    border-bottom: 0;
+    max-height: 64px;
+}
+
+md-toolbar .items-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    height: inherit;
 }
