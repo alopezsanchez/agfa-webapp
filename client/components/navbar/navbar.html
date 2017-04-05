@@ -26,13 +26,7 @@
     </div>
 
     <md-list>
-        <md-divider></md-divider>
-        <md-list-item ng-show="nav.isLoggedIn()" ui-sref="{{item.state}}" ng-repeat="item in nav.userSettings">
-            <md-icon>{{item.icon}}</md-icon>
-            <span>{{item.title}}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item ng-show="nav.isLoggedIn()" ui-sref="{{it.state}}" ng-repeat="it in nav.menu">
+        <md-list-item ui-sref-active="item-active" ng-show="nav.isLoggedIn()" ui-sref="{{it.state}}" ng-repeat="it in nav.menu">
             <md-icon md-svg-icon="{{it.icon}}">{{it.icon}}</md-icon>
             <span>{{it.title}}</span>
         </md-list-item>

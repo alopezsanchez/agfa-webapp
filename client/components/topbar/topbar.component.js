@@ -1,8 +1,11 @@
 'use strict';
 
 const Topbar = {
+    bindings: {
+        pageTitle: '=pageTitle'
+    },
     templateUrl: 'components/topbar/topbar.html',
-    controller: 'TopbarController as topbarCtrl'
+    controller: 'TopbarController as $ctrl'
 }
 
 angular

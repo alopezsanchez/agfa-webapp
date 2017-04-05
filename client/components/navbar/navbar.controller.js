@@ -2,12 +2,6 @@
 
 var NavbarController = function($scope, Auth, $mdSidenav, appConfig) {
 
-    this.userSettings = [{
-        title: 'Mi perfil',
-        state: 'settings',
-        icon: 'settings'
-    }];
-
     this.menu = [{
         'title': 'Usuarios',
         'state': 'admin',

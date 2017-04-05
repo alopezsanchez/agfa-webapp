@@ -5,10 +5,8 @@ body {
     display: flex;
     font-family: 'Roboto';
     background: #ECEFF1;
-}
-
-div[ui-view] {
-    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 

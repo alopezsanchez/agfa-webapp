@@ -27,9 +27,26 @@
 
 </md-toolbar>-->
 
-<md-toolbar md-scroll-shrink>
-    <div class="item-container">
-        <h3 class="md-headline">Inicio</h3>
+<md-toolbar ng-show="$ctrl.isLoggedIn()">
+    <div class="items-container">
+        <h2 class="md-headline">Inicio</h2>
+        <span flex></span>
+        <div class="user-info">
+            <img class="avatar" ng-src="{{$ctrl.imagesServer}}/34/34/uploads/{{$ctrl.user.avatar}}?fit=true&force=true" alt="AGFA">
+            <span>{{$ctrl.user.name}}</span>
+            <md-menu md-position-mode="target-right target" md-offset="0 42">
+                <md-button aria-label="Open menu" class="md-icon-button" ng-click="$ctrl.openMenu($mdMenu, $event)">
+                    <md-icon>keyboard_arrow_down</md-icon>
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item ui-sref="{{it.state}}" ng-repeat="it in $ctrl.userSettings">
+                        <md-button>
+                            <md-icon>{{it.icon}}</md-icon>
+                            <span>{{it.title}}</span>
+                        </md-button>
+                    </md-menu-item>
+            </md-menu>
+        </div>
     </div>
 
 </md-toolbar>
