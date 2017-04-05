@@ -1,41 +1,38 @@
-<div class="loginBlock md-inline-form" layout="column" ng-cloak>
-  <!-- <md-toolbar class="md-whiteframe-z1">
-    <h4>Iniciar sesión</h4>
-  </md-toolbar> -->
-  <md-content id="loginContent" class="paddedForm" layout-padding>
-    <div>
-      <form name="userForm" ng-submit="userForm.$valid && vm.login(userForm)" novalidate>
-        <div layout-gt-xs="row">
-          <div class="genericForm" layout-gt-sm="column">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>E-mail</label>
-              <md-icon md-svg-icon="email" class="email"></md-icon>
-              <input type="email" name="email" ng-model="vm.user.email"
-                ng-pattern="/^.+@.+\..+$/" ng-required="true" autofocus>
-              <div ng-messages="userForm.email.$error">
-                <div ng-message="required">Campo requerido</div>
-                <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
-              </div>
-            </md-input-container>
+<md-content class="login-content" layout-padding>
+    <md-card class="login-card">
+        <img ng-src="{{vm.imagesServer}}/400/200/images/agfa_banner.jpg" class="md-card-image" alt="Washed Out">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Iniciar sesión</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form name="userForm" ng-submit="userForm.$valid && vm.login(userForm)" novalidate>
+                <md-input-container>
+                    <label>E-mail</label>
+                    <input type="email" name="email" ng-model="vm.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" autofocus>
+                    <div ng-messages="userForm.email.$error">
+                        <div ng-message="required">Campo requerido</div>
+                        <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
+                    </div>
+                </md-input-container>
 
 
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Contraseña</label>
-              <md-icon md-svg-icon="password" class="password"></md-icon>
-              <input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
-              <div ng-messages="userForm.password.$error">
-                <div ng-message="required">Campo requerido</div>
-              </div>
-            </md-input-container>
+                <md-input-container>
+                    <label>Contraseña</label>
+                    <input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
+                    <div ng-messages="userForm.password.$error">
+                        <div ng-message="required">Campo requerido</div>
+                    </div>
+                </md-input-container>
 
 
-            <p class="help-block">{{ vm.errors.other }}</p>
-            <section class="submitBtn" layout-phone="column" layout-align="center center">
-              <md-button type="submit" class="md-raised md-primary">Iniciar sesión</md-button>
-            </section>
-          </div>
-        </div>
-      </form>
-    </div>
-  </md-content>
-</div>
+                <p class="help-block">{{ vm.errors.other }}</p>
+                <section class="submitBtn" layout-phone="column" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary">Iniciar sesión</md-button>
+                </section>
+            </form>
+        </md-card-content>
+
+    </md-card>
+</md-content>

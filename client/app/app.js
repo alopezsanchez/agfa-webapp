@@ -63,40 +63,40 @@ angular.module('agfaWebappApp', [
                 customPrimary);
 
         var customAccent = {
-            '50': '#000000',
-            '100': '#000000',
-            '200': '#000000',
-            '300': '#07090a',
-            '400': '#11171a',
-            '500': '#1c2429',
-            '600': '#304047',
-            '700': '#3b4d56',
-            '800': '#455b66',
-            '900': '#4f6875',
-            'A100': '#304047',
-            'A200': '#263238',
-            'A400': '#1c2429',
-            'A700': '#5a7684'
+            '50': '#00343b',
+            '100': '#004b54',
+            '200': '#00626e',
+            '300': '#007887',
+            '400': '#008fa1',
+            '500': '#00a5ba',
+            '600': '#00d3ed',
+            '700': '#08e3ff',
+            '800': '#21e6ff',
+            '900': '#3be9ff',
+            'A100': '#00d3ed',
+            'A200': '#00BCD4',
+            'A400': '#00a5ba',
+            'A700': '#54ecff'
         };
         $mdThemingProvider
             .definePalette('customAccent',
                 customAccent);
 
         var customWarn = {
-            '50': '#e8efa5',
-            '100': '#e3eb90',
-            '200': '#dde77a',
-            '300': '#d8e464',
-            '400': '#d2e04f',
-            '500': '#CDDC39',
-            '600': '#c6d626',
-            '700': '#b1c022',
-            '800': '#9daa1e',
-            '900': '#89951a',
-            'A100': '#eef3bb',
-            'A200': '#f3f7d1',
-            'A400': '#f9fbe6',
-            'A700': '#757f16'
+            '50': '#ffb8a1',
+            '100': '#ffa588',
+            '200': '#ff916e',
+            '300': '#ff7e55',
+            '400': '#ff6a3b',
+            '500': '#FF5722',
+            '600': '#ff4408',
+            '700': '#ee3900',
+            '800': '#d43300',
+            '900': '#bb2d00',
+            'A100': '#ffcbbb',
+            'A200': '#ffdfd4',
+            'A400': '#fff2ee',
+            'A700': '#a12700'
         };
         $mdThemingProvider
             .definePalette('customWarn',
@@ -105,18 +105,18 @@ angular.module('agfaWebappApp', [
         var customBackground = {
             '50': '#ffffff',
             '100': '#ffffff',
-            '200': '#ffffff',
-            '300': '#ffffff',
-            '400': '#fbfbfc',
-            '500': '#ECEFF1',
-            '600': '#dde3e6',
-            '700': '#cfd6db',
-            '800': '#c0cad1',
-            '900': '#b1bec6',
+            '200': '#fbfcfc',
+            '300': '#ecf0f1',
+            '400': '#dee4e7',
+            '500': '#CFD8DC',
+            '600': '#c0ccd1',
+            '700': '#b1c0c6',
+            '800': '#a3b4bc',
+            '900': '#94a8b1',
             'A100': '#ffffff',
             'A200': '#ffffff',
             'A400': '#ffffff',
-            'A700': '#a3b1bb'
+            'A700': '#859ca6'
         };
         $mdThemingProvider
             .definePalette('customBackground',
@@ -126,7 +126,7 @@ angular.module('agfaWebappApp', [
             .primaryPalette('customPrimary')
             .accentPalette('customAccent')
             .warnPalette('customWarn')
-            .backgroundPalette('customBackground')
+            .backgroundPalette('customBackground');
 
         /** ************* */
 

@@ -1,10 +1,11 @@
 'use strict';
 
 class LoginController {
-    constructor(Auth, $state) {
+    constructor(Auth, $state, appConfig) {
         this.user = {};
         this.errors = {};
         this.submitted = false;
+        this.imagesServer = appConfig.imagesServer;
 
         this.Auth = Auth;
         this.$state = $state;

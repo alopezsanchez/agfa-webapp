@@ -64,5 +64,5 @@ md-menu-content span {
 }
 
 md-menu-item:hover {
-    background: red;
+    background: rgba(236, 239, 241, 0.2);
 }

@@ -1,9 +1,18 @@
 /* Login screen */
 
-.login-style {
-    background-color: #3F51B5 !important;
+.login-content {
+    vertical-align: middle;
+    align-items: center;
+    margin: 10% 0;
 }
 
-.loginBlock {
-    padding: 13% 30%;
+.login-card {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-card md-input-container {
+    display: block;
 }

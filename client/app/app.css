@@ -3,8 +3,9 @@
 body {
     overflow-x: hidden;
     display: flex;
+    background-color: #F2F2F2;
     font-family: 'Roboto';
-    background: #ECEFF1;
+    color: #333333 !important;
     margin: 0;
     padding: 0;
 }
@@ -24,7 +25,7 @@ md-input-container.md-input-valid>md-icon {
 }
 
 md-input-container:not(.md-input-invalid)>md-icon {
-    color: rgb(63, 81, 181);
+    /*color: rgb(63, 81, 181);*/
 }
 
 md-input-container.md-input-invalid>md-icon {
@@ -79,26 +80,12 @@ md-select.option {
 
 /* md-button */
 
+.md-button {
+    color: white !important;
+}
+
 a.md-button {
     line-height: 52px;
-}
-
-#content .md-button.contact {
-    background-color: transparent;
-    border: none;
-    width: 48px;
-    height: 48px;
-    margin: 8px auto 16px 0;
-    position: absolute;
-    top: 10px;
-    right: 40px;
-}
-
-#content .md-button.contact:active>md-icon {
-    background-color: #dadada;
-    border-radius: 75%;
-    padding: 4px;
-    transition: all 100ms ease-out 30ms;
 }
 
 .form {
@@ -119,64 +106,6 @@ a.buttonText.exitBtn {
 
 md-menu-item {
     color: black;
-}
-
-
-/*.paddedBlock {
-	flex: 1;
-}*/
-
-div.mainContainer div.paddedBlock {
-    padding: 6% 10%;
-}
-
-div.mainContainer div.paddedBlock.md-inline-form {
-    padding: 6% 21%;
-}
-
-.paddedForm {
-    padding: 10px;
-    width: 100%;
-    margin-bottom: -50px;
-}
-
-
-/* Toolbar area */
-
-.menu {
-    background-color: transparent;
-    border: none;
-    height: 38px;
-    margin: 16px;
-    width: 36px;
-}
-
-div.logo {
-    width: 250px;
-    height: 250px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-
-.mainHeader {
-    width: 80%;
-    text-align: center;
-    /* width: 20%; */
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-left: 10%;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-
-/* resize images */
-
-.logo img {
-    width: 100%;
-    height: auto;
 }
 
 md-toolbar h4 {
@@ -213,35 +142,6 @@ md-list-item>button {
     text-align: left !important;
     height: 70px;
     ;
-}
-
-md-list .md-button.selected {
-    color: #03a9f4;
-}
-
-button#main {
-    margin-bottom: 10px;
-}
-
-md-sidenav>md-toolbar {
-    height: 64px;
-}
-
-md-sidenav {
-    width: 300px;
-}
-
-md-list-item {
-    overflow: hidden;
-}
-
-
-/* Primary content area */
-
-#content {
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 5px;
 }
 
 
@@ -288,4 +188,11 @@ span.name {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+
+/* md-content */
+
+md-content {
+    background-color: inherit;
 }
