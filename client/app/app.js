@@ -43,20 +43,20 @@ angular.module('agfaWebappApp', [
         /** ************* */
 
         var customPrimary = {
-            '50': '#a8bac3',
-            '100': '#99aeb8',
-            '200': '#8aa2ae',
-            '300': '#7a96a3',
-            '400': '#6b8a99',
-            '500': '#607D8B',
-            '600': '#566f7c',
-            '700': '#4b626d',
-            '800': '#41545e',
-            '900': '#36474f',
-            'A100': '#b7c6cd',
-            'A200': '#c6d2d8',
-            'A400': '#d5dee2',
-            'A700': '#2c3940'
+            '50': '#2269b6',
+            '100': '#1e5ca1',
+            '200': '#1a508b',
+            '300': '#164476',
+            '400': '#123760',
+            '500': '#0E2B4B',
+            '600': '#0a1f36',
+            '700': '#061220',
+            '800': '#02060b',
+            '900': '#000000',
+            'A100': '#2675cc',
+            'A200': '#3382d9',
+            'A400': '#488fdd',
+            'A700': '#000000'
         };
         $mdThemingProvider
             .definePalette('customPrimary',
@@ -83,20 +83,20 @@ angular.module('agfaWebappApp', [
                 customAccent);
 
         var customWarn = {
-            '50': '#ffb8a1',
-            '100': '#ffa588',
-            '200': '#ff916e',
-            '300': '#ff7e55',
-            '400': '#ff6a3b',
-            '500': '#FF5722',
-            '600': '#ff4408',
-            '700': '#ee3900',
-            '800': '#d43300',
-            '900': '#bb2d00',
-            'A100': '#ffcbbb',
-            'A200': '#ffdfd4',
-            'A400': '#fff2ee',
-            'A700': '#a12700'
+            '50': '#ff9853',
+            '100': '#ff883a',
+            '200': '#ff7920',
+            '300': '#ff6a07',
+            '400': '#ec5e00',
+            '500': '#d35400',
+            '600': '#b94a00',
+            '700': '#a04000',
+            '800': '#863600',
+            '900': '#6d2b00',
+            'A100': '#ffa76d',
+            'A200': '#ffb686',
+            'A400': '#ffc6a0',
+            'A700': '#532100'
         };
         $mdThemingProvider
             .definePalette('customWarn',
@@ -105,18 +105,18 @@ angular.module('agfaWebappApp', [
         var customBackground = {
             '50': '#ffffff',
             '100': '#ffffff',
-            '200': '#fbfcfc',
-            '300': '#ecf0f1',
-            '400': '#dee4e7',
-            '500': '#CFD8DC',
-            '600': '#c0ccd1',
-            '700': '#b1c0c6',
-            '800': '#a3b4bc',
-            '900': '#94a8b1',
+            '200': '#ffffff',
+            '300': '#ffffff',
+            '400': '#ffffff',
+            '500': '#F4F5F7',
+            '600': '#e5e8ec',
+            '700': '#d6dae2',
+            '800': '#c8cdd7',
+            '900': '#b9bfcc',
             'A100': '#ffffff',
             'A200': '#ffffff',
             'A400': '#ffffff',
-            'A700': '#859ca6'
+            'A700': '#aab2c1'
         };
         $mdThemingProvider
             .definePalette('customBackground',
@@ -126,7 +126,7 @@ angular.module('agfaWebappApp', [
             .primaryPalette('customPrimary')
             .accentPalette('customAccent')
             .warnPalette('customWarn')
-            .backgroundPalette('customBackground');
+            .backgroundPalette('customBackground')
 
         /** ************* */
 

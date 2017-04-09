@@ -3,11 +3,11 @@
 body {
     overflow-x: hidden;
     display: flex;
-    background-color: #F2F2F2;
     font-family: 'Roboto';
     color: #333333 !important;
     margin: 0;
     padding: 0;
+    background-color: #F4F5F7 !important;
 }
 
 
