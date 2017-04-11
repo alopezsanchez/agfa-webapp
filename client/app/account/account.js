@@ -5,9 +5,7 @@ angular.module('agfaWebappApp')
         $stateProvider
             .state('login', {
                 url: '/login',
-                templateUrl: 'app/account/login/login.html',
-                controller: 'LoginController',
-                controllerAs: 'vm'
+                component: 'login'
             })
             .state('logout', {
                 url: '/logout?referrer',
@@ -23,23 +21,17 @@ angular.module('agfaWebappApp')
             })
             .state('signup', {
                 url: '/signup',
-                templateUrl: 'app/account/signup/signup.html',
-                controller: 'SignupController',
-                controllerAs: 'vm',
+                component: 'signup',
                 authenticate: true
             })
             .state('settings', {
                 url: '/settings',
-                templateUrl: 'app/account/settings/settings.html',
-                controller: 'SettingsController',
-                controllerAs: 'vm',
+                component: 'settings',
                 authenticate: true
             })
             .state('confirm', {
                 url: '/confirm/:token',
-                templateUrl: 'app/account/confirm/confirm.html',
-                controller: 'ConfirmController',
-                controllerAs: 'cc',
+                component: 'confirm',
                 authenticate: false
             });
     })

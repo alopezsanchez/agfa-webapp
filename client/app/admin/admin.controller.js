@@ -1,54 +1,77 @@
 'use strict';
 
-(function () {
+(function() {
 
-	class AdminController {
-		constructor(User, $scope, $mdDialog, $mdToast) {
-			// Use the User $resource to fetch all users
-			this.users = User.query();
-			this.dialog = $mdDialog;
-			this.toast = $mdToast;
-			this.scope = $scope;
-		}
+    class AdminController {
+        constructor(User, $scope, $mdDialog, $mdToast, appConfig) {
+            // Use the User $resource to fetch all users
+            this.title = 'Usuarios';
+            this.dialog = $mdDialog;
+            this.toast = $mdToast;
+            this.scope = $scope;
+            this.imagesServer = appConfig.imagesServer;
+            this.User = User;
+        }
 
-		delete(user) {
-			user.$remove();
-			this.users.splice(this.users.indexOf(user), 1);
-			let _this = this;
+        $onInit() {
+            this.notConfirmedUsers = this.User.query({ confirmed: false });
+            this.confirmedUsers = this.User.query({ confirmed: true });
+        }
 
-			this.showSimpleToast = function () {
-				_this.toast.show(
-					_this.toast.simple()
-						.parent(angular.element('.main-container'))
-						.textContent('Usuario eliminado')
-						.position('top right')
-						.hideDelay(3000)
-					);
-			};
+        delete(user) {
+            user.$remove();
+            if (user.confirmed) {
+                this.confirmedUsers.splice(this.confirmedUsers.indexOf(user), 1);
+            } else {
+                this.notConfirmedUsers.splice(this.notConfirmedUsers.indexOf(user), 1);
+            }
 
-			this.showSimpleToast();
-		}
+            this.showSimpleToast = () => {
+                this.toast.show(
+                    this.toast.simple()
+                    .parent(angular.element(document.body))
+                    .textContent('Usuario eliminado')
+                    .position('top right')
+                    .hideDelay(3000)
+                );
+            };
 
+            this.showSimpleToast();
+        }
 
-		showConfirm(ev, user) {
-			let _this = this;
-			// Appending dialog to document.body to cover sidenav in docs app
-			var confirm = this.dialog.confirm()
-				.title('¿Está seguro de eliminar el usuario ' + user.name + '?')
-				.textContent('Este cambio es irreversible')
-				.ariaLabel('Eliminar usuario')
-				.targetEvent(ev)
-				.ok('Eliminar')
-				.cancel('Cancelar');
-			this.dialog.show(confirm).then(function () {
-				_this.delete(user);
-			}, function () {
-				_this.scope.status = 'You decided to keep your debt.';
-			});
-		}
-	}
+        signup(ev) {
+            const signup = this.dialog.show({
+                templateUrl: 'app/account/signup/signup.html',
+                controller: 'SignupController',
+                controllerAs: '$ctrl',
+                targetEvent: ev,
+                openFrom: angular.element(document.body.querySelector('.signup-button')),
+                clickOutsideToClose: true,
+                escapeToClose: false
+            }).then(() => {
+                this.notConfirmedUsers = this.User.query({ confirmed: false });
+            });
+        }
 
-	angular.module('agfaWebappApp.admin')
-		.controller('AdminController', AdminController);
+        showConfirm(ev, user) {
+            let _this = this;
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = this.dialog.confirm()
+                .title('¿Está seguro de eliminar el usuario ' + user.name + '?')
+                .textContent('Este cambio es irreversible.')
+                .ariaLabel('Eliminar usuario')
+                .targetEvent(ev)
+                .ok('Eliminar')
+                .cancel('Cancelar');
+            this.dialog.show(confirm).then(function() {
+                _this.delete(user);
+            }, function() {
+                _this.scope.status = 'You decided to keep your debt.';
+            });
+        }
+    }
+
+    angular.module('agfaWebappApp.admin')
+        .controller('AdminController', AdminController);
 
 })();

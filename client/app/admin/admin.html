@@ -1,11 +1,11 @@
-<div class="md-inline-form" ng-cloak>
+<!--<div class="md-inline-form" ng-cloak>
     <md-toolbar class="md-primary md-whiteframe-z1">
         <h4>Lista de usuarios</h4>
     </md-toolbar>
     <md-content class="paddedForm" layout-padding>
         <md-list class="md-dense">
-            <md-list-item class="md-3-line" ng-repeat="user in admin.users" ng-click="">
-                <img ng-src="{{imagesServer}}/250/250/uploads/{{user.avatar}}?fit=true&force=true" alt="{{user.name}}" class="md-avatar">
+            <md-list-item class="md-3-line" ng-repeat="user in $ctrl.users" ng-click="">
+                <img ng-src="{{$ctrl.imagesServer}}/250/250/uploads/{{user.avatar}}?fit=true&force=true" alt="{{user.name}}" class="md-avatar">
                 <div class="md-list-item-text">
                     <strong>{{ user.name }}</strong>
                     <p>{{ user.email }}</p>
@@ -14,14 +14,56 @@
 					</small>
                 </div>
 
-                <md-button class="md-icon-button" aria-label="Settings" ng-click="admin.showConfirm($event,user)">
+                <md-button class="md-icon-button" aria-label="Settings" ng-click="$ctrl.showConfirm($event,user)">
                     <md-icon>delete</md-icon>
                 </md-button>
             </md-list-item>
         </md-list>
     </md-content>
-</div>
+</div>-->
 
-<md-button class="md-fab md-mini md-hue-2 new-button" ui-sref="signup" aria-label="Nueva competición">
-    <md-icon md-svg-icon="add"></md-icon>
+<topbar page="$ctrl.title"></topbar>
+
+<md-content layout-padding>
+    <md-card>
+        <md-tabs md-swipe-content md-dynamic-height md-center-tabs md-border-bottom>
+            <md-tab label="Registrados">
+                <md-tab-body>
+                    <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="user in $ctrl.confirmedUsers">
+                            <img alt="{{ user.name }}" ng-src="{{$ctrl.imagesServer}}/50/50/uploads/{{user.avatar}}" class="md-avatar" />
+                            <div class="md-list-item-text">
+                                <strong>{{user.name}}</strong>
+                                <p>{{user.email}}</p>
+                            </div>
+                            <md-button class="md-icon-button md-secondary" aria-label="Delete" ng-click="$ctrl.showConfirm($event,user)">
+                                <md-icon>delete</md-icon>
+                            </md-button>
+                        </md-list-item>
+                    </md-list>
+                </md-tab-body>
+            </md-tab>
+            <md-tab ng-if="$ctrl.notConfirmedUsers.length > 0" label="Pendientes">
+                <md-tab-body>
+                    <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="user in $ctrl.notConfirmedUsers">
+                            <img alt="{{ user.name }}" ng-src="{{$ctrl.imagesServer}}/50/50/uploads/{{user.avatar}}" class="md-avatar" />
+                            <div class="md-list-item-text">
+                                <strong>{{user.name}}</strong>
+                                <p>{{user.email}}</p>
+                            </div>
+                            <md-button class="md-icon-button md-secondary" aria-label="Delete" ng-click="$ctrl.showConfirm($event,user)">
+                                <md-icon>delete</md-icon>
+                            </md-button>
+                        </md-list-item>
+                    </md-list>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+    </md-card>
+</md-content>
+
+<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button" ng-click="$ctrl.signup($event)" aria-label="Nuevo usuario">
+    <md-tooltip md-direction="top">Nuevo usuario</md-tooltip>
+    <md-icon>person_add</md-icon>
 </md-button>

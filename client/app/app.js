@@ -125,8 +125,8 @@ angular.module('agfaWebappApp', [
         $mdThemingProvider.theme('default')
             .primaryPalette('customPrimary')
             .accentPalette('customAccent')
-            .warnPalette('customWarn')
-            .backgroundPalette('customBackground')
+            // .warnPalette('customWarn')
+            //.backgroundPalette('customBackground')
 
         /** ************* */
 

@@ -29,7 +29,7 @@
 
 <md-toolbar ng-show="$ctrl.isLoggedIn()">
     <div class="items-container">
-        <h2 class="md-headline">Inicio</h2>
+        <h2 class="md-headline">{{$ctrl.page}}</h2>
         <span flex></span>
         <div class="user-info">
             <img class="avatar" ng-src="{{$ctrl.imagesServer}}/34/34/uploads/{{$ctrl.user.avatar}}?fit=true&force=true" alt="AGFA">

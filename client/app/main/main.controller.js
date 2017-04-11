@@ -2,20 +2,21 @@
 
 (function() {
 
-class MainController {
+    class MainController {
 
-  constructor($http, Auth, $state) {
-    this.$state = $state;
-    this.$http = $http;
+        constructor($http, Auth, $state) {
+            this.$state = $state;
+            this.$http = $http;
+            this.title = 'Inicio';
 
-	   if (!Auth.isLoggedIn()) {
-       this.$state.transitionTo('login');
-		  //this.$state.go('login');
-	   }
-  }
-}
+            if (!Auth.isLoggedIn()) {
+                this.$state.transitionTo('login');
+                //this.$state.go('login');
+            }
+        }
+    }
 
-angular.module('agfaWebappApp')
-  .controller('MainController', MainController);
+    angular.module('agfaWebappApp')
+        .controller('MainController', MainController);
 
 })();

@@ -1,16 +1,16 @@
 <md-content class="login-content" layout-padding>
     <md-card class="login-card">
-        <img ng-src="{{vm.imagesServer}}/400/200/images/agfa_banner.jpg" class="md-card-image" alt="Washed Out">
+        <img ng-src="{{$ctrl.imagesServer}}/400/200/images/agfa_banner.jpg" class="md-card-image" alt="Washed Out">
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Iniciar sesión</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
-            <form name="userForm" ng-submit="userForm.$valid && vm.login(userForm)" novalidate>
+            <form name="userForm" ng-submit="userForm.$valid && $ctrl.login(userForm)" novalidate>
                 <md-input-container>
                     <label>E-mail</label>
-                    <input type="email" name="email" ng-model="vm.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" autofocus>
+                    <input type="email" name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" autofocus>
                     <div ng-messages="userForm.email.$error">
                         <div ng-message="required">Campo requerido</div>
                         <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
@@ -20,14 +20,14 @@
 
                 <md-input-container>
                     <label>Contraseña</label>
-                    <input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
+                    <input type="password" name="password" class="form-control" ng-model="$ctrl.user.password" required>
                     <div ng-messages="userForm.password.$error">
                         <div ng-message="required">Campo requerido</div>
                     </div>
                 </md-input-container>
 
 
-                <p class="help-block">{{ vm.errors.other }}</p>
+                <p class="help-block">{{ $ctrl.errors.other }}</p>
                 <section class="submitBtn" layout-phone="column" layout-align="center center">
                     <md-button type="submit" class="md-raised md-primary">Iniciar sesión</md-button>
                 </section>

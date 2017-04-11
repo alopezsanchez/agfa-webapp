@@ -11,6 +11,13 @@ body {
 }
 
 
+/* Toolbars */
+
+md-toolbar.modal-toolbar {
+    background-color: #F4F5F7 !important;
+}
+
+
 /* Main container */
 
 .mainContainer {
@@ -20,20 +27,12 @@ body {
 
 /* Icons */
 
-md-input-container.md-input-valid>md-icon {
-    color: green;
-}
-
 md-input-container:not(.md-input-invalid)>md-icon {
-    /*color: rgb(63, 81, 181);*/
+    color: #0A1F37;
 }
 
 md-input-container.md-input-invalid>md-icon {
     color: red;
-}
-
-.md-button.md-icon-button {
-    margin: auto;
 }
 
 md-icon.avatar {
@@ -42,15 +41,6 @@ md-icon.avatar {
 
 md-icon.icon {
     margin-right: 20px;
-}
-
-#content md-icon.avatar {
-    margin-top: 10px;
-}
-
-#content .md-button.contact>md-icon {
-    width: 36px;
-    height: 36px;
 }
 
 
@@ -80,7 +70,7 @@ md-select.option {
 
 /* md-button */
 
-.md-button {
+.md-button.md-raised.md-primary {
     color: white !important;
 }
 
@@ -141,7 +131,6 @@ md-list-item>button {
     width: 100%;
     text-align: left !important;
     height: 70px;
-    ;
 }
 
 
@@ -184,10 +173,8 @@ span.name {
 
 /* New button */
 
-.new-button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.new-button md-icon {
+    color: white !important;
 }
 
 

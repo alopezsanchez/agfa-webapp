@@ -4,26 +4,26 @@
       <h1>Change Password</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="vm.changePassword(form)" novalidate>
+      <form class="form" name="form" ng-submit="$ctrl.changePassword(form)" novalidate>
 
         <div class="form-group">
           <label>Current Password</label>
 
-          <input type="password" name="password" class="form-control" ng-model="vm.user.oldPassword"
+          <input type="password" name="password" class="form-control" ng-model="$ctrl.user.oldPassword"
                  mongoose-error/>
           <p class="help-block" ng-show="form.password.$error.mongoose">
-              {{ vm.errors.other }}
+              {{ $ctrl.errors.other }}
           </p>
         </div>
 
         <div class="form-group">
           <label>New Password</label>
 
-          <input type="password" name="newPassword" class="form-control" ng-model="vm.user.newPassword"
+          <input type="password" name="newPassword" class="form-control" ng-model="$ctrl.user.newPassword"
                  ng-minlength="3"
                  required/>
           <p class="help-block"
-             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)">
+             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || $ctrl.submitted)">
             Password must be at least 3 characters.
           </p>
         </div>
@@ -31,18 +31,18 @@
         <div class="form-group">
           <label>Confirm New Password</label>
 
-          <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
-                 match="vm.user.newPassword"
+          <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword"
+                 match="$ctrl.user.newPassword"
                  ng-minlength="3"
                  required=""/>
           <p class="help-block"
-             ng-show="form.confirmPassword.$error.match && vm.submitted">
+             ng-show="form.confirmPassword.$error.match && $ctrl.submitted">
             Passwords must match.
           </p>
 
         </div>
 
-        <p class="help-block"> {{ vm.message }} </p>
+        <p class="help-block"> {{ $ctrl.message }} </p>
 
         <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
       </form>
@@ -52,60 +52,57 @@
 
 
 <div class="paddedBlock md-inline-form" layout="column" ng-cloak>
-  <md-toolbar class="md-whiteframe-z1 form">
-    <h4>Cambiar contraseña</h4>
-  </md-toolbar>
-  <md-content class="paddedForm form" layout-padding>
-    <div>
-      <form name="userForm" ng-submit="userForm.$valid && vm.changePassword(userForm)" novalidate>
-        <div layout-gt-xs="row">
+    <md-toolbar class="md-whiteframe-z1 form">
+        <h4>Cambiar contraseña</h4>
+    </md-toolbar>
+    <md-content class="paddedForm form" layout-padding>
+        <div>
+            <form name="userForm" ng-submit="userForm.$valid && $ctrl.changePassword(userForm)" novalidate>
+                <div layout-gt-xs="row">
 
-          <div class="genericForm"layout-gt-sm="column">
+                    <div class="genericForm" layout-gt-sm="column">
 
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Contraseña actual</label>
-              <md-icon md-svg-icon="password" class="password"></md-icon>
-              <input type="password" name="password" class="form-control" ng-model="vm.user.oldPassword"
-                 mongoose-error required>
-              <div ng-messages="userForm.password.$error">
-                <div ng-message="required">Campo requerido</div>
-              </div>
-            </md-input-container>
-
-
-            <md-input-container class="md-block" flex-gt-sm>
-              <label> Nueva contraseña</label>
-              <md-icon md-svg-icon="password" class="password"></md-icon>
-              <input type="password" name="newPassword" class="form-control" ng-model="vm.user.newPassword"
-                ng-minlength="3" required>
-              <div ng-messages="userForm.newPassword.$error">
-                <div ng-message="required">Campo requerido</div>
-                <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
-              </div>
-            </md-input-container>
-
-            <md-input-container class="md-block" flex-gt-sm>
-              <label> Confirmar nueva contraseña</label>
-              <md-icon md-svg-icon="password" class="password"></md-icon>
-              <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
-                ng-minlength="3" match="vm.user.newPassword" required>
-              <div ng-messages="userForm.confirmPassword.$error">
-                <div ng-message="required">Campo requerido</div>
-                <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
-                <div ng-message="match">Las contraseñas deben coincidir</div>
-              </div>
-            </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Contraseña actual</label>
+                            <md-icon md-svg-icon="password" class="password"></md-icon>
+                            <input type="password" name="password" class="form-control" ng-model="$ctrl.user.oldPassword" mongoose-error required>
+                            <div ng-messages="userForm.password.$error">
+                                <div ng-message="required">Campo requerido</div>
+                            </div>
+                        </md-input-container>
 
 
-            <p class="help-block">{{ vm.errors.other }}</p>
-            <section class="submitBtn" layout-phone="column" layout-align="center center">
-              <md-button type="submit" class="md-raised md-primary">Confirmar</md-button>
-            </section>
-          </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> Nueva contraseña</label>
+                            <md-icon md-svg-icon="password" class="password"></md-icon>
+                            <input type="password" name="newPassword" class="form-control" ng-model="$ctrl.user.newPassword" ng-minlength="3" required>
+                            <div ng-messages="userForm.newPassword.$error">
+                                <div ng-message="required">Campo requerido</div>
+                                <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> Confirmar nueva contraseña</label>
+                            <md-icon md-svg-icon="password" class="password"></md-icon>
+                            <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword" ng-minlength="3" match="$ctrl.user.newPassword" required>
+                            <div ng-messages="userForm.confirmPassword.$error">
+                                <div ng-message="required">Campo requerido</div>
+                                <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
+                                <div ng-message="match">Las contraseñas deben coincidir</div>
+                            </div>
+                        </md-input-container>
 
 
+                        <p class="help-block">{{ $ctrl.errors.other }}</p>
+                        <section class="submitBtn" layout-phone="column" layout-align="center center">
+                            <md-button type="submit" class="md-raised md-primary">Confirmar</md-button>
+                        </section>
+                    </div>
+
+
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-  </md-content>
+    </md-content>
 </div>

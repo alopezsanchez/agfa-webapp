@@ -1,67 +1,67 @@
 'use strict';
 
 class SignupController {
-	//start-non-standard
-	user = {};
-	errors = {};
-	submitted = false;
-	roles = [];
-	file = null;
-	//end-non-standard
+    //start-non-standard
+    user = {};
+    errors = {};
+    submitted = false;
+    roles = [];
+    file = null;
+    //end-non-standard
 
-	constructor(Auth, $state, $mdToast, appConfig, Upload) {
-		this.Auth = Auth;
-		this.$state = $state;
-		this.roles = appConfig.userRoles;
-		this.upload = Upload;
-		this.toast = $mdToast;
-		this.defaultAvatar = appConfig.defaultAvatar;
-	}
+    constructor(Auth, $state, $mdToast, appConfig, Upload, $mdDialog) {
+        this.Auth = Auth;
+        this.$state = $state;
+        this.roles = appConfig.userRoles;
+        this.upload = Upload;
+        this.toast = $mdToast;
+        this.defaultAvatar = appConfig.defaultAvatar;
+        this.$mdDialog = $mdDialog;
+    }
 
 
-	register(form) {
-		this.submitted = true;
-		if (form.$valid) {
-			this.Auth.createUser({
-				name: this.user.name,
-				email: this.user.email,
-				avatar: this.defaultAvatar,
-				//password: this.user.password,
-				role: this.user.role,
-			})
-				.then((user) => {
-					console.log(user);
-					// Account created, redirect to home and upload the image file if exists
-					if (this.file) {
-						this.uploadImage(this.file, user._id);
-					}
-					this.showSimpleToast = function () {
-						this.toast.show(
-							this.toast.simple()
-								.parent(angular.element('.main-container'))
-								.textContent('Usuario registrado correctamente')
-								.position('top right')
-								.hideDelay(3000)
-							);
-					};
+    register(form) {
+        this.submitted = true;
+        if (form.$valid) {
+            this.Auth.createUser({
+                name: this.user.name,
+                email: this.user.email,
+                avatar: this.defaultAvatar,
+                role: this.user.role,
+            }).then((user) => {
+                // Account created, redirect to home and upload the image file if exists
+                if (this.file) {
+                    this.uploadImage(this.file, user._id);
+                }
+                this.showSimpleToast = function() {
+                    this.toast.show(
+                        this.toast.simple()
+                        .parent(angular.element(document.body))
+                        .textContent('Usuario registrado correctamente')
+                        .position('top right')
+                        .hideDelay(3000)
+                    );
+                };
 
-					this.showSimpleToast();
+                this.showSimpleToast();
 
-					this.$state.go('main');
-				})
-				.catch(err => {
-					err = err.data;
-					this.errors = {err};
+                this.$mdDialog.hide();
 
-					// Update validity of form fields that match the mongoose errors
-					angular.forEach(err.errors, (error, field) => {
-						form[field].$setValidity('mongoose', false);
-						this.errors[field] = error.message;
-					});
-				});
-		}
-	}
+                //this.$state.go('main');
+            }, err => {
+                err = err.data;
+                this.errors = { err };
+
+                // Update validity of form fields that match the mongoose errors
+                angular.forEach(err.errors, (error, field) => {
+                    form[field].$setValidity('mongoose', false);
+                    this.errors[field] = error.message;
+                });
+            });
+
+        }
+    }
 }
 
 angular.module('agfaWebappApp')
-	.controller('SignupController', SignupController);
+    .controller('SignupController', SignupController);

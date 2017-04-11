@@ -1,12 +1,12 @@
 'use strict';
 
 const Topbar = {
-    bindings: {
-        pageTitle: '=pageTitle'
-    },
     templateUrl: 'components/topbar/topbar.html',
-    controller: 'TopbarController as $ctrl'
-}
+    controller: 'TopbarController as $ctrl',
+    bindings: {
+        page: '='
+    }
+};
 
 angular
     .module('agfaWebappApp')
