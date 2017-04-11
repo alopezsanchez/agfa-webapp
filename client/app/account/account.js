@@ -19,11 +19,6 @@ angular.module('agfaWebappApp')
                     $state.go(referrer);
                 }
             })
-            .state('signup', {
-                url: '/signup',
-                component: 'signup',
-                authenticate: true
-            })
             .state('settings', {
                 url: '/settings',
                 component: 'settings',
