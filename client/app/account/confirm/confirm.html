@@ -1,17 +1,22 @@
-<!--<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
-    <md-toolbar class="md-whiteframe-z1 form">
-        <h4>Confirmar Usuario</h4>
-    </md-toolbar>
-    <md-content class="paddedForm form" layout-padding>
-        <div>
+<topbar page="$ctrl.title"></topbar>
+
+<md-content layout-padding>
+    <md-card class="confirm-card">
+        <img ng-src="{{$ctrl.imagesServer}}/600/600/images/agfa_banner.jpg" class="md-card-image" alt="Washed Out">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Por favor, completa tu registro en AGFA.</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
             <form name="confirmUserForm" ng-submit="$ctrl.confirm(confirmUserForm)" enctype="multipart/form-data" novalidate>
-                <div layout-gt-xs="row">
-
-                    <div class="genericForm" layout-gt-sm="column">
-
-                        <md-input-container class="md-block" flex-gt-sm>
+                <div class="form-container">
+                    <div class="avatar-container">
+                        <img class="avatar" ng-src="{{$ctrl.imagesServer}}/50/50/images/{{$ctrl.defaultAvatar}}" alt="Pincha o arrastra una foto">
+                    </div>
+                    <div class="inputs-container">
+                        <md-input-container>
                             <label>Nombre</label>
-                            <md-icon>person</md-icon>
                             <input type="text" name="name" ng-model="$ctrl.user.name" required/>
                             <div ng-messages="confirmUserForm.name.$error">
                                 <div ng-message="required">Campo obligatorio</div>
@@ -19,9 +24,8 @@
                         </md-input-container>
 
 
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container>
                             <label>E-mail</label>
-                            <md-icon>mail</md-icon>
                             <input type="email" name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
                             <div ng-messages="confirmUserForm.email.$error">
                                 <div ng-message="required">Campo obligatorio</div>
@@ -34,9 +38,8 @@
                         </md-input-container>
 
 
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Dire$ctrlión</label>
-                            <md-icon>location_city</md-icon>
+                        <md-input-container>
+                            <label>Dirección</label>
                             <input type="text" name="address" ng-model="$ctrl.user.address" ng-required="true" />
                             <div ng-messages="confirmUserForm.address.$error">
                                 <div ng-message="required">Campo obligatorio</div>
@@ -44,9 +47,8 @@
                         </md-input-container>
 
 
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container>
                             <label>Contraseña</label>
-                            <md-icon>vpn_key</md-icon>
                             <input type="password" name="password" ng-minlength="6" ng-model="$ctrl.user.password" required mongoose-error/>
                             <div ng-messages="confirmUserForm.password.$error">
                                 <div ng-message="required">Campo obligatorio</div>
@@ -55,9 +57,8 @@
                             </div>
                         </md-input-container>
 
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container>
                             <label> Confirmar nueva contraseña</label>
-                            <md-icon>vpn_key</md-icon>
                             <input type="password" name="confirmPassword" ng-model="$ctrl.user.confirmPassword" ng-minlength="6" match="$ctrl.user.password" required>
                             <div ng-messages="confirmUserForm.confirmPassword.$error">
                                 <div ng-message="required">Campo obligatorio</div>
@@ -66,9 +67,8 @@
                             </div>
                         </md-input-container>
 
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container>
                             <label>Rol</label>
-                            <md-icon>group_work</md-icon>
                             <md-select name="role" class="option md-no-underline" ng-model="$ctrl.user.role" disabled>
                                 <md-option ng-repeat="role in $ctrl.roles" value="{{role}}">{{role}}</md-option>
                             </md-select>
@@ -77,21 +77,19 @@
                             </div>
                         </md-input-container>
 
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <h4>Avatar</h4>
-                            <file-input></file-input>
-                        </md-input-container>
-
-
                         <p class="errorMessage">{{ $ctrl.errors.other }}</p>
-
-                        <section class="submitBtn" layout-phone="column" layout-align="center center">
-                            <md-button id="buttonRegister" type="submit" class="md-raised md-primary">Registrar</md-button>
-                        </section>
                     </div>
                 </div>
+
+                <div class="actions-container" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary">Confirmar registro</md-button>
+                </div>
+
+                <!--<md-input-container class="md-block" flex-gt-sm>
+                <h4>Avatar</h4>
+                <file-input></file-input>
+            </md-input-container>-->
             </form>
-        </div>
-    </md-content>
-</div>-->
-<topbar page="$ctrl.title"></topbar>
+        </md-card-content>
+    </md-card>
+</md-content>

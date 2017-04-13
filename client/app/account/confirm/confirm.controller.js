@@ -2,7 +2,7 @@
 
 class ConfirmController {
 
-    constructor(User, Auth, $state, $http, $scope, $stateParams, $mdToast, appConfig, Upload) {
+    constructor(User, Auth, $state, $http, $scope, $stateParams, $mdToast, appConfig, Upload, $mdDialog) {
         //var _this = this;
         this.user = {};
         this.errors = {};
@@ -13,12 +13,13 @@ class ConfirmController {
         this.Auth = Auth;
         this.state = $state;
         this.upload = Upload;
+        this.$mdDialog = $mdDialog;
         this.toast = $mdToast;
         this.defaultAvatar = appConfig.defaultAvatar;
+        this.imagesServer = appConfig.imagesServer;
         this.title = 'Confirmación de registro';
 
         this.$http.get('/api/users/' + $stateParams.token + '/signUpToken').then((response) => {
-            //$scope.user = response.data;
             if (!response.data) {
                 return;
             }
@@ -69,23 +70,21 @@ class ConfirmController {
         this.$http.put(`/api/users/${this.user._id}/update`, this.user)
             .then(() => {
                 // Account confirmed
-                this.showSimpleToast = function() {
-                    this.toast.show(
-                        this.toast.simple()
-                        .parent(angular.element('.main-container'))
-                        .textContent('¡Te has registrado correctamente!')
-                        .position('top right')
-                        .hideDelay(3000)
-                    );
-                };
-
-                this.showSimpleToast();
-
-                this.state.go('main');
+                this.$mdDialog.show(
+                    this.$mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(false)
+                    .title('¡Te has registrado correctamente!')
+                    .textContent('A partir de ahora podrás iniciar sesión con el usuario creado.')
+                    .ariaLabel('Confirm dialog')
+                    .ok('Aceptar')
+                    //.targetEvent(ev)
+                ).then(() => {
+                    this.state.go('main');
+                });
 
                 // TODO: Send mail to admins confirmating registration
-            })
-            .catch(err => {
+            }, err => {
                 err = err.data;
                 this.errors = {
                     err

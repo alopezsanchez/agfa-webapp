@@ -1,0 +1,28 @@
+.confirm-card {
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.confirm-card .avatar-container {
+    height: 70px;
+    margin: 20px 20px;
+}
+
+.confirm-card .form-container {
+    display: flex;
+}
+
+.confirm-card form .inputs-container {
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.confirm-card form .inputs-container>md-input-container {
+    display: block;
+}
+
+.confirm-card form .actions-container {
+    display: flex;
+    align-items: center;
+}
