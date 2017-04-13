@@ -1,13 +1,14 @@
 /* Login screen */
 
 .login-content {
-    vertical-align: middle;
+    display: flex;
     align-items: center;
-    margin: 10% 0;
+    justify-content: center;
+    height: 100%;
 }
 
 .login-card {
-    max-width: 400px;
+    max-width: 50%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
