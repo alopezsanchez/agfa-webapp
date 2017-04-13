@@ -2,12 +2,16 @@
 
 body {
     overflow-x: hidden;
-    display: flex;
     font-family: 'Roboto';
     color: #333333 !important;
     margin: 0;
     padding: 0;
-    background-color: #F4F5F7 !important;
+    display: flex;
+}
+
+div[ui-view] {
+    /*background-color: #F4F5F7 !important;*/
+    width: 100%;
 }
 
 
@@ -135,9 +139,6 @@ md-list-item>button {
 
 
 /* Utils */
-
-
-/* Typography support coming in 0.8.0 */
 
 .avatar {
     position: relative;

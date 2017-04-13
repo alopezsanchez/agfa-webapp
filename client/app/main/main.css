@@ -11,15 +11,9 @@
     letter-spacing: -1px;
 }
 
+
 /* Submit button */
 
-.submitBtn {
+.submit-btn {
     text-align: center;
-}
-
-
-/* Generic form */
-
-.genericForm {
-    width: 100%;
 }

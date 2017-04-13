@@ -26,6 +26,7 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
     <!-- injector:css -->
+    <link rel="stylesheet" href="app/account/confirm/confirm.css">
     <link rel="stylesheet" href="app/account/login/login.css">
     <link rel="stylesheet" href="app/account/profile/profile.css">
     <link rel="stylesheet" href="app/account/signup/signup.css">
@@ -48,7 +49,7 @@
 
 </head>
 
-<body ng-app="agfaWebappApp" ng-cloak layout-fill>
+<body ng-app="agfaWebappApp" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -56,9 +57,7 @@
     <!-- Add your site or application content here -->
     <navbar></navbar>
 
-    <div class="mainContainer ui-view-container">
-        <div ui-view></div>
-    </div>
+    <div ui-view></div>
 
     <!--<footer ng-show="nav.isLoggedIn()"></footer> -->
 
