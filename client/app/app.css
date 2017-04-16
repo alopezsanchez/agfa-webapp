@@ -68,7 +68,7 @@ a.md-button:visited {
 /* md-select */
 
 md-select.option {
-    width: 15%;
+    max-width: 150px;
 }
 
 

@@ -1,57 +1,4 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Change Password</h1>
-    </div>
-    <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="$ctrl.changePassword(form)" novalidate>
-
-        <div class="form-group">
-          <label>Current Password</label>
-
-          <input type="password" name="password" class="form-control" ng-model="$ctrl.user.oldPassword"
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.password.$error.mongoose">
-              {{ $ctrl.errors.other }}
-          </p>
-        </div>
-
-        <div class="form-group">
-          <label>New Password</label>
-
-          <input type="password" name="newPassword" class="form-control" ng-model="$ctrl.user.newPassword"
-                 ng-minlength="3"
-                 required/>
-          <p class="help-block"
-             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || $ctrl.submitted)">
-            Password must be at least 3 characters.
-          </p>
-        </div>
-
-        <div class="form-group">
-          <label>Confirm New Password</label>
-
-          <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword"
-                 match="$ctrl.user.newPassword"
-                 ng-minlength="3"
-                 required=""/>
-          <p class="help-block"
-             ng-show="form.confirmPassword.$error.match && $ctrl.submitted">
-            Passwords must match.
-          </p>
-
-        </div>
-
-        <p class="help-block"> {{ $ctrl.message }} </p>
-
-        <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
-      </form>
-    </div>
-  </div>
-</div> -->
-
-
-<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
+<!--<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
     <md-toolbar class="md-whiteframe-z1 form">
         <h4>Cambiar contraseña</h4>
     </md-toolbar>
@@ -105,4 +52,94 @@
             </form>
         </div>
     </md-content>
-</div>
+</div>-->
+
+<topbar page="$ctrl.title"></topbar>
+
+<md-content layout-padding>
+    <md-card class="confirm-card">
+        <md-card-content>
+            <form name="userForm" ng-submit="$ctrl.updateUser(userForm)" enctype="multipart/form-data" novalidate>
+                <div class="form-container">
+                    <div class="avatar-container">
+                        <img class="avatar" ng-src="{{$ctrl.imagesServer}}/50/50/images/{{$ctrl.defaultAvatar}}" alt="Pincha o arrastra una foto">
+                    </div>
+                    <div class="inputs-container">
+                        <md-input-container>
+                            <label>Nombre</label>
+                            <input type="text" name="name" ng-model="$ctrl.user.name" required/>
+                            <div ng-messages="userForm.name.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                            </div>
+                        </md-input-container>
+
+
+                        <md-input-container>
+                            <label>E-mail</label>
+                            <input type="email" name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
+                            <div ng-messages="userForm.email.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
+                                <div ng-message="mongoose">{{ $ctrl.errors.email }}</div>
+                            </div>
+                            <div ng-messages="userForm.email.$error.mongoose">
+                                <div ng-message="mongoose">{{ $ctrl.errors.email }}</div>
+                            </div>
+                        </md-input-container>
+
+
+                        <md-input-container>
+                            <label>Dirección</label>
+                            <input type="text" name="address" ng-model="$ctrl.user.address" ng-required="true" />
+                            <div ng-messages="userForm.address.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                            </div>
+                        </md-input-container>
+
+
+                        <!--<md-input-container>
+                            <label>Contraseña</label>
+                            <input type="password" name="password" ng-minlength="6" ng-model="$ctrl.user.password" required mongoose-error/>
+                            <div ng-messages="userForm.password.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message="minlength">La contraseña debe tener como mínimo 6 caracteres</div>
+                                <div ng-message="mongoose">{{ $ctrl.errors.password }}</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label> Confirmar nueva contraseña</label>
+                            <input type="password" name="confirmPassword" ng-model="$ctrl.user.confirmPassword" ng-minlength="6" match="$ctrl.user.password" required>
+                            <div ng-messages="userForm.confirmPassword.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message="minlength">La nueva contraseña debe tener mínimo 6 caracteres</div>
+                                <div ng-message="match">Las contraseñas deben coincidir</div>
+                            </div>
+                        </md-input-container>-->
+
+                        <md-input-container>
+                            <label>Rol</label>
+                            <md-select name="role" class="option" ng-model="$ctrl.user.role" ng-disabled="!$ctrl.isAdmin">
+                                <md-option ng-repeat="role in $ctrl.roles" value="{{role}}">{{role}}</md-option>
+                            </md-select>
+                            <div ng-messages="userForm.role.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                            </div>
+                        </md-input-container>
+
+                        <p class="errorMessage">{{ $ctrl.errors.other }}</p>
+                    </div>
+                </div>
+
+                <div class="actions-container" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+                </div>
+
+                <!--<md-input-container class="md-block" flex-gt-sm>
+                    <h4>Avatar</h4>
+                    <file-input></file-input>
+                </md-input-container>-->
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>

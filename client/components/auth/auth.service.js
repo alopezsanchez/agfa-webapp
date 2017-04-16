@@ -58,7 +58,7 @@
              */
             createUser(user, callback) {
                 return User.save(user,
-                    function(data) {
+                    function( /*data*/ ) {
                         /*$cookies.put('token', data.token);
                         currentUser = User.get();*/
                         return safeCb(callback)(null, user);
@@ -96,13 +96,13 @@
              * @return {Promise}
              */
             updateUser(user, callback) {
-                return User.updateUser(user),
+                return User.updateUser(user,
                     function() {
                         return safeCb(callback)(null);
                     },
                     function(err) {
                         return safeCb(callback)(err);
-                    }.$promise;
+                    }).$promise;
             },
 
             /**
