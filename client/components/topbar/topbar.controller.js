@@ -1,19 +1,22 @@
 'use strict';
 
 class TopbarController {
-    isCollapsed = true;
-    Auth = null;
-    userSettings = [];
 
     openMenu($mdMenu, event) {
         $mdMenu.open(event);
     }
 
-    constructor($scope, Auth, appConfig) {
+    openSidenav() {
+        this.$mdSidenav('sidenav').toggle();
+    }
+
+    constructor($scope, Auth, appConfig, $mdSidenav) {
         this.Auth = Auth;
         this.isLoggedIn = this.Auth.isLoggedIn;
         this.isAdmin = this.Auth.isAdmin();
+        this.$mdSidenav = $mdSidenav;
         this.imagesServer = appConfig.imagesServer;
+        this.userSettings = [];
 
         Auth.getCurrentUser((user) => {
             this.user = user;

@@ -1,5 +1,8 @@
 <md-toolbar ng-show="$ctrl.isLoggedIn()">
     <div class="items-container">
+        <md-button class="md-icon-button menu-button" hide-gt-sm aria-label="Menu" ng-click="$ctrl.openSidenav()">
+            <md-icon>menu</md-icon>
+        </md-button>
         <h2 class="md-headline">{{$ctrl.page}}</h2>
         <span flex></span>
         <div class="user-info">

@@ -1,14 +1,3 @@
-/*.hiLogged {
-    width: 200px;
-    margin: auto;
-    text-align: center;
-}
-
-.spanLogged {
-    word-break: break-all;
-    margin: auto;
-} */
-
 md-toolbar {
     background-color: transparent !important;
     box-shadow: none;
@@ -24,6 +13,7 @@ md-toolbar .items-container {
     height: inherit;
     display: flex;
     width: 100%;
+    align-items: center;
 }
 
 md-toolbar .user-info {
