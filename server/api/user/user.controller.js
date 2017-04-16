@@ -49,10 +49,10 @@ export function create(req, res, next) {
     var hostname = req.headers.host;
     var pathname = `/confirm/${newUser.signUpToken}`;
     var confirmLink = `${req.protocol}://${hostname}${pathname}`;
-    mail.sendConfirm(newUser.name, newUser.email, confirmLink);
     newUser.confirmed = false;
     newUser.saveAsync()
-        .spread(function(user) {
+        .spread((user) => {
+            mail.sendConfirm(newUser.name, newUser.email, confirmLink);
             var token = jwt.sign({ _id: user._id }, config.secrets.session, {
                 expiresIn: 60 * 60 * 5
             });

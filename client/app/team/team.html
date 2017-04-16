@@ -1,26 +1,29 @@
+<topbar page="$ctrl.title"></topbar>
+
 <div class="md-padding" layout-xs="column" layout="row">
-  <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="team in tc.teams">
-  	<md-card class="team-card">
-  		<md-card-title>
-  			<md-card-title-text>
-  				<span class="md-headline">{{team.name}}</span>
-  				<span class="md-subhead">{{team.club.name}}</span>
-  			</md-card-title-text>
-  			<md-card-title-media>
-  				<div class="md-media-md card-media">
-  				  <img ng-src="{{imagesServer}}/100/100/uploads/{{team.club.avatar}}?fit=true&force=true" alt="{{team.name}}" class="md-avatar" />
-  				</div>
-  			</md-card-title-media>
-  		</md-card-title>
-  		<md-card-actions layout="row" layout-align="end center">
-  			<md-button ng-click="tc.goToEdit(team._id)">Editar</md-button>
-  			<md-button ng-click="tc.showConfirm($event, team)" class="md-warn">Eliminar</md-button>
-  		</md-card-actions>
-  	</md-card>
-  </div>
+    <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="team in $ctrl.teams">
+        <md-card class="team-card">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{team.name}}</span>
+                    <span class="md-subhead">{{team.club.name}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-md card-media">
+                        <img ng-src="{{$ctrl.imagesServer}}/100/100/uploads/{{team.club.avatar}}?fit=true&force=true" alt="{{team.name}}" class="md-avatar" />
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-click="$ctrl.goToEdit(team._id)">Editar</md-button>
+                <md-button ng-click="$ctrl.showConfirm($event, team)" class="md-warn">Eliminar</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
 </div>
 
 
-<md-button class="md-fab md-mini new-button" ui-sref="newTeam" aria-label="Crear nuevo equipo">
-	<md-icon md-svg-icon="add"></md-icon>
+<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-team-button" ng-click="$ctrl.createTeam($event)" aria-label="Nuevo equipo">
+    <md-tooltip md-direction="top">Nuevo equipo</md-tooltip>
+    <md-icon>add</md-icon>
 </md-button>

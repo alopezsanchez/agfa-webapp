@@ -40,7 +40,7 @@
         }
 
         signup(ev) {
-            const signup = this.dialog.show({
+            this.dialog.show({
                 templateUrl: 'app/account/signup/signup.html',
                 controller: 'SignupController',
                 controllerAs: '$ctrl',

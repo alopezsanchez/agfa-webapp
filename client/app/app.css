@@ -22,13 +22,6 @@ md-toolbar.modal-toolbar {
 }
 
 
-/* Main container */
-
-.mainContainer {
-    flex: 1;
-}
-
-
 /* Icons */
 
 md-input-container:not(.md-input-invalid)>md-icon {
@@ -183,4 +176,11 @@ span.name {
 
 md-content {
     background-color: inherit;
+}
+
+
+/* md-input-container */
+
+md-input-container {
+    display: block;
 }

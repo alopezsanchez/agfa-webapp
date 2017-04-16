@@ -1,14 +1,12 @@
-.autocomplete-container {
-  padding-left: 36px;
-  max-height: 58px;
-  margin-top: 18px;
-  margin-bottom: 18px;
+.create-team-modal {
+    min-width: 500px;
+    display: flex;
 }
 
-md-input-container.no-icon {
-  margin-left: 36px;
+.create-team-modal form {
+    width: 100%;
 }
 
-.select-padding {
-  padding-right: 15px;
+.create-team-modal form .select-container {
+    max-width: 200px;
 }
