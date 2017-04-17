@@ -2,7 +2,7 @@
 
 class TeamController {
 
-    constructor($http, $mdDialog, $mdToast, $state, appConfig) {
+    constructor(Auth, $http, $mdDialog, $mdToast, $state, appConfig) {
         this.teams = [];
         this.title = 'Equipos';
         this.$http = $http;
@@ -10,6 +10,7 @@ class TeamController {
         this.toast = $mdToast;
         this.state = $state;
         this.imagesServer = appConfig.imagesServer;
+        this.Auth = Auth;
 
         this.$http.get('/api/teams')
             .then(response => {

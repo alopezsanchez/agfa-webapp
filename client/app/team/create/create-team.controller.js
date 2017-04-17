@@ -44,7 +44,7 @@ class CreateTeamController {
                 url: '/api/teams/',
                 method: 'GET',
                 params: {
-                    club: item._id
+                    club: item
                 }
             })
             .then((response) => {
