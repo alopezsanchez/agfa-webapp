@@ -37,21 +37,8 @@ class CreateTeamController {
 
     }
 
-    querySearch(query) {
-        var results = query ? this.clubs.filter(this.createFilterFor(query)) : this.clubs;
-        return results;
-
-    }
-
-    createFilterFor(query) {
-        var lowercaseQuery = angular.lowercase(query);
-
-        return function filterFn(item) {
-            return (item.value.indexOf(lowercaseQuery) === 0);
-        };
-    }
-
-    selectedItemChange(item) {
+    selectedItemChange() {
+        var item = this.clubSelected;
         // obtain the club teams
         this.$http({
                 url: '/api/teams/',
@@ -65,9 +52,11 @@ class CreateTeamController {
                 if (this.clubTeams.length) {
                     this.selectParentTeam = true;
                 }
-            })
-            .catch(err => {
-                console.log(err);
+            }, err => {
+                err = err.data;
+                this.errors = {
+                    err
+                };
             });
     }
 

@@ -64,6 +64,10 @@ md-select.option {
     max-width: 150px;
 }
 
+md-select-menu[multiple] md-option.md-checkbox-enabled[selected] .md-icon:after {
+    border-color: white;
+}
+
 
 /* md-button */
 
@@ -183,4 +187,14 @@ md-content {
 
 md-input-container {
     display: block;
+}
+
+md-input-container.md-inline {
+    display: inline-flex;
+    margin-right: 20px;
+}
+
+.inline-input-container {
+    display: flex;
+    justify-content: flex-start;
 }
