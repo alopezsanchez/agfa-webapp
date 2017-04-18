@@ -60,6 +60,11 @@ function handleError(res, statusCode) {
 
 // Gets a list of Teams
 export function index(req, res) {
+    // build mongo query for array
+    if (req.query.categories) {
+        const values = req.query.categories;
+        req.query.categories = { '$all': Array.isArray(values) ? values : [values] };
+    }
     return Team.find(req.query).populate('club').populate('parentTeam').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));

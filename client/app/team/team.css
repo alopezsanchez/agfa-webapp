@@ -2,3 +2,19 @@ md-content.teams-container {
     display: flex;
     flex-wrap: wrap;
 }
+
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.filter-container>* {
+    margin-right: 20px;
+}
+
+.categorie-filter {
+    display: flex;
+    flex-direction: column;
+}

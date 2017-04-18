@@ -1,5 +1,17 @@
 <topbar page="$ctrl.title"></topbar>
 
+<md-content layout-padding>
+    <md-card class="filter-container">
+        <div class="categorie-filter">
+            <h4>Categorías</h4>
+            <div>
+                <md-checkbox ng-checked="$ctrl.exists(categorie, $ctrl.filter.categories)" class="md-secondary" ng-click="$ctrl.toggle(categorie, $ctrl.filter.categories)" ng-value="categorie" ng-repeat="categorie in $ctrl.allCategories">{{categorie}}</md-checkbox>
+            </div>
+            {{$ctrl.filter | json}}
+        </div>
+    </md-card>
+</md-content>
+
 <md-content class="teams-container" layout-padding>
     <md-card ng-repeat="team in $ctrl.teams">
         <md-card-header>
@@ -12,6 +24,7 @@
             </md-card-header-text>
         </md-card-header>
         <md-card-content>
+            {{team.categories}}
         </md-card-content>
         <md-card-actions ng-show="$ctrl.Auth.isAdmin()">
             <md-card-icon-actions>

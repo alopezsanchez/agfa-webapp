@@ -2,7 +2,8 @@
 
 class TeamController {
 
-    constructor(Auth, $http, $mdDialog, $mdToast, $state, appConfig) {
+    constructor($scope, Auth, $http, $mdDialog, $mdToast, $state, appConfig) {
+        this.$scope = $scope;
         this.teams = [];
         this.title = 'Equipos';
         this.$http = $http;
@@ -11,11 +12,48 @@ class TeamController {
         this.state = $state;
         this.imagesServer = appConfig.imagesServer;
         this.Auth = Auth;
+        this.filter = {
+            categories: []
+        };
+        this.allCategories = appConfig.categories;
 
         this.$http.get('/api/teams')
             .then(response => {
                 this.teams = response.data;
             });
+    }
+
+    $onInit() {
+        this.$scope.$watch(() => {
+            return this.filter;
+        }, (newValue, oldValue) => {
+            if (newValue !== oldValue) {
+                // update teams list
+                this.$http({
+                    url: '/api/teams/',
+                    method: 'GET',
+                    params: newValue
+                }).then((response) => {
+                    this.teams = response.data;
+                }, err => {
+                    console.log(err);
+                });
+            }
+        }, true);
+    }
+
+
+    exists(item, list) {
+        return list.indexOf(item) > -1;
+    }
+
+    toggle(item, list) {
+        var idx = list.indexOf(item);
+        if (idx > -1) {
+            list.splice(idx, 1);
+        } else {
+            list.push(item);
+        }
     }
 
     delete(team) {

@@ -68,7 +68,9 @@ md-select.option {
     max-width: 150px;
 }
 
-md-select-menu[multiple] md-option.md-checkbox-enabled[selected] .md-icon:after {
+md-select-menu[multiple] md-option.md-checkbox-enabled[selected] .md-icon:after,
+md-checkbox.md-default-theme.md-checked .md-icon:after,
+md-checkbox.md-checked .md-icon:after {
     border-color: white;
 }
 
