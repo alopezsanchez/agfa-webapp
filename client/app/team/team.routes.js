@@ -9,8 +9,6 @@ angular.module('agfaWebappApp')
             })
             .state('editTeam', {
                 url: '/teams/edit/:id',
-                templateUrl: 'app/team/edit/edit-team.html',
-                controller: 'EditTeamCtrl',
-                controllerAs: 'etc'
+                component: 'editTeam'
             });
     });

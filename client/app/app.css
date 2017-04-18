@@ -21,6 +21,10 @@ md-toolbar.modal-toolbar {
     background-color: #F4F5F7 !important;
 }
 
+.center-title span {
+    margin: 0 auto;
+}
+
 
 /* Icons */
 
@@ -197,4 +201,12 @@ md-input-container.md-inline {
 .inline-input-container {
     display: flex;
     justify-content: flex-start;
+}
+
+
+/* Actions */
+
+form .actions-container {
+    display: flex;
+    align-items: center;
 }

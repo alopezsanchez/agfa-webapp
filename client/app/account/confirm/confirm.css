@@ -21,8 +21,3 @@
 .confirm-card form .inputs-container>md-input-container {
     display: block;
 }
-
-.confirm-card form .actions-container {
-    display: flex;
-    align-items: center;
-}

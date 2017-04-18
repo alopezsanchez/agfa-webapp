@@ -1,72 +1,124 @@
-<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
-	<md-toolbar class="md-whiteframe-z1 form">
-		<h4>Actualizar equipo</h4>
-	</md-toolbar>
-	<md-content class="paddedForm form" layout-padding>
-		<div>
-			<form name="editTeamForm" ng-submit="etc.create(editTeamForm)" enctype="multipart/form-data" novalidate>
-				<div layout-gt-xs="row">
+<!--<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
+    <md-toolbar class="md-whiteframe-z1 form">
+        <h4>Actualizar equipo</h4>
+    </md-toolbar>
+    <md-content class="paddedForm form" layout-padding>
+        <div>
+            <form name="editTeamForm" ng-submit="$ctrl.create(editTeamForm)" enctype="multipart/form-data" novalidate>
+                <div layout-gt-xs="row">
 
-					<div class="genericForm" layout-gt-sm="column">
+                    <div class="genericForm" layout-gt-sm="column">
 
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>Nombre</label>
-							<md-icon md-svg-icon="helmet"></md-icon>
-							<input type="text" name="name" ng-model="etc.team.name" required/>
-							<div ng-messages="editTeamForm.name.$error">
-								<div ng-message="required">Campo obligatorio</div>
-								<div ng-message="mongoose">{{ etc.errors.name }}</div>
-							</div>
-						</md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Nombre</label>
+                            <md-icon md-svg-icon="helmet"></md-icon>
+                            <input type="text" name="name" ng-model="$ctrl.team.name" required/>
+                            <div ng-messages="editTeamForm.name.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message="mongoose">{{ $ctrl.errors.name }}</div>
+                            </div>
+                        </md-input-container>
 
-						<md-input-container class="md-block no-icon" flex-gt-sm>
-							<label>Categoría</label>
-							<md-select name="categories" md-container-class="select-padding" ng-model="etc.categoriesSelected" required multiple>
-						 			<md-option ng-selected="{{etc.categoriesSelected.indexOf(categorie.name) ? true : false}}" ng-value="categorie.name" ng-repeat="categorie in etc.allCategories">{{categorie.name}}</md-option>
-							</md-select>
-							<div ng-messages="editTeamForm.categories.$error">
-								<div ng-message="required">Campo obligatorio</div>
-								<div ng-message="mongoose">{{ etc.errors.categorie }}</div>
-							</div>
-						</md-input-container>
+                        <md-input-container class="md-block no-icon" flex-gt-sm>
+                            <label>Categoría</label>
+                            <md-select name="categories" md-container-class="select-padding" ng-model="$ctrl.categoriesSelected" required multiple>
+                                <md-option ng-selected="{{$ctrl.categoriesSelected.indexOf(categorie.name) ? true : false}}" ng-value="categorie.name" ng-repeat="categorie in $ctrl.allCategories">{{categorie.name}}</md-option>
+                            </md-select>
+                            <div ng-messages="editTeamForm.categories.$error">
+                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message="mongoose">{{ $ctrl.errors.categorie }}</div>
+                            </div>
+                        </md-input-container>
 
-            <div class="autocomplete-container">
-              <md-autocomplete flex required
-                md-input-name="club"
-                md-selected-item="etc.clubSelected"
-                md-search-text="etc.searchText"
-                md-items="item in etc.querySearch(etc.searchText)"
-                md-selected-item-change="etc.selectedItemChange(item)"
-                md-item-text="item.name"
-                md-min-length="0"
-                md-menu-class="autocomplete-custom-template"
-                md-floating-label="Club">
-                  <md-item-template>
-                    <span md-highlight-text="etc.searchText">{{item.name}}</span>
-                  </md-item-template>
-                  <div ng-messages="editTeamForm.club.$error">
-                    <div ng-message="required">Campo obligatorio</div>
-                  </div>
-  						</md-autocomplete>
+                        <div class="autocomplete-container">
+                            <md-autocomplete flex required md-input-name="club" md-selected-item="$ctrl.clubSelected" md-search-text="$ctrl.searchText" md-items="item in $ctrl.querySearch($ctrl.searchText)" md-selected-item-change="$ctrl.selectedItemChange(item)" md-item-text="item.name"
+                                md-min-length="0" md-menu-class="autocomplete-custom-template" md-floating-label="Club">
+                                <md-item-template>
+                                    <span md-highlight-text="$ctrl.searchText">{{item.name}}</span>
+                                </md-item-template>
+                                <div ng-messages="editTeamForm.club.$error">
+                                    <div ng-message="required">Campo obligatorio</div>
+                                </div>
+                            </md-autocomplete>
+                        </div>
+
+                        <md-input-container class="md-block no-icon" flex-gt-sm>
+                            <label>Equipo padre</label>
+                            <md-select name="parentTeam" md-container-class="select-padding" placeholder="Equipo padre" ng-model="$ctrl.parentTeam" ng-disabled="!$ctrl.selectParentTeam">
+                                <md-option ng-selected="{{!$ctrl.parentTeam}}" value="">Ninguno</md-option>
+                                <md-option ng-selected="{{team._id === $ctrl.parentTeam._id ? true : false}}" ng-repeat="team in $ctrl.clubTeams" value="{{team}}">{{team.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+
+
+                        <p class="errorMessage">{{ $ctrl.errors.other }}</p>
+
+                        <section class="submitBtn" layout-phone="column" layout-align="center center">
+                            <md-button id="buttonRegister" type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+                        </section>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </md-content>
+</div>-->
+
+<topbar page="$ctrl.title"></topbar>
+
+<md-content>
+    <md-card class="edit-card">
+        <md-toolbar class="modal-toolbar">
+            <div class="md-toolbar-tools center-title">
+                <span>{{::$ctrl.team.name}}</span>
             </div>
+        </md-toolbar>
+        <form layout-padding name="editTeamForm" ng-submit="$ctrl.create(editTeamForm)" enctype="multipart/form-data" novalidate>
 
-						<md-input-container class="md-block no-icon" flex-gt-sm>
-              <label>Equipo padre</label>
-              <md-select name="parentTeam" md-container-class="select-padding" placeholder="Equipo padre" ng-model="etc.parentTeam" ng-disabled="!etc.selectParentTeam">
-								<md-option ng-selected="{{!etc.parentTeam}}" value="">Ninguno</md-option>
-								<md-option ng-selected="{{team._id === etc.parentTeam._id ? true : false}}" ng-repeat="team in etc.clubTeams" value="{{team}}">{{team.name}}</md-option>
-							</md-select>
-						</md-input-container>
+            <md-input-container>
+                <label>Nombre</label>
+                <input type="text" name="name" ng-model="$ctrl.team.name" required/>
+                <div ng-messages="editTeamForm.name.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                    <div ng-message="mongoose">{{ $ctrl.errors.name }}</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Categoría</label>
+                <md-select name="categories" md-container-class="select-padding" ng-model="$ctrl.categoriesSelected" required multiple>
+                    <md-option ng-selected="{{$ctrl.categoriesSelected.indexOf(categorie.name) ? true : false}}" ng-value="categorie.name" ng-repeat="categorie in $ctrl.allCategories">{{categorie.name}}</md-option>
+                </md-select>
+                <div ng-messages="editTeamForm.categories.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                    <div ng-message="mongoose">{{ $ctrl.errors.categorie }}</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="select-container md-inline">
+                <label>Club (Usuario)</label>
+                <md-select name="club" ng-change="$ctrl.selectedItemChange()" md-container-class="select-padding" ng-model="$ctrl.clubSelected">
+                    <md-option ng-selected="{{club._id === $ctrl.clubSelected}}" ng-repeat="club in $ctrl.clubs" value="{{club._id}}">{{club.name}}</md-option>
+                </md-select>
+                <div ng-messages="newTeamForm.club.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Equipo padre</label>
+                <md-select name="parentTeam" md-container-class="select-padding" placeholder="Equipo padre" ng-model="$ctrl.parentTeam" ng-disabled="!$ctrl.selectParentTeam">
+                    <md-option ng-selected="{{!$ctrl.parentTeam}}" value="">Ninguno</md-option>
+                    <md-option ng-if="team._id !== $ctrl.team._id" ng-selected="{{team._id === $ctrl.parentTeam._id ? true : false}}" ng-repeat="team in $ctrl.clubTeams" value="{{team}}">{{team.name}}</md-option>
+                </md-select>
+            </md-input-container>
 
 
-						<p class="errorMessage">{{ etc.errors.other }}</p>
+            <p class="errorMessage">{{ $ctrl.errors.other }}</p>
 
-						<section class="submitBtn" layout-phone="column" layout-align="center center">
-							<md-button id="buttonRegister" type="submit" class="md-raised md-primary">Guardar cambios</md-button>
-						</section>
-					</div>
-				</div>
-			</form>
-		</div>
-	</md-content>
-</div>
+            <section class="actions-container" layout-align="center center">
+                <md-button id="buttonRegister" type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+            </section>
+        </form>
+
+    </md-card>
+</md-content>
