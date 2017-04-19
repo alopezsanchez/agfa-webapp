@@ -5,13 +5,49 @@ import { Schema } from 'mongoose';
 import User from '../user/user.model';
 var Club = mongoose.model('User').schema;
 
+const REQUIRED_MESSAGE = 'field cannot be blank';
+
 var TeamSchema = new mongoose.Schema({
-    name: String,
-    club: { type: Schema.Types.ObjectId, ref: 'User' },
+    name: {
+        type: String,
+        required: [true, 'Name ' + REQUIRED_MESSAGE]
+    },
+    club: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Club ' + REQUIRED_MESSAGE]
+    },
     parentTeam: { type: Schema.Types.ObjectId, ref: 'Team' },
-    categories: [String],
-    description: String
+    categories: {
+        type: [String],
+        required: [true, 'Categories ' + REQUIRED_MESSAGE]
+    },
+    description: {
+        type: String,
+        required: [true, 'Description ' + REQUIRED_MESSAGE]
+    }
 });
+
+// Validate empty name
+TeamSchema
+    .path('name')
+    .validate(function(name) {
+        return !!name || name.length;
+    }, 'Name cannot be blank');
+
+// Validate empty club
+TeamSchema
+    .path('club')
+    .validate(function(club) {
+        return club.length;
+    }, 'Club cannot be blank');
+
+// Validate empty description
+TeamSchema
+    .path('description')
+    .validate(function(description) {
+        return description.length;
+    }, 'Description cannot be blank');
 
 // Validate name is not taken
 TeamSchema
