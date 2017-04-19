@@ -22,8 +22,7 @@ class LoginController {
                 .then(() => {
                     // Logged in, redirect to home
                     this.$state.go('main');
-                })
-                .catch(err => {
+                }, err => {
                     this.errors.other = err.message;
                 });
         }

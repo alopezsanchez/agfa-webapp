@@ -169,6 +169,7 @@ span.name {
 /* Error message */
 
 .errorMessage {
+    text-align: center;
     color: red;
     margin: 0 auto;
     margin-bottom: 4%;

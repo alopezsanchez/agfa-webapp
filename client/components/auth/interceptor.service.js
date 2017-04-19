@@ -20,7 +20,7 @@
 
                     // remove any stale tokens
                     //$cookies.remove('token');
-                    if (response.data.indexOf('jwt expired') !== -1) {
+                    if (angular.isArray(response.data) && response.data.indexOf('jwt expired') !== -1) {
                         var $mdDialog = $injector.get('$mdDialog');
 
                         var alert = $mdDialog.alert({
