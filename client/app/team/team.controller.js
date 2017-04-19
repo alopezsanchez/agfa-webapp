@@ -50,6 +50,9 @@ class TeamController {
         }, true);
     }
 
+    clearFilters() {
+        this.filter = {};
+    }
 
     exists(item, list) {
         return list.indexOf(item) > -1;
