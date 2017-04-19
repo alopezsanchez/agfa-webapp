@@ -105,7 +105,6 @@ export function updateProfile(req, res, next) {
             user.confirmed = true;
             return user.saveAsync()
                 .then(() => {
-                    //mail.sendMailUserConfirmed(user.name);
                     return res.status(200).end();
                 })
                 .catch(validationError(res));

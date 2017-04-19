@@ -13,9 +13,8 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.get('/:token/signUpToken', controller.getUserBySignupToken);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.put('/:id', auth.isAuthenticated(), controller.changePassword);
-
-// TODO: Split update/confirm
-router.put('/:id/update', /*auth.isAuthenticated(),*/ controller.updateProfile);
+router.put('/:id/confirm', controller.updateProfile);
+router.put('/:id/update', auth.isAuthenticated(), controller.updateProfile);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.hasRole('admin'), controller.create);
 

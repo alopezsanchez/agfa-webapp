@@ -67,7 +67,7 @@ class ConfirmController {
     updateUser(form, avatar) {
         // update avatar filename before the request
         this.user.avatar = avatar;
-        this.$http.put(`/api/users/${this.user._id}/update`, this.user)
+        this.$http.put(`/api/users/${this.user._id}/confirm`, this.user)
             .then(() => {
                 // Account confirmed
                 this.$mdDialog.show(
