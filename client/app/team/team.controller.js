@@ -21,6 +21,14 @@ class TeamController {
             .then(response => {
                 this.teams = response.data;
             });
+
+        $http.get('/api/users/clubs')
+            .then((response) => {
+                this.clubs = response.data;
+                this.clubs.map(function(club) {
+                    club.value = club.name.toLowerCase();
+                });
+            });
     }
 
     $onInit() {

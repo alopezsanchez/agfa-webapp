@@ -1,13 +1,21 @@
 <topbar page="$ctrl.title"></topbar>
 
 <md-content layout-padding>
-    <md-card class="filter-container">
+    <md-card class="filter-container" layout-padding>
         <div class="categorie-filter">
             <h4>Categorías</h4>
             <div>
                 <md-checkbox ng-checked="$ctrl.exists(categorie, $ctrl.filter.categories)" class="md-secondary" ng-click="$ctrl.toggle(categorie, $ctrl.filter.categories)" ng-value="categorie" ng-repeat="categorie in $ctrl.allCategories">{{categorie}}</md-checkbox>
             </div>
-            {{$ctrl.filter | json}}
+        </div>
+        <div>
+            <h4>Club</h4>
+            <md-input-container>
+                <label>Club</label>
+                <md-select name="club" md-container-class="select-padding" ng-model="$ctrl.filter.club">
+                    <md-option ng-repeat="club in $ctrl.clubs" value="{{club._id}}">{{club.name}}</md-option>
+                </md-select>
+            </md-input-container>
         </div>
     </md-card>
 </md-content>
@@ -24,7 +32,7 @@
             </md-card-header-text>
         </md-card-header>
         <md-card-content>
-            {{team.categories}}
+            <span class="md-subhead" ng-repeat="cat in team.categories">{{cat}}{{!$last ? ', ' : ''}} </span>
         </md-card-content>
         <md-card-actions ng-show="$ctrl.Auth.isAdmin()">
             <md-card-icon-actions>
