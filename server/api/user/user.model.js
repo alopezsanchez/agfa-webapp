@@ -24,17 +24,17 @@ var UserSchema = new Schema({
     },
     address: {
         type: String,
-        required: [true, 'Address ' + REQUIRED_MESSAGE]
+        //required: [true, 'Address ' + REQUIRED_MESSAGE]
     },
     password: {
         type: String,
-        required: [true, 'Password ' + REQUIRED_MESSAGE]
+        //required: [true, 'Password ' + REQUIRED_MESSAGE]
     },
     provider: String,
     salt: String,
     avatar: {
         type: String,
-        required: [true, 'Avatar ' + REQUIRED_MESSAGE]
+        //required: [true, 'Avatar ' + REQUIRED_MESSAGE]
     },
     signUpToken: String,
     confirmed: {

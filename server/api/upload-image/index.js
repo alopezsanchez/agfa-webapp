@@ -14,16 +14,16 @@ var rootDir = path.join(__dirname, '../../../');
 
 // TODO: destination as a parameter
 var multerOptions = multer.diskStorage({
-	destination: rootDir+'client/assets/uploads/',
-  	filename: function (req, file, cb) {
-    	cb(null, uuid.v4() + '.' + mime.extension(file.mimetype));
-	}
+    destination: rootDir + 'client/assets/uploads/',
+    filename: function(req, file, cb) {
+        cb(null, uuid.v4() + '.' + mime.extension(file.mimetype));
+    }
 });
 
-var upload = multer({storage: multerOptions});
+var upload = multer({ storage: multerOptions });
 
 var router = express.Router();
 
-router.post('/',  auth.hasRole('admin'), upload.single('file'), controller.create);
+router.post('/', /* auth.hasRole('admin') ,*/ upload.single('file'), controller.create);
 
 module.exports = router;

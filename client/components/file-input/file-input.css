@@ -1,0 +1,11 @@
+.file-input {
+    display: none;
+}
+
+.preview {
+    top: 0;
+}
+
+.file-container {
+    cursor: pointer;
+}

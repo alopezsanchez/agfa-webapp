@@ -18,6 +18,7 @@ class ConfirmController {
         this.defaultAvatar = appConfig.defaultAvatar;
         this.imagesServer = appConfig.imagesServer;
         this.title = 'Confirmación de registro';
+        this.file = null;
 
         this.$http.get('/api/users/' + $stateParams.token + '/signUpToken').then((response) => {
             if (!response.data) {
@@ -55,9 +56,9 @@ class ConfirmController {
     confirm(form) {
         this.submitted = true;
         if (form.$valid) {
-            if (this.$scope.file) {
+            if (this.file) {
                 // Upload file and update user
-                this.uploadImage(this.$scope.file, this.user._id, form);
+                this.uploadImage(this.file, this.user._id, form);
             } else {
                 this.updateUser(form);
             }

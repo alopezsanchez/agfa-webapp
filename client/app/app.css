@@ -10,7 +10,7 @@ body {
 }
 
 div[ui-view] {
-    /*background-color: #F4F5F7 !important;*/
+    background-color: #F4F5F7 !important;
     width: 100%;
 }
 

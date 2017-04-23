@@ -3,10 +3,10 @@
 <md-content layout-padding>
     <md-card class="confirm-card">
         <md-card-content>
-            <form name="userForm" ng-submit="$ctrl.updateUser(userForm)" enctype="multipart/form-data" novalidate>
+            <form name="userForm" ng-submit="$ctrl.confirm(userForm)" enctype="multipart/form-data" novalidate>
                 <div class="form-container">
                     <div class="avatar-container">
-                        <img class="avatar" ng-src="{{$ctrl.imagesServer}}/50/50/images/{{$ctrl.defaultAvatar}}" alt="Pincha o arrastra una foto">
+                        <file-input avatar="$ctrl.avatar" file="$ctrl.file"></file-input>
                     </div>
                     <div class="inputs-container">
                         <md-input-container>

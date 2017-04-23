@@ -12,7 +12,7 @@
             <form name="confirmUserForm" ng-submit="$ctrl.confirm(confirmUserForm)" enctype="multipart/form-data" novalidate>
                 <div class="form-container">
                     <div class="avatar-container">
-                        <img class="avatar" ng-src="{{$ctrl.imagesServer}}/50/50/images/{{$ctrl.defaultAvatar}}" alt="Pincha o arrastra una foto">
+                        <file-input file="$ctrl.file"></file-input>
                     </div>
                     <div class="inputs-container">
                         <md-input-container>
@@ -84,11 +84,6 @@
                 <div class="actions-container" layout-align="center center">
                     <md-button type="submit" class="md-raised md-primary">Confirmar registro</md-button>
                 </div>
-
-                <!--<md-input-container class="md-block" flex-gt-sm>
-                <h4>Avatar</h4>
-                <file-input></file-input>
-            </md-input-container>-->
             </form>
         </md-card-content>
     </md-card>
