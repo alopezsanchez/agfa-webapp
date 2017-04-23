@@ -13,7 +13,9 @@ User.find({}).removeAsync()
                 name: 'Test User',
                 email: 'test@example.com',
                 password: 'test',
-                avatar: 'default.jpg'
+                avatar: 'default.jpg',
+                confirmed: true,
+                address: 'AGFA Street, 123'
             }, {
                 provider: 'local',
                 role: 'admin',
