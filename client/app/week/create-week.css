@@ -1,0 +1,17 @@
+.create-week-modal {
+    min-width: 500px;
+    display: flex;
+}
+
+.create-week-modal form {
+    width: 100%;
+}
+
+.create-week-modal form .select-container {
+    max-width: 200px;
+}
+
+.dates-container {
+    display: flex;
+    flex-direction: row;
+}

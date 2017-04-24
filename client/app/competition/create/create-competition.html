@@ -111,13 +111,24 @@
             </md-input-container>
             <md-input-container>
                 <label>Categoría</label>
-                <md-select mongoose-error name="categorie" md-container-class="select-padding" ng-model="$ctrl.categorie" required>
+                <md-select mongoose-error name="categorie" ng-change="$ctrl.updateTeams()" md-container-class="select-padding" ng-model="$ctrl.categorie" required>
                     <md-option class="md-secondary" ng-value="categorie.name" ng-repeat="categorie in $ctrl.categories">{{categorie.name}}</md-option>
                 </md-select>
                 <div ng-messages="newCompetitionForm.categorie.$error">
                     <div ng-message="required">Campo obligatorio</div>
                 </div>
             </md-input-container>
+            <md-input-container>
+                <label>Equipos</label>
+                <md-select name="teams" ng-disabled="!$ctrl.hasTeams" md-container-class="select-padding" ng-model="$ctrl.teamsSelected" multiple required>
+                    <md-option class="md-secondary" ng-value="team.name" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
+                </md-select>
+                <div ng-messages="newCompetitionForm.teams.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+
+            <md-button ng-click="$ctrl.createWeek($event)" class="md-primary new-week-button">Añadir jornada</md-button>
         </form>
     </md-card>
 </md-content>
