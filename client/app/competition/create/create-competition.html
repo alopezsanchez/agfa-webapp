@@ -1,4 +1,4 @@
-<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
+<!--<div class="paddedBlock md-inline-form" layout="column" ng-cloak>
 	<md-toolbar class="md-whiteframe-z1 form">
 		<h4>Nueva competición</h4>
 	</md-toolbar>
@@ -95,3 +95,29 @@
 		</div>
 	</md-content>
 </div>
+-->
+
+<topbar page="$ctrl.title"></topbar>
+
+<md-content layout-padding>
+    <md-card>
+        <form name="newCompetitionForm" ng-submit="$ctrl.create(newCompetitionForm)" enctype="multipart/form-data" novalidate>
+            <md-input-container>
+                <label>Nombre</label>
+                <input type="text" name="name" required ng-model="$ctrl.competition.name">
+                <div ng-messages="newCompetitionForm.name.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Categoría</label>
+                <md-select mongoose-error name="categorie" md-container-class="select-padding" ng-model="$ctrl.categorie" required>
+                    <md-option class="md-secondary" ng-value="categorie.name" ng-repeat="categorie in $ctrl.categories">{{categorie.name}}</md-option>
+                </md-select>
+                <div ng-messages="newCompetitionForm.categorie.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+        </form>
+    </md-card>
+</md-content>

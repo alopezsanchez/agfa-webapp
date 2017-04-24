@@ -7,4 +7,4 @@ const Competitions = {
 
 angular
     .module('agfaWebappApp')
-    .component('competitions', Competitions);
+    .component('competition', Competitions);

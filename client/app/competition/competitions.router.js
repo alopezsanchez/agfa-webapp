@@ -5,8 +5,7 @@ angular.module('agfaWebappApp')
         $stateProvider
             .state('competitions', {
                 url: '/competitions',
-                templateUrl: 'app/competition/competitions.html',
-                controller: 'CompetitionsCtrl'
+                component: 'competition'
             })
             .state('createCompetition', {
                 url: '/competitions/create',

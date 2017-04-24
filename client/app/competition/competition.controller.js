@@ -1,8 +1,8 @@
 'use strict';
 
-class CompetitionsController {
+class CompetitionController {
 
 }
 
 angular.module('agfaWebappApp')
-    .controller('CompetitionsController', CompetitionsController);
+    .controller('CompetitionController', CompetitionController);
