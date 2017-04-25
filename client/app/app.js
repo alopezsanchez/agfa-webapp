@@ -21,22 +21,11 @@ angular.module('agfaWebappApp', [
             .otherwise('/error/404');
 
         $locationProvider.html5Mode(true);
-        $mdIconProvider.icon('menu', './assets/icons/menu.svg', 24)
-            .icon('home', './assets/icons/ic_home_black_36px.svg')
+        $mdIconProvider
             .icon('competition', './assets/icons/trophy.svg')
-            .icon('agfa', './assets/icons/agfa.jpg')
-            .icon('settings', './assets/icons/settings.svg')
-            .icon('logout', './assets/icons/logout.svg')
-            .icon('email', './assets/icons/email.svg')
-            .icon('password', './assets/icons/password.svg')
-            .icon('add', './assets/icons/add.svg')
-            .icon('person', './assets/icons/person.svg')
-            .icon('delete', './assets/icons/delete.svg')
-            .icon('image', './assets/icons/image.svg')
-            .icon('login', './assets/icons/login.svg')
-            .icon('file_upload', './assets/icons/file_upload.svg')
             .icon('football', './assets/icons/football.svg')
             .icon('shield', './assets/icons/shield.svg')
+            .icon('field', './assets/icons/field.svg')
             .icon('helmet', './assets/icons/helmet.svg');
 
 
