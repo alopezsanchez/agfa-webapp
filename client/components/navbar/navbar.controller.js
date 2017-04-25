@@ -14,6 +14,10 @@ var NavbarController = function($scope, Auth, $mdSidenav, appConfig) {
         'title': 'Equipos',
         'state': 'teams',
         'icon': 'helmet'
+    }, {
+        'title': 'Campos de juego',
+        'state': 'fields',
+        'icon': 'field'
     }];
 
     this.isLoggedIn = Auth.isLoggedIn;

@@ -1,35 +1,14 @@
 <md-sidenav ng-show="nav.isLoggedIn()" class="site-sidenav md-sidenav-left" md-component-id="sidenav" aria-label="Menú" md-is-locked-open="$mdMedia('gt-sm')">
-    <!--<div class="navbar-profile-info">
-        <div class="navbar-user-view">
-            <img ng-src="{{nav.imagesServer}}/54/54/uploads/{{nav.user.avatar}}?fit=true&force=true" alt="{{nav.user.name}}" class="avatar">
-            <span class="user-name">{{nav.user.name}}</span>
-            <span class="user-email">{{nav.user.email}}</span>
-        </div>
-    </div>
-    <md-list>
-        <md-subheader>Opciones de usuario</md-subheader>
-        <md-list-item ng-show="nav.isLoggedIn()" ui-sref="{{item.state}}" ng-repeat="item in nav.userSettings">
-            <md-icon>{{item.icon}}</md-icon>
-            <span>{{item.title}}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item ng-show="nav.isLoggedIn()" ui-sref="{{it.state}}" ng-repeat="it in nav.menu">
-            <md-icon md-svg-icon="{{it.icon}}"></md-icon>
-            <span class="md-list-item-text">{{it.title}}</span>
-        </md-list-item>
-    </md-list>-->
-
     <div class="logo-container">
         <a ui-sref="main">
             <img class="logo" ng-src="{{nav.imagesServer}}/150/100/images/agfa_banner.jpg" alt="AGFA">
         </a>
     </div>
-
     <md-list>
         <md-list-item ui-sref-active="item-active" ng-show="nav.isLoggedIn()" ui-sref="{{it.state}}" ng-repeat="it in nav.menu">
-            <md-icon md-svg-icon="{{it.icon}}">{{it.icon}}</md-icon>
+            <md-icon ng-if="it.icon !== 'person'" md-svg-icon="{{it.icon}}">{{it.icon}}</md-icon>
+            <md-icon ng-if="it.icon === 'person'">{{it.icon}}</md-icon>
             <span>{{it.title}}</span>
         </md-list-item>
     </md-list>
-
 </md-sidenav>

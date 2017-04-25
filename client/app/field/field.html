@@ -1,0 +1,26 @@
+<topbar page="$ctrl.title"></topbar>
+
+<md-content layout-padding>
+    <md-card class="teams-card" ng-show="$ctrl.fields.length">
+        <md-list>
+            <md-list-item class="md-3-line" ng-repeat="field in $ctrl.fields">
+                <div class="md-list-item-text">
+                    <strong>{{field.name}}</strong>
+                    <div class="md-inline">
+                        <p ng-repeat="team in field.teams">{{ team.name}}{{!$last ? ', ' : ' '}}<span> </span></p>
+                    </div>
+
+                    <small>{{field.address}}</small>
+                </div>
+                <md-button class="md-icon-button md-secondary" aria-label="Delete" ng-click="$ctrl.showConfirm($event,field)">
+                    <md-icon>delete</md-icon>
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </md-card>
+</md-content>
+
+<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-field-button" ng-click="$ctrl.createField($event)" aria-label="Nuevo campo de juego">
+    <md-tooltip md-direction="top">Nuevo campo de juego</md-tooltip>
+    <md-icon>add</md-icon>
+</md-button>

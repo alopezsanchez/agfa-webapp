@@ -1,0 +1,8 @@
+.new-field-modal {
+    display: flex;
+    min-width: 500px;
+}
+
+.new-field-modal form {
+    width: 100%;
+}

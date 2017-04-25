@@ -1,0 +1,67 @@
+<md-dialog>
+    <md-dialog-content>
+        <md-toolbar class="modal-toolbar">
+            <div class="md-toolbar-tools">
+                Nuevo campo de juego
+            </div>
+        </md-toolbar>
+        <md-content class="new-field-modal" layout-padding>
+            <form name="newFieldForm" ng-submit="$ctrl.confirm(newFieldForm)" enctype="multipart/form-data" novalidate>
+                <md-input-container>
+                    <label>Nombre</label>
+                    <input type="text" name="name" ng-model="$ctrl.field.name" required mongoose-error/>
+                    <div ng-messages="newFieldForm.name.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="mongoose">{{$ctrl.errors.name}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Dirección</label>
+                    <input type="text" name="address" ng-model="$ctrl.field.address" required mongoose-error />
+                    <div ng-messages="newFieldForm.address.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="mongoose">{{$ctrl.errors.address}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Equipo</label>
+                    <md-select name="teams" ng-model="$ctrl.field.teams" multiple required mongoose-error />
+                    <md-option ng-repeat="team in $ctrl.teams" value="{{team._id}}">
+                        <span>{{team.name}}</span>
+                    </md-option>
+                    </md-select>
+                    <div ng-messages="newFieldForm.team.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="mongoose">{{$ctrl.errors.teams}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Latitud</label>
+                    <input type="text" name="lat" ng-model="$ctrl.field.lat" mongoose-error required/>
+                    <div ng-messages="newFieldForm.lat.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="mongoose">{{$ctrl.errors.lat}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Longitud</label>
+                    <input type="text" name="lng" ng-model="$ctrl.field.lng" mongoose-error required/>
+                    <div ng-messages="newFieldForm.lng.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="mongoose">{{$ctrl.errors.lng}}</div>
+                    </div>
+                </md-input-container>
+
+                <p class="help-block">{{ $ctrl.errors.other }}</p>
+
+                <section class="submit-btn" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary">Crear</md-button>
+                </section>
+            </form>
+        </md-content>
+    </md-dialog-content>
+</md-dialog>
