@@ -1,3 +1,8 @@
 .teams-card .md-inline * {
     display: inline-block;
 }
+
+.angular-google-map-container {
+    height: 400px;
+    width: 400px;
+}

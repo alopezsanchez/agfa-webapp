@@ -1,0 +1,11 @@
+<md-toolbar class="modal-toolbar">
+    <div class="md-toolbar-tools">
+        {{$ctrl.field.name}}
+    </div>
+</md-toolbar>
+<md-content layout-padding>
+    <ui-gmap-google-map center="$ctrl.map.center" zoom="$ctrl.map.zoom">
+        <ui-gmap-marker coords="$ctrl.marker.coords" idkey="$ctrl.marker.id">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
+</md-content>

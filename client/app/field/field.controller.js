@@ -1,7 +1,7 @@
 'use strict';
 
 class FieldController {
-    constructor($mdDialog, $http, $mdToast) {
+    constructor($scope, $mdDialog, $http, $mdToast) {
         this.$mdDialog = $mdDialog;
         this.$mdToast = $mdToast;
         this.$http = $http;
@@ -14,6 +14,8 @@ class FieldController {
                 this.fields = response.data;
             }
         });
+
+        this.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
     }
 
     createField(ev) {
@@ -31,6 +33,24 @@ class FieldController {
                 .then(response => {
                     this.fields = response.data;
                 });
+        });
+    }
+
+    zoom(ev, field) {
+        this.$mdDialog.show({
+            templateUrl: 'app/field/map-zoom/map-zoom.html',
+            controller: 'MapZoomController',
+            controllerAs: '$ctrl',
+            bindToController: true,
+            locals: {
+                field: field
+            },
+            targetEvent: ev,
+            openFrom: angular.element(document.body.querySelector('.zoom-button')),
+            clickOutsideToClose: true,
+            escapeToClose: true,
+            fullscreen: false,
+            hasBackdrop: false
         });
     }
 

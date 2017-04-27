@@ -4,6 +4,7 @@ angular.module('agfaWebappApp', [
         'agfaWebappApp.auth',
         'agfaWebappApp.admin',
         'agfaWebappApp.constants',
+        'uiGmapgoogle-maps',
         'ngCookies',
         'ngResource',
         'ngSanitize',
@@ -16,7 +17,14 @@ angular.module('agfaWebappApp', [
         'validation.match',
         'pascalprecht.translate'
     ])
-    .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider) {
+    .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider, uiGmapGoogleMapApiProvider) {
+
+        uiGmapGoogleMapApiProvider.configure({
+            //key: 'AIzaSyDahCsMz5gJRUIzIB3_15w3OYgp8g7O4XA',
+            v: '3', //defaults to latest 3.X anyhow
+            libraries: 'geometry,visualization'
+        });
+
         $urlRouterProvider
             .otherwise('/error/404');
 
@@ -113,9 +121,9 @@ angular.module('agfaWebappApp', [
 
         $mdThemingProvider.theme('default')
             .primaryPalette('customPrimary')
-            .accentPalette('customAccent')
-            // .warnPalette('customWarn')
-            //.backgroundPalette('customBackground')
+            .accentPalette('customAccent');
+        // .warnPalette('customWarn')
+        //.backgroundPalette('customBackground')
 
         /** ************* */
 

@@ -22,6 +22,14 @@ var FieldSchema = new mongoose.Schema({
         ref: 'Team',
         required: [true, 'Teams ' + REQUIRED_MESSAGE]
     },
+    lat: {
+        type: String,
+        required: [true, 'Lat ' + REQUIRED_MESSAGE]
+    },
+    lng: {
+        type: String,
+        required: [true, 'Lng ' + REQUIRED_MESSAGE]
+    },
 });
 
 registerEvents(FieldSchema);

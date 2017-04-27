@@ -84,7 +84,8 @@
     </script>
 
 
-
+    <!-- Google maps api -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
 
 
     <!--[if lt IE 9]>
@@ -98,7 +99,7 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -108,6 +109,13 @@
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
+    <script src="bower_components/js-rich-marker/src/richmarker.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
@@ -116,7 +124,7 @@
     <script src="app/admin/admin.module.js"></script>
     <script src="components/auth/auth.module.js"></script>
     <script src="components/util/util.module.js"></script>
-    <script src="app/main/main.controller.js"></script>
+    <script src="app/main/main.component.js"></script>
     <script src="app/account/login/login.controller.js"></script>
     <script src="app/account/profile/profile.controller.js"></script>
     <script src="app/account/settings/settings.component.js"></script>
@@ -140,8 +148,9 @@
     <script src="app/field/field.component.js"></script>
     <script src="app/field/field.controller.js"></script>
     <script src="app/field/field.router.js"></script>
-    <script src="app/main/main.component.js"></script>
+    <script src="app/field/map-zoom/map-zoom.controller.js"></script>
     <script src="app/account/confirm/confirm.component.js"></script>
+    <script src="app/main/main.controller.js"></script>
     <script src="app/main/main.js"></script>
     <script src="app/team/create/create-team.controller.js"></script>
     <script src="app/team/edit/edit-team.component.js"></script>
