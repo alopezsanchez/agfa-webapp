@@ -7,8 +7,16 @@ angular.module('agfaWebappApp')
                 url: '/competitions',
                 component: 'competition'
             })
-            .state('createCompetition', {
-                url: '/competitions/create',
-                component: 'createCompetition'
+            .state('createCompetitionStepOne', {
+                url: '/competitions/create/step-one',
+                component: 'createCompetitionStepOne'
+            })
+            .state('createCompetitionStepTwo', {
+                url: '/competitions/create/step-two',
+                component: 'createCompetitionStepTwo',
+                params: {
+                    numberOfWeeks: null,
+                    competition: null
+                }
             });
     });

@@ -22,14 +22,9 @@
                 </div>
             </md-input-container>
         </div>
-        <md-input-container>
-            <label>Número de partidos</label>
-            <input type="number" required ng-minlength="1" name="numbermatches" ng-model="$crtl.numberOfMatches">
-            <div ng-messages="newWeekForm.numbermatches.$error">
-                <div ng-message="required">Campo obligatorio</div>
-                <div ng-message="minlength">Debe haber mínimo un partido</div>
-            </div>
-        </md-input-container>
+        <md-button class="md-primary">Crear partido</md-button>
+        <md-divider></md-divider>
+        <create-match></create-match>
     </form>
 
 </md-content>

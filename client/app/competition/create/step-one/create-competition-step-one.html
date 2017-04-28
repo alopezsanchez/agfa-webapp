@@ -1,0 +1,55 @@
+<topbar page="$ctrl.title"></topbar>
+
+<md-content layout-padding>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span class="md-title">Paso 1. Datos generales</span>
+        </div>
+    </md-toolbar>
+    <md-card class="step-1">
+        <form name="newCompetitionForm" ng-submit="$ctrl.goToStep2(newCompetitionForm)" enctype="multipart/form-data" novalidate>
+            <md-input-container>
+                <label>Nombre</label>
+                <input type="text" name="name" required ng-model="$ctrl.competition.name">
+                <div ng-messages="newCompetitionForm.name.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Categoría</label>
+                <md-select mongoose-error name="categorie" ng-change="$ctrl.updateTeams()" md-container-class="select-padding" ng-model="$ctrl.competition.categorie" required>
+                    <md-option class="md-secondary" ng-value="categorie.name" ng-repeat="categorie in $ctrl.categories">{{categorie.name}}</md-option>
+                </md-select>
+                <div ng-messages="newCompetitionForm.categorie.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Equipos</label>
+                <md-select name="teams" ng-disabled="!$ctrl.hasTeams" md-container-class="select-padding" ng-model="$ctrl.competition.teamsSelected" multiple required>
+                    <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
+                </md-select>
+                <div ng-messages="newCompetitionForm.teams.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Número de jornadas</label>
+                <input type="number" name="numberofweeks" required ng-model="$ctrl.numberOfWeeks">
+                <div ng-messages="newCompetitionForm.numberofweeks.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
+
+            <section class="actions-container">
+                <span flex></span>
+                <md-button type="submit" class="md-primary new-week-button">
+                    Paso siguiente
+                    <md-icon>arrow_forward</md-icon>
+                </md-button>
+            </section>
+
+        </form>
+    </md-card>
+</md-content>

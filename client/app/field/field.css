@@ -3,11 +3,10 @@
 }
 
 .map-container {
-    width: 600px;
-    height: 600px;
+    display: flex;
 }
 
 .angular-google-map-container {
-    width: 600px;
-    height: 400px;
+    width: 500px;
+    height: 300px;
 }

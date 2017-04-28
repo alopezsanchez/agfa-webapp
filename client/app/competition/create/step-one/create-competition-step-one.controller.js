@@ -1,9 +1,10 @@
 'use strict';
 
-class CreateCompetitionController {
-    constructor($http, $mdDialog, appConfig) {
+class CreateCompetitionStepOneController {
+    constructor($http, $mdDialog, appConfig, $state) {
         this.$http = $http;
         this.$mdDialog = $mdDialog;
+        this.$state = $state;
         this.categories = appConfig.categories.map(function(item) {
             return {
                 name: item,
@@ -43,7 +44,19 @@ class CreateCompetitionController {
         });
     }
 
-    createWeek(ev) {
+    goToStep2(form) {
+        if (form.$valid) {
+            const info = {
+                numberOfWeeks: this.numberOfWeeks,
+                competition: this.competition
+            };
+
+            // navigate to step 2 passing competition info by param
+            this.$state.go('createCompetitionStepTwo', info);
+        }
+    }
+
+    /*createWeek(ev) {
         this.$mdDialog.show({
             templateUrl: 'app/week/create-week.html',
             controller: 'CreateWeekController',
@@ -53,13 +66,10 @@ class CreateCompetitionController {
             clickOutsideToClose: true,
             escapeToClose: true
         }).then(() => {
-            /*this.$http.get('/api/teams').then(response => {
-                this.teams = response.data;
-            });*/
             console.log('hola');
         });
-    }
+    }*/
 }
 
 angular.module('agfaWebappApp')
-    .controller('CreateCompetitionController', CreateCompetitionController);
+    .controller('CreateCompetitionStepOneController', CreateCompetitionStepOneController);
