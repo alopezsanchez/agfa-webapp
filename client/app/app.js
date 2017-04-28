@@ -20,7 +20,7 @@ angular.module('agfaWebappApp', [
     .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider, uiGmapGoogleMapApiProvider) {
 
         uiGmapGoogleMapApiProvider.configure({
-            //key: 'AIzaSyDahCsMz5gJRUIzIB3_15w3OYgp8g7O4XA',
+            key: 'AIzaSyDahCsMz5gJRUIzIB3_15w3OYgp8g7O4XA',
             v: '3', //defaults to latest 3.X anyhow
             libraries: 'geometry,visualization'
         });

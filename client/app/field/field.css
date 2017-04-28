@@ -2,7 +2,12 @@
     display: inline-block;
 }
 
+.map-container {
+    width: 600px;
+    height: 600px;
+}
+
 .angular-google-map-container {
+    width: 600px;
     height: 400px;
-    width: 400px;
 }
