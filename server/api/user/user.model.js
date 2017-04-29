@@ -74,7 +74,7 @@ UserSchema
  * Validations
  */
 
-// Validate empty name
+/*// Validate empty name
 UserSchema
     .path('name')
     .validate(function(name) {
@@ -124,7 +124,7 @@ UserSchema
             return true;
         }
         return avatar.length;
-    }, 'Avatar cannot be blank');
+    }, 'Avatar cannot be blank');*/
 
 // Validate email is not taken
 UserSchema

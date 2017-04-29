@@ -16,6 +16,19 @@ var genUser = function() {
     return user;
 };
 
+var genDuplicateMailUser = function() {
+    user = new User({
+        provider: 'local',
+        name: 'Fake User',
+        email: 'test@example.com',
+        password: 'password',
+        avatar: 'default.jpg',
+        confirmed: true,
+        address: 'Fake Street'
+    });
+    return user;
+};
+
 describe('User Model', function() {
     before(function() {
         // Clear users before testing
@@ -35,12 +48,32 @@ describe('User Model', function() {
             .eventually.have.length(0);
     });
 
+    it('should return virtual profile', function() {
+        user = genUser();
+        var userProfile = user.profile;
+        expect(userProfile.name).to.equal('Fake User');
+        expect(userProfile.role).to.equal('club');
+    });
+
+    it('should return virtual token', function() {
+        user = genUser();
+        var userToken = user.token;
+        expect(userToken.role).to.equal(user.role);
+        expect(userToken._id).to.equal(user._id);
+    });
+
     it('should fail when saving a duplicate user', function() {
         return expect(user.saveAsync()
             .then(function() {
                 var userDup = genUser();
                 return userDup.saveAsync();
             })).to.be.rejected;
+    });
+
+    it('should fail when invalid provider', function() {
+        user.provider = 'invalid provider';
+        user.password = '';
+        return expect(user.saveAsync()).to.be.rejected;
     });
 
     describe('#email', function() {
@@ -71,5 +104,4 @@ describe('User Model', function() {
                 })).to.eventually.be.true;
         });
     });
-
 });
