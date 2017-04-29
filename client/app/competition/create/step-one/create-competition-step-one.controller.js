@@ -1,10 +1,11 @@
 'use strict';
 
 class CreateCompetitionStepOneController {
-    constructor($http, $mdDialog, appConfig, $state) {
+    constructor($http, $mdDialog, appConfig, $state, $stateParams) {
         this.$http = $http;
         this.$mdDialog = $mdDialog;
         this.$state = $state;
+        this.$stateParams = $stateParams;
         this.categories = appConfig.categories.map(function(item) {
             return {
                 name: item,
@@ -18,10 +19,17 @@ class CreateCompetitionStepOneController {
 
     $onInit() {
         this.title = 'Nueva Competición';
+
+        this.competition = this.$stateParams.competition;
+        this.numberOfWeeks = this.$stateParams.numberOfWeeks;
+
+        if (this.competition && this.competition.categorie) {
+            this.updateTeams();
+        }
     }
 
     updateTeams() {
-        var categorieSelected = this.categorie;
+        var categorieSelected = this.competition.categorie;
         this.teamsSelected = [];
         this.selectParentTeam = false;
 
