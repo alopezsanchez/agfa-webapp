@@ -1,6 +1,6 @@
 'use strict';
 
-import mongoose from 'mongoose';
+var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 import { Schema } from 'mongoose';
 import { registerEvents } from './field.events';
 import Team from '../team/team.model';
