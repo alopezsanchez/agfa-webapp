@@ -51,19 +51,23 @@ class TeamController {
     }
 
     clearFilters() {
-        this.filter = {};
+        this.filter = {
+            categories: []
+        };
     }
 
     exists(item, list) {
-        return list.indexOf(item) > -1;
+        return list ? list.indexOf(item) > -1 : false;
     }
 
     toggle(item, list) {
-        var idx = list.indexOf(item);
-        if (idx > -1) {
-            list.splice(idx, 1);
-        } else {
-            list.push(item);
+        if (list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) {
+                list.splice(idx, 1);
+            } else {
+                list.push(item);
+            }
         }
     }
 
