@@ -14,6 +14,7 @@ describe('Field API:', function() {
     var user;
     var userId;
     var teamId;
+    var fieldId;
     var club, team, field;
     // generate club, team and field
     function generateModels() {
@@ -41,7 +42,9 @@ describe('Field API:', function() {
                     lat: '234234',
                     lng: '34234'
                 });
-                return field.saveAsync();
+                field.saveAsync().then((field) => {
+                    fieldId = field._id;
+                });
             })
         });
     }
@@ -96,7 +99,8 @@ describe('Field API:', function() {
 
         afterEach(function() {
             Field.removeAsync();
-            return Team.removeAsync();
+            Team.removeAsync();
+            return User.find({ role: 'club' }).removeAsync();
         });
 
         it('should respond with JSON array', function(done) {
@@ -139,7 +143,8 @@ describe('Field API:', function() {
 
         afterEach(function() {
             Field.removeAsync();
-            return Team.removeAsync();
+            Team.removeAsync();
+            return User.find({ role: 'club' }).removeAsync();
         });
 
         it('should respond with the newly created field', function(done) {
@@ -165,71 +170,149 @@ describe('Field API:', function() {
                     expect(newField.address).to.equal('address');
                     done();
                 });
-
-
         });
     });
 
     describe('GET /api/fields/:id', function() {
-        var field;
+        var token;
 
-        beforeEach(function(done) {
+        before(function(done) {
+            generateModels();
             request(app)
-                .get(`/api/fields/${newField._id}`)
+                .post('/auth/local')
+                .send({
+                    email: 'test@example.com',
+                    password: 'password'
+                })
                 .expect(200)
+                .expect('Content-Type', /json/)
+                .end((err, res) => {
+                    token = res.body.token;
+                    done();
+                });
+        });
+
+        afterEach(function() {
+            Field.removeAsync();
+            Team.removeAsync();
+            return User.find({ role: 'club' }).removeAsync();
+        });
+
+        it('should respond with the requested field', function(done) {
+            var id;
+            request(app)
+                .post('/api/fields')
+                .set('authorization', 'Bearer ' + token)
+                .send({
+                    name: 'field 1',
+                    address: 'address',
+                    teams: teamId,
+                    lat: '234234',
+                    lng: '34234'
+                })
+                .expect(201)
                 .expect('Content-Type', /json/)
                 .end((err, res) => {
                     if (err) {
                         return done(err);
                     }
-                    field = res.body;
-                    done();
+                    newField = res.body;
+
+                    expect(newField.name).to.equal('field 1');
+                    expect(newField.address).to.equal('address');
+
+                    request(app)
+                        .get(`/api/fields/${res.body._id}`)
+                        .set('authorization', 'Bearer ' + token)
+                        .expect(200)
+                        .expect('Content-Type', /json/)
+                        .end((err, res) => {
+                            if (err) {
+                                return done(err);
+                            }
+
+                            expect(res.body.name).to.equal('field 1');
+                            expect(res.body.address).to.equal('address');
+                            done();
+                        });
                 });
-        });
-
-        afterEach(function() {
-            field = {};
-        });
-
-        it('should respond with the requested field', function() {
-            expect(field.name).to.equal('New Field');
-            expect(field.info).to.equal('This is the brand new field!!!');
         });
     });
 
     describe('PUT /api/fields/:id', function() {
-        var updatedField;
+        var token;
+        var id;
+        var newField;
 
-        beforeEach(function(done) {
+        before(function(done) {
+            generateModels();
             request(app)
-                .put(`/api/fields/${newField._id}`)
+                .post('/auth/local')
                 .send({
-                    name: 'Updated Field',
-                    info: 'This is the updated field!!!'
+                    email: 'test@example.com',
+                    password: 'password'
                 })
                 .expect(200)
                 .expect('Content-Type', /json/)
-                .end(function(err, res) {
-                    if (err) {
-                        return done(err);
-                    }
-                    updatedField = res.body;
+                .end((err, res) => {
+                    token = res.body.token;
                     done();
                 });
         });
 
-        afterEach(function() {
-            updatedField = {};
+        after(function() {
+            Field.removeAsync();
+            Team.removeAsync();
+            return User.find({ role: 'club' }).removeAsync();
         });
 
-        it('should respond with the updated field', function() {
-            expect(updatedField.name).to.equal('Updated Field');
-            expect(updatedField.info).to.equal('This is the updated field!!!');
+        it('should respond with the updated field', function(done) {
+            request(app)
+                .post('/api/fields')
+                .set('authorization', 'Bearer ' + token)
+                .send({
+                    name: 'field 1',
+                    address: 'address',
+                    teams: teamId,
+                    lat: '234234',
+                    lng: '34234'
+                })
+                .expect(201)
+                .expect('Content-Type', /json/)
+                .end((err, res) => {
+                    if (err) {
+                        return done(err);
+                    }
+                    newField = res.body;
+                    id = res.body._id;
+                    expect(newField.name).to.equal('field 1');
+                    expect(newField.address).to.equal('address');
+
+                    // update field
+                    res.body.name = 'field updated';
+
+                    request(app)
+                        .put(`/api/fields/${res.body._id}`)
+                        .set('authorization', 'Bearer ' + token)
+                        .send(res.body)
+                        .expect(200)
+                        .expect('Content-Type', /json/)
+                        .end((err, res) => {
+                            if (err) {
+                                return done(err);
+                            }
+
+                            expect(res.body.name).to.equal('field updated');
+                            expect(res.body.address).to.equal('address');
+                            done();
+                        });
+                });
         });
 
         it('should respond with the updated field on a subsequent GET', function(done) {
             request(app)
-                .get(`/api/fields/${newField._id}`)
+                .get(`/api/fields/${id}`)
+                .set('authorization', 'Bearer ' + token)
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .end((err, res) => {
@@ -238,61 +321,78 @@ describe('Field API:', function() {
                     }
                     let field = res.body;
 
-                    expect(field.name).to.equal('Updated Field');
-                    expect(field.info).to.equal('This is the updated field!!!');
+                    expect(field.name).to.equal('field updated');
+                    expect(field.address).to.equal('address');
 
                     done();
                 });
-        });
-    });
-
-    describe('PATCH /api/fields/:id', function() {
-        var patchedField;
-
-        beforeEach(function(done) {
-            request(app)
-                .patch(`/api/fields/${newField._id}`)
-                .send([
-                    { op: 'replace', path: '/name', value: 'Patched Field' },
-                    { op: 'replace', path: '/info', value: 'This is the patched field!!!' }
-                ])
-                .expect(200)
-                .expect('Content-Type', /json/)
-                .end(function(err, res) {
-                    if (err) {
-                        return done(err);
-                    }
-                    patchedField = res.body;
-                    done();
-                });
-        });
-
-        afterEach(function() {
-            patchedField = {};
-        });
-
-        it('should respond with the patched field', function() {
-            expect(patchedField.name).to.equal('Patched Field');
-            expect(patchedField.info).to.equal('This is the patched field!!!');
         });
     });
 
     describe('DELETE /api/fields/:id', function() {
-        it('should respond with 204 on successful removal', function(done) {
+        var token;
+
+        before(function(done) {
+            generateModels();
             request(app)
-                .delete(`/api/fields/${newField._id}`)
-                .expect(204)
-                .end(err => {
+                .post('/auth/local')
+                .send({
+                    email: 'test@example.com',
+                    password: 'password'
+                })
+                .expect(200)
+                .expect('Content-Type', /json/)
+                .end((err, res) => {
+                    token = res.body.token;
+                    done();
+                });
+        });
+
+        after(function() {
+            Field.removeAsync();
+            Team.removeAsync();
+            return User.find({ role: 'club' }).removeAsync();
+        });
+
+        it('should respond with 204 on successful removal', function(done) {
+
+            request(app)
+                .post('/api/fields')
+                .set('authorization', 'Bearer ' + token)
+                .send({
+                    name: 'field 1',
+                    address: 'address',
+                    teams: teamId,
+                    lat: '234234',
+                    lng: '34234'
+                })
+                .expect(201)
+                .expect('Content-Type', /json/)
+                .end((err, res) => {
                     if (err) {
                         return done(err);
                     }
-                    done();
+                    newField = res.body;
+                    expect(newField.name).to.equal('field 1');
+                    expect(newField.address).to.equal('address');
+
+                    request(app)
+                        .delete(`/api/fields/${newField._id}`)
+                        .set('authorization', 'Bearer ' + token)
+                        .expect(204)
+                        .end(err => {
+                            if (err) {
+                                return done(err);
+                            }
+                            done();
+                        });
                 });
         });
 
         it('should respond with 404 when field does not exist', function(done) {
             request(app)
                 .delete(`/api/fields/${newField._id}`)
+                .set('authorization', 'Bearer ' + token)
                 .expect(404)
                 .end(err => {
                     if (err) {

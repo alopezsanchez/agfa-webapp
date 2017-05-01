@@ -4,7 +4,6 @@
  * POST    /api/fields              ->  create
  * GET     /api/fields/:id          ->  show
  * PUT     /api/fields/:id          ->  upsert
- * PATCH   /api/fields/:id          ->  patch
  * DELETE  /api/fields/:id          ->  destroy
  */
 
@@ -21,19 +20,6 @@ function respondWithResult(res, statusCode) {
             return res.status(statusCode).json(entity);
         }
         return null;
-    };
-}
-
-function patchUpdates(patches) {
-    return function(entity) {
-        try {
-            // eslint-disable-next-line prefer-reflect
-            jsonpatch.apply(entity, patches, /*validate*/ true);
-        } catch (err) {
-            return Promise.reject(err);
-        }
-
-        return entity.save();
     };
 }
 
@@ -98,18 +84,6 @@ export function upsert(req, res) {
     return Field.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
 
     .then(respondWithResult(res))
-        .catch(handleError(res));
-}
-
-// Updates an existing Field in the DB
-export function patch(req, res) {
-    if (req.body._id) {
-        Reflect.deleteProperty(req.body, '_id');
-    }
-    return Field.findById(req.params.id).exec()
-        .then(handleEntityNotFound(res))
-        .then(patchUpdates(req.body))
-        .then(respondWithResult(res))
         .catch(handleError(res));
 }
 

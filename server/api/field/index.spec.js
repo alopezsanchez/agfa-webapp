@@ -78,14 +78,6 @@ describe('Field API Router:', function() {
         });
     });
 
-    describe('PATCH /api/fields/:id', function() {
-        it('should route to field.controller.patch', function() {
-            expect(routerStub.patch
-                .withArgs('/:id', 'authService.hasRole.admin', 'fieldCtrl.patch')
-            ).to.have.been.calledOnce;
-        });
-    });
-
     describe('DELETE /api/fields/:id', function() {
         it('should route to field.controller.destroy', function() {
             expect(routerStub.delete
