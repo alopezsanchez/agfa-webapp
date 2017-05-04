@@ -12,6 +12,7 @@ angular.module('agfaWebappApp', [
         'ui.router',
         'ui.bootstrap',
         'ngMaterial',
+        'md.data.table',
         'ngFileUpload',
         'alAngularHero',
         'validation.match',

@@ -1,0 +1,30 @@
+<md-table-container>
+    <table md-table>
+        <thead md-head>
+            <tr md-row>
+                <th md-column><span>Equipo local</span></th>
+                <th md-column><span>Equipo visitante</span></th>
+                <th md-column><span>Fecha</span></th>
+                <th md-column><span>Hora</span></th>
+                <th md-column><span>Campo de juego</span></th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row>
+                <td md-cell>
+                    <md-select name="teams" placeholder="Equipo local" md-container-class="select-padding" ng-model="match.localTeam">
+                        <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.competition.teamsSelected">{{team.name}}</md-option>
+                    </md-select>
+                </td>
+                <td md-cell>
+                    <md-select name="teams" placeholder="Equipo local" md-container-class="select-padding" ng-model="match.visitingTeam">
+                        <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.competition.teamsSelected">{{team.name}}</md-option>
+                    </md-select>
+                </td>
+                <td md-cell></td>
+                <td md-cell ng-click="$ctrl.editTime($event, match)" ng-class="{'md-placeholder': !match.time}">{{match.time || 'Hora'}}</td>
+                <td md-cell></td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>

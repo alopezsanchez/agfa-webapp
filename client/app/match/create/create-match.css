@@ -1,3 +1,34 @@
-.match-container form {
-    width: 100%;
+/*.match-container md-input-container {
+    margin-top: 0;
+}*/
+
+.match-container div {
+    max-height: 70px;
+}
+
+.match-date-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.match-date-container md-input-container {
+    margin-left: 15px;
+    margin-top: 40px;
+}
+
+.match-teams-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.match-teams-container md-input-container {
+    margin: 0 70px;
+}
+
+.match-other-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

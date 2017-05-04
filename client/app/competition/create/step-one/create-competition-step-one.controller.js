@@ -15,6 +15,7 @@ class CreateCompetitionStepOneController {
 
         this.teamsSelected = [];
         this.selectParentTeam = false;
+        this.weeks = [];
     }
 
     $onInit() {
@@ -56,12 +57,47 @@ class CreateCompetitionStepOneController {
         if (form.$valid) {
             const info = {
                 numberOfWeeks: this.numberOfWeeks,
+                numberOfMatches: this.numberOfMatches,
                 competition: this.competition
             };
 
             // navigate to step 2 passing competition info by param
             this.$state.go('createCompetitionStepTwo', info);
         }
+    }
+
+    onChangeWeeks() {
+        if (this.numberOfWeeks < 1) {
+            this.numberOfWeeks = 1;
+        }
+
+        for (let i = 1, l = this.numberOfWeeks; i <= l; i++) {
+            this.weeks.push({
+                number: i,
+                matches: null
+            });
+        }
+
+        console.log(this.weeks);
+    }
+
+    onChangeMatches() {
+        if (this.numberOfMatches < 1) {
+            this.numberOfMatches = 1;
+        }
+
+        this.weeks = this.weeks.map((week) => {
+            week.matches = [];
+            for (let i = 1, l = this.numberOfMatches; i <= l; i++) {
+                week.matches.push({
+                    number: i
+                });
+            }
+            return week;
+        });
+
+        console.log(this.weeks);
+
     }
 
     /*createWeek(ev) {
