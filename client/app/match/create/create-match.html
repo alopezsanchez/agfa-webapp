@@ -30,31 +30,38 @@
 </md-content>-->
 
 <div class="match-container">
-    <div class="match-date-container">
-        <md-datepicker ng-model="$ctrl.match.date" md-placeholder="Fecha"></md-datepicker>
-        <md-input-container md-no-float>
-            <input type="text" placeholder="Hora" size="6">
-        </md-input-container>
-    </div>
+    <ng-form name="match">
+        <div class="match-title">
+            <h5>Partido {{$ctrl.match.number}}</h5>
+        </div>
+        <div class="match-date-container">
+            <md-datepicker ng-model="$ctrl.match.date" md-placeholder="Fecha"></md-datepicker>
+            <md-input-container md-no-float>
+                <input type="text" ng-model="$ctrl.match.time" maxlength="5" placeholder="Hora" size="6">
+            </md-input-container>
+        </div>
 
-    <div class="match-teams-container">
-        <md-input-container md-no-float>
-            <md-select name="teams" ng-disabled="!$ctrl.hasTeams" placeholder="Equipo local" ng-model="$ctrl.match.localTeam" required>
-                <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
-            </md-select>
-        </md-input-container>
-        <h4 class="md-headline">vs</h4>
-        <md-input-container md-no-float>
-            <md-select name="teams" placeholder="Equipo visitante" ng-model="$ctrl.match.visitingTeam" required>
-                <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
-            </md-select>
-        </md-input-container>
-    </div>
+        <div class="match-teams-container">
+            <md-input-container md-no-float>
+                <md-select name="localTeam" ng-change="$ctrl.onChangeLocalTeam()" placeholder="Equipo local" ng-model="$ctrl.match.localTeam" required>
+                    <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <h4 class="md-headline">vs</h4>
+            <md-input-container md-no-float>
+                <md-select name="visitingTeam" placeholder="Equipo visitante" ng-model="$ctrl.match.visitingTeam" required>
+                    <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
 
-    <div class="match-other-container">
-        <md-input-container md-no-float>
-            <input type="text" placeholder="Campo de juego">
-        </md-input-container>
-    </div>
+        <div class="match-other-container">
+            <md-input-container md-no-float>
+                <md-select name="field" ng-disabled="!$ctrl.hasFields" placeholder="Campo de juego" ng-model="$ctrl.match.field" required>
+                    <md-option class="md-secondary" ng-value="field._id" ng-repeat="field in $ctrl.fields">{{field.name}}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </ng-form>
     <md-divider></md-divider>
 </div>

@@ -53,7 +53,12 @@ function handleError(res, statusCode) {
 
 // Gets a list of Fields
 export function index(req, res) {
-    return Field.find().populate({
+    // build mongo query for array
+    if (req.query.teams) {
+        const values = req.query.teams;
+        req.query.teams = { '$all': Array.isArray(values) ? values : [values] };
+    }
+    return Field.find(req.query).populate({
             path: 'teams',
             model: Team
         }).exec()

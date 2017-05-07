@@ -10,7 +10,6 @@ import path from 'path';
 export default function(app) {
     // Insert routes below
     app.use('/api/fields', require('./api/field'));
-    app.use('/api/weeks', require('./api/week'));
     app.use('/api/matches', require('./api/match'));
     app.use('/api/teams', require('./api/team'));
     app.use('/api/upload-images', require('./api/upload-image'));

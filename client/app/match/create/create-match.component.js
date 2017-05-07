@@ -4,7 +4,8 @@ const CreateMatch = {
     templateUrl: 'app/match/create/create-match.html',
     controller: 'CreateMatchController as $ctrl',
     bindings: {
-        teams: '='
+        teams: '=',
+        match: '='
     },
     require: 'ngModel'
 };

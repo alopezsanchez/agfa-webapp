@@ -1,12 +1,12 @@
 <topbar page="$ctrl.title"></topbar>
 
 <md-content layout-padding>
-    <md-toolbar>
+    <!--<md-toolbar>
         <div class="md-toolbar-tools">
-            <span class="md-title">Paso 1. Datos generales</span>
+            <span class="md-title">Introduce todos los datos</span>
         </div>
-    </md-toolbar>
-    <form name="newCompetitionForm" ng-submit="$ctrl.goToStep2(newCompetitionForm)" enctype="multipart/form-data" novalidate>
+    </md-toolbar>-->
+    <form name="newCompetitionForm" ng-submit="$ctrl.submit(newCompetitionForm)" enctype="multipart/form-data" novalidate>
         <md-card class="step-1" layout-padding>
 
             <md-input-container md-no-float>
@@ -49,22 +49,23 @@
                     <div ng-message="min">Debe haber mínimo un partido por jornada</div>
                 </div>
             </md-input-container>
-
-            <!--<section class="actions-container">
-                <span flex></span>
-                <md-button type="submit" class="md-primary new-week-button">
-                    Paso siguiente
-                    <md-icon>arrow_forward</md-icon>
-                </md-button>
-            </section>-->
         </md-card>
 
         <div class="weeks-container" ng-show="$ctrl.numberOfWeeks && $ctrl.numberOfMatches && $ctrl.teams.length">
             <md-card ng-repeat="week in $ctrl.weeks">
-                <span>Jornada {{week.number}}</span>
-
-                <create-match teams="$ctrl.teams" ng-model="match" ng-repeat="match in week.matches track by $index"></create-match>
+                <md-card-title>
+                    <h4>Jornada {{week.number}}</h4>
+                </md-card-title>
+                <md-divider></md-divider>
+                <create-match teams="$ctrl.teams" ng-model="match" match="match" ng-repeat="match in week.matches track by $index"></create-match>
             </md-card>
         </div>
+
+        <section class="actions-container">
+            <span flex></span>
+            <md-button type="submit" class="md-primary new-week-button">
+                Crear competición
+            </md-button>
+        </section>
     </form>
 </md-content>

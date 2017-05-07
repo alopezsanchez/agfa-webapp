@@ -32,3 +32,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.match-title {
+    display: flex;
+    justify-content: center;
+}
