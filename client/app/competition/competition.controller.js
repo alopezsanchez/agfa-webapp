@@ -1,8 +1,9 @@
 'use strict';
 
 class CompetitionController {
-    constructor() {
+    constructor($http) {
         this.title = 'Competiciones';
+        this.$http = $http;
     }
 }
 

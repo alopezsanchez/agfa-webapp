@@ -54,19 +54,6 @@ class CreateCompetitionStepOneController {
         });
     }
 
-    goToStep2(form) {
-        if (form.$valid) {
-            const info = {
-                numberOfWeeks: this.numberOfWeeks,
-                numberOfMatches: this.numberOfMatches,
-                competition: this.competition
-            };
-
-            // navigate to step 2 passing competition info by param
-            this.$state.go('createCompetitionStepTwo', info);
-        }
-    }
-
     onChangeWeeks() {
         if (this.numberOfWeeks < 1) {
             this.numberOfWeeks = 1;
@@ -112,35 +99,18 @@ class CreateCompetitionStepOneController {
             .hideDelay(3000));
     }
 
-    /*createWeek(ev) {
-        this.$mdDialog.show({
-            templateUrl: 'app/week/create-week.html',
-            controller: 'CreateWeekController',
-            controllerAs: '$ctrl',
-            targetEvent: ev,
-            openFrom: angular.element(document.body.querySelector('.new-week-button')),
-            clickOutsideToClose: true,
-            escapeToClose: true
-        }).then(() => {
-            console.log('hola');
-        });
-    }*/
-
     submit(form) {
         if (form.$valid) {
             this.competition.weeks = this.weeks;
             this.competition.active = false;
 
             this.$http.post('/api/competitions', this.competition)
-                .then((res) => {
-                    console.log(res.data);
+                .then(() => {
+                    this.showToast();
+                    this.$state.go('competitions');
                 }, (err) => {
                     console.log(err);
                 });
-
-            console.log(this.competition);
-        } else {
-            console.log(form.$error);
         }
     }
 }

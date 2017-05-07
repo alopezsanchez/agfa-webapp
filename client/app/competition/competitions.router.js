@@ -14,13 +14,5 @@ angular.module('agfaWebappApp')
                     numberOfWeeks: null,
                     competition: null
                 }
-            })
-            .state('createCompetitionStepTwo', {
-                url: '/competitions/create/step-two',
-                component: 'createCompetitionStepTwo',
-                params: {
-                    numberOfWeeks: null,
-                    competition: null
-                }
             });
     });
