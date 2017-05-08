@@ -14,5 +14,9 @@ angular.module('agfaWebappApp')
                     numberOfWeeks: null,
                     competition: null
                 }
+            })
+            .state('competitionDetail', {
+                url: '/competitions/:id',
+                component: 'competitionDetail'
             });
     });
