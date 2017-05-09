@@ -20,6 +20,13 @@ class CompetitionDetailController {
     $onInit() {
         this.competition = this.competition.data;
     }
+
+    updateCompetition() {
+        this.$http.put(`/api/competitions/${this.competition._id}`)
+            .then((res) => {
+                console.log(res);
+            }, err => console.log(err));
+    }
 }
 
 angular.module('agfaWebappApp')

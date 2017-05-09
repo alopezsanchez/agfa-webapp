@@ -12,19 +12,31 @@
                 <th md-column><span>Fecha</span></th>
                 <th md-column><span>Hora</span></th>
                 <th md-column><span>Campo de juego</span></th>
+                <th md-column><span>Acciones</span></th>
             </tr>
         </thead>
         <tbody md-body>
             <tr md-row ng-repeat="match in $ctrl.info.matches">
                 <td md-cell>{{match.localTeam.name}}</td>
                 <td md-cell>{{match.visitingTeam.name}}</td>
-                <td md-cell ng-click="$ctrl.editDate($event, match)" ng-class="{'md-placeholder': !match.date}">{{match.date || 'Introduce una fecha'}}</td>
-                <td md-cell ng-click="$ctrl.editTime($event, match)" ng-class="{'md-placeholder': !match.time}">{{match.time || 'Introduce una hora'}}</td>
-                <td md-cell>
+                <td md-cell ng-click="$ctrl.editDate($event, match)" ng-class="{'md-placeholder': !match.date}">
+                    {{ match.date | date:'dd-MM-yyyy'}}
+                    <md-button class="md-icon-button">
+                        <md-icon>edit</md-icon>
+                    </md-button>
+                </td>
+                <td md-cell class="edit" ng-click="$ctrl.editTime($event, match)" ng-class="{'md-placeholder': !match.time}">
+                    {{match.time | date:'HH:mm'}}
+                    <md-button class="md-icon-button">
+                        <md-icon>edit</md-icon>
+                    </md-button>
+                </td>
+                <td md-cell class="edit">
                     <md-select aria-label="Campo de juego" ng-model="match.field" placeholder="Campo de juego">
                         <md-option ng-selected="field._id === match.field._id" ng-value="field" ng-repeat="field in match.fields">{{field.name}}</md-option>
                     </md-select>
                 </td>
+                <td md-cell></td>
             </tr>
         </tbody>
     </table>

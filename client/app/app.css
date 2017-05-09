@@ -213,3 +213,15 @@ form .actions-container {
     display: flex;
     align-items: center;
 }
+
+table.md-table md-icon {
+    color: #999999;
+    height: 16px;
+    width: 16px;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+table.md-table .md-cell.edit {
+    white-space: nowrap;
+}
