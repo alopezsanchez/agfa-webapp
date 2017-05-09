@@ -8,15 +8,17 @@ class CompetitionDetailController {
 
         this.title = 'Detalle competición';
 
-        this.competition = {};
 
-        this.$http.get(`/api/competitions/${this.$stateParams.id}`)
+        /*this.$http.get(`/api/competitions/${this.$stateParams.id}`)
             .then((res) => {
                 this.competition = res.data;
-                console.log(this.competition);
             }, (err) => {
                 console.log(err);
-            });
+            });*/
+    }
+
+    $onInit() {
+        this.competition = this.competition.data;
     }
 }
 

@@ -12,6 +12,7 @@
 import _ from 'lodash';
 import Competition from './competition.model';
 import Team from '../team/team.model';
+import Match from '../match/match.model';
 import Field from '../field/field.model';
 
 function respondWithResult(res, statusCode) {
@@ -64,15 +65,15 @@ function handleError(res, statusCode) {
 // Gets a list of Competitions
 export function index(req, res) {
     Competition.find(req.query)
-        .populate('weeks.matches.field')
-        .exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
 
 // Gets a single Competition from the DB
 export function show(req, res) {
-    Competition.findByIdAsync(req.params.id)
+    Competition.findById(req.params.id)
+        .deepPopulate(['weeks.matches.field', 'weeks.matches.localTeam', 'weeks.matches.visitingTeam', 'teams'])
+        .exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));

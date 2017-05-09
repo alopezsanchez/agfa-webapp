@@ -1,3 +1,8 @@
+<md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+        <span>Jornada {{$ctrl.info.number}}</span>
+    </div>
+</md-toolbar>
 <md-table-container>
     <table md-table>
         <thead md-head>
@@ -10,20 +15,16 @@
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row>
+            <tr md-row ng-repeat="match in $ctrl.info.matches">
+                <td md-cell>{{match.localTeam.name}}</td>
+                <td md-cell>{{match.visitingTeam.name}}</td>
+                <td md-cell ng-click="$ctrl.editDate($event, match)" ng-class="{'md-placeholder': !match.date}">{{match.date || 'Introduce una fecha'}}</td>
+                <td md-cell ng-click="$ctrl.editTime($event, match)" ng-class="{'md-placeholder': !match.time}">{{match.time || 'Introduce una hora'}}</td>
                 <td md-cell>
-                    <md-select name="teams" placeholder="Equipo local" md-container-class="select-padding" ng-model="match.localTeam">
-                        <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.competition.teamsSelected">{{team.name}}</md-option>
+                    <md-select aria-label="Campo de juego" ng-model="match.field" placeholder="Campo de juego">
+                        <md-option ng-selected="field._id === match.field._id" ng-value="field" ng-repeat="field in match.fields">{{field.name}}</md-option>
                     </md-select>
                 </td>
-                <td md-cell>
-                    <md-select name="teams" placeholder="Equipo local" md-container-class="select-padding" ng-model="match.visitingTeam">
-                        <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.competition.teamsSelected">{{team.name}}</md-option>
-                    </md-select>
-                </td>
-                <td md-cell></td>
-                <td md-cell ng-click="$ctrl.editTime($event, match)" ng-class="{'md-placeholder': !match.time}">{{match.time || 'Hora'}}</td>
-                <td md-cell></td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,8 @@
 'use strict';
 
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+import { Schema } from 'mongoose';
 import TeamSchema from '../team/team.model';
 var Team = mongoose.model('Team').schema;
 import WeekSchema from '../week/week.model';
@@ -27,7 +29,21 @@ var CompetitionSchema = new mongoose.Schema({
     weeks: {
         type: [Week],
         required: [true, 'Weeks' + REQUIRED_MESSAGE]
+    },
+    teams: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Team',
+        required: [true, 'Teams' + REQUIRED_MESSAGE]
     }
+});
+
+CompetitionSchema.plugin(deepPopulate, {
+    whitelist: [
+        'teams',
+        'weeks.matches.field',
+        'weeks.matches.localTeam',
+        'weeks.matches.visitingTeam'
+    ]
 });
 
 export default mongoose.model('Competition', CompetitionSchema);

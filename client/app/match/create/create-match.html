@@ -43,13 +43,13 @@
 
         <div class="match-teams-container">
             <md-input-container md-no-float>
-                <md-select name="localTeam" ng-change="$ctrl.onChangeLocalTeam()" placeholder="Equipo local" ng-model="$ctrl.match.localTeam" required>
+                <md-select name="localTeam" ng-change="$ctrl.onChangeLocalTeam()" placeholder="Equipo local" ng-model="$ctrl.match.localTeam">
                     <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
                 </md-select>
             </md-input-container>
             <h4 class="md-headline">vs</h4>
             <md-input-container md-no-float>
-                <md-select name="visitingTeam" placeholder="Equipo visitante" ng-model="$ctrl.match.visitingTeam" required>
+                <md-select name="visitingTeam" placeholder="Equipo visitante" ng-model="$ctrl.match.visitingTeam">
                     <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
                 </md-select>
             </md-input-container>
@@ -57,7 +57,7 @@
 
         <div class="match-other-container">
             <md-input-container md-no-float>
-                <md-select name="field" ng-disabled="!$ctrl.hasFields" placeholder="Campo de juego" ng-model="$ctrl.match.field" required>
+                <md-select name="field" ng-disabled="!$ctrl.hasFields" placeholder="Campo de juego" ng-model="$ctrl.match.field">
                     <md-option class="md-secondary" ng-value="field._id" ng-repeat="field in $ctrl.fields">{{field.name}}</md-option>
                 </md-select>
             </md-input-container>

@@ -17,6 +17,11 @@ angular.module('agfaWebappApp')
             })
             .state('competitionDetail', {
                 url: '/competitions/:id',
-                component: 'competitionDetail'
+                component: 'competitionDetail',
+                resolve: {
+                    competition: ($http, $stateParams) => {
+                        return $http.get(`/api/competitions/${$stateParams.id}`);
+                    }
+                }
             });
     });

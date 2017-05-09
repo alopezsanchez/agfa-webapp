@@ -103,6 +103,11 @@ class CreateCompetitionStepOneController {
         if (form.$valid) {
             this.competition.weeks = this.weeks;
             this.competition.active = false;
+            this.competition.teams = this.competition.teamsSelected.map((team) => {
+                return team._id;
+            });
+            console.log(this.competition.teams);
+            delete this.competition.teamsSelected;
 
             this.$http.post('/api/competitions', this.competition)
                 .then(() => {

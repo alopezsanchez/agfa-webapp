@@ -1,8 +1,14 @@
 'use strict';
 
 const Classification = {
+    bindings: {
+        competition: '='
+    },
+    require: {
+        competitionDetailCtrl: '^^competitionDetail'
+    },
     templateUrl: 'app/classification/classification.html',
-    controller: 'ClassificationController as $ctrl'
+    controller: 'ClassificationController as classification'
 };
 
 angular

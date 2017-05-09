@@ -1,1 +1,18 @@
 <topbar page="$ctrl.title"></topbar>
+
+<md-content layout-padding>
+
+    <h3 class="md-headline">{{$ctrl.competition.name}}</h3>
+
+    <md-card>
+        <classification competition="$ctrl.competition"></classification>
+    </md-card>
+
+    <div class="week-container" ng-repeat="week in $ctrl.competition.weeks">
+        <md-card>
+            <week info="week"></week>
+        </md-card>
+
+    </div>
+
+</md-content>

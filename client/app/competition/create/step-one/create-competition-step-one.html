@@ -57,7 +57,7 @@
                     <h4>Jornada {{week.number}}</h4>
                 </md-card-title>
                 <md-divider></md-divider>
-                <create-match teams="$ctrl.teams" ng-model="match" match="match" ng-repeat="match in week.matches track by $index"></create-match>
+                <create-match teams="$ctrl.competition.teamsSelected" ng-model="match" match="match" ng-repeat="match in week.matches track by $index"></create-match>
             </md-card>
         </div>
 

@@ -2,7 +2,7 @@
 
 const Week = {
     bindings: {
-        competition: '='
+        info: '<'
     },
     templateUrl: 'app/week/week.html',
     controller: 'WeekController as $ctrl'
