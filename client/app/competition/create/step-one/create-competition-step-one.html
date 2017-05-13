@@ -1,11 +1,6 @@
 <topbar page="$ctrl.title"></topbar>
 
 <md-content layout-padding>
-    <!--<md-toolbar>
-        <div class="md-toolbar-tools">
-            <span class="md-title">Introduce todos los datos</span>
-        </div>
-    </md-toolbar>-->
     <form name="newCompetitionForm" ng-submit="$ctrl.submit(newCompetitionForm)" enctype="multipart/form-data" novalidate>
         <md-card class="step-1" layout-padding>
 
@@ -15,12 +10,17 @@
                     <div ng-message="required">Campo obligatorio</div>
                 </div>
             </md-input-container>
+            <md-input-container md-no-float>
+                <input type="text" name="year" placeholder="Temporada" required ng-model="$ctrl.competition.year">
+                <div ng-messages="newCompetitionForm.year.$error">
+                    <div ng-message="required">Campo obligatorio</div>
+                </div>
+            </md-input-container>
             <md-input-container>
-                <label>Categoría</label>
-                <md-select mongoose-error name="categorie" ng-change="$ctrl.updateTeams()" md-container-class="select-padding" ng-model="$ctrl.competition.categorie" required>
-                    <md-option class="md-secondary" ng-value="categorie.name" ng-repeat="categorie in $ctrl.categories">{{categorie.name}}</md-option>
+                <md-select mongoose-error placeholder="Categoría" name="category" ng-change="$ctrl.updateTeams()" md-container-class="select-padding" ng-model="$ctrl.competition.category" required>
+                    <md-option class="md-secondary" ng-value="category.name" ng-repeat="category in $ctrl.categories">{{category.name}}</md-option>
                 </md-select>
-                <div ng-messages="newCompetitionForm.categorie.$error">
+                <div ng-messages="newCompetitionForm.category.$error">
                     <div ng-message="required">Campo obligatorio</div>
                 </div>
             </md-input-container>
@@ -54,9 +54,10 @@
         <div class="weeks-container" ng-show="$ctrl.numberOfWeeks && $ctrl.numberOfMatches && $ctrl.teams.length">
             <md-card ng-repeat="week in $ctrl.weeks">
                 <md-card-title>
-                    <h4>Jornada {{week.number}}</h4>
+                    <md-card-title-text>
+                        <h4 class="md-title">Jornada {{week.number}}</h4>
+                    </md-card-title-text>
                 </md-card-title>
-                <md-divider></md-divider>
                 <create-match teams="$ctrl.competition.teamsSelected" ng-model="match" match="match" ng-repeat="match in week.matches track by $index"></create-match>
             </md-card>
         </div>

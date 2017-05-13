@@ -5,27 +5,26 @@ class CompetitionDetailController {
         this.$state = $state;
         this.$http = $http;
         this.$stateParams = $stateParams;
-
-        this.title = 'Detalle competición';
-
-
-        /*this.$http.get(`/api/competitions/${this.$stateParams.id}`)
-            .then((res) => {
-                this.competition = res.data;
-            }, (err) => {
-                console.log(err);
-            });*/
     }
 
     $onInit() {
         this.competition = this.competition.data;
+        this.title = this.competition.name;
     }
 
     updateCompetition() {
-        this.$http.put(`/api/competitions/${this.competition._id}`)
-            .then((res) => {
-                console.log(res);
-            }, err => console.log(err));
+        console.log(this.competition);
+        /*this.competition.weeks = this.competition.weeks.map((week) => {
+            delete week._id;
+            return week;
+        });*/
+
+        angular.forEach(this.competition.weeks, (week) => {
+            this.$http.put(`/api/competitions/${this.competition._id}/week`, week)
+                .then((res) => {
+                    console.log(res);
+                }, err => console.log(err));
+        });
     }
 }
 

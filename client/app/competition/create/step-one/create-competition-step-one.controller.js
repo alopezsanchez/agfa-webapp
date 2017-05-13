@@ -25,13 +25,13 @@ class CreateCompetitionStepOneController {
         this.competition = this.$stateParams.competition;
         this.numberOfWeeks = this.$stateParams.numberOfWeeks;
 
-        if (this.competition && this.competition.categorie) {
+        if (this.competition && this.competition.category) {
             this.updateTeams();
         }
     }
 
     updateTeams() {
-        var categorieSelected = this.competition.categorie;
+        var categorySelected = this.competition.category;
         this.teamsSelected = [];
         this.selectParentTeam = false;
 
@@ -39,7 +39,7 @@ class CreateCompetitionStepOneController {
             url: '/api/teams/',
             method: 'GET',
             params: {
-                categories: categorieSelected
+                categories: categorySelected
             }
         }).then((response) => {
             this.teams = response.data;
@@ -106,7 +106,6 @@ class CreateCompetitionStepOneController {
             this.competition.teams = this.competition.teamsSelected.map((team) => {
                 return team._id;
             });
-            console.log(this.competition.teams);
             delete this.competition.teamsSelected;
 
             this.$http.post('/api/competitions', this.competition)

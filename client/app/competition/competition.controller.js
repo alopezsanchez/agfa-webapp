@@ -12,7 +12,7 @@ class CompetitionController {
         this.allCategories = appConfig.categories;
 
         this.filter = {
-            categorie: ''
+            category: ''
         };
 
         this.$http.get('/api/competitions')
@@ -29,8 +29,8 @@ class CompetitionController {
         }, (newValue, oldValue) => {
             if (newValue !== oldValue) {
                 // update competitions list
-                if (!newValue.categorie) {
-                    delete newValue.categorie;
+                if (!newValue.category) {
+                    delete newValue.category;
                 }
                 this.$http({
                     url: '/api/competitions/',
@@ -46,14 +46,14 @@ class CompetitionController {
     }
 
     exists(item) {
-        return item === this.filter.categorie;
+        return item === this.filter.category;
     }
 
     toggle(item) {
-        if (this.filter.categorie === item) {
-            this.filter.categorie = '';
+        if (this.filter.category === item) {
+            this.filter.category = '';
         } else {
-            this.filter.categorie = item;
+            this.filter.category = item;
         }
     }
 

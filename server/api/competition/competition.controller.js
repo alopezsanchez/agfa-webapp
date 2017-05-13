@@ -14,6 +14,7 @@ import Competition from './competition.model';
 import Team from '../team/team.model';
 import Match from '../match/match.model';
 import Field from '../field/field.model';
+import Week from '../week/week.model';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -26,7 +27,10 @@ function respondWithResult(res, statusCode) {
 
 function saveUpdates(updates) {
     return function(entity) {
+        console.log('entity', entity);
+        console.log('updates: ', updates);
         var updated = _.merge(entity, updates);
+
         return updated.saveAsync()
             .spread(updated => {
                 return updated;
@@ -91,7 +95,28 @@ export function update(req, res) {
     if (req.body._id) {
         delete req.body._id;
     }
+    if (req.body.weeks) {
+        delete req.body.weeks;
+    }
+
     Competition.findByIdAsync(req.params.id)
+        .then(handleEntityNotFound(res))
+        .then(saveUpdates(req.body))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
+export function updateWeek(req, res) {
+    let id;
+    if (req.body._id) {
+        id = req.body._id;
+        delete req.body._id;
+    }
+
+    console.log('body', req.body);
+    console.log(id);
+
+    Week.findByIdAsync(id)
         .then(handleEntityNotFound(res))
         .then(saveUpdates(req.body))
         .then(respondWithResult(res))

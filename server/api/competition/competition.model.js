@@ -22,7 +22,7 @@ var CompetitionSchema = new mongoose.Schema({
         required: [true, 'Active' + REQUIRED_MESSAGE]
     },
     year: String,
-    categorie: {
+    category: {
         type: String,
         required: [true, 'Categorie' + REQUIRED_MESSAGE]
     },

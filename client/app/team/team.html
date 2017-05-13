@@ -2,10 +2,10 @@
 
 <md-content layout-padding>
     <md-card class="filter-container" layout-padding>
-        <div class="categorie-filter">
+        <div class="category-filter">
             <h4>Categorías</h4>
             <div>
-                <md-checkbox ng-checked="$ctrl.exists(categorie, $ctrl.filter.categories)" class="md-secondary" ng-click="$ctrl.toggle(categorie, $ctrl.filter.categories)" ng-value="categorie" ng-repeat="categorie in $ctrl.allCategories">{{categorie}}</md-checkbox>
+                <md-checkbox ng-checked="$ctrl.exists(category, $ctrl.filter.categories)" class="md-secondary" ng-click="$ctrl.toggle(category, $ctrl.filter.categories)" ng-value="category" ng-repeat="category in $ctrl.allCategories">{{category}}</md-checkbox>
             </div>
         </div>
         <div>

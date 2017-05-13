@@ -21,11 +21,11 @@
             <md-input-container>
                 <label>Categoría</label>
                 <md-select name="categories" md-container-class="select-padding" ng-model="$ctrl.categoriesSelected" required multiple>
-                    <md-option ng-selected="{{$ctrl.categoriesSelected.indexOf(categorie.name) ? true : false}}" ng-value="categorie.name" ng-repeat="categorie in $ctrl.allCategories">{{categorie.name}}</md-option>
+                    <md-option ng-selected="{{$ctrl.categoriesSelected.indexOf(category.name) ? true : false}}" ng-value="category.name" ng-repeat="category in $ctrl.allCategories">{{category.name}}</md-option>
                 </md-select>
                 <div ng-messages="editTeamForm.categories.$error">
                     <div ng-message="required">Campo obligatorio</div>
-                    <div ng-message="mongoose">{{ $ctrl.errors.categorie }}</div>
+                    <div ng-message="mongoose">{{ $ctrl.errors.category }}</div>
                 </div>
             </md-input-container>
 

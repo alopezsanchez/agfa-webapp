@@ -2,10 +2,10 @@
 
 <md-content layout-padding>
     <div class="filter-container" layout-padding>
-        <div class="categorie-filter">
+        <div class="category-filter">
             <h4>Categoría</h4>
             <div>
-                <md-checkbox ng-checked="$ctrl.exists(categorie)" class="md-secondary" ng-click="$ctrl.toggle(categorie)" ng-value="categorie" ng-repeat="categorie in $ctrl.allCategories">{{categorie}}</md-checkbox>
+                <md-checkbox ng-checked="$ctrl.exists(category)" class="md-secondary" ng-click="$ctrl.toggle(category)" ng-value="category" ng-repeat="category in $ctrl.allCategories">{{category}}</md-checkbox>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
             <md-list-item class="md-3-line" ng-click="$ctrl.detail(competition._id)" ng-repeat="competition in $ctrl.competitions">
                 <div class="md-list-item-text">
                     <strong>{{competition.name}}</strong>
-                    <p>{{competition.categorie}}</p>
+                    <p>{{competition.category}}</p>
                     <small>{{competition.year}}</small>
                 </div>
                 <md-button class="md-icon-button md-secondary delete-button" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,competition)">
