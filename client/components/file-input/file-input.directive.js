@@ -30,7 +30,7 @@ angular.module('agfaWebappApp')
             restrict: 'E',
             scope: {
                 file: '=',
-                avatar: '=?'
+                avatar: '<'
             },
             controller: 'FileInputController',
             controllerAs: '$ctrl',

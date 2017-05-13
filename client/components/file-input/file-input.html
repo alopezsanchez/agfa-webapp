@@ -1,4 +1,4 @@
-<div class="file-container avatar" ng-style="{ 'background-image': 'url({{$ctrl.imagesServer}}/54/54/uploads/{{$ctrl.avatarName}}?fit=true)' }">
+<div class="file-container avatar" ng-style="{ 'background-image': 'url({{$ctrl.imagesServer}}/54/54/uploads/{{$ctrl.avatar || 'user_silhouette.png'}}?fit=true)' }">
     <md-tooltip>Elegir foto de contacto</md-tooltip>
     <input class="file-input" ngf-select type="file" name="file" ng-model="$ctrl.file" aria-label="file input">
     <img class="preview" ngf-resize="{width: 54, height: 54, centerCrop: true, restoreExif: false}" ngf-src="!$ctrl.file.$error && $ctrl.file" alt="Imagen seleccionada" />

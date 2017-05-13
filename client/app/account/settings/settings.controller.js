@@ -1,7 +1,7 @@
 'use strict';
 
 class SettingsController {
-    constructor(Auth, appConfig, $mdToast, Upload) {
+    constructor(Auth, appConfig, $mdToast, Upload, $state) {
         this.errors = {};
         this.submitted = false;
         this.title = 'Editar perfil';
@@ -10,15 +10,17 @@ class SettingsController {
         this.roles = appConfig.userRoles;
         this.Auth = Auth;
         this.upload = Upload;
+        this.$state = $state;
         this.$mdToast = $mdToast;
         this.isAdmin = Auth.isAdmin();
 
         // Retrieve current user information
-        this.user = Auth.getCurrentUser();
+        /*this.user = Auth.getCurrentUser();*/
     }
 
     $onInit() {
         this.avatar = this.user.avatar;
+        console.log(this.user);
     }
 
     changePassword(form) {
@@ -27,12 +29,23 @@ class SettingsController {
         if (form.$valid) {
             this.Auth.changePassword(this.user.oldPassword, this.user.newPassword)
                 .then(() => {
-                    this.message = 'Password successfully changed.';
+                    this.showSimpleToast = function() {
+                        this.$mdToast.show(
+                            this.$mdToast.simple()
+                            .parent(angular.element(document.body))
+                            .textContent('Contraseña cambiada correctamente')
+                            .position('top right')
+                            .hideDelay(3000)
+                        );
+                    };
+
+                    this.showSimpleToast();
+                    this.$state.go('main');
                 })
                 .catch(() => {
                     form.password.$setValidity('mongoose', false);
-                    this.errors.other = 'Incorrect password';
-                    this.message = '';
+                    //this.errors.other = 'Contraseña actual incorrecta';
+                    this.message = 'Contraseña actual incorrecta';
                 });
         }
     }
@@ -60,7 +73,7 @@ class SettingsController {
                         _id: _id
                     }
                 }).then((resp) => {
-                    console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                    console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
                     // Include new avatar filename to avoid override
                     this.updateUser(form, resp.data.avatar);
                 })
@@ -91,12 +104,10 @@ class SettingsController {
                     };
 
                     this.showSimpleToast();
-
-                    // TODO: Transition to main???
+                    this.$state.go('main');
                 })
                 .catch((err) => {
-                    form.password.$setValidity('mongoose', false);
-                    this.errors.other = 'Incorrect password';
+                    console.log(err);
                 });
         }
     }

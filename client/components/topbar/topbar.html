@@ -6,8 +6,8 @@
         <h2 class="md-headline">{{$ctrl.page}}</h2>
         <span flex></span>
         <div class="user-info">
-            <img class="avatar" ng-src="{{$ctrl.imagesServer}}/34/34/uploads/{{$ctrl.user.avatar}}?fit=true&force=true" alt="AGFA">
-            <span>{{$ctrl.user.name}}</span>
+            <img class="avatar" ng-src="{{$ctrl.imagesServer}}/34/34/uploads/{{$ctrl.user.avatar}}?fit=true&force=true" alt="Avatar de usuario">
+            <span>{{::$ctrl.user.name}}</span>
             <md-menu md-position-mode="target-right target" md-offset="0 42">
                 <md-button aria-label="Open menu" class="md-icon-button" ng-click="$ctrl.openMenu($mdMenu, $event)">
                     <md-icon>keyboard_arrow_down</md-icon>

@@ -2,11 +2,16 @@
 
 <md-content layout-padding>
     <md-card class="confirm-card">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">Cambiar datios</span>
+            </md-card-title-text>
+        </md-card-title>
         <md-card-content>
             <form name="userForm" ng-submit="$ctrl.confirm(userForm)" enctype="multipart/form-data" novalidate>
                 <div class="form-container">
                     <div class="avatar-container">
-                        <file-input avatar="$ctrl.avatar" file="$ctrl.file"></file-input>
+                        <file-input avatar="$ctrl.user.avatar" file="$ctrl.file"></file-input>
                     </div>
                     <div class="inputs-container">
                         <md-input-container>
@@ -40,27 +45,6 @@
                             </div>
                         </md-input-container>
 
-
-                        <!--<md-input-container>
-                            <label>Contraseña</label>
-                            <input type="password" name="password" ng-minlength="6" ng-model="$ctrl.user.password" required mongoose-error/>
-                            <div ng-messages="userForm.password.$error">
-                                <div ng-message="required">Campo obligatorio</div>
-                                <div ng-message="minlength">La contraseña debe tener como mínimo 6 caracteres</div>
-                                <div ng-message="mongoose">{{ $ctrl.errors.password }}</div>
-                            </div>
-                        </md-input-container>
-
-                        <md-input-container>
-                            <label> Confirmar nueva contraseña</label>
-                            <input type="password" name="confirmPassword" ng-model="$ctrl.user.confirmPassword" ng-minlength="6" match="$ctrl.user.password" required>
-                            <div ng-messages="userForm.confirmPassword.$error">
-                                <div ng-message="required">Campo obligatorio</div>
-                                <div ng-message="minlength">La nueva contraseña debe tener mínimo 6 caracteres</div>
-                                <div ng-message="match">Las contraseñas deben coincidir</div>
-                            </div>
-                        </md-input-container>-->
-
                         <md-input-container>
                             <label>Rol</label>
                             <md-select name="role" class="option" ng-model="$ctrl.user.role" ng-disabled="!$ctrl.isAdmin">
@@ -78,11 +62,51 @@
                 <div class="actions-container" layout-align="center center">
                     <md-button type="submit" class="md-raised md-primary">Guardar cambios</md-button>
                 </div>
+            </form>
+        </md-card-content>
+    </md-card>
 
-                <!--<md-input-container class="md-block" flex-gt-sm>
-                    <h4>Avatar</h4>
-                    <file-input></file-input>
-                </md-input-container>-->
+    <md-card class="confirm-card">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">Cambiar contraseña</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form name="userPasswordForm" ng-submit="userPasswordForm.$valid && $ctrl.changePassword(userPasswordForm)" novalidate>
+                <md-input-container>
+                    <label>Contraseña actual</label>
+                    <input type="password" name="password" ng-model="$ctrl.user.oldPassword" mongoose-error required>
+                    <div ng-messages="userPasswordForm.password.$error">
+                        <div ng-message="required">Campo requerido</div>
+                    </div>
+                </md-input-container>
+
+
+                <md-input-container>
+                    <label> Nueva contraseña</label>
+                    <input type="password" name="newPassword" ng-model="$ctrl.user.newPassword" ng-minlength="3" required>
+                    <div ng-messages="userPasswordForm.newPassword.$error">
+                        <div ng-message="required">Campo requerido</div>
+                        <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label> Confirmar nueva contraseña</label>
+                    <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword" ng-minlength="3" match="$ctrl.user.newPassword" required>
+                    <div ng-messages="userPasswordForm.confirmPassword.$error">
+                        <div ng-message="required">Campo requerido</div>
+                        <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
+                        <div ng-message="match">Las contraseñas deben coincidir</div>
+                    </div>
+                </md-input-container>
+
+
+                <p class="errorMessage">{{ $ctrl.message }}</p>
+                <div class="actions-container" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+                </div>
             </form>
         </md-card-content>
     </md-card>

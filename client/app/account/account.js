@@ -22,7 +22,12 @@ angular.module('agfaWebappApp')
             .state('settings', {
                 url: '/settings',
                 component: 'settings',
-                authenticate: true
+                authenticate: true,
+                resolve: {
+                    user: (Auth) => {
+                        return Auth.getCurrentUser();
+                    }
+                }
             })
             .state('confirm', {
                 url: '/confirm/:token',
