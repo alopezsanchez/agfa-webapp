@@ -17,3 +17,11 @@
 .login-card md-input-container {
     display: block;
 }
+
+div[ui-view] login md-content {
+    background: url(../../../assets/images/login.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
