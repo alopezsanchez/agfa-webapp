@@ -1,8 +1,11 @@
 'use strict';
 
 const EditField = {
-    templateUrl: 'app/field/eidt/edit-field.html',
-    controller: 'FieldController as $ctrl'
+    bindings: {
+        field: '<'
+    },
+    templateUrl: 'app/field/edit/edit-field.html',
+    controller: 'EditFieldController as $ctrl'
 };
 
 angular

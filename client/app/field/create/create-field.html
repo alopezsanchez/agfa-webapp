@@ -26,7 +26,7 @@
                 </md-input-container>
 
                 <md-input-container>
-                    <label>Equipo</label>
+                    <label>Equipos</label>
                     <md-select name="teams" ng-model="$ctrl.field.teams" multiple required mongoose-error />
                     <md-option ng-repeat="team in $ctrl.teams" value="{{team._id}}">
                         <span>{{team.name}}</span>

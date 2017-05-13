@@ -1,0 +1,67 @@
+<topbar page="$ctrl.title"></topbar>
+
+<md-content>
+    <md-card class="edit-card">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">{{::$ctrl.field.name}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form layout-padding name="editFieldForm" ng-submit="$ctrl.confirm(editFieldForm)" novalidate>
+
+                <md-input-container>
+                    <label>Nombre</label>
+                    <input type="text" name="name" ng-model="$ctrl.field.name" required/>
+                    <div ng-messages="editFieldForm.name.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Dirección</label>
+                    <input type="text" name="address" ng-model="$ctrl.field.address" required />
+                    <div ng-messages="editFieldForm.address.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Equipos</label>
+                    <md-select name="teams" ng-model="$ctrl.field.teams" multiple required />
+                    <md-option ng-repeat="team in $ctrl.teams" value="{{team._id}}">
+                        <span>{{team.name}}</span>
+                    </md-option>
+                    </md-select>
+                    <div ng-messages="editFieldForm.teams.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="mongoose">{{$ctrl.errors.teams}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Latitud</label>
+                    <input type="text" name="lat" ng-model="$ctrl.field.lat" required/>
+                    <div ng-messages="editFieldForm.lat.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="mongoose">{{$ctrl.errors.lat}}</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Longitud</label>
+                    <input type="text" name="lng" ng-model="$ctrl.field.lng" required />
+                    <div ng-messages="editFieldForm.lng.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+
+                <p class="errorMessage">{{ $ctrl.errors.other }}</p>
+
+                <section class="actions-container" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+                </section>
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>
