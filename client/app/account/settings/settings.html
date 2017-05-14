@@ -1,10 +1,10 @@
-<topbar page="$ctrl.title"></topbar>
+<topbar page="{{'app.account.settings.title' | translate}}"></topbar>
 
 <md-content layout-padding>
     <md-card class="confirm-card">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-title">Cambiar datos</span>
+                <span class="md-title">{{'app.account.settings.changeData' | translate}}</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
@@ -15,52 +15,49 @@
                     </div>
                     <div class="inputs-container">
                         <md-input-container>
-                            <label>Nombre</label>
+                            <label>{{'app.account.signup.name' | translate}}</label>
                             <input type="text" name="name" ng-model="$ctrl.user.name" required/>
                             <div ng-messages="userForm.name.$error">
-                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message="required">{{'required' | translate}}</div>
                             </div>
                         </md-input-container>
 
 
                         <md-input-container>
-                            <label>E-mail</label>
+                            <label>{{'app.account.signup.email' | translate}}</label>
                             <input type="email" name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
                             <div ng-messages="userForm.email.$error">
-                                <div ng-message="required">Campo obligatorio</div>
-                                <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
-                                <div ng-message="mongoose">{{ $ctrl.errors.email }}</div>
-                            </div>
-                            <div ng-messages="userForm.email.$error.mongoose">
-                                <div ng-message="mongoose">{{ $ctrl.errors.email }}</div>
+                                <div ng-message="required">{{'required' | translate}}</div>
+                                <div ng-message-exp="['pattern']">{{'app.account.signup.validMail' | translate}}</div>
+                                <div ng-message="mongoose">{{'app.account.signup.mailInUse' | translate}}</div>
                             </div>
                         </md-input-container>
 
 
                         <md-input-container>
-                            <label>Dirección</label>
+                            <label>{{'app.account.settings.address' | translate}}</label>
                             <input type="text" name="address" ng-model="$ctrl.user.address" ng-required="true" />
                             <div ng-messages="userForm.address.$error">
-                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message="required">{{'required' | translate}}</div>
                             </div>
                         </md-input-container>
 
                         <md-input-container>
-                            <label>Rol</label>
+                            <label>{{'app.account.signup.role' | translate}}</label>
                             <md-select name="role" class="option" ng-model="$ctrl.user.role" ng-disabled="!$ctrl.isAdmin">
                                 <md-option ng-repeat="role in $ctrl.roles" value="{{role}}">{{role}}</md-option>
                             </md-select>
                             <div ng-messages="userForm.role.$error">
-                                <div ng-message="required">Campo obligatorio</div>
+                                <div ng-message="required">{{'required' | translate}}</div>
                             </div>
                         </md-input-container>
-
-                        <p class="errorMessage">{{ $ctrl.errors.other }}</p>
                     </div>
                 </div>
 
+                <p class="errorMessage">{{ $ctrl.errors.other }}</p>
+
                 <div class="actions-container" layout-align="center center">
-                    <md-button type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+                    <md-button type="submit" class="md-raised md-primary">{{'app.account.settings.confirm' | translate}}</md-button>
                 </div>
             </form>
         </md-card-content>
@@ -69,43 +66,42 @@
     <md-card class="confirm-card">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-title">Cambiar contraseña</span>
+                <span class="md-title">{{'app.account.settings.changePassword' | translate}}</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
             <form name="userPasswordForm" ng-submit="userPasswordForm.$valid && $ctrl.changePassword(userPasswordForm)" novalidate>
                 <md-input-container>
-                    <label>Contraseña actual</label>
+                    <label>{{'app.account.settings.currentPassword' | translate}}</label>
                     <input type="password" name="password" ng-model="$ctrl.user.oldPassword" mongoose-error required>
                     <div ng-messages="userPasswordForm.password.$error">
-                        <div ng-message="required">Campo requerido</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
+                        <div ng-message="mongoose">{{'app.account.settings.incorrectPassword' | translate}}</div>
                     </div>
                 </md-input-container>
 
 
                 <md-input-container>
-                    <label> Nueva contraseña</label>
+                    <label>{{'app.account.settings.newPassword' | translate}}</label>
                     <input type="password" name="newPassword" ng-model="$ctrl.user.newPassword" ng-minlength="3" required>
                     <div ng-messages="userPasswordForm.newPassword.$error">
-                        <div ng-message="required">Campo requerido</div>
-                        <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
+                        <div ng-message="minlength">{{'app.account.settings.passwordMinLength' | translate}}</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container>
-                    <label> Confirmar nueva contraseña</label>
+                    <label>{{'app.account.settings.confirmNewPassword' | translate}}</label>
                     <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword" ng-minlength="3" match="$ctrl.user.newPassword" required>
                     <div ng-messages="userPasswordForm.confirmPassword.$error">
-                        <div ng-message="required">Campo requerido</div>
-                        <div ng-message="minlength">La nueva contraseña debe tener mínimo 3 caracteres</div>
-                        <div ng-message="match">Las contraseñas deben coincidir</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
+                        <div ng-message="minlength">{{'app.account.settings.passwordMinLength' | translate}}</div>
+                        <div ng-message="match">{{'app.account.settings.passwordMatch' | translate}}</div>
                     </div>
                 </md-input-container>
 
-
-                <p class="errorMessage">{{ $ctrl.message }}</p>
                 <div class="actions-container" layout-align="center center">
-                    <md-button type="submit" class="md-raised md-primary">Guardar cambios</md-button>
+                    <md-button type="submit" class="md-raised md-primary">{{'app.account.settings.confirm' | translate}}</md-button>
                 </div>
             </form>
         </md-card-content>

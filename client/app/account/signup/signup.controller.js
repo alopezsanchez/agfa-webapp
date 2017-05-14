@@ -9,7 +9,7 @@ class SignupController {
     file = null;
     //end-non-standard
 
-    constructor(Auth, $state, $mdToast, appConfig, Upload, $mdDialog) {
+    constructor(Auth, $state, $mdToast, appConfig, Upload, $mdDialog, $translate) {
         this.Auth = Auth;
         this.$state = $state;
         this.roles = appConfig.userRoles;
@@ -17,8 +17,12 @@ class SignupController {
         this.toast = $mdToast;
         this.defaultAvatar = appConfig.defaultAvatar;
         this.$mdDialog = $mdDialog;
+        this.$translate = $translate;
     }
 
+    cancel() {
+        this.$mdDialog.hide();
+    }
 
     register(form) {
         this.submitted = true;
@@ -33,14 +37,19 @@ class SignupController {
                 if (this.file) {
                     this.uploadImage(this.file, user._id);
                 }
-                this.showSimpleToast = function() {
-                    this.toast.show(
-                        this.toast.simple()
-                        .parent(angular.element(document.body))
-                        .textContent('Usuario registrado correctamente')
-                        .position('top right')
-                        .hideDelay(3000)
-                    );
+                this.showSimpleToast = () => {
+                    let translatedString;
+                    this.$translate('app.account.signup.registered').then(value => {
+                        translatedString = value;
+
+                        this.toast.show(
+                            this.toast.simple()
+                            .parent(angular.element(document.body))
+                            .textContent(translatedString)
+                            .position('top right')
+                            .hideDelay(3000)
+                        );
+                    });
                 };
 
                 this.showSimpleToast();

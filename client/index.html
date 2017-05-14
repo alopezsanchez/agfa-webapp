@@ -120,6 +120,11 @@
     <script src="bower_components/js-rich-marker/src/richmarker.js"></script>
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
@@ -139,6 +144,7 @@
     <script src="app/admin/admin.controller.js"></script>
     <script src="app/account/account.js"></script>
     <script src="app/admin/admin.router.js"></script>
+    <script src="app/app-locales.constant.js"></script>
     <script src="app/app.constant.js"></script>
     <script src="app/classification/classification.component.js"></script>
     <script src="app/classification/classification.controller.js"></script>
@@ -181,6 +187,8 @@
     <script src="components/file-input/file-input.controller.js"></script>
     <script src="components/file-input/file-input.directive.js"></script>
     <script src="components/footer/footer.directive.js"></script>
+    <script src="components/locale/locale.service.js"></script>
+    <script src="components/locale/translate-language-select.directive.js"></script>
     <script src="components/modal/modal.service.js"></script>
     <script src="components/mongoose-error/mongoose-error.directive.js"></script>
     <script src="components/navbar/navbar.component.js"></script>

@@ -10,11 +10,12 @@ class TopbarController {
         this.$mdSidenav('sidenav').toggle();
     }
 
-    constructor($scope, Auth, appConfig, $mdSidenav) {
+    constructor($scope, Auth, appConfig, $mdSidenav, $translate) {
         this.Auth = Auth;
         this.isLoggedIn = this.Auth.isLoggedIn;
         this.isAdmin = this.Auth.isAdmin();
         this.$mdSidenav = $mdSidenav;
+        this.$translate = $translate;
         this.imagesServer = appConfig.imagesServer;
         this.userSettings = [];
 
@@ -22,17 +23,19 @@ class TopbarController {
             this.user = user;
         });
 
-        this.userSettings = [{
-                title: 'Mi perfil',
-                state: 'settings',
-                icon: 'settings'
-            },
-            {
-                title: 'Salir',
-                state: 'logout',
-                icon: 'exit_to_app'
-            }
-        ];
+        this.$translate(['app.components.topbar.settings.profile', 'app.components.topbar.settings.logout']).then(values => {
+            this.userSettings = [{
+                    title: values['app.components.topbar.settings.profile'],
+                    state: 'settings',
+                    icon: 'settings'
+                },
+                {
+                    title: values['app.components.topbar.settings.logout'],
+                    state: 'logout',
+                    icon: 'exit_to_app'
+                }
+            ];
+        });
     }
 }
 

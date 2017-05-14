@@ -16,9 +16,10 @@ angular.module('agfaWebappApp', [
         'ngFileUpload',
         'alAngularHero',
         'validation.match',
-        'pascalprecht.translate'
+        'pascalprecht.translate',
+        'tmh.dynamicLocale'
     ])
-    .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider, uiGmapGoogleMapApiProvider) {
+    .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider, tmhDynamicLocaleProvider, uiGmapGoogleMapApiProvider) {
 
         uiGmapGoogleMapApiProvider.configure({
             key: 'AIzaSyDahCsMz5gJRUIzIB3_15w3OYgp8g7O4XA',
@@ -129,13 +130,17 @@ angular.module('agfaWebappApp', [
         /** ************* */
 
 
-        $translateProvider.translations('es', {
-            HEADLINE: 'Asociación Gallega de Fútbol Americano',
-            INTRO_TEXT: 'And it has i18n support!'
-        });
+        $translateProvider.useMissingTranslationHandlerLog();
 
-        $translateProvider.preferredLanguage('es');
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'resources/locale-', // path to translations files
+            suffix: '.json' // suffix, currently- extension of the translations
+        });
+        $translateProvider.preferredLanguage('es_ES'); // is applied on first load
+        $translateProvider.useLocalStorage(); // saves selected language to localStorage
         $translateProvider.useSanitizeValueStrategy(null);
+
+        tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
 
     })
     .run(function($rootScope, appConfig) {

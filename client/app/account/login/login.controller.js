@@ -1,7 +1,7 @@
 'use strict';
 
 class LoginController {
-    constructor(Auth, $state, appConfig) {
+    constructor(Auth, $state, appConfig, $translate) {
         this.user = {};
         this.errors = {};
         this.submitted = false;
@@ -9,6 +9,7 @@ class LoginController {
 
         this.Auth = Auth;
         this.$state = $state;
+        this.$translate = $translate;
     }
 
     login(form) {
@@ -22,8 +23,10 @@ class LoginController {
                 .then(() => {
                     // Logged in, redirect to home
                     this.$state.go('main');
-                }, err => {
-                    this.errors.other = err.message;
+                }, () => {
+                    this.$translate('app.account.login.error').then(value => {
+                        this.errors.other = value;
+                    });
                 });
         }
     }

@@ -1,27 +1,27 @@
 <md-toolbar class="modal-toolbar">
     <div class="md-toolbar-tools">
-        Nuevo usuario
+        {{'app.account.signup.title' | translate}}
     </div>
 </md-toolbar>
 <md-content class="signup-modal" layout-padding>
     <form name="newUserForm" ng-submit="$ctrl.register(newUserForm)" enctype="multipart/form-data" novalidate>
         <md-input-container class="md-block" flex-gt-sm>
-            <label>Nombre</label>
+            <label>{{'app.account.signup.name' | translate}}</label>
             <md-icon class="md-primay">person</md-icon>
             <input type="text" name="name" ng-model="$ctrl.user.name" required/>
             <div ng-messages="newUserForm.name.$error">
-                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="required">{{'required' | translate}}</div>
             </div>
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
-            <label>E-mail</label>
+            <label>{{'app.account.signup.email' | translate}}</label>
             <md-icon>email</md-icon>
             <input type="email" name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" mongoose-error/>
             <div ng-messages="newUserForm.email.$error">
-                <div ng-message="required">Campo obligatorio</div>
-                <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
-                <div ng-message="mongoose">{{ $ctrl.errors.email }}</div>
+                <div ng-message="required">{{'required' | translate}}</div>
+                <div ng-message-exp="['pattern']">{{'app.account.signup.validMail' | translate}}</div>
+                <div ng-message="mongoose">{{ 'app.account.signup.mailInUse' | translate}}</div>
             </div>
             <div ng-messages="newUserForm.email.$error.mongoose">
                 <div ng-message="mongoose">{{ $ctrl.errors.email }}</div>
@@ -29,20 +29,21 @@
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
-            <label>Rol</label>
+            <label>{{'app.account.signup.role' | translate}}</label>
             <md-icon>supervisor_account</md-icon>
             <md-select name="role" class="option" ng-model="$ctrl.user.role" required>
                 <md-option ng-repeat="role in $ctrl.roles" value="{{role}}">{{role}}</md-option>
             </md-select>
             <div ng-messages="newUserForm.role.$error">
-                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="required">{{'required' | translate}}</div>
             </div>
         </md-input-container>
 
         <p class="help-block">{{ $ctrl.errors.other }}</p>
 
-        <section class="submit-btn" layout-align="center center">
-            <md-button type="submit" class="md-raised md-primary">Enviar mail de registro</md-button>
+        <section layout-align="start">
+            <md-button ng-click="$ctrl.cancel()" class="md-primary">{{'cancel' | translate}}</md-button>
+            <md-button type="submit" class="md-raised md-primary">{{'app.account.signup.sendMail' | translate}}</md-button>
         </section>
     </form>
 </md-content>

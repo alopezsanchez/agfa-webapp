@@ -6,3 +6,8 @@
 .signup-modal form {
     width: 100%;
 }
+
+.signup-modal section {
+    display: flex;
+    justify-content: flex-end;
+}

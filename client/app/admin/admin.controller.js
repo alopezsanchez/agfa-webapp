@@ -3,7 +3,7 @@
 (function() {
 
     class AdminController {
-        constructor(User, $scope, $mdDialog, $mdToast, appConfig) {
+        constructor(User, $scope, $mdDialog, $mdToast, appConfig, $translate) {
             // Use the User $resource to fetch all users
             this.title = 'Usuarios';
             this.dialog = $mdDialog;
@@ -11,6 +11,7 @@
             this.scope = $scope;
             this.imagesServer = appConfig.imagesServer;
             this.User = User;
+            this.$translate = $translate;
         }
 
         $onInit() {
@@ -26,17 +27,19 @@
                 this.notConfirmedUsers.splice(this.notConfirmedUsers.indexOf(user), 1);
             }
 
-            this.showSimpleToast = () => {
-                this.toast.show(
-                    this.toast.simple()
-                    .parent(angular.element(document.body))
-                    .textContent('Usuario eliminado')
-                    .position('top right')
-                    .hideDelay(3000)
-                );
-            };
+            this.$translate('app.admin.deleted').then(translation => {
+                this.showSimpleToast = () => {
+                    this.toast.show(
+                        this.toast.simple()
+                        .parent(angular.element(document.body))
+                        .textContent(translation)
+                        .position('top right')
+                        .hideDelay(3000)
+                    );
+                };
 
-            this.showSimpleToast();
+                this.showSimpleToast();
+            });
         }
 
         signup(ev) {
@@ -55,18 +58,24 @@
 
         showConfirm(ev, user) {
             let _this = this;
-            // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = this.dialog.confirm()
-                .title('¿Está seguro de eliminar el usuario ' + user.name + '?')
-                .textContent('Este cambio es irreversible.')
-                .ariaLabel('Eliminar usuario')
-                .targetEvent(ev)
-                .ok('Eliminar')
-                .cancel('Cancelar');
-            this.dialog.show(confirm).then(function() {
-                _this.delete(user);
-            }, function() {
-                _this.scope.status = 'You decided to keep your debt.';
+
+            const translateKeys = ['app.admin.confirmTitle', 'app.admin.confirmContent', 'app.admin.confirmAria', 'app.admin.confirmOk', 'cancel'];
+
+            let translations = {};
+            this.$translate(translateKeys).then(values => {
+                translations = values;
+
+                // Appending dialog to document.body to cover sidenav in docs app
+                var confirm = this.dialog.confirm()
+                    .title(translations['app.admin.confirmTitle'] + user.name + '?')
+                    .textContent(translations['app.admin.confirmContent'])
+                    .ariaLabel(translations['app.admin.confirmAria'])
+                    .targetEvent(ev)
+                    .ok(translations['app.admin.confirmOk'])
+                    .cancel(translations['cancel']);
+                this.dialog.show(confirm).then(function() {
+                    _this.delete(user);
+                });
             });
         }
     }

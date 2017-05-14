@@ -1,35 +1,35 @@
-<md-content class="login-content" layout-padding>
+<md-content class="login-content">
     <md-card class="login-card">
         <img ng-src="{{$ctrl.imagesServer}}/400/200/images/agfa_banner.jpg" class="md-card-image" alt="AGFA">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">Iniciar sesión</span>
+                <span class="md-headline">{{'app.account.login.title' | translate}}</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
             <form name="userForm" ng-submit="userForm.$valid && $ctrl.login(userForm)" novalidate>
                 <md-input-container>
-                    <label>E-mail</label>
+                    <label>{{'app.account.signup.email' | translate}}</label>
                     <input type="email" name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" ng-required="true" autofocus>
                     <div ng-messages="userForm.email.$error">
-                        <div ng-message="required">Campo requerido</div>
-                        <div ng-message-exp="['pattern']">El email introducido debe ser válido</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
+                        <div ng-message-exp="['pattern']">{{'app.account.signup.validMail' | translate}}</div>
                     </div>
                 </md-input-container>
 
 
                 <md-input-container>
-                    <label>Contraseña</label>
+                    <label>{{'app.account.login.password' | translate}}</label>
                     <input type="password" name="password" class="form-control" ng-model="$ctrl.user.password" required>
                     <div ng-messages="userForm.password.$error">
-                        <div ng-message="required">Campo requerido</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
                     </div>
                 </md-input-container>
 
                 <p class="errorMessage">{{ $ctrl.errors.other }}</p>
 
                 <section class="submit-btn" layout-align="center center">
-                    <md-button type="submit" class="md-raised md-primary">Iniciar sesión</md-button>
+                    <md-button type="submit" class="md-raised md-primary">{{'app.account.login.login' | translate}}</md-button>
                 </section>
             </form>
         </md-card-content>

@@ -4,7 +4,7 @@ const Topbar = {
     templateUrl: 'components/topbar/topbar.html',
     controller: 'TopbarController as $ctrl',
     bindings: {
-        page: '='
+        page: '@'
     }
 };
 
