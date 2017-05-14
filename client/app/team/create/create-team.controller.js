@@ -85,6 +85,10 @@ class CreateTeamController {
         }
     }
 
+    cancel() {
+        this.$mdDialog.hide();
+    }
+
     showToast() {
         this.toast.show(
             this.toast.simple()

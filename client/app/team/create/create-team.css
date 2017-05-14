@@ -10,3 +10,8 @@
 .create-team-modal form .select-container {
     max-width: 200px;
 }
+
+.create-team-modal section {
+    display: flex;
+    justify-content: flex-end;
+}

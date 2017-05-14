@@ -2,14 +2,14 @@
 
 class TeamController {
 
-    constructor($scope, Auth, $http, $mdDialog, $mdToast, $state, appConfig) {
+    constructor($scope, Auth, $http, $mdDialog, $mdToast, $state, appConfig, $translate) {
         this.$scope = $scope;
         this.teams = [];
-        this.title = 'Equipos';
         this.$http = $http;
         this.dialog = $mdDialog;
         this.toast = $mdToast;
         this.state = $state;
+        this.$translate = $translate;
         this.imagesServer = appConfig.imagesServer;
         this.Auth = Auth;
         this.filter = {
@@ -75,17 +75,21 @@ class TeamController {
         this.$http.delete(`/api/teams/${team._id}`)
             .then(() => {
                 this.teams.splice(this.teams.indexOf(team), 1);
-                this.showSimpleToast = () => {
-                    this.toast.show(
-                        this.toast.simple()
-                        .parent(angular.element(document.body))
-                        .textContent('Equipo eliminado')
-                        .position('top right')
-                        .hideDelay(3000)
-                    );
-                };
 
-                this.showSimpleToast();
+                this.$translate('app.teams.deleted').then(value => {
+                    this.showSimpleToast = () => {
+                        this.toast.show(
+                            this.toast.simple()
+                            .parent(angular.element(document.body))
+                            .textContent(value)
+                            .position('top right')
+                            .hideDelay(3000)
+                        );
+                    };
+
+                    this.showSimpleToast();
+                });
+
             });
     }
 
@@ -109,16 +113,21 @@ class TeamController {
 
     showConfirm(ev, team) {
         let _this = this;
-        // Appending dialog to document.body to cover sidenav in docs app
-        var confirm = this.dialog.confirm()
-            .title('¿Está seguro de eliminar el equipo ' + team.name + '?')
-            .textContent('Este cambio es irreversible')
-            .ariaLabel('Eliminar equipo')
-            .targetEvent(ev)
-            .ok('Eliminar')
-            .cancel('Cancelar');
-        this.dialog.show(confirm).then(function() {
-            _this.delete(team);
+
+        const translateKeys = ['app.teams.confirmTitle', 'app.teams.confirmContent', 'app.teams.confirmAria', 'app.admin.confirmOk', 'cancel'];
+
+        this.$translate(translateKeys).then(translations => {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = this.dialog.confirm()
+                .title(translations['app.teams.confirmTitle'] + team.name + '?')
+                .textContent(translations['app.teams.confirmContent'])
+                .ariaLabel(translations['app.teams.confirmAria'])
+                .targetEvent(ev)
+                .ok(translations['app.admin.confirmOk'])
+                .cancel(translations['cancel']);
+            this.dialog.show(confirm).then(function() {
+                _this.delete(team);
+            });
         });
     }
 

@@ -9,15 +9,14 @@
             </div>
         </div>
         <div>
-            <h4>Club</h4>
             <md-input-container>
-                <label>Club</label>
+                <label>{{'club' | translate}}</label>
                 <md-select name="club" md-container-class="select-padding" ng-model="$ctrl.filter.club">
                     <md-option ng-repeat="club in $ctrl.clubs" value="{{club._id}}">{{club.name}}</md-option>
                 </md-select>
             </md-input-container>
         </div>
-        <md-button class="md-primary" ng-click="$ctrl.clearFilters()">Limpiar filtros</md-button>
+        <md-button class="md-primary" ng-click="$ctrl.clearFilters()">{{'app.teams.clearFilter' | translate}}</md-button>
     </div>
 </md-content>
 
@@ -39,9 +38,15 @@
             <md-card-icon-actions>
                 <md-button class="md-icon-button" ng-click="$ctrl.goToEdit(team._id)" aria-label="Editar equipo">
                     <md-icon>edit</md-icon>
+                    <md-tooltip>
+                        {{'app.teams.editTooltip' | translate}}
+                    </md-tooltip>
                 </md-button>
                 <md-button class="md-icon-button" ng-click="$ctrl.showConfirm($event, team)" aria-label="Eliminar equipo">
                     <md-icon>delete</md-icon>
+                    <md-tooltip>
+                        {{'app.teams.deleteTooltip' | translate}}
+                    </md-tooltip>
                 </md-button>
             </md-card-icon-actions>
         </md-card-actions>
@@ -49,7 +54,7 @@
 </md-content>
 
 
-<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-team-button" ng-click="$ctrl.createTeam($event)" aria-label="Nuevo equipo">
-    <md-tooltip md-direction="top">Nuevo equipo</md-tooltip>
+<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-team-button" ng-click="$ctrl.createTeam($event)" aria-label="{{'app.teams.new' | translate}}">
+    <md-tooltip md-direction="top">{{'app.teams.new' | translate}}</md-tooltip>
     <md-icon>add</md-icon>
 </md-button>

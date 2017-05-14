@@ -19,7 +19,9 @@ angular.module('agfaWebappApp', [
         'pascalprecht.translate',
         'tmh.dynamicLocale'
     ])
-    .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider, tmhDynamicLocaleProvider, uiGmapGoogleMapApiProvider) {
+    .config(function($urlRouterProvider, $qProvider, $locationProvider, $mdThemingProvider, $mdIconProvider, $translateProvider, tmhDynamicLocaleProvider, uiGmapGoogleMapApiProvider) {
+
+        $qProvider.errorOnUnhandledRejections(false);
 
         uiGmapGoogleMapApiProvider.configure({
             key: 'AIzaSyDahCsMz5gJRUIzIB3_15w3OYgp8g7O4XA',

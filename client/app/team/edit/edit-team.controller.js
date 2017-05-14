@@ -2,13 +2,14 @@
 
 class EditTeamController {
 
-    constructor($scope, User, $http, Team, $state, $mdToast, $stateParams, appConfig) {
+    constructor($scope, User, $http, Team, $state, $mdToast, $stateParams, $translate, appConfig) {
 
         this.clubs = [];
         this.team = {};
         this.$http = $http;
         this.state = $state;
         this.stateParams = $stateParams;
+        this.$translate = $translate;
         this.toast = $mdToast;
         this.clubTeams = [];
         this.parentTeam = null;
@@ -25,7 +26,6 @@ class EditTeamController {
                 value: item.toLowerCase()
             };
         });
-        this.title = 'Editar equipo';
 
         $http.get(`/api/teams/${$stateParams.id}`)
             .then((response) => {
@@ -97,12 +97,14 @@ class EditTeamController {
     }
 
     showToast() {
-        this.toast.show(
-            this.toast.simple()
-            .parent(angular.element(document.body))
-            .textContent('Equipo editado correctamente')
-            .position('top right')
-            .hideDelay(3000));
+        this.$translate('app.teams.edit.edited').then(value => {
+            this.toast.show(
+                this.toast.simple()
+                .parent(angular.element(document.body))
+                .textContent(value)
+                .position('top right')
+                .hideDelay(3000));
+        });
     }
 }
 
