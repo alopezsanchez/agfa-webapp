@@ -2,64 +2,65 @@
     <md-dialog-content>
         <md-toolbar class="modal-toolbar">
             <div class="md-toolbar-tools">
-                Nuevo campo de juego
+                {{'app.fields.new' | translate}}
             </div>
         </md-toolbar>
         <md-content class="new-field-modal" layout-padding>
             <form name="newFieldForm" ng-submit="$ctrl.confirm(newFieldForm)" enctype="multipart/form-data" novalidate>
                 <md-input-container>
-                    <label>Nombre</label>
+                    <label>{{'app.account.signup.name' | translate}}</label>
                     <input type="text" name="name" ng-model="$ctrl.field.name" required mongoose-error/>
                     <div ng-messages="newFieldForm.name.$error">
-                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
                         <div ng-message="mongoose">{{$ctrl.errors.name}}</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container>
-                    <label>Dirección</label>
+                    <label>{{'app.account.settings.address' | translate}}</label>
                     <input type="text" name="address" ng-model="$ctrl.field.address" required mongoose-error />
                     <div ng-messages="newFieldForm.address.$error">
-                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
                         <div ng-message="mongoose">{{$ctrl.errors.address}}</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container>
-                    <label>Equipos</label>
+                    <label>{{'app.fields.create.teams' | translate}}</label>
                     <md-select name="teams" ng-model="$ctrl.field.teams" multiple required mongoose-error />
                     <md-option ng-repeat="team in $ctrl.teams" value="{{team._id}}">
                         <span>{{team.name}}</span>
                     </md-option>
                     </md-select>
                     <div ng-messages="newFieldForm.teams.$error">
-                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
                         <div ng-message="mongoose">{{$ctrl.errors.teams}}</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container>
-                    <label>Latitud</label>
+                    <label>{{'app.fields.create.lat' | translate}}</label>
                     <input type="text" name="lat" ng-model="$ctrl.field.lat" mongoose-error required/>
                     <div ng-messages="newFieldForm.lat.$error">
-                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
                         <div ng-message="mongoose">{{$ctrl.errors.lat}}</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container>
-                    <label>Longitud</label>
+                    <label>{{'app.fields.create.lng' | translate}}</label>
                     <input type="text" name="lng" ng-model="$ctrl.field.lng" mongoose-error required/>
                     <div ng-messages="newFieldForm.lng.$error">
-                        <div ng-message="required">Campo obligatorio</div>
+                        <div ng-message="required">{{'required' | translate}}</div>
                         <div ng-message="mongoose">{{$ctrl.errors.lng}}</div>
                     </div>
                 </md-input-container>
 
                 <p class="help-block">{{ $ctrl.errors.other }}</p>
 
-                <section class="submit-btn" layout-align="center center">
-                    <md-button type="submit" class="md-raised md-primary">Crear</md-button>
+                <section>
+                    <md-button ng-click="$ctrl.cancel()" class="md-primary">{{'cancel' | translate}}</md-button>
+                    <md-button type="submit" class="md-raised md-primary">{{'app.fields.create.confirm' | translate}}</md-button>
                 </section>
             </form>
         </md-content>

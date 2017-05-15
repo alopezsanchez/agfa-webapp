@@ -2,11 +2,12 @@
 
 class CreateFieldController {
 
-    constructor($state, $mdDialog, $mdToast, $http, appConfig) {
+    constructor($state, $mdDialog, $mdToast, $http, $translate, appConfig) {
         this.$mdToast = $mdToast;
         this.$mdDialog = $mdDialog;
         this.$state = $state;
         this.$http = $http;
+        this.$translate = $translate;
 
         this.submitted = false;
         this.teams = [];
@@ -26,6 +27,9 @@ class CreateFieldController {
         });
     }
 
+    cancel() {
+        this.$mdDialog.hide();
+    }
 
     confirm(form) {
         this.submitted = true;
@@ -49,12 +53,15 @@ class CreateFieldController {
     }
 
     showToast() {
-        this.$mdToast.show(
-            this.$mdToast.simple()
-            .parent(angular.element(document.body))
-            .textContent('Campo de juego creado correctamente')
-            .position('top right')
-            .hideDelay(3000));
+
+        this.$translate('app.fields.create.created').then(value => {
+            this.$mdToast.show(
+                this.$mdToast.simple()
+                .parent(angular.element(document.body))
+                .textContent(value)
+                .position('top right')
+                .hideDelay(3000));
+        });
     }
 
 }

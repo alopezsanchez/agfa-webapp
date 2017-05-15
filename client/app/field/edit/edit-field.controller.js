@@ -2,12 +2,11 @@
 
 class EditFieldController {
 
-    constructor($http, $mdToast, $state) {
+    constructor($http, $mdToast, $state, $translate) {
         this.$http = $http;
         this.$mdToast = $mdToast;
         this.$state = $state;
-
-        this.title = 'Editar campo de juego';
+        this.$translate = $translate;
         this.teams = [];
 
         this.$http.get('/api/teams').then((response) => {
@@ -33,12 +32,15 @@ class EditFieldController {
     }
 
     showToast() {
-        this.$mdToast.show(
-            this.$mdToast.simple()
-            .parent(angular.element(document.body))
-            .textContent('Campo de juego editado correctamente')
-            .position('top right')
-            .hideDelay(3000));
+
+        this.$translate('app.fields.edit.edited').then(value => {
+            this.$mdToast.show(
+                this.$mdToast.simple()
+                .parent(angular.element(document.body))
+                .textContent(value)
+                .position('top right')
+                .hideDelay(3000));
+        });
     }
 }
 

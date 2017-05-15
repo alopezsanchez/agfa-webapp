@@ -1,10 +1,11 @@
 'use strict';
 
 class FieldController {
-    constructor($scope, $mdDialog, $http, $mdToast) {
+    constructor($scope, $mdDialog, $http, $mdToast, $translate) {
         this.$mdDialog = $mdDialog;
         this.$mdToast = $mdToast;
         this.$http = $http;
+        this.$translate = $translate;
 
         this.title = 'Campos de juego';
         this.fields = [];
@@ -60,31 +61,36 @@ class FieldController {
             // delete field from array
             this.fields.splice(this.fields.indexOf(field), 1);
 
-            this.showSimpleToast = () => {
-                this.$mdToast.show(
-                    this.$mdToast.simple()
-                    .parent(angular.element(document.body))
-                    .textContent('Campo eliminado')
-                    .position('top right')
-                    .hideDelay(3000)
-                );
-            };
+            this.$translate('app.fields.deleted').then(value => {
+                this.showSimpleToast = () => {
+                    this.$mdToast.show(
+                        this.$mdToast.simple()
+                        .parent(angular.element(document.body))
+                        .textContent(value)
+                        .position('top right')
+                        .hideDelay(3000)
+                    );
+                };
 
-            this.showSimpleToast();
+                this.showSimpleToast();
+            });
         });
     }
 
     showConfirm(ev, field) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        var confirm = this.$mdDialog.confirm()
-            .title('¿Está seguro de eliminar el ' + field.name + '?')
-            .textContent('Este cambio es irreversible.')
-            .ariaLabel('Eliminar campo de juego')
-            .targetEvent(ev)
-            .ok('Eliminar')
-            .cancel('Cancelar');
-        this.$mdDialog.show(confirm).then(() => {
-            this.delete(field);
+
+        this.$translate(['app.fields.confirmTitle', 'app.fields.confirmContent', 'app.fields.confirmAria', 'app.admin.confirmOk', 'cancel']).then(values => {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = this.$mdDialog.confirm()
+                .title(values['app.fields.confirmTitle'] + field.name + '?')
+                .textContent(values['app.fields.confirmContent'])
+                .ariaLabel(values['app.fields.confirmAria'])
+                .targetEvent(ev)
+                .ok(values['app.admin.confirmOk'])
+                .cancel(values['cancel']);
+            this.$mdDialog.show(confirm).then(() => {
+                this.delete(field);
+            });
         });
     }
 }

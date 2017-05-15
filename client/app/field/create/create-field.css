@@ -6,3 +6,8 @@
 .new-field-modal form {
     width: 100%;
 }
+
+.new-field-modal section {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -1,12 +1,13 @@
 'use strict';
 
 class CreateCompetitionStepOneController {
-    constructor($http, $mdDialog, appConfig, $state, $stateParams, $mdToast) {
+    constructor($http, $mdDialog, appConfig, $state, $stateParams, $mdToast, $translate) {
         this.$http = $http;
         this.$mdDialog = $mdDialog;
         this.$state = $state;
         this.$stateParams = $stateParams;
         this.$mdToast = $mdToast;
+        this.$translate = $translate;
         this.categories = appConfig.categories.map(function(item) {
             return {
                 name: item,
@@ -91,12 +92,15 @@ class CreateCompetitionStepOneController {
     }
 
     showToast() {
-        this.$mdToast.show(
-            this.$mdToast.simple()
-            .parent(angular.element(document.body))
-            .textContent('Competición creada correctamente')
-            .position('top right')
-            .hideDelay(3000));
+        this.$translate('app.competitions.create.created').then(value => {
+            this.$mdToast.show(
+                this.$mdToast.simple()
+                .parent(angular.element(document.body))
+                .textContent(value)
+                .position('top right')
+                .hideDelay(3000));
+        });
+
     }
 
     submit(form) {

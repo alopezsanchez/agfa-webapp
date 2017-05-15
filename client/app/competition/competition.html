@@ -1,9 +1,9 @@
-<topbar page="$ctrl.title"></topbar>
+<topbar page="{{'app.competitions.title' | translate}}"></topbar>
 
 <md-content layout-padding>
     <div class="filter-container" layout-padding>
         <div class="category-filter">
-            <h4>Categoría</h4>
+            <h4>{{'category' | translate}}</h4>
             <div>
                 <md-checkbox ng-checked="$ctrl.exists(category)" class="md-secondary" ng-click="$ctrl.toggle(category)" ng-value="category" ng-repeat="category in $ctrl.allCategories">{{category}}</md-checkbox>
             </div>
@@ -22,13 +22,14 @@
                 </div>
                 <md-button class="md-icon-button md-secondary delete-button" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,competition)">
                     <md-icon>delete</md-icon>
+                    <md-tooltip>{{'app.competitions.delete' | translate}}</md-tooltip>
                 </md-button>
             </md-list-item>
         </md-list>
     </md-card>
 </md-content>
 
-<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button" ui-sref="createCompetitionStepOne" aria-label="Nueva competición">
-    <md-tooltip md-direction="top">Nueva competición</md-tooltip>
+<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button" ui-sref="createCompetitionStepOne" aria-label="{{'app.competitions.new' | translate}}">
+    <md-tooltip md-direction="top">{{'app.competitions.new' | translate}}</md-tooltip>
     <md-icon>add</md-icon>
 </md-button>

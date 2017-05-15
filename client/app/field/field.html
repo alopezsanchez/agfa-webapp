@@ -1,4 +1,4 @@
-<topbar page="$ctrl.title"></topbar>
+<topbar page="{{'app.fields.title' | translate}}"></topbar>
 
 <md-content layout-padding>
     <md-card class="teams-card" ng-show="$ctrl.fields.length">
@@ -13,14 +13,15 @@
                     <small>{{field.address}}</small>
                 </div>
                 <md-button class="md-icon-button md-secondary zoom-button" aria-label="Zoom" ng-click="$ctrl.zoom($event,field)">
-                    <md-tooltip>Ver ubicación</md-tooltip>
+                    <md-tooltip>{{'app.fields.zoom' | translate}}</md-tooltip>
                     <md-icon>zoom_in</md-icon>
                 </md-button>
                 <md-button class="md-icon-button md-secondary edit-button" aria-label="Editar" ui-sref="editField({id: field._id})">
-                    <md-tooltip>Editar campo de juego</md-tooltip>
+                    <md-tooltip>{{'app.fields.edit' | translate}}</md-tooltip>
                     <md-icon>edit</md-icon>
                 </md-button>
                 <md-button class="md-icon-button md-secondary" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,field)">
+                    <md-tooltip>{{'app.fields.delete' | translate}}</md-tooltip>
                     <md-icon>delete</md-icon>
                 </md-button>
             </md-list-item>
@@ -32,7 +33,7 @@
 
 
 
-<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-field-button" ng-click="$ctrl.createField($event)" aria-label="Nuevo campo de juego">
-    <md-tooltip md-direction="top">Nuevo campo de juego</md-tooltip>
+<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-field-button" ng-click="$ctrl.createField($event)" aria-label="{{'app.fields.new' | translate}}">
+    <md-tooltip md-direction="top">{{'app.fields.new' | translate}}</md-tooltip>
     <md-icon>add</md-icon>
 </md-button>
