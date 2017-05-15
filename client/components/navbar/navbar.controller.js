@@ -1,24 +1,27 @@
 'use strict';
 
-var NavbarController = function($scope, Auth, $mdSidenav, appConfig) {
+var NavbarController = function($scope, Auth, $mdSidenav, $translate, appConfig) {
 
-    this.menu = [{
-        'title': 'Usuarios',
-        'state': 'admin',
-        'icon': 'person'
-    }, {
-        'title': 'Competiciones',
-        'state': 'competitions',
-        'icon': 'competition'
-    }, {
-        'title': 'Equipos',
-        'state': 'teams',
-        'icon': 'helmet'
-    }, {
-        'title': 'Campos de juego',
-        'state': 'fields',
-        'icon': 'field'
-    }];
+    $translate(['app.components.navbar.users', 'app.components.navbar.competitions', 'app.components.navbar.teams', 'app.components.navbar.fields'])
+        .then(values => {
+            this.menu = [{
+                'title': values['app.components.navbar.users'],
+                'state': 'admin',
+                'icon': 'person'
+            }, {
+                'title': values['app.components.navbar.competitions'],
+                'state': 'competitions',
+                'icon': 'competition'
+            }, {
+                'title': values['app.components.navbar.teams'],
+                'state': 'teams',
+                'icon': 'helmet'
+            }, {
+                'title': values['app.components.navbar.fields'],
+                'state': 'fields',
+                'icon': 'field'
+            }];
+        });
 
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;

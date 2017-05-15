@@ -1,4 +1,4 @@
-angular.module('agfaWebappApp').directive('ngTranslateLanguageSelect', function(LocaleService) {
+angular.module('agfaWebappApp').directive('ngTranslateLanguageSelect', function(LocaleService, $state) {
     'use strict';
 
     return {
@@ -22,6 +22,7 @@ angular.module('agfaWebappApp').directive('ngTranslateLanguageSelect', function(
 
             $scope.changeLanguage = function(locale) {
                 LocaleService.setLocaleByDisplayName(locale);
+                window.location.reload();
             };
         }
     };

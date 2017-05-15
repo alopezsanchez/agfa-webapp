@@ -1,5 +1,9 @@
 {
     "directives.language-select.Language": "Idioma",
+    "app.components.navbar.users": "Usuarios",
+    "app.components.navbar.competitions": "Competicións",
+    "app.components.navbar.teams": "Equipos",
+    "app.components.navbar.fields": "Campos de xogo",
     "required": "Campo obrigatorio",
     "cancel": "Cancelar",
     "categories": "Categorías",
