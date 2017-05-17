@@ -1,18 +1,18 @@
 <md-toolbar class="md-table-toolbar md-default">
     <div class="md-toolbar-tools">
-        <span>Jornada {{$ctrl.info.number}}</span>
+        <span>{{'week' | translate}} {{$ctrl.info.number}}</span>
     </div>
 </md-toolbar>
 <md-table-container>
     <table md-table>
         <thead md-head>
             <tr md-row>
-                <th md-column><span>Equipo local</span></th>
-                <th md-column><span>Equipo visitante</span></th>
-                <th md-column><span>Fecha</span></th>
-                <th md-column><span>Hora</span></th>
-                <th md-column><span>Campo de juego</span></th>
-                <th md-column><span>Acciones</span></th>
+                <th md-column><span>{{'app.match.create.localTeam' | translate}}</span></th>
+                <th md-column><span>{{'app.match.create.visitingTeam' | translate}}</span></th>
+                <th md-column><span>{{'app.match.create.date' | translate}}</span></th>
+                <th md-column><span>{{'app.match.create.time' | translate}}</span></th>
+                <th md-column><span>{{'app.match.create.field' | translate}}</span></th>
+                <th md-column><span>{{'app.week.actions' | translate}}</span></th>
             </tr>
         </thead>
         <tbody md-body>

@@ -1,4 +1,4 @@
-<topbar page="$ctrl.title"></topbar>
+<topbar page="{{$ctrl.competition.name}}"></topbar>
 
 <md-content layout-padding>
     <md-card>
@@ -13,7 +13,7 @@
     </div>
 
     <section class="actions-container" layout-align="center center">
-        <md-button ng-click="$ctrl.updateCompetition()" class="md-raised md-primary">Guardar cambios</md-button>
+        <md-button ng-click="$ctrl.updateCompetition()" class="md-raised md-primary">{{'app.competitions.details.save' | translate}}</md-button>
     </section>
 
 </md-content>

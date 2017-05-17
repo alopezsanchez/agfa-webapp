@@ -104,5 +104,19 @@
     "app.competitions.create.minWeeks": "Debe haber mínimo unha xornada por competición",
     "app.competitions.create.numberOfMatches": "Número de partidos por xornada",
     "app.competitions.create.minMatches": "Debe haber mínimo un partido por xornada",
-    "app.competitions.create.created": "Competición creada correctamente"
+    "app.competitions.create.created": "Competición creada correctamente",
+    "app.match.create.date": "Data",
+    "app.match.create.time": "Hora",
+    "app.match.create.localTeam": "Equipo local",
+    "app.match.create.visitingTeam": "Equipo visititante",
+    "app.match.create.field": "Campo de xogo",
+    "app.classification.title": "Clasificación",
+    "app.classification.team": "Equipo",
+    "app.classification.matches": "Partidos",
+    "app.classification.wins": "Victorias",
+    "app.classification.equal": "Empates",
+    "app.classification.favorPoints": "PF",
+    "app.classification.pointsAgainst": "PC",
+    "app.week.actions": "Accións",
+    "app.competitions.details.save": "Gardar cambios"
 }
