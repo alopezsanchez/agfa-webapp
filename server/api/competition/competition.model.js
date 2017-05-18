@@ -14,31 +14,33 @@ const REQUIRED_MESSAGE = 'field cannot be blank';
 var CompetitionSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Number' + REQUIRED_MESSAGE]
+        required: [true, 'Number ' + REQUIRED_MESSAGE]
     },
     info: String,
     active: {
         type: String,
-        required: [true, 'Active' + REQUIRED_MESSAGE]
+        required: [true, 'Active ' + REQUIRED_MESSAGE]
     },
     year: String,
     category: {
         type: String,
-        required: [true, 'Categorie' + REQUIRED_MESSAGE]
+        required: [true, 'Categorie ' + REQUIRED_MESSAGE]
     },
     weeks: {
-        type: [Week],
-        required: [true, 'Weeks' + REQUIRED_MESSAGE]
+        type: [Schema.Types.ObjectId],
+        ref: 'Week',
+        required: [true, 'Weeks ' + REQUIRED_MESSAGE]
     },
     teams: {
         type: [Schema.Types.ObjectId],
         ref: 'Team',
-        required: [true, 'Teams' + REQUIRED_MESSAGE]
+        required: [true, 'Teams ' + REQUIRED_MESSAGE]
     }
 });
 
 CompetitionSchema.plugin(deepPopulate, {
     whitelist: [
+        'weeks',
         'teams',
         'weeks.matches.field',
         'weeks.matches.localTeam',

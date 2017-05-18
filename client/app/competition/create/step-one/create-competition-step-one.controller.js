@@ -1,13 +1,14 @@
 'use strict';
 
 class CreateCompetitionStepOneController {
-    constructor($http, $mdDialog, appConfig, $state, $stateParams, $mdToast, $translate) {
+    constructor($http, $mdDialog, appConfig, $state, $stateParams, $mdToast, $translate, $q) {
         this.$http = $http;
         this.$mdDialog = $mdDialog;
         this.$state = $state;
         this.$stateParams = $stateParams;
         this.$mdToast = $mdToast;
         this.$translate = $translate;
+        this.$q = $q;
         this.categories = appConfig.categories.map(function(item) {
             return {
                 name: item,
@@ -112,13 +113,31 @@ class CreateCompetitionStepOneController {
             });
             delete this.competition.teamsSelected;
 
-            this.$http.post('/api/competitions', this.competition)
-                .then(() => {
-                    this.showToast();
-                    this.$state.go('competitions');
-                }, (err) => {
-                    console.log(err);
+            // create weeks
+            let weeks = [];
+            let promises = [];
+
+            angular.forEach(this.competition.weeks, (week) => {
+                promises.push(this.$http.post('/api/weeks', week));
+            });
+
+            this.$q.all(promises).then((results) => {
+                results.map(week => {
+                    weeks.push(week.data._id);
                 });
+
+                this.competition.weeks = weeks;
+
+                console.log(this.competition);
+
+                this.$http.post('/api/competitions', this.competition)
+                    .then(() => {
+                        this.showToast();
+                        this.$state.go('competitions');
+                    }, (err) => {
+                        console.log(err);
+                    });
+            });
         }
     }
 }

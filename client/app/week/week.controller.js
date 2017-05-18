@@ -1,24 +1,37 @@
 'use strict';
 
 class WeekController {
-    constructor($mdEditDialog, $http) {
+    constructor($mdEditDialog, $http, $rootScope) {
         this.$mdEditDialog = $mdEditDialog;
         this.$http = $http;
+        this.$rootScope = $rootScope;
         this.fields = [];
+        this.week = [];
+
+        this.$rootScope.$on('updateCompetition', () => {
+            // update week
+
+            this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(res => {
+                console.log(res.data);
+            }, err => console.log(err));
+        });
     }
 
     $onInit() {
-        this.info.matches.map((match) => {
-            this.$http({
-                url: '/api/fields/',
-                method: 'GET',
-                params: {
-                    teams: match.localTeam._id
-                }
-            }).then((res) => {
-                match.fields = res.data;
-                return match;
-            }, err => console.log(err));
+        this.$http.get(`/api/weeks/${this.info}`).then(res => {
+            this.week = res.data;
+            this.week.matches.map((match) => {
+                this.$http({
+                    url: '/api/fields/',
+                    method: 'GET',
+                    params: {
+                        teams: match.localTeam._id
+                    }
+                }).then((res) => {
+                    match.fields = res.data;
+                    return match;
+                }, err => console.log(err));
+            });
         });
     }
 

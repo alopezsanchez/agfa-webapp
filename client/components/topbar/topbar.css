@@ -56,3 +56,20 @@ md-menu-content span {
 md-menu-item:hover {
     background: rgba(236, 239, 241, 0.2);
 }
+
+md-toolbar .language-select {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    font-size: 12px;
+    margin-right: 20px;
+}
+
+md-toolbar .language-select .md-select-value {
+    border-color: transparent !important;
+    border-bottom: 0px !important;
+}
+
+md-toolbar .language-select md-select {
+    margin: 0 !important;
+}

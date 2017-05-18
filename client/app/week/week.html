@@ -1,6 +1,6 @@
 <md-toolbar class="md-table-toolbar md-default">
     <div class="md-toolbar-tools">
-        <span>{{'week' | translate}} {{$ctrl.info.number}}</span>
+        <span>{{'week' | translate}} {{$ctrl.week.number}}</span>
     </div>
 </md-toolbar>
 <md-table-container>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row ng-repeat="match in $ctrl.info.matches">
+            <tr md-row ng-repeat="match in $ctrl.week.matches">
                 <td md-cell>{{match.localTeam.name}}</td>
                 <td md-cell>{{match.visitingTeam.name}}</td>
                 <td md-cell ng-click="$ctrl.editDate($event, match)" ng-class="{'md-placeholder': !match.date}">

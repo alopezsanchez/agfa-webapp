@@ -14,7 +14,7 @@ angular.module('agfaWebappApp').service('LocaleService', function($translate, LO
     });
 
     // STORING CURRENT LOCALE
-    var currentLocale = $translate.proposedLanguage(); // because of async loading
+    var currentLocale = $translate.proposedLanguage() || $translate.use(); // because of async loading
 
     // METHODS
     var checkLocaleIsValid = function(locale) {

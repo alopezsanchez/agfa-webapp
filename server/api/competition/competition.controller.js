@@ -76,7 +76,7 @@ export function index(req, res) {
 // Gets a single Competition from the DB
 export function show(req, res) {
     Competition.findById(req.params.id)
-        .deepPopulate(['weeks.matches.field', 'weeks.matches.localTeam', 'weeks.matches.visitingTeam', 'teams'])
+        .deepPopulate(['weeks'])
         .exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
