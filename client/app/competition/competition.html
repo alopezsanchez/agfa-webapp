@@ -20,6 +20,7 @@
                     <p>{{competition.category}}</p>
                     <small>{{competition.year}}</small>
                 </div>
+                <!--<md-switch ng-model="competition.active">{{'active' | translate}}</md-switch>-->
                 <md-button class="md-icon-button md-secondary delete-button" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,competition)">
                     <md-icon>delete</md-icon>
                     <md-tooltip>{{'app.competitions.delete' | translate}}</md-tooltip>

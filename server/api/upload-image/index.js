@@ -24,6 +24,7 @@ var upload = multer({ storage: multerOptions });
 
 var router = express.Router();
 
-router.post('/', /* auth.hasRole('admin') ,*/ upload.single('file'), controller.create);
+router.post('/', upload.single('file'), controller.create);
+router.post('/record', auth.hasRole('admin'), upload.single('file'), controller.createRecord);
 
 module.exports = router;

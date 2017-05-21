@@ -9,6 +9,8 @@ import _ from 'lodash';
 import express from 'express';
 import mime from 'mime';
 import User from '../user/user.model';
+import Match from '../match/match.model';
+import Week from '../week/week.model';
 
 
 function respondWithResult(res, statusCode) {
@@ -23,8 +25,29 @@ function respondWithResult(res, statusCode) {
 function saveUpdates(updates) {
     return function(entity) {
         var updated = _.merge(entity, updates);
-        console.log(updated);
         return updated.save()
+            .then(updated => {
+                return updated;
+            });
+    };
+}
+
+function saveMatchUpdates(updates, matchId) {
+    return function(entity) {
+        /*console.log('UPDATES', updates);
+        console.log('ENTITUY', entity);*/
+
+        const findMatch = (match) => {
+            return match._id == matchId;
+        };
+
+        // get correct match
+        const index = entity.matches.findIndex(findMatch);
+        console.log(index);
+        entity.matches[index].record = updates.record;
+
+        console.log(entity);
+        return entity.save()
             .then(updated => {
                 return updated;
             });
@@ -47,6 +70,21 @@ export function create(req, res) {
     User.findOne({ email: req.body.email }, '-salt -password').exec()
         .then(
             req.file ? saveUpdates({ avatar: req.file.filename }) : saveUpdates({ avatar: 'default.jpg' })
+        )
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
+export function createRecord(req, res) {
+    if (req.body._id) {
+        delete req.body._id;
+    }
+    console.log(req.body);
+    console.log(req.file);
+
+    Week.findOne({ _id: req.body.weekId }).exec()
+        .then(
+            req.file ? saveMatchUpdates({ record: req.file.filename }, req.body.matchId) : saveMatchUpdates({ record: '' }, req.body.matchId)
         )
         .then(respondWithResult(res))
         .catch(handleError(res));

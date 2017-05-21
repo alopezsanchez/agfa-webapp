@@ -34,7 +34,8 @@ var MatchSchema = new mongoose.Schema({
         ref: 'Field',
         required: [true, 'Field ' + REQUIRED_MESSAGE]
     },
-    result: String
+    result: String,
+    record: String
 });
 
 registerEvents(MatchSchema);

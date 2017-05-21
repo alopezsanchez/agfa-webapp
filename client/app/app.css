@@ -7,11 +7,13 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    overflow: hidden;
 }
 
 div[ui-view] {
     background-color: #F4F5F7 !important;
     width: 100%;
+    overflow: auto;
 }
 
 

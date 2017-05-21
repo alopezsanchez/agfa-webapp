@@ -127,9 +127,6 @@ class CreateCompetitionStepOneController {
                 });
 
                 this.competition.weeks = weeks;
-
-                console.log(this.competition);
-
                 this.$http.post('/api/competitions', this.competition)
                     .then(() => {
                         this.showToast();

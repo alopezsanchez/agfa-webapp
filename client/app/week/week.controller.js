@@ -1,19 +1,50 @@
 'use strict';
 
 class WeekController {
-    constructor($mdEditDialog, $http, $rootScope) {
+    constructor($mdEditDialog, $mdToast, $http, $rootScope, $translate, $mdDialog, Upload, $q) {
         this.$mdEditDialog = $mdEditDialog;
+        this.$mdToast = $mdToast;
         this.$http = $http;
         this.$rootScope = $rootScope;
+        this.$translate = $translate;
+        this.$mdDialog = $mdDialog;
+        this.upload = Upload;
+        this.$q = $q;
         this.fields = [];
         this.week = [];
 
         this.$rootScope.$on('updateCompetition', () => {
-            // update week
+            // upload records
+            let promisesArray = [];
+            angular.forEach(this.week.matches, (match) => {
+                if (match.file) {
+                    promisesArray.push(this.upload.upload({
+                        url: '/api/upload-images/record',
+                        data: {
+                            file: match.file,
+                            matchId: match._id,
+                            weekId: this.week._id
+                        }
+                    }));
+                }
+            });
 
-            this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(res => {
-                console.log(res.data);
-            }, err => console.log(err));
+            if (promisesArray.length) {
+                this.$q.all(promisesArray).then((resp) => {
+                    console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
+                    // update week
+                    this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
+                }, (resp) => {
+                    this.$translate('app.account.settings.uploadError').then(value => {
+                        this.errors.other = value;
+                    });
+                    console.log('Error status: ' + resp.status);
+                });
+            } else {
+                // update week
+                this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
+            }
+
         });
     }
 
@@ -68,6 +99,53 @@ class WeekController {
                 'md-maxlength': 5,
                 'aria-label': 'Hora'
             }
+        });
+    }
+
+    editResult(event, match) {
+        this.$mdEditDialog.small({
+            modelValue: match.result,
+            placeholder: 'Resultado',
+            save: function(input) {
+                match.result = input.$modelValue;
+            },
+            targetEvent: event,
+            validators: {
+                'aria-label': 'Resultado'
+            }
+        });
+    }
+
+    uploadPdf(event, match, index) {
+        /*this.$mdDialog.show({
+            controller: 'PdfUploadController',
+            bindToController: true,
+            locals: {
+                match: match
+            },
+            controllerAs: 'pdf',
+            targetEvent: event,
+            clickOutsideToClose: true,
+            openFrom: angular.element(document.body.querySelector('.record')),
+            templateUrl: 'components/pdf-upload/pdf-upload.html'
+        });*/
+        const input = document.body.querySelector(`.record-input-${index}`);
+        input.click();
+    }
+
+    showToast() {
+        this.$translate('app.competitions.saved').then(value => {
+            this.showSimpleToast = function() {
+                this.$mdToast.show(
+                    this.$mdToast.simple()
+                    .parent(angular.element(document.body))
+                    .textContent(value)
+                    .position('top right')
+                    .hideDelay(3000)
+                );
+            };
+
+            this.showSimpleToast();
         });
     }
 }

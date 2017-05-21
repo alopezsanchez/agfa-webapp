@@ -12,6 +12,7 @@
                 <th md-column><span>{{'app.match.create.date' | translate}}</span></th>
                 <th md-column><span>{{'app.match.create.time' | translate}}</span></th>
                 <th md-column><span>{{'app.match.create.field' | translate}}</span></th>
+                <th md-column><span>{{'app.match.create.result' | translate}}</span></th>
                 <th md-column><span>{{'app.week.actions' | translate}}</span></th>
             </tr>
         </thead>
@@ -30,7 +31,20 @@
                         <md-option ng-selected="field._id === match.field._id" ng-value="field" ng-repeat="field in match.fields">{{field.name}}</md-option>
                     </md-select>
                 </td>
-                <td md-cell></td>
+                <td md-cell class="edit" ng-click="$ctrl.editResult($event, match)" ng-class="{'md-placeholder': !match.result}">
+                    {{match.result || ('app.match.create.result' | translate)}}
+                </td>
+                <td md-cell class="actions-cell">
+                    <input ngf-select type="file" name="record" class="ng-hide record-input-{{$index}}" ng-model="match.file">
+                    <md-button ng-if="match.result" class="md-icon-button record md-inline" ng-click="$ctrl.uploadPdf($event, match, $index)">
+                        <md-tooltip>{{'newRecord' | translate}}</md-tooltip>
+                        <md-icon>attach_file</md-icon>
+                    </md-button>
+                    <md-button ng-if="match.record" class="md-icon-button md-inline" ng-href="../../assets/uploads/{{match.record}}" target="_blank">
+                        <md-tooltip>{{'record' | translate}}</md-tooltip>
+                        <md-icon>insert_drive_file</md-icon>
+                    </md-button>
+                </td>
             </tr>
         </tbody>
     </table>

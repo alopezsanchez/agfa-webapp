@@ -6,7 +6,7 @@ angular.module('agfaWebappApp').directive('ngTranslateLanguageSelect', function(
         replace: true,
         template: `
         <div class="language-select" ng-if="visible">
-            <md-select ng-model="currentLocaleDisplayName" ng-change="changeLanguage(currentLocaleDisplayName)">
+            <md-select aria-label="language-select" ng-model="currentLocaleDisplayName" ng-change="changeLanguage(currentLocaleDisplayName)">
                     <md-option ng-value="localesDisplayName" ng-selected="currentLocaleDisplayName === localesDisplayName" ng-repeat="localesDisplayName in localesDisplayNames">{{localesDisplayName}}</md-option>
             </md-select>
         </div>`,
