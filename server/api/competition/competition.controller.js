@@ -76,7 +76,7 @@ export function index(req, res) {
 // Gets a single Competition from the DB
 export function show(req, res) {
     Competition.findById(req.params.id)
-        .deepPopulate(['weeks'])
+        .deepPopulate(['weeks', 'classification.team'])
         .exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
@@ -85,6 +85,25 @@ export function show(req, res) {
 
 // Creates a new Competition in the DB
 export function create(req, res) {
+
+    // create classification structure
+    let classification = [];
+    req.body.teams.forEach((team) => {
+        classification.push({
+            team: team,
+            ratio: 0,
+            wins: 0,
+            loses: 0,
+            ties: 0,
+            pointsInFavor: 0,
+            pointsAgainst: 0,
+            gamesPlayed: 0
+        });
+    });
+
+    console.log(classification);
+    req.body.classification = classification;
+
     Competition.createAsync(req.body)
         .then(respondWithResult(res, 201))
         .catch(handleError(res));

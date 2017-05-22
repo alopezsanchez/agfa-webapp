@@ -3,28 +3,30 @@
         <span>{{'app.classification.title' | translate}}</span>
     </div>
 </md-toolbar>
-<md-table-container ng-if="classification.dataAvailable">
+<md-table-container>
     <table md-table>
-        <thead md-head>
+        <thead md-head md-order="$ctrl.order">
             <tr md-row>
                 <th md-column><span>{{'app.classification.team' | translate}}</span></th>
                 <th md-column md-numeric><span>{{'app.classification.matches' | translate}}</span></th>
-                <th md-column><span>%</span></th>
-                <th md-column><span>{{'app.classification.wins' | translate}}</span></th>
-                <th md-column><span>{{'app.classification.equal' | translate}}</span></th>
-                <th md-column><span>{{'app.classification.favorPoints' | translate}}</span></th>
-                <th md-column><span>{{'app.classification.pointsAgainst' | translate}}</span></th>
+                <th md-column md-numeric md-order-by="ratio"><span>%</span></th>
+                <th md-column md-numeric md-order-by="wins"><span>{{'app.classification.wins' | translate}}</span></th>
+                <th md-column md-numeric md-order-by="equal"><span>{{'app.classification.equal' | translate}}</span></th>
+                <th md-column md-numeric md-order-by="loses"><span>{{'app.classification.loses' | translate}}</span></th>
+                <th md-column md-numeric md-order-by="favorPoints"><span>{{'app.classification.favorPoints' | translate}}</span></th>
+                <th md-column md-numeric md-order-by="pointsAgainst"><span>{{'app.classification.pointsAgainst' | translate}}</span></th>
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row ng-repeat="team in classification.teams">
-                <td md-cell>{{team.name}}</td>
+            <tr md-row ng-repeat="team in $ctrl.competition.classification | orderBy: $ctrl.order">
+                <td md-cell>{{team.team.name}}</td>
                 <td md-cell>{{team.gamesPlayed}}</td>
-                <td md-cell></td>
-                <td md-cell></td>
-                <td md-cell></td>
-                <td md-cell></td>
-                <td md-cell></td>
+                <td md-cell>{{team.ratio}}</td>
+                <td md-cell>{{team.wins}}</td>
+                <td md-cell>{{team.ties}}</td>
+                <td md-cell>{{team.loses}}</td>
+                <td md-cell>{{team.pointsInFavor}}</td>
+                <td md-cell>{{team.pointsAgainst}}</td>
             </tr>
         </tbody>
     </table>

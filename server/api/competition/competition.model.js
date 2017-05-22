@@ -35,7 +35,20 @@ var CompetitionSchema = new mongoose.Schema({
         type: [Schema.Types.ObjectId],
         ref: 'Team',
         required: [true, 'Teams ' + REQUIRED_MESSAGE]
-    }
+    },
+    classification: [{
+        team: {
+            type: Schema.Types.ObjectId,
+            ref: 'Team',
+        },
+        gamesPlayed: Number,
+        ratio: Number,
+        wins: Number,
+        loses: Number,
+        ties: Number,
+        pointsInFavor: Number,
+        pointsAgainst: Number
+    }]
 });
 
 CompetitionSchema.plugin(deepPopulate, {
@@ -44,7 +57,8 @@ CompetitionSchema.plugin(deepPopulate, {
         'teams',
         'weeks.matches.field',
         'weeks.matches.localTeam',
-        'weeks.matches.visitingTeam'
+        'weeks.matches.visitingTeam',
+        'classification.team'
     ]
 });
 

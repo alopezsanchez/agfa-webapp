@@ -12,6 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import Week from './week.model';
+import Competition from '../competition/competition.model';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -95,9 +96,90 @@ export function upsert(req, res) {
     if (req.body._id) {
         Reflect.deleteProperty(req.body, '_id');
     }
-    return Week.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
+    let competitionId = '';
+    if (req.body.competitionId) {
+        competitionId = req.body.competitionId;
+        Reflect.deleteProperty(req.body, 'competitionId');
+    }
 
-    .then(respondWithResult(res))
+
+    if (competitionId) {
+        // if result is set -> update competition
+        Competition.findOne({ _id: competitionId }).then((instance) => {
+
+            instance.classification.map((element) => {
+                console.log(element);
+                element.gamesPlayed = 0;
+                element.wins = 0;
+                element.loses = 0;
+                element.ties = 0;
+                element.pointsInFavor = 0;
+                element.pointsAgainst = 0;
+                element.ratio = 0;
+
+                req.body.matches.forEach((match) => {
+                    let isLocal = false;
+                    // gamesPlayed
+                    if (match.result && match.localTeam._id == element.team) {
+                        element.gamesPlayed++;
+                        isLocal = true;
+                    } else if (match.result && match.visitingTeam._id == element.team) {
+                        element.gamesPlayed++;
+                    }
+
+                    // result mask -> XX-XX
+                    if (match.result) {
+                        const result = match.result.split('-');
+
+                        // who is the winner?
+                        const localPoints = +result[0];
+                        const visitingPoints = +result[1];
+
+                        let winner = '';
+                        if (localPoints > visitingPoints) {
+                            winner = 'local';
+                        } else if (localPoints < visitingPoints) {
+                            winner = 'visiting';
+                        } else {
+                            winner = 'tie';
+                        }
+
+                        // wins, loses, ties
+                        if (isLocal && winner === 'local') {
+                            element.wins++;
+                        } else if (isLocal && winner === 'visiting' && element.wins > 0) {
+                            element.wins--;
+                        } else if (!isLocal && winner === 'visiting') {
+                            element.wins++;
+                        } else if (winner === 'tie') {
+                            element.ties++;
+                        } else {
+                            element.loses++;
+                        }
+
+                        // win ratio
+                        element.ratio = ((element.wins) / (element.wins + element.loses)) * 100;
+
+                        // pointsInFavor, pointsAgainst
+                        if (isLocal) {
+                            element.pointsInFavor += localPoints;
+                            element.pointsAgainst += visitingPoints;
+                        } else {
+                            element.pointsInFavor += visitingPoints;
+                            element.pointsAgainst += localPoints;
+                        }
+                    }
+
+                });
+                return element;
+            });
+
+            instance.save();
+        });
+    }
+
+    return Week.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
+        .then(respondWithResult(res))
         .catch(handleError(res));
 }
 

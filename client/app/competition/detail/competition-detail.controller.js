@@ -14,7 +14,8 @@ class CompetitionDetailController {
     }
 
     updateCompetition() {
-        this.$rootScope.$emit('updateCompetition');
+        this.$rootScope.$emit('updateCompetition', this.competition._id);
+        this.$rootScope.$emit('refreshClassification');
     }
 }
 

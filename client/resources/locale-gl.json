@@ -120,6 +120,7 @@
     "app.classification.matches": "Partidos",
     "app.classification.wins": "Victorias",
     "app.classification.equal": "Empates",
+    "app.classification.loses": "Derrotas",
     "app.classification.favorPoints": "PF",
     "app.classification.pointsAgainst": "PC",
     "app.week.actions": "Accións",

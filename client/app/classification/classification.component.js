@@ -2,13 +2,13 @@
 
 const Classification = {
     bindings: {
-        competition: '='
+        competition: '<'
     },
     require: {
         competitionDetailCtrl: '^^competitionDetail'
     },
     templateUrl: 'app/classification/classification.html',
-    controller: 'ClassificationController as classification'
+    controller: 'ClassificationController as $ctrl'
 };
 
 angular

@@ -13,7 +13,7 @@ class WeekController {
         this.fields = [];
         this.week = [];
 
-        this.$rootScope.$on('updateCompetition', () => {
+        this.$rootScope.$on('updateCompetition', (ev, id) => {
             // upload records
             let promisesArray = [];
             angular.forEach(this.week.matches, (match) => {
@@ -33,6 +33,8 @@ class WeekController {
                 this.$q.all(promisesArray).then((resp) => {
                     console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
                     // update week
+                    this.week.competitionId = id;
+                    console.log(this.week);
                     this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
                 }, (resp) => {
                     this.$translate('app.account.settings.uploadError').then(value => {
@@ -42,6 +44,8 @@ class WeekController {
                 });
             } else {
                 // update week
+                this.week.competitionId = id;
+                console.log(this.week);
                 this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
             }
 
