@@ -34,8 +34,6 @@ function saveUpdates(updates) {
 
 function saveMatchUpdates(updates, matchId) {
     return function(entity) {
-        /*console.log('UPDATES', updates);
-        console.log('ENTITUY', entity);*/
 
         const findMatch = (match) => {
             return match._id == matchId;
@@ -43,10 +41,8 @@ function saveMatchUpdates(updates, matchId) {
 
         // get correct match
         const index = entity.matches.findIndex(findMatch);
-        console.log(index);
         entity.matches[index].record = updates.record;
 
-        console.log(entity);
         return entity.save()
             .then(updated => {
                 return updated;
@@ -79,8 +75,6 @@ export function createRecord(req, res) {
     if (req.body._id) {
         delete req.body._id;
     }
-    console.log(req.body);
-    console.log(req.file);
 
     Week.findOne({ _id: req.body.weekId }).exec()
         .then(

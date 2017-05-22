@@ -27,8 +27,6 @@ function respondWithResult(res, statusCode) {
 
 function saveUpdates(updates) {
     return function(entity) {
-        console.log('entity', entity);
-        console.log('updates: ', updates);
         var updated = _.merge(entity, updates);
 
         return updated.saveAsync()
@@ -101,7 +99,6 @@ export function create(req, res) {
         });
     });
 
-    console.log(classification);
     req.body.classification = classification;
 
     Competition.createAsync(req.body)
@@ -131,9 +128,6 @@ export function updateWeek(req, res) {
         id = req.body._id;
         delete req.body._id;
     }
-
-    console.log('body', req.body);
-    console.log(id);
 
     Week.findByIdAsync(id)
         .then(handleEntityNotFound(res))

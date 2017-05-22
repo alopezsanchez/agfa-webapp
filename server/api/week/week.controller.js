@@ -108,7 +108,6 @@ export function upsert(req, res) {
         Competition.findOne({ _id: competitionId }).then((instance) => {
 
             instance.classification.map((element) => {
-                console.log(element);
                 element.gamesPlayed = 0;
                 element.wins = 0;
                 element.loses = 0;
@@ -119,16 +118,21 @@ export function upsert(req, res) {
 
                 req.body.matches.forEach((match) => {
                     let isLocal = false;
+                    let playing = false;
                     // gamesPlayed
                     if (match.result && match.localTeam._id == element.team) {
                         element.gamesPlayed++;
                         isLocal = true;
+                        playing = true;
                     } else if (match.result && match.visitingTeam._id == element.team) {
                         element.gamesPlayed++;
+                        playing = true;
+                    } else {
+                        playing = false;
                     }
 
                     // result mask -> XX-XX
-                    if (match.result) {
+                    if (playing && match.result) {
                         const result = match.result.split('-');
 
                         // who is the winner?
@@ -147,18 +151,21 @@ export function upsert(req, res) {
                         // wins, loses, ties
                         if (isLocal && winner === 'local') {
                             element.wins++;
-                        } else if (isLocal && winner === 'visiting' && element.wins > 0) {
-                            element.wins--;
+                        } else if (isLocal && winner === 'visiting') {
+                            if (element.wins > 0) {
+                                element.wins--;
+                            }
+                            element.loses++;
                         } else if (!isLocal && winner === 'visiting') {
                             element.wins++;
                         } else if (winner === 'tie') {
                             element.ties++;
-                        } else {
-                            element.loses++;
                         }
 
                         // win ratio
-                        element.ratio = ((element.wins) / (element.wins + element.loses)) * 100;
+                        if (element.wins > 0) {
+                            element.ratio = parseFloat(((element.wins) / (element.wins + element.loses)) * 100);
+                        }
 
                         // pointsInFavor, pointsAgainst
                         if (isLocal) {
