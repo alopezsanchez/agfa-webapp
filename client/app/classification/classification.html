@@ -21,7 +21,7 @@
             <tr md-row ng-repeat="team in $ctrl.competition.classification | orderBy: $ctrl.order">
                 <td md-cell>{{team.team.name}}</td>
                 <td md-cell>{{team.gamesPlayed}}</td>
-                <td md-cell>{{team.ratio}}</td>
+                <td md-cell>{{team.ratio | number:2}}</td>
                 <td md-cell>{{team.wins}}</td>
                 <td md-cell>{{team.ties}}</td>
                 <td md-cell>{{team.loses}}</td>

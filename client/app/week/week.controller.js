@@ -25,29 +25,23 @@ class WeekController {
                             matchId: match._id,
                             weekId: this.week._id
                         }
+                    }).then(() => {
+                        // update week
+                        this.week.competitionId = id;
+                        this.$rootScope.$emit('weekUpdated', this.week);
+                    }, (resp) => {
+                        this.$translate('app.account.settings.uploadError').then(value => {
+                            this.errors.other = value;
+                        });
+                        console.log('Error status: ' + resp.status);
                     }));
                 }
             });
 
-            if (promisesArray.length) {
-                this.$q.all(promisesArray).then((resp) => {
-                    console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
-                    // update week
-                    this.week.competitionId = id;
-                    this.$rootScope.$emit('weekUpdated', this.week);
-
-                    //this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
-                }, (resp) => {
-                    this.$translate('app.account.settings.uploadError').then(value => {
-                        this.errors.other = value;
-                    });
-                    console.log('Error status: ' + resp.status);
-                });
-            } else {
+            if (!promisesArray.length) {
                 // update week
                 this.week.competitionId = id;
                 this.$rootScope.$emit('weekUpdated', this.week);
-                //this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
             }
 
         });

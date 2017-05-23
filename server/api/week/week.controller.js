@@ -102,7 +102,6 @@ export function upsert(req, res) {
         Reflect.deleteProperty(req.body, 'competitionId');
     }
 
-    console.log(1);
     return Week.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
         .then(respondWithResult(res))
         .catch(handleError(res));

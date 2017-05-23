@@ -124,7 +124,6 @@ export function update(req, res) {
 
 export function updateClassification(req, res) {
     Competition.findOne({ _id: req.params.id }).then(instance => {
-        console.log(instance);
         instance.classification.map((element) => {
             element.gamesPlayed = 0;
             element.wins = 0;
@@ -136,16 +135,23 @@ export function updateClassification(req, res) {
 
             req.body.matches.forEach((match) => {
                 let isLocal = false;
+                let isVisiting = false;
                 let playing = false;
+
                 // gamesPlayed
                 if (match.result && match.localTeam._id == element.team) {
                     element.gamesPlayed++;
                     isLocal = true;
+                    isVisiting = false;
                     playing = true;
                 } else if (match.result && match.visitingTeam._id == element.team) {
+                    isLocal = false;
+                    isVisiting = true;
                     element.gamesPlayed++;
                     playing = true;
                 } else {
+                    isLocal = false;
+                    isVisiting = false;
                     playing = false;
                 }
 
@@ -167,15 +173,13 @@ export function updateClassification(req, res) {
                     }
 
                     // wins, loses, ties
-                    if (isLocal && winner === 'local') {
+                    if (isLocal && winner === 'local' || isVisiting && winner === 'visiting') {
                         element.wins++;
-                    } else if (isLocal && winner === 'visiting') {
-                        if (element.wins > 0) {
+                    } else if ((isLocal && winner === 'visiting') || (isVisiting && winner === 'local')) {
+                        /*if (element.wins > 0) {
                             element.wins--;
-                        }
+                        }*/
                         element.loses++;
-                    } else if (!isLocal && winner === 'visiting') {
-                        element.wins++;
                     } else if (winner === 'tie') {
                         element.ties++;
                     }
