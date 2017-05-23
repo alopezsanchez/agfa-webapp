@@ -122,6 +122,89 @@ export function update(req, res) {
         .catch(handleError(res));
 }
 
+export function updateClassification(req, res) {
+    Competition.findOne({ _id: req.params.id }).then(instance => {
+        console.log(instance);
+        instance.classification.map((element) => {
+            element.gamesPlayed = 0;
+            element.wins = 0;
+            element.loses = 0;
+            element.ties = 0;
+            element.pointsInFavor = 0;
+            element.pointsAgainst = 0;
+            element.ratio = 0;
+
+            req.body.matches.forEach((match) => {
+                let isLocal = false;
+                let playing = false;
+                // gamesPlayed
+                if (match.result && match.localTeam._id == element.team) {
+                    element.gamesPlayed++;
+                    isLocal = true;
+                    playing = true;
+                } else if (match.result && match.visitingTeam._id == element.team) {
+                    element.gamesPlayed++;
+                    playing = true;
+                } else {
+                    playing = false;
+                }
+
+                // result mask -> XX-XX
+                if (playing && match.result) {
+                    const result = match.result.split('-');
+
+                    // who is the winner?
+                    const localPoints = +result[0];
+                    const visitingPoints = +result[1];
+
+                    let winner = '';
+                    if (localPoints > visitingPoints) {
+                        winner = 'local';
+                    } else if (localPoints < visitingPoints) {
+                        winner = 'visiting';
+                    } else {
+                        winner = 'tie';
+                    }
+
+                    // wins, loses, ties
+                    if (isLocal && winner === 'local') {
+                        element.wins++;
+                    } else if (isLocal && winner === 'visiting') {
+                        if (element.wins > 0) {
+                            element.wins--;
+                        }
+                        element.loses++;
+                    } else if (!isLocal && winner === 'visiting') {
+                        element.wins++;
+                    } else if (winner === 'tie') {
+                        element.ties++;
+                    }
+
+                    // win ratio
+                    if (element.wins > 0) {
+                        element.ratio = parseFloat(((element.wins) / (element.wins + element.loses)) * 100);
+                    }
+
+                    // pointsInFavor, pointsAgainst
+                    if (isLocal) {
+                        element.pointsInFavor += localPoints;
+                        element.pointsAgainst += visitingPoints;
+                    } else {
+                        element.pointsInFavor += visitingPoints;
+                        element.pointsAgainst += localPoints;
+                    }
+                }
+
+            });
+            return element;
+        });
+
+        return instance.saveAsync()
+            .then(respondWithResult(res))
+            .catch(handleError(res));
+    });
+}
+
 export function updateWeek(req, res) {
     let id;
     if (req.body._id) {

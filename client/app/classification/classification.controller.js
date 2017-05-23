@@ -7,15 +7,17 @@ class ClassificationController {
     }
 
     $onInit() {
-
         this.order = '-ratio';
         this.$rootScope.$on('refreshClassification', () => {
             this.$http.get(`/api/competitions/${this.competition._id}`).then((res) => {
-                console.log(res.data.classification);
                 this.competition = res.data;
             });
         });
     }
+
+    /*$onChanges(changes) {
+        console.log(changes);
+    }*/
 }
 
 angular.module('agfaWebappApp')

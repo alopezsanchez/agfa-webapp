@@ -34,8 +34,9 @@ class WeekController {
                     console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
                     // update week
                     this.week.competitionId = id;
-                    console.log(this.week);
-                    this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
+                    this.$rootScope.$emit('weekUpdated', this.week);
+
+                    //this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
                 }, (resp) => {
                     this.$translate('app.account.settings.uploadError').then(value => {
                         this.errors.other = value;
@@ -45,8 +46,8 @@ class WeekController {
             } else {
                 // update week
                 this.week.competitionId = id;
-                console.log(this.week);
-                this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
+                this.$rootScope.$emit('weekUpdated', this.week);
+                //this.$http.put(`/api/weeks/${this.week._id}`, this.week).then(() => { this.showToast(); }, err => console.log(err));
             }
 
         });
@@ -121,37 +122,10 @@ class WeekController {
     }
 
     uploadPdf(event, match, index) {
-        /*this.$mdDialog.show({
-            controller: 'PdfUploadController',
-            bindToController: true,
-            locals: {
-                match: match
-            },
-            controllerAs: 'pdf',
-            targetEvent: event,
-            clickOutsideToClose: true,
-            openFrom: angular.element(document.body.querySelector('.record')),
-            templateUrl: 'components/pdf-upload/pdf-upload.html'
-        });*/
         const input = document.body.querySelector(`.record-input-${index}`);
         input.click();
     }
 
-    showToast() {
-        this.$translate('app.competitions.saved').then(value => {
-            this.showSimpleToast = function() {
-                this.$mdToast.show(
-                    this.$mdToast.simple()
-                    .parent(angular.element(document.body))
-                    .textContent(value)
-                    .position('top right')
-                    .hideDelay(3000)
-                );
-            };
-
-            this.showSimpleToast();
-        });
-    }
 }
 
 angular.module('agfaWebappApp')

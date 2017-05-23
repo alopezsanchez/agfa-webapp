@@ -12,6 +12,7 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.hasRole('admin'), controller.create);
 router.put('/:id', auth.hasRole('admin'), controller.update);
 router.put('/:id/week', auth.hasRole('admin'), controller.updateWeek);
+router.put('/:id/updateClassification', auth.hasRole('admin'), controller.updateClassification);
 router.patch('/:id', auth.hasRole('admin'), controller.update);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 
