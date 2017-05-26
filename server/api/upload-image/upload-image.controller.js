@@ -45,6 +45,7 @@ function saveMatchUpdates(updates, matchId) {
 
         return entity.save()
             .then(updated => {
+                console.log(updated);
                 return updated;
             });
     };
