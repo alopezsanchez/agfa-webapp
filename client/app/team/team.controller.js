@@ -36,6 +36,10 @@ class TeamController {
             return this.filter;
         }, (newValue, oldValue) => {
             if (newValue !== oldValue) {
+                if (!newValue.name) {
+                    delete newValue.name;
+                }
+
                 // update teams list
                 this.$http({
                     url: '/api/teams/',

@@ -65,6 +65,11 @@ export function index(req, res) {
         const values = req.query.categories;
         req.query.categories = { '$all': Array.isArray(values) ? values : [values] };
     }
+    if (req.query.name) {
+        const value = req.query.name;
+        const query = new RegExp(value, 'ig');
+        req.query.name = { '$regex': value, '$options': 'ig'};
+    }
     return Team.find(req.query).populate('club').populate('parentTeam').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));

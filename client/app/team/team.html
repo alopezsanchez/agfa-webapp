@@ -16,6 +16,12 @@
                 </md-select>
             </md-input-container>
         </div>
+        <div>
+            <md-input-container>
+                <label>Nombre</label>
+                <input type="text" name="name" ng-model="$ctrl.filter.name" >
+            <md-input-container>
+        </div>
         <md-button class="md-primary" ng-click="$ctrl.clearFilters()">{{'app.teams.clearFilter' | translate}}</md-button>
     </div>
 </md-content>
