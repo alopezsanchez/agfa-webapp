@@ -1,6 +1,7 @@
 'use strict';
 
 import User from './user.model';
+import Team from '../team/team.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
@@ -84,7 +85,11 @@ export function show(req, res, next) {
 export function destroy(req, res) {
     User.findByIdAndRemoveAsync(req.params.id)
         .then(function() {
-            res.status(204).end();
+            // Delete related teams
+            Team.removeAsync({ club: req.params.id }).then(teams => {
+                res.status(204).end();
+            })
+            .catch(handleError(res));
         })
         .catch(handleError(res));
 }
