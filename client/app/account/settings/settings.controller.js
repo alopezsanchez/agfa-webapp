@@ -87,7 +87,7 @@ class SettingsController {
         }
     }
 
-    updateUser(form, avatar = this.avatar) {
+    updateUser(form, avatar) {
         this.submitted = true;
         // update avatar filename before the request
         this.user.avatar = avatar || this.avatar;
@@ -120,6 +120,10 @@ class SettingsController {
                     });
                 });
         }
+    }
+
+    isDirty() {
+        return true;
     }
 }
 
