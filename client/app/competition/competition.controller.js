@@ -32,6 +32,10 @@ class CompetitionController {
                 if (!newValue.category) {
                     delete newValue.category;
                 }
+                if (!newValue.name) {
+                    delete newValue.name;
+                }
+
                 this.$http({
                     url: '/api/competitions/',
                     method: 'GET',
@@ -55,6 +59,12 @@ class CompetitionController {
         } else {
             this.filter.category = item;
         }
+    }
+
+    clearFilters() {
+        this.filter = {
+            category: null
+        };
     }
 
     detail(id) {

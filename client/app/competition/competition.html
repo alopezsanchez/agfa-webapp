@@ -1,36 +1,44 @@
 <topbar page="{{'app.competitions.title' | translate}}"></topbar>
 
 <md-content layout-padding>
-    <div class="filter-container" layout-padding>
-        <div class="category-filter">
-            <h4>{{'category' | translate}}</h4>
-            <div>
-                <md-checkbox ng-checked="$ctrl.exists(category)" class="md-secondary" ng-click="$ctrl.toggle(category)" ng-value="category" ng-repeat="category in $ctrl.allCategories">{{category}}</md-checkbox>
-            </div>
+	<div class="filter-container" layout-padding>
+		<div class="category-filter">
+			<h4>{{'category' | translate}}</h4>
+			<div>
+				<md-checkbox ng-checked="$ctrl.exists(category)" class="md-secondary" ng-click="$ctrl.toggle(category)" ng-value="category"
+				    ng-repeat="category in $ctrl.allCategories">{{category}}</md-checkbox>
+			</div>
+		</div>
+		<div>
+			<md-input-container>
+				<label>Nombre</label>
+				<input type="text" name="name" ng-model="$ctrl.filter.name" />
+            </md-input-container>
         </div>
-    </div>
+        <md-button class="md-primary" ng-click="$ctrl.clearFilters()">{{'app.teams.clearFilter' | translate}}</md-button>
+	</div>
 </md-content>
 
 <md-content ng-show="$ctrl.competitions.length > 0" layout-padding>
-    <md-card>
-        <md-list>
-            <md-list-item class="md-3-line" ng-click="$ctrl.detail(competition._id)" ng-repeat="competition in $ctrl.competitions">
-                <div class="md-list-item-text">
-                    <strong>{{competition.name}}</strong>
-                    <p>{{competition.category}}</p>
-                    <small>{{competition.year}}</small>
-                </div>
-                <!--<md-switch ng-model="competition.active">{{'active' | translate}}</md-switch>-->
-                <md-button class="md-icon-button md-secondary delete-button" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,competition)">
-                    <md-icon>delete</md-icon>
-                    <md-tooltip>{{'app.competitions.delete' | translate}}</md-tooltip>
-                </md-button>
-            </md-list-item>
-        </md-list>
-    </md-card>
+	<md-card>
+		<md-list>
+			<md-list-item class="md-3-line" ng-click="$ctrl.detail(competition._id)" ng-repeat="competition in $ctrl.competitions">
+				<div class="md-list-item-text">
+					<strong>{{competition.name}}</strong>
+					<p>{{competition.category}}</p>
+					<small>{{competition.year}}</small>
+				</div>
+				<!--<md-switch ng-model="competition.active">{{'active' | translate}}</md-switch>-->
+				<md-button class="md-icon-button md-secondary delete-button" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,competition)">
+					<md-icon>delete</md-icon>
+					<md-tooltip>{{'app.competitions.delete' | translate}}</md-tooltip>
+				</md-button>
+			</md-list-item>
+		</md-list>
+	</md-card>
 </md-content>
 
 <md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button" ui-sref="createCompetitionStepOne" aria-label="{{'app.competitions.new' | translate}}">
-    <md-tooltip md-direction="top">{{'app.competitions.new' | translate}}</md-tooltip>
-    <md-icon>add</md-icon>
+	<md-tooltip md-direction="top">{{'app.competitions.new' | translate}}</md-tooltip>
+	<md-icon>add</md-icon>
 </md-button>
