@@ -7,7 +7,7 @@ import { Schema } from 'mongoose';
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 const REQUIRED_MESSAGE = 'field cannot be blank';
 
-var UserSchema = new Schema({
+const UserSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name ' + REQUIRED_MESSAGE]

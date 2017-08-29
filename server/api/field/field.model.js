@@ -8,7 +8,7 @@ var TeamModel = mongoose.model('Team').schema;
 
 const REQUIRED_MESSAGE = 'field cannot be blank';
 
-var FieldSchema = new mongoose.Schema({
+const FieldSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Name ' + REQUIRED_MESSAGE]

@@ -10,7 +10,7 @@ var Field = mongoose.model('Field').schema;
 
 const REQUIRED_MESSAGE = 'field cannot be blank';
 
-var MatchSchema = new mongoose.Schema({
+const MatchSchema = new mongoose.Schema({
     localTeam: {
         type: Schema.Types.ObjectId,
         ref: 'Team',

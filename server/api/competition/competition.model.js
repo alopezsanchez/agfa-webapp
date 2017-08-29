@@ -11,14 +11,14 @@ var Week = mongoose.model('Week').schema;
 
 const REQUIRED_MESSAGE = 'field cannot be blank';
 
-var CompetitionSchema = new mongoose.Schema({
+const CompetitionSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Number ' + REQUIRED_MESSAGE]
     },
     info: String,
     active: {
-        type: String,
+        type: Boolean,
         required: [true, 'Active ' + REQUIRED_MESSAGE]
     },
     year: String,

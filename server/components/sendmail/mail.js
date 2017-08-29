@@ -36,11 +36,13 @@ exports.sendConfirm = (userName, mail, link) => {
 		from: '"Asociación Gallega de Fútbol Americano" <no-reply-agfa@agfa.gal>',
 		to: mail,
 		subject: `Confirmación de registro en AGFA`,
-		html: `Hola ${userName}.\n
-                Accede al siguiente enlace o cópialo en tu navegador para completar tu registro en AGFA:
-                \n<a href="${link}">${link}</a>`,
+		html: `<p>Hola <b>${userName}</b>.</p>
+		<p>Se te ha dado de alta como usuario en AGFA, pero para poder iniciar sesión
+		antes debes proporcionar una serie de datos.</p>
+                <p>Accede al siguiente enlace o cópialo en tu navegador para completar tu registro:
+                \n<a href="${link}">${link}</a></p>`,
 		text: `Hola ${userName}.\n
-                Accede al siguiente enlace o cópialo en tu navegador para completar tu registro en AGFA:
+                Accede al siguiente enlace o cópialo en tu navegador para completar tu registro:
                 \n${link}`
 	};
 

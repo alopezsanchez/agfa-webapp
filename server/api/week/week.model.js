@@ -8,7 +8,7 @@ const Match = mongoose.model('Match').schema;
 
 const REQUIRED_MESSAGE = 'field cannot be blank';
 
-var WeekSchema = new mongoose.Schema({
+const WeekSchema = new mongoose.Schema({
     number: {
         type: Number,
         required: [true, 'Number' + REQUIRED_MESSAGE]
