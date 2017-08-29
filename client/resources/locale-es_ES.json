@@ -125,5 +125,7 @@
     "app.classification.pointsAgainst": "PC",
     "app.week.actions": "Acciones",
     "app.competitions.details.save": "Guardar cambios",
-    "app.main.header": "Bienvenido al portal de gestión de la Asociación Gallega de Fútbol Americano"
+    "app.main.header": "Bienvenido al portal de gestión de la Asociación Gallega de Fútbol Americano",
+    "app.notFound.title": "No se encontraron resultados",
+    "app.notFound.content": "Por favor, cambie el criterio de búsqueda"
 }

@@ -1,66 +1,74 @@
 <topbar page="{{'app.teams.title' | translate}}"></topbar>
 
 <md-content layout-padding>
-    <div class="filter-container" layout-padding>
-        <div class="category-filter">
-            <h4>{{'categories' | translate}}</h4>
-            <div>
-                <md-checkbox ng-checked="$ctrl.exists(category, $ctrl.filter.categories)" class="md-secondary" ng-click="$ctrl.toggle(category, $ctrl.filter.categories)" ng-value="category" ng-repeat="category in $ctrl.allCategories">{{category}}</md-checkbox>
-            </div>
-        </div>
-        <div>
-            <md-input-container>
-                <label>{{'club' | translate}}</label>
-                <md-select name="club" md-container-class="select-padding" ng-model="$ctrl.filter.club">
-                    <md-option ng-repeat="club in $ctrl.clubs" value="{{club._id}}">{{club.name}}</md-option>
-                </md-select>
-            </md-input-container>
-        </div>
-        <div>
-            <md-input-container>
-                <label>Nombre</label>
-                <input type="text" name="name" ng-model="$ctrl.filter.name" >
-            <md-input-container>
-        </div>
-        <md-button class="md-primary" ng-click="$ctrl.clearFilters()">{{'app.teams.clearFilter' | translate}}</md-button>
-    </div>
+	<div class="filter-container" layout-padding>
+		<div class="category-filter">
+			<h4>{{'categories' | translate}}</h4>
+			<div>
+				<md-checkbox ng-checked="$ctrl.exists(category, $ctrl.filter.categories)" class="md-secondary" ng-click="$ctrl.toggle(category, $ctrl.filter.categories)"
+				    ng-value="category" ng-repeat="category in $ctrl.allCategories">{{category}}</md-checkbox>
+			</div>
+		</div>
+		<div>
+			<md-input-container>
+				<label>{{'club' | translate}}</label>
+				<md-select name="club" md-container-class="select-padding" ng-model="$ctrl.filter.club">
+					<md-option ng-repeat="club in $ctrl.clubs" value="{{club._id}}">{{club.name}}</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<div>
+			<md-input-container>
+				<label>Nombre</label>
+				<input type="text" name="name" ng-model="$ctrl.filter.name">
+				<md-input-container>
+		</div>
+		<md-button class="md-primary" ng-click="$ctrl.clearFilters()">{{'app.teams.clearFilter' | translate}}</md-button>
+	</div>
 </md-content>
 
-<md-content class="teams-container" layout-padding>
-    <md-card ng-repeat="team in $ctrl.teams">
-        <md-card-header>
-            <md-card-avatar>
-                <img ng-src="{{$ctrl.imagesServer}}/100/100/uploads/{{team.club.avatar}}?fit=true&force=true" alt="{{team.name}}" class="md-user-avatar" />
-            </md-card-avatar>
-            <md-card-header-text>
-                <span class="md-title">{{team.name}}</span>
-                <span class="md-subhead">{{team.club.name}}</span>
-            </md-card-header-text>
-        </md-card-header>
-        <md-card-content>
-            <span class="md-subhead" ng-repeat="cat in team.categories">{{cat}}{{!$last ? ', ' : ''}} </span>
-        </md-card-content>
-        <md-card-actions ng-show="$ctrl.Auth.isAdmin()">
-            <md-card-icon-actions>
-                <md-button class="md-icon-button" ng-click="$ctrl.goToEdit(team._id)" aria-label="Editar equipo">
-                    <md-icon>edit</md-icon>
-                    <md-tooltip>
-                        {{'app.teams.editTooltip' | translate}}
-                    </md-tooltip>
-                </md-button>
-                <md-button class="md-icon-button" ng-click="$ctrl.showConfirm($event, team)" aria-label="Eliminar equipo">
-                    <md-icon>delete</md-icon>
-                    <md-tooltip>
-                        {{'app.teams.deleteTooltip' | translate}}
-                    </md-tooltip>
-                </md-button>
-            </md-card-icon-actions>
-        </md-card-actions>
-    </md-card>
+<md-content ng-if="$ctrl.teams.length" class="teams-container" layout-padding>
+	<md-card ng-repeat="team in $ctrl.teams">
+		<md-card-header>
+			<md-card-avatar>
+				<img ng-src="{{$ctrl.imagesServer}}/100/100/uploads/{{team.club.avatar}}?fit=true&force=true" alt="{{team.name}}" class="md-user-avatar"
+				/>
+			</md-card-avatar>
+			<md-card-header-text>
+				<span class="md-title">{{team.name}}</span>
+				<span class="md-subhead">{{team.club.name}}</span>
+			</md-card-header-text>
+		</md-card-header>
+		<md-card-content>
+			<span class="md-subhead" ng-repeat="cat in team.categories">{{cat}}{{!$last ? ', ' : ''}} </span>
+		</md-card-content>
+		<md-card-actions ng-show="$ctrl.Auth.isAdmin()">
+			<md-card-icon-actions>
+				<md-button class="md-icon-button" ng-click="$ctrl.goToEdit(team._id)" aria-label="Editar equipo">
+					<md-icon>edit</md-icon>
+					<md-tooltip>
+						{{'app.teams.editTooltip' | translate}}
+					</md-tooltip>
+				</md-button>
+				<md-button class="md-icon-button" ng-click="$ctrl.showConfirm($event, team)" aria-label="Eliminar equipo">
+					<md-icon>delete</md-icon>
+					<md-tooltip>
+						{{'app.teams.deleteTooltip' | translate}}
+					</md-tooltip>
+				</md-button>
+			</md-card-icon-actions>
+		</md-card-actions>
+	</md-card>
+</md-content>
+
+<md-content ng-if="!$ctrl.teams.length" class="not-found-container" layout-padding>
+	<md-icon>sentiment_very_dissatisfied</md-icon>
+	<h2>{{'app.notFound.title' | translate}}</h2>
 </md-content>
 
 
-<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-team-button" ng-click="$ctrl.createTeam($event)" aria-label="{{'app.teams.new' | translate}}">
-    <md-tooltip md-direction="top">{{'app.teams.new' | translate}}</md-tooltip>
-    <md-icon>add</md-icon>
+<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-team-button" ng-click="$ctrl.createTeam($event)"
+    aria-label="{{'app.teams.new' | translate}}">
+	<md-tooltip md-direction="top">{{'app.teams.new' | translate}}</md-tooltip>
+	<md-icon>add</md-icon>
 </md-button>

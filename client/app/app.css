@@ -227,3 +227,28 @@ table.md-table md-icon {
 table.md-table .md-cell.edit {
     white-space: nowrap;
 }
+
+/* Not found container */
+
+.not-found-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.not-found-container md-icon {
+    color: #CCC;
+    font-size: 96px;
+    width: 96px;
+    height: 96px;
+    margin: 0;
+}
+
+.not-found-container h2 {
+    color: #333333 !important;
+    max-width: 500px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 16px;
+}
