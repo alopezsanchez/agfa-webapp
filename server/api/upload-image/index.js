@@ -16,6 +16,7 @@ var rootDir = path.join(__dirname, '../../../');
 var multerOptions = multer.diskStorage({
     destination: rootDir + 'client/assets/uploads/',
     filename: function(req, file, cb) {
+        console.log('FILE', file);
         cb(null, uuid.v4() + '.' + mime.extension(file.mimetype));
     }
 });

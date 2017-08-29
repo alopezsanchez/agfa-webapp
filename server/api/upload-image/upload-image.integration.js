@@ -10,15 +10,18 @@ describe('Upload-image API: ', function() {
     var token;
 
     // Clear users before testing
-    before(function() {
-        return User.removeAsync().then(function() {
+    before(function(done) {
+        User.removeAsync().then(function() {
             user = new User({
                 name: 'Fake User',
                 email: 'test@example.com',
                 password: 'password',
-                role: 'admin'
+                role: 'admin',
+                confirmed: true,
+                avatar: 'default.jpg',
+                address: 'address'
             });
-            user.saveAsync();
+            return user.saveAsync().then(() => done());
         });
     });
 
@@ -34,7 +37,7 @@ describe('Upload-image API: ', function() {
                 .post('/auth/local')
                 .send({
                     email: 'test@example.com',
-                    password: 'passwordg'
+                    password: 'password'
                 })
                 .expect(200)
                 .expect('Content-Type', /json/)
@@ -44,12 +47,14 @@ describe('Upload-image API: ', function() {
                 });
         });
 
-        beforeEach(function(done) {
+        /* beforeEach(function(done) {
+            console.log(user);
             request(app)
                 .post('/api/upload-images')
+                .type('multipart/form-data')
                 .set('authorization', 'Bearer ' + token)
+                .field('_id', user._id)
                 .field('email', user.email)
-                //.field('_id', user._id)
                 .attach('file', 'client/assets/images/agfa.jpg')
                 .expect(200)
                 .end((err, res) => {
@@ -62,7 +67,7 @@ describe('Upload-image API: ', function() {
 
         it('should create a file in /client/assets/uploads', function() {
             expect(user.avatar).to.be.instanceOf(String);
-        });
+        }); */
 
     })
 });
