@@ -87,10 +87,10 @@ class SettingsController {
         }
     }
 
-    updateUser(form, avatar) {
+    updateUser(form, avatar = this.avatar) {
         this.submitted = true;
         // update avatar filename before the request
-        this.user.avatar = avatar;
+        this.user.avatar = avatar || this.avatar;
         if (form.$valid) {
             this.Auth.updateUser(this.user, null)
                 .then(() => {
