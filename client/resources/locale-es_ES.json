@@ -20,6 +20,8 @@
     "week": "Jornada",
     "match": "Partido",
     "app.errors.400.label": "Operación no permitida.",
+    "app.errors.403.label": "Operación no autorizada",
+    "app.errors.500.label": "Ha ocurrido un error en el servidor. Por favor, inténtalo más tarde",
     "app.errors.404.label": "Página no encontrada.",
     "app.errors.goMain": "Volver a la portada",
     "app.components.topbar.settings.profile": "Mi perfil",

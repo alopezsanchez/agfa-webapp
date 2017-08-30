@@ -15,6 +15,8 @@
             },
 
             responseError(response) {
+                var $mdToast = $injector.get('$mdToast');
+
                 // Intercept 401s and redirect you to login
                 if (response.status === 401) {
 
@@ -37,14 +39,31 @@
                         (state || (state = $injector.get('$state'))).go('login');
                     }
                 }
+                
                 // Intercept 400s and redirect you to login
                 if (response.status === 400) {
                     (state || (state = $injector.get('$state'))).go('400');
                 }
 
+                // Intercept 403s and show error toast
+                if (response.status === 403) {
+                    
+                    var show403Toast = () => {
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .parent(angular.element(document.body))
+                            .textContent('Acción no permitida.')
+                            .position('top right')
+                            .hideDelay(3000)
+                            .toastClass('toast-error')
+                        );
+                    };
+
+                    show403Toast();
+                }
+
                 // Intercept 500s and show error toast
                 if (response.status === 500) {
-                    var $mdToast = $injector.get('$mdToast');
                     var showSimpleToast = () => {
                         $mdToast.show(
                             $mdToast.simple()

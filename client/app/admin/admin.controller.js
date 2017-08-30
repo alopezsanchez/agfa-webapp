@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function () {
 
     class AdminController {
         constructor(User, $scope, $mdDialog, $mdToast, appConfig, $translate, $mdMedia) {
@@ -21,25 +21,26 @@
         }
 
         delete(user) {
-            user.$remove();
-            if (user.confirmed) {
-                this.confirmedUsers.splice(this.confirmedUsers.indexOf(user), 1);
-            } else {
-                this.notConfirmedUsers.splice(this.notConfirmedUsers.indexOf(user), 1);
-            }
+            user.$remove().then(() => {
+                if (user.confirmed) {
+                    this.confirmedUsers.splice(this.confirmedUsers.indexOf(user), 1);
+                } else {
+                    this.notConfirmedUsers.splice(this.notConfirmedUsers.indexOf(user), 1);
+                }
 
-            this.$translate('app.admin.deleted').then(translation => {
-                this.showSimpleToast = () => {
-                    this.toast.show(
-                        this.toast.simple()
-                        .parent(angular.element(document.body))
-                        .textContent(translation)
-                        .position('top right')
-                        .hideDelay(3000)
-                    );
-                };
+                this.$translate('app.admin.deleted').then(translation => {
+                    this.showSimpleToast = () => {
+                        this.toast.show(
+                            this.toast.simple()
+                                .parent(angular.element(document.body))
+                                .textContent(translation)
+                                .position('top right')
+                                .hideDelay(3000)
+                        );
+                    };
 
-                this.showSimpleToast();
+                    this.showSimpleToast();
+                });
             });
         }
 
@@ -74,7 +75,7 @@
                     .targetEvent(ev)
                     .ok(translations['app.admin.confirmOk'])
                     .cancel(translations['cancel']);
-                this.dialog.show(confirm).then(function() {
+                this.dialog.show(confirm).then(function () {
                     _this.delete(user);
                 });
             });
