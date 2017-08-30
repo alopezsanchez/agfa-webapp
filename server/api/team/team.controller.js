@@ -15,7 +15,7 @@ import Team from './team.model';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
-    return function(entity) {
+    return function (entity) {
         if (entity) {
             return res.status(statusCode).json(entity);
         }
@@ -25,24 +25,29 @@ function respondWithResult(res, statusCode) {
 
 function validationError(res, statusCode) {
     statusCode = statusCode || 422;
-    return function(err) {
+    return function (err) {
         res.status(statusCode).json(err);
     }
 }
 
-function removeEntity(res) {
-    return function(entity) {
+function removeEntity(id, res) {
+    return function (entity) {
         if (entity) {
             return entity.remove()
                 .then(() => {
-                    res.status(204).end();
+                    // Delete children
+                    Team.removeAsync({ parentTeam: id })
+                        .then((teams) => {
+                            res.status(200).json(teams);
+                        })
+                        .catch(handleError(res));
                 });
         }
     };
 }
 
 function handleEntityNotFound(res) {
-    return function(entity) {
+    return function (entity) {
         if (!entity) {
             res.status(404).end();
             return null;
@@ -53,7 +58,7 @@ function handleEntityNotFound(res) {
 
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
-    return function(err) {
+    return function (err) {
         res.status(statusCode).send(err);
     };
 }
@@ -68,7 +73,7 @@ export function index(req, res) {
     if (req.query.name) {
         const value = req.query.name;
         const query = new RegExp(value, 'ig');
-        req.query.name = { '$regex': value, '$options': 'ig'};
+        req.query.name = { '$regex': value, '$options': 'ig' };
     }
     return Team.find(req.query).populate('club').populate('parentTeam').exec()
         .then(respondWithResult(res))
@@ -111,6 +116,6 @@ export function update(req, res) {
 export function destroy(req, res) {
     return Team.findById(req.params.id).exec()
         .then(handleEntityNotFound(res))
-        .then(removeEntity(res))
+        .then(removeEntity(req.params.id, res))
         .catch(handleError(res));
 }

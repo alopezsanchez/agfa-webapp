@@ -25,10 +25,26 @@ class TeamController {
         $http.get('/api/users/clubs')
             .then((response) => {
                 this.clubs = response.data;
-                this.clubs.map(function(club) {
+                this.clubs.map(function (club) {
                     club.value = club.name.toLowerCase();
                 });
             });
+    }
+
+    updateTeamsList(filters) {
+        if (!filters.name) {
+            delete filters.name;
+        }
+
+        this.$http({
+            url: '/api/teams/',
+            method: 'GET',
+            params: filters
+        }).then((response) => {
+            this.teams = response.data;
+        }, err => {
+            console.log(err);
+        });
     }
 
     $onInit() {
@@ -36,20 +52,8 @@ class TeamController {
             return this.filter;
         }, (newValue, oldValue) => {
             if (newValue !== oldValue) {
-                if (!newValue.name) {
-                    delete newValue.name;
-                }
-
                 // update teams list
-                this.$http({
-                    url: '/api/teams/',
-                    method: 'GET',
-                    params: newValue
-                }).then((response) => {
-                    this.teams = response.data;
-                }, err => {
-                    console.log(err);
-                });
+                this.updateTeamsList(newValue);
             }
         }, true);
     }
@@ -78,16 +82,17 @@ class TeamController {
     delete(team) {
         this.$http.delete(`/api/teams/${team._id}`)
             .then(() => {
-                this.teams.splice(this.teams.indexOf(team), 1);
+                //this.teams.splice(this.teams.indexOf(team), 1);
+                this.updateTeamsList(this.filter);
 
                 this.$translate('app.teams.deleted').then(value => {
                     this.showSimpleToast = () => {
                         this.toast.show(
                             this.toast.simple()
-                            .parent(angular.element(document.body))
-                            .textContent(value)
-                            .position('top right')
-                            .hideDelay(3000)
+                                .parent(angular.element(document.body))
+                                .textContent(value)
+                                .position('top right')
+                                .hideDelay(3000)
                         );
                     };
 
@@ -129,7 +134,7 @@ class TeamController {
                 .targetEvent(ev)
                 .ok(translations['app.admin.confirmOk'])
                 .cancel(translations['cancel']);
-            this.dialog.show(confirm).then(function() {
+            this.dialog.show(confirm).then(function () {
                 _this.delete(team);
             });
         });
