@@ -1,7 +1,7 @@
 'use strict';
 
 class SettingsController {
-    constructor(Auth, appConfig, $mdToast, Upload, $state, $translate) {
+    constructor(Auth, appConfig, $mdToast, Upload, $state, $translate, $mdDialog, $scope) {
         this.errors = {};
         this.submitted = false;
         this.imagesServer = appConfig.imagesServer;
@@ -12,6 +12,8 @@ class SettingsController {
         this.$state = $state;
         this.$mdToast = $mdToast;
         this.$translate = $translate;
+        this.$mdDialog = $mdDialog;
+        this.$scope = $scope;
         this.isAdmin = Auth.isAdmin();
     }
 
@@ -27,13 +29,13 @@ class SettingsController {
                 .then(() => {
 
                     this.$translate('app.account.settings.passwordChanged').then(value => {
-                        this.showSimpleToast = function() {
+                        this.showSimpleToast = function () {
                             this.$mdToast.show(
                                 this.$mdToast.simple()
-                                .parent(angular.element(document.body))
-                                .textContent(value)
-                                .position('top right')
-                                .hideDelay(3000)
+                                    .parent(angular.element(document.body))
+                                    .textContent(value)
+                                    .position('top right')
+                                    .hideDelay(3000)
                             );
                         };
 
@@ -56,6 +58,25 @@ class SettingsController {
             } else {
                 this.updateUser(form);
             }
+        } else {
+            if (form.file.$error.maxSize) {
+                this.$translate(['app.account.settings.maxImageSize', 'app.account.settings.maxSize', 'accept']).then(values => {
+                    this.$mdDialog.show(
+                        this.$mdDialog.alert()
+                            .parent(angular.element(document.querySelector('body')))
+                            .clickOutsideToClose(false)
+                            .title(values['app.account.settings.maxImageSize'])
+                            .textContent(values['app.account.settings.maxSize'])
+                            .ariaLabel('Upload Image Error')
+                            .ok(values['accept'])
+                    ).then(() => {
+                        //this.file = null;
+                        delete form.file.$error.maxSize;
+                        delete form.$error.maxSize;
+                        this.$scope.$broadcast('setFileToNull');
+                    });
+                });
+            }
         }
     }
 
@@ -63,17 +84,17 @@ class SettingsController {
     uploadImage(file, _id, form) {
         if (file.type.indexOf('image/') !== -1) {
             this.upload.upload({
-                    url: '/api/upload-images',
-                    data: {
-                        file: file,
-                        email: this.user.email,
-                        _id: _id
-                    }
-                }).then((resp) => {
-                    console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
-                    // Include new avatar filename to avoid override
-                    this.updateUser(form, resp.data.avatar);
-                })
+                url: '/api/upload-images',
+                data: {
+                    file: file,
+                    email: this.user.email,
+                    _id: _id
+                }
+            }).then((resp) => {
+                console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
+                // Include new avatar filename to avoid override
+                this.updateUser(form, resp.data.avatar);
+            })
                 .catch((resp) => {
                     this.$translate('app.account.settings.uploadError').then(value => {
                         this.errors.other = value;
@@ -95,13 +116,13 @@ class SettingsController {
             this.Auth.updateUser(this.user, null)
                 .then(() => {
                     this.$translate('app.account.settings.dataSaved').then(value => {
-                        this.showSimpleToast = function() {
+                        this.showSimpleToast = function () {
                             this.$mdToast.show(
                                 this.$mdToast.simple()
-                                .parent(angular.element(document.body))
-                                .textContent(value)
-                                .position('top right')
-                                .hideDelay(3000)
+                                    .parent(angular.element(document.body))
+                                    .textContent(value)
+                                    .position('top right')
+                                    .hideDelay(3000)
                             );
                         };
 

@@ -1,6 +1,6 @@
 'use strict';
 
-function fileInputLink(scope, element) {
+function fileInputLink(scope, element, attrs, ctrl) {
     var div = angular.element(element[0].querySelector('.file-container'));
     var input = angular.element(element[0].querySelector('.file-input'));
 
@@ -20,6 +20,9 @@ function fileInputLink(scope, element) {
         scope.$apply();
     });
 
+    scope.$on('setFileToNull', () => {
+        ctrl.file = null;
+    });
 }
 
 angular.module('agfaWebappApp')
@@ -28,6 +31,7 @@ angular.module('agfaWebappApp')
             bindToController: true,
             templateUrl: 'components/file-input/file-input.html',
             restrict: 'E',
+            require: 'fileInput',
             scope: {
                 file: '=',
                 avatar: '<'
