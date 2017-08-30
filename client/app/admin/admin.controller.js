@@ -3,7 +3,7 @@
 (function() {
 
     class AdminController {
-        constructor(User, $scope, $mdDialog, $mdToast, appConfig, $translate) {
+        constructor(User, $scope, $mdDialog, $mdToast, appConfig, $translate, $mdMedia) {
             // Use the User $resource to fetch all users
             this.title = 'Usuarios';
             this.dialog = $mdDialog;
@@ -12,6 +12,7 @@
             this.imagesServer = appConfig.imagesServer;
             this.User = User;
             this.$translate = $translate;
+            this.$mdMedia = $mdMedia;
         }
 
         $onInit() {

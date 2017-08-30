@@ -1,13 +1,14 @@
 'use strict';
 
 class CompetitionController {
-    constructor($scope, $http, $state, $mdDialog, $mdToast, $translate, appConfig) {
+    constructor($scope, $http, $state, $mdDialog, $mdToast, $translate, appConfig, $mdMedia) {
         this.$scope = $scope;
         this.$http = $http;
         this.$state = $state;
         this.$mdDialog = $mdDialog;
         this.$mdToast = $mdToast;
         this.$translate = $translate;
+        this.$mdMedia = $mdMedia;
         this.competitions = [];
         this.allCategories = appConfig.categories;
 

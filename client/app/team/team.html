@@ -67,7 +67,7 @@
 </md-content>
 
 
-<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-team-button" ng-click="$ctrl.createTeam($event)"
+<md-button ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button new-team-button" ng-click="$ctrl.createTeam($event)"
     aria-label="{{'app.teams.new' | translate}}">
 	<md-tooltip md-direction="top">{{'app.teams.new' | translate}}</md-tooltip>
 	<md-icon>add</md-icon>

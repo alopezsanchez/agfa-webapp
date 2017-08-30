@@ -1,11 +1,12 @@
 'use strict';
 
 class FieldController {
-    constructor($scope, $mdDialog, $http, $mdToast, $translate) {
+    constructor($scope, $mdDialog, $http, $mdToast, $translate, $mdMedia) {
         this.$mdDialog = $mdDialog;
         this.$mdToast = $mdToast;
         this.$http = $http;
         this.$translate = $translate;
+        this.$mdMedia = $mdMedia;
 
         this.title = 'Campos de juego';
         this.fields = [];

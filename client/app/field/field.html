@@ -29,11 +29,7 @@
     </md-card>
 </md-content>
 
-
-
-
-
-<md-button class="md-fab md-mini md-secondary md-fab-bottom-right new-button new-field-button" ng-click="$ctrl.createField($event)" aria-label="{{'app.fields.new' | translate}}">
+<md-button ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button new-field-button" ng-click="$ctrl.createField($event)" aria-label="{{'app.fields.new' | translate}}">
     <md-tooltip md-direction="top">{{'app.fields.new' | translate}}</md-tooltip>
     <md-icon>add</md-icon>
 </md-button>

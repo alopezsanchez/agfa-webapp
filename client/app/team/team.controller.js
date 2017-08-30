@@ -2,7 +2,7 @@
 
 class TeamController {
 
-    constructor($scope, Auth, $http, $mdDialog, $mdToast, $state, appConfig, $translate) {
+    constructor($scope, Auth, $http, $mdDialog, $mdToast, $state, appConfig, $translate, $mdMedia) {
         this.$scope = $scope;
         this.teams = [];
         this.$http = $http;
@@ -10,6 +10,7 @@ class TeamController {
         this.toast = $mdToast;
         this.state = $state;
         this.$translate = $translate;
+        this.$mdMedia = $mdMedia;
         this.imagesServer = appConfig.imagesServer;
         this.Auth = Auth;
         this.filter = {
