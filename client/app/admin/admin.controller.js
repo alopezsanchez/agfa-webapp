@@ -3,7 +3,7 @@
 (function () {
 
     class AdminController {
-        constructor(User, $scope, $mdDialog, $mdToast, appConfig, $translate, $mdMedia) {
+        constructor(User, $scope, $mdDialog, $mdToast, appConfig, $translate, $mdMedia, Auth) {
             // Use the User $resource to fetch all users
             this.title = 'Usuarios';
             this.dialog = $mdDialog;
@@ -13,11 +13,14 @@
             this.User = User;
             this.$translate = $translate;
             this.$mdMedia = $mdMedia;
+            this.Auth = Auth;
         }
 
         $onInit() {
             this.notConfirmedUsers = this.User.query({ confirmed: false });
             this.confirmedUsers = this.User.query({ confirmed: true });
+
+            this.isAdmin = this.Auth.hasRole('admin');
         }
 
         delete(user) {

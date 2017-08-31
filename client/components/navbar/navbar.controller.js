@@ -19,7 +19,8 @@ var NavbarController = function ($scope, Auth, $mdSidenav, $translate, appConfig
 			}, {
 				'title': values['app.components.navbar.users'],
 				'state': 'admin',
-				'icon': 'person'
+				'icon': 'person',
+				'adminOnly': true
 			}];
 		});
 
@@ -28,6 +29,10 @@ var NavbarController = function ($scope, Auth, $mdSidenav, $translate, appConfig
 	Auth.getCurrentUser((user) => {
 		this.user = user;
 	});
+
+	this.isAuthorized = (menuItem) => {
+		return menuItem.adminOnly && !Auth.hasRole('admin') ? false : true;
+	};
 
 	this.imagesServer = appConfig.imagesServer;
 

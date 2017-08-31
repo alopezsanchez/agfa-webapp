@@ -5,7 +5,7 @@
         </a>
     </div>
     <md-list>
-        <md-list-item ui-sref-active="item-active" ng-show="nav.isLoggedIn()" ui-sref="{{it.state}}" ng-repeat="it in nav.menu">
+        <md-list-item ui-sref-active="item-active" ng-show="nav.isAuthorized(it)" ui-sref="{{it.state}}" ng-repeat="it in nav.menu">
             <md-icon ng-if="it.icon !== 'person'" md-svg-icon="{{it.icon}}">{{it.icon}}</md-icon>
             <md-icon ng-if="it.icon === 'person'">{{it.icon}}</md-icon>
             <span>{{it.title}}</span>

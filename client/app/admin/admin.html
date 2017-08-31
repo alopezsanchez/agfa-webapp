@@ -12,7 +12,7 @@
                                 <strong>{{user.name}}</strong>
                                 <p>{{user.email}}</p>
                             </div>
-                            <md-button class="md-icon-button md-secondary" aria-label="Delete" ng-click="$ctrl.showConfirm($event,user)">
+                            <md-button ng-if="$ctrl.isAdmin" class="md-icon-button md-secondary" aria-label="Delete" ng-click="$ctrl.showConfirm($event,user)">
                                 <md-icon>delete</md-icon>
                                 <md-tooltip>
                                     {{'app.admin.deleteTooltip' | translate}}
@@ -31,7 +31,7 @@
                                 <strong>{{user.name}}</strong>
                                 <p>{{user.email}}</p>
                             </div>
-                            <md-button class="md-icon-button md-secondary" aria-label="Delete" ng-click="$ctrl.showConfirm($event,user)">
+                            <md-button ng-if="$ctrl.isAdmin" class="md-icon-button md-secondary" aria-label="Delete" ng-click="$ctrl.showConfirm($event,user)">
                                 <md-icon>delete</md-icon>
                                 <md-tooltip>
                                     {{'app.admin.deleteTooltip' | translate}}
@@ -45,7 +45,7 @@
     </md-card>
 </md-content>
 
-<md-button ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button" ng-click="$ctrl.signup($event)" aria-label="{{'app.admin.newTooltip' | translate}}">
+<md-button ng-if="$ctrl.isAdmin" ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button" ng-click="$ctrl.signup($event)" aria-label="{{'app.admin.newTooltip' | translate}}">
     <md-tooltip md-direction="top">{{'app.admin.newTooltip' | translate}}</md-tooltip>
     <md-icon>person_add</md-icon>
 </md-button>
