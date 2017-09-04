@@ -19,31 +19,35 @@ class WeekController {
             let promisesArray = [];
             angular.forEach(this.week.matches, (match) => {
                 if (match.file) {
-                    promisesArray.push(this.upload.upload({
+                    this.upload.upload({
                         url: '/api/upload-images/record',
                         data: {
                             file: match.file,
                             matchId: match._id,
                             weekId: this.week._id
                         }
-                    }).then(() => {
+                    }).then((weekUpdated) => {
                         // update week
                         this.week.competitionId = id;
+
+                        // add record to the match
+                        this.week.matches[match._id].record = weekUpdated.matches[match._id].record;
+                        console.log(this.week.matches);
                         this.$rootScope.$emit('weekUpdated', this.week);
                     }, (resp) => {
                         this.$translate('app.account.settings.uploadError').then(value => {
                             this.errors.other = value;
                         });
                         console.log('Error status: ' + resp.status);
-                    }));
+                    });
                 }
             });
 
-            if (!promisesArray.length) {
+            /* if (!promisesArray.length) {
                 // update week
                 this.week.competitionId = id;
                 this.$rootScope.$emit('weekUpdated', this.week);
-            }
+            } */
 
         });
 

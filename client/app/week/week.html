@@ -35,7 +35,7 @@
                     {{match.result || ('app.match.create.result' | translate)}}
                 </td>
                 <td md-cell class="actions-cell">
-                    <input ngf-select type="file" name="record" class="ng-hide record-input-{{$index}}" ng-model="match.file">
+                    <input ngf-select type="file" name="record" class="ng-hide record-input-{{$index}}" ng-model="match.file" ngf-accept="'application/pdf'">
                     <md-button ng-if="match.result" class="md-icon-button record md-inline" ng-click="$ctrl.uploadPdf($event, match, $index)">
                         <md-tooltip>{{'newRecord' | translate}}</md-tooltip>
                         <md-icon>attach_file</md-icon>
