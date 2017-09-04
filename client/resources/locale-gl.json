@@ -112,6 +112,7 @@
     "app.competitions.confirmAria": "Eliminar competición",
     "app.competitions.create.confirm": "Crear competición",
     "app.competitions.create.season": "Tempada",
+    "app.competitions.create.season.error": "Este campo debe ter formato ####-####",
     "app.competitions.create.numberOfWeeks": "Número de xornadas",
     "app.competitions.create.minWeeks": "Debe haber mínimo unha xornada por competición",
     "app.competitions.create.numberOfMatches": "Número de partidos por xornada",
@@ -134,6 +135,6 @@
     "app.week.actions": "Accións",
     "app.competitions.details.save": "Gardar cambios",
     "app.main.header": "Benvido ó portal de xestión da Asociación Galega de Fútbol Americano",
-    "app.notFound": "Non se atoparon resultados",
+    "app.notFound.title": "Non se atoparon resultados",
     "app.notFound.content": "Por favor, cambie o criterio de búsqueda"
 }

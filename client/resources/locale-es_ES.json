@@ -112,6 +112,7 @@
     "app.competitions.confirmAria": "Eliminar competición",
     "app.competitions.create.confirm": "Crear competición",
     "app.competitions.create.season": "Temporada",
+    "app.competitions.create.season.error": "Este campo debe tener formato ####-####",
     "app.competitions.create.numberOfWeeks": "Número de jornadas",
     "app.competitions.create.minWeeks": "Debe haber mínimo una jornada por competición",
     "app.competitions.create.numberOfMatches": "Número de partidos por jornada",

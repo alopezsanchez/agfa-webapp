@@ -11,9 +11,10 @@
                 </div>
             </md-input-container>
             <md-input-container md-no-float>
-                <input type="text" name="year" placeholder="{{'app.competitions.create.season' | translate}}" required ng-model="$ctrl.competition.year">
+                <input type="text" name="year" placeholder="{{'app.competitions.create.season' | translate}}" ng-pattern="/\d{4}\-\d{4}/" required ng-model="$ctrl.competition.year">
                 <div ng-messages="newCompetitionForm.year.$error">
                     <div ng-message="required">{{'required' | translate}}</div>
+                    <div ng-message-exp="['pattern']">{{'app.competitions.create.season.error' | translate}}</div>
                 </div>
                 </div>
             </md-input-container>
@@ -54,7 +55,7 @@
             </md-input-container>
         </md-card>
 
-        <div class="weeks-container" ng-show="$ctrl.numberOfWeeks && $ctrl.numberOfMatches && $ctrl.teams.length">
+        <div class="weeks-container" ng-show="$ctrl.canShowWeeks()">
             <md-card ng-repeat="week in $ctrl.weeks">
                 <md-card-title>
                     <md-card-title-text>

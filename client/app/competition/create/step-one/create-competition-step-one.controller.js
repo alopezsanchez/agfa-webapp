@@ -21,15 +21,8 @@ class CreateCompetitionStepOneController {
         this.weeks = [];
     }
 
-    $onInit() {
-        this.title = 'Nueva Competición';
-
-        this.competition = this.$stateParams.competition;
-        this.numberOfWeeks = this.$stateParams.numberOfWeeks;
-
-        if (this.competition && this.competition.category) {
-            this.updateTeams();
-        }
+    canShowWeeks() {
+        return this.competition && this.competition.name && this.competition.year && this.competition.category && this.competition.teamsSelected && this.numberOfWeeks && this.numberOfMatches;
     }
 
     updateTeams() {
@@ -61,10 +54,7 @@ class CreateCompetitionStepOneController {
             this.numberOfWeeks = 1;
         }
 
-        if (this.weeks && this.weeks.length >= this.numberOfWeeks) {
-            return;
-        }
-
+        this.weeks = [];
         for (let i = 1, l = this.numberOfWeeks; i <= l; i++) {
             this.weeks.push({
                 number: i,
@@ -79,9 +69,6 @@ class CreateCompetitionStepOneController {
         }
 
         this.weeks = this.weeks.map((week) => {
-            if (week.matches && week.matches.length >= this.numberOfMatches) {
-                return week;
-            }
             week.matches = [];
             for (let i = 1, l = this.numberOfMatches; i <= l; i++) {
                 week.matches.push({
