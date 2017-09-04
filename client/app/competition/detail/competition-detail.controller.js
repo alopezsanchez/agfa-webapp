@@ -1,28 +1,29 @@
 'use strict';
 
 class CompetitionDetailController {
-    constructor($scope, $state, $http, $q, $stateParams, $rootScope, $translate, $mdToast) {
+    constructor($scope, $state, $http, $stateParams, $rootScope, $translate, $mdToast) {
         this.$scope = $scope;
         this.$state = $state;
         this.$http = $http;
-        this.$q = $q;
         this.$stateParams = $stateParams;
         this.$rootScope = $rootScope;
         this.$translate = $translate;
         this.$mdToast = $mdToast;
 
         this.numberOfWeeks = 0;
-        this.weeksToUpdate = [];
         this.promises = [];
         this.weeksUpdated = 0;
 
-        this.$rootScope.$on('weekUpdated', (ev, week) => {
-            this.weeksToUpdate.push(week);
+        this.unregisterWeekUpdated = this.$rootScope.$on('weekUpdated', (ev, week) => {
+            this.weeksToUpdate[this.competition._id].push(week);
 
-            if (this.weeksToUpdate.length === this.numberOfWeeks) {
+            this.weeksToUpdate[this.competition._id].filter((week) => {
+                return week.competitionId === this.competition._id;
+            });
 
+            if (this.weeksToUpdate[this.competition._id].length === this.numberOfWeeks) {
                 // update all weeks
-                angular.forEach(this.weeksToUpdate, (week) => {
+                angular.forEach(this.weeksToUpdate[this.competition._id], (week) => {
                     this.$http.put(`/api/weeks/${week._id}`, week).then(() => {
                         this.weeksUpdated++;
                     });
@@ -35,7 +36,7 @@ class CompetitionDetailController {
         }, (newValue, oldValue) => {
             if (newValue !== oldValue && newValue === this.numberOfWeeks) {
                 // all weeks updated
-                const matchesMatrix = this.weeksToUpdate.map((week) => {
+                const matchesMatrix = this.weeksToUpdate[this.competition._id].map((week) => {
                     return week.matches;
                 });
                 let matches = [];
@@ -44,14 +45,20 @@ class CompetitionDetailController {
                 }
 
                 // update competition
-                this.$http.put(`/api/competitions/${this.competition._id}/updateClassification`, { matches: matches }).then(() => {
+                this.$http.put(`/api/competitions/${this.competition._id}/updateClassification`, {
+                    matches: matches
+                }).then(() => {
                     this.weeksUpdated = 0;
-                    this.weeksToUpdate = [];
+                    this.weeksToUpdate[this.competition._id] = [];
                     this.showToast();
 
                     this.$rootScope.$emit('refreshClassification');
                 });
             }
+        });
+
+        this.$scope.$on('$destroy', () => {
+            this.unregisterWeekUpdated();
         });
     }
 
@@ -59,6 +66,9 @@ class CompetitionDetailController {
         this.competition = this.competition.data;
         this.numberOfWeeks = this.competition.weeks.length;
         this.title = this.competition.name;
+
+        this.weeksToUpdate = {};
+        this.weeksToUpdate[this.competition._id] = [];
     }
 
     updateCompetition() {
@@ -67,7 +77,7 @@ class CompetitionDetailController {
 
     showToast() {
         this.$translate('app.competitions.saved').then(value => {
-            this.showSimpleToast = function() {
+            this.showSimpleToast = function () {
                 this.$mdToast.show(
                     this.$mdToast.simple()
                     .parent(angular.element(document.body))

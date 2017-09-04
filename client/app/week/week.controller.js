@@ -1,11 +1,12 @@
 'use strict';
 
 class WeekController {
-    constructor($mdEditDialog, $mdToast, $http, $rootScope, $translate, $mdDialog, Upload, $q) {
+    constructor($mdEditDialog, $mdToast, $http, $scope, $rootScope, $translate, $mdDialog, Upload, $q) {
         this.$mdEditDialog = $mdEditDialog;
         this.$mdToast = $mdToast;
         this.$http = $http;
         this.$rootScope = $rootScope;
+        this.$scope = $scope;
         this.$translate = $translate;
         this.$mdDialog = $mdDialog;
         this.upload = Upload;
@@ -13,7 +14,7 @@ class WeekController {
         this.fields = [];
         this.week = [];
 
-        this.$rootScope.$on('updateCompetition', (ev, id) => {
+        this.unregisterEv = this.$rootScope.$on('updateCompetition', (ev, id) => {
             // upload records
             let promisesArray = [];
             angular.forEach(this.week.matches, (match) => {
@@ -44,6 +45,10 @@ class WeekController {
                 this.$rootScope.$emit('weekUpdated', this.week);
             }
 
+        });
+
+        this.$scope.$on('$destroy', () => {
+            this.unregisterEv();
         });
     }
 

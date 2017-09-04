@@ -21,6 +21,9 @@ angular.module('agfaWebappApp')
                 resolve: {
                     competition: ($http, $stateParams) => {
                         return $http.get(`/api/competitions/${$stateParams.id}`);
+                    },
+                    weeksToUpdate: () => {
+                        return [];
                     }
                 }
             });
