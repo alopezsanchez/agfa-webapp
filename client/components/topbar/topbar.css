@@ -8,8 +8,6 @@ md-toolbar {
 }
 
 md-toolbar .items-container {
-    padding-right: 15px;
-    padding-left: 15px;
     height: inherit;
     display: flex;
     width: 100%;

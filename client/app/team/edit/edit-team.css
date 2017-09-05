@@ -12,6 +12,7 @@ team md-card md-card-header md-card-avatar {
     border: 4px solid white;
     border-radius: 50%;
     margin: -34px auto 10px auto !important;
+    background-color: white;
 }
 
 team md-card md-card-header md-card-avatar + md-card-header-text .md-title{
