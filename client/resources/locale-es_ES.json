@@ -29,7 +29,7 @@
     "app.errors.sessionExpired": "Su sesión ha caducado. Por favor, inicie sesión de nuevo",
     "app.components.topbar.settings.profile": "Mi perfil",
     "app.components.topbar.settings.logout": "Salir",
-    "app.main.title": "Inicio",
+    "app.main.title": "",
     "app.admin.title": "Usuarios",
     "app.admin.registered": "Registrados",
     "app.admin.pending": "Pendientes",

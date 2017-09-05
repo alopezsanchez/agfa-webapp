@@ -16,6 +16,10 @@ md-toolbar .items-container {
     align-items: center;
 }
 
+md-toolbar .md-headline{
+    font-weight: 500;
+}
+
 md-toolbar .user-info {
     right: 15px;
     display: flex;

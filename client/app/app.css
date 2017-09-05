@@ -8,25 +8,70 @@ body {
     padding: 0;
     display: flex;
     overflow: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 div[ui-view] {
-    background-color: #F4F5F7 !important;
+    background-color: #F4F4F4 !important;
     width: 100%;
     overflow: auto;
+    padding: 10px 30px;
+}
+
+.layout-padding > md-input-container{
+    padding: 0 !important;
+}
+
+edit-field .layout-padding > md-input-container md-select{
+    margin-bottom: 20px;
 }
 
 
 /* Toolbars */
-
-md-toolbar.modal-toolbar {
-    background-color: #F4F5F7 !important;
-}
-
 .center-title span {
     margin: 0 auto;
 }
 
+
+/* Dialog */
+
+md-dialog{
+    border: 4px solid white;
+}
+
+/* Filters */
+.filter-container{
+    flex-wrap: nowrap;
+}
+
+.filter-container md-input-container{
+    margin: 20px 0 0 0;
+
+}
+
+.filter-container md-input-container .md-errors-spacer{
+    display: none;
+}
+
+.filter-container .md-button.md-primary{
+    font-size: 0.8em;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-filter{
+    padding: 0;
+    margin: 0;
+}
+
+.category-filter > div{
+    font-size: 14px;
+}
+
+.category-filter h4{
+    margin-top: 0;
+}
 
 /* Icons */
 
@@ -46,6 +91,15 @@ md-icon.icon {
     margin-right: 20px;
 }
 
+/* Cards */
+
+md-card md-list-item{
+    border-bottom: 1px solid rgba(236, 236, 236, 0.5);
+}
+
+md-card md-list-item:last-child{
+    border: none;
+}
 
 /* md-toast error */
 

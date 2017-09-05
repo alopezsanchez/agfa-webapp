@@ -52,7 +52,7 @@ class FieldController {
             clickOutsideToClose: true,
             escapeToClose: true,
             fullscreen: false,
-            hasBackdrop: false
+            hasBackdrop: true
         });
     }
 

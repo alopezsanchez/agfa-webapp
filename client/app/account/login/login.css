@@ -5,6 +5,11 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 .login-card {
@@ -12,6 +17,13 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0 0 300px black;
+}
+
+.login-card .md-card-image {
+    width: 90%;
+    margin: 10px auto 0 auto;
 }
 
 .login-card md-input-container {

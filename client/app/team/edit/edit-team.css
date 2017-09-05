@@ -1,4 +1,30 @@
 md-card.edit-card {
-    max-width: 600px;
-    margin: 40px auto;
+    margin: 20px 8px;
+}
+
+team md-card md-card-header {
+    flex-direction: column;
+}
+
+team md-card md-card-header md-card-avatar {
+    width: 100px;
+    height: 100px;
+    border: 4px solid white;
+    border-radius: 50%;
+    margin: -34px auto 10px auto !important;
+}
+
+team md-card md-card-header md-card-avatar + md-card-header-text .md-title{
+    font-size: 18px;
+}
+
+team md-card{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+team md-card .md-actions md-card-icon-actions,
+team md-card md-card-actions md-card-icon-actions {
+    -webkit-justify-content: center;
+    justify-content: center;
 }
