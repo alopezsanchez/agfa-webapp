@@ -32,10 +32,10 @@ class SettingsController {
                         this.showSimpleToast = function () {
                             this.$mdToast.show(
                                 this.$mdToast.simple()
-                                    .parent(angular.element(document.body))
-                                    .textContent(value)
-                                    .position('top right')
-                                    .hideDelay(3000)
+                                .parent(angular.element(document.body))
+                                .textContent(value)
+                                .position('top right')
+                                .hideDelay(3000)
                             );
                         };
 
@@ -63,12 +63,12 @@ class SettingsController {
                 this.$translate(['app.account.settings.maxImageSize', 'app.account.settings.maxSize', 'accept']).then(values => {
                     this.$mdDialog.show(
                         this.$mdDialog.alert()
-                            .parent(angular.element(document.querySelector('body')))
-                            .clickOutsideToClose(false)
-                            .title(values['app.account.settings.maxImageSize'])
-                            .textContent(values['app.account.settings.maxSize'])
-                            .ariaLabel('Upload Image Error')
-                            .ok(values['accept'])
+                        .parent(angular.element(document.querySelector('body')))
+                        .clickOutsideToClose(false)
+                        .title(values['app.account.settings.maxImageSize'])
+                        .textContent(values['app.account.settings.maxSize'])
+                        .ariaLabel('Upload Image Error')
+                        .ok(values['accept'])
                     ).then(() => {
                         //this.file = null;
                         delete form.file.$error.maxSize;
@@ -94,13 +94,12 @@ class SettingsController {
                 console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
                 // Include new avatar filename to avoid override
                 this.updateUser(form, resp.data.avatar);
-            })
-                .catch((resp) => {
-                    this.$translate('app.account.settings.uploadError').then(value => {
-                        this.errors.other = value;
-                    });
-                    console.log('Error status: ' + resp.status);
+            }).catch((resp) => {
+                this.$translate('app.account.settings.uploadError').then(value => {
+                    this.errors.other = value;
                 });
+                console.log('Error status: ' + resp.status);
+            });
         } else {
             this.$translate('app.account.settings.incorrectImageFormat').then(value => {
                 this.errors.other = value;
@@ -119,10 +118,10 @@ class SettingsController {
                         this.showSimpleToast = function () {
                             this.$mdToast.show(
                                 this.$mdToast.simple()
-                                    .parent(angular.element(document.body))
-                                    .textContent(value)
-                                    .position('top right')
-                                    .hideDelay(3000)
+                                .parent(angular.element(document.body))
+                                .textContent(value)
+                                .position('top right')
+                                .hideDelay(3000)
                             );
                         };
 
@@ -132,7 +131,9 @@ class SettingsController {
                 })
                 .catch((err) => {
                     err = err.data;
-                    this.errors = { err };
+                    this.errors = {
+                        err
+                    };
 
                     // Update validity of form fields that match the mongoose errors
                     angular.forEach(err.errors, (error, field) => {

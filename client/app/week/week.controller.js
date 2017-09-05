@@ -13,11 +13,12 @@ class WeekController {
         this.$q = $q;
         this.fields = [];
         this.week = [];
+        this.files = {};
 
         this.unregisterEv = this.$rootScope.$on('updateCompetition', (ev, id) => {
             // upload records
-            let promisesArray = [];
-            angular.forEach(this.week.matches, (match) => {
+            console.log(this.files);
+            this.week.matches.map((match) => {
                 if (match.file) {
                     this.upload.upload({
                         url: '/api/upload-images/record',
@@ -26,29 +27,32 @@ class WeekController {
                             matchId: match._id,
                             weekId: this.week._id
                         }
-                    }).then((weekUpdated) => {
+                    }).then((res) => {
                         // update week
                         this.week.competitionId = id;
 
                         // add record to the match
-                        this.week.matches[match._id].record = weekUpdated.matches[match._id].record;
-                        console.log(this.week.matches);
+                        const recordMatch = res.data.matches.find((m) => m._id === match._id);
+                        let record;
+                        if (recordMatch) {
+                            record = recordMatch.record;
+                            if (record) {
+                                match.record = record;
+                            }
+                        }
                         this.$rootScope.$emit('weekUpdated', this.week);
-                    }, (resp) => {
+                        delete match.file;
+                        return match;
+                    }).catch((resp) => {
                         this.$translate('app.account.settings.uploadError').then(value => {
                             this.errors.other = value;
                         });
-                        console.log('Error status: ' + resp.status);
+                        console.log('Error status: ' + resp);
                     });
+                } else {
+                    this.$rootScope.$emit('weekUpdated', this.week);
                 }
             });
-
-            /* if (!promisesArray.length) {
-                // update week
-                this.week.competitionId = id;
-                this.$rootScope.$emit('weekUpdated', this.week);
-            } */
-
         });
 
         this.$scope.$on('$destroy', () => {
@@ -81,7 +85,7 @@ class WeekController {
             },
             modelValue: match.date,
             placeholder: 'Fecha',
-            save: function(input) {
+            save: function (input) {
                 match.date = input.$modelValue;
             },
             targetEvent: event,
@@ -99,7 +103,7 @@ class WeekController {
             },
             modelValue: match.time,
             placeholder: 'Hora',
-            save: function(input) {
+            save: function (input) {
                 match.time = input.$modelValue;
             },
             targetEvent: event,
@@ -114,7 +118,7 @@ class WeekController {
         this.$mdEditDialog.small({
             modelValue: match.result,
             placeholder: 'Resultado',
-            save: function(input) {
+            save: function (input) {
                 match.result = input.$modelValue;
             },
             targetEvent: event,
