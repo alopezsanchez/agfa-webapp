@@ -1,12 +1,13 @@
 'use strict';
 
 class FieldController {
-    constructor($scope, $mdDialog, $http, $mdToast, $translate, $mdMedia) {
+    constructor($scope, $mdDialog, $http, $mdToast, $translate, $mdMedia, Auth) {
         this.$mdDialog = $mdDialog;
         this.$mdToast = $mdToast;
         this.$http = $http;
         this.$translate = $translate;
         this.$mdMedia = $mdMedia;
+        this.Auth = Auth;
 
         this.title = 'Campos de juego';
         this.fields = [];
@@ -18,6 +19,10 @@ class FieldController {
         });
 
         this.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    }
+
+    $onInit() {
+        this.isAdmin = this.Auth.hasRole('admin');
     }
 
     createField(ev) {

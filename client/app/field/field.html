@@ -16,11 +16,11 @@
                     <md-tooltip>{{'app.fields.zoom' | translate}}</md-tooltip>
                     <md-icon>zoom_in</md-icon>
                 </md-button>
-                <md-button class="md-icon-button md-secondary edit-button" aria-label="Editar" ui-sref="editField({id: field._id})">
+                <md-button ng-if="$ctrl.isAdmin" class="md-icon-button md-secondary edit-button" aria-label="Editar" ui-sref="editField({id: field._id})">
                     <md-tooltip>{{'app.fields.edit' | translate}}</md-tooltip>
                     <md-icon>edit</md-icon>
                 </md-button>
-                <md-button class="md-icon-button md-secondary" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,field)">
+                <md-button ng-if="$ctrl.isAdmin" class="md-icon-button md-secondary" aria-label="Eliminar" ng-click="$ctrl.showConfirm($event,field)">
                     <md-tooltip>{{'app.fields.delete' | translate}}</md-tooltip>
                     <md-icon>delete</md-icon>
                 </md-button>
@@ -29,7 +29,7 @@
     </md-card>
 </md-content>
 
-<md-button ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button new-field-button" ng-click="$ctrl.createField($event)" aria-label="{{'app.fields.new' | translate}}">
+<md-button ng-if="$ctrl.isAdmin" ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button new-field-button" ng-click="$ctrl.createField($event)" aria-label="{{'app.fields.new' | translate}}">
     <md-tooltip md-direction="top">{{'app.fields.new' | translate}}</md-tooltip>
     <md-icon>add</md-icon>
 </md-button>

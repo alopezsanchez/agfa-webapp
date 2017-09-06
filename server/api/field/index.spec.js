@@ -49,7 +49,7 @@ describe('Field API Router:', function() {
     describe('GET /api/fields', function() {
         it('should route to field.controller.index', function() {
             expect(routerStub.get
-                .withArgs('/', 'authService.hasRole.admin', 'fieldCtrl.index')
+                .withArgs('/', 'authService.isAuthenticated', 'fieldCtrl.index')
             ).to.have.been.calledOnce;
         });
     });
