@@ -23,3 +23,11 @@ td.actions-cell {
 td.not-editable {
     cursor: text !important;
 }
+
+/* .weeks-container create-match .match-container {
+    border-bottom: 1px solid red;
+}
+
+.weeks-container create-match .match-container:last-child {
+    border: none;
+} */

@@ -19,7 +19,7 @@
             <h4 class="md-headline">vs</h4>
             <md-input-container md-no-float>
                 <md-select name="visitingTeam" placeholder="{{'app.match.create.visitingTeam' | translate}}" ng-model="$ctrl.match.visitingTeam">
-                    <md-option class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
+                    <md-option ng-if="team._id !== $ctrl.match.localTeam" class="md-secondary" ng-value="team._id" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
                 </md-select>
             </md-input-container>
         </div>
@@ -32,5 +32,4 @@
             </md-input-container>
         </div>
     </ng-form>
-    <md-divider></md-divider>
 </div>

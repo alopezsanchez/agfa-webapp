@@ -1,7 +1,3 @@
-/*.match-container md-input-container {
-    margin-top: 0;
-}*/
-
 .match-container div {
     max-height: 70px;
 }
@@ -23,8 +19,12 @@
     justify-content: center;
 }
 
-.match-teams-container md-input-container {
-    margin: 0 70px;
+.match-teams-container md-input-container:first-child {
+    margin-left: 40px;
+}
+
+.match-teams-container .md-headline {
+    margin: 0 35px;
 }
 
 .match-other-container {

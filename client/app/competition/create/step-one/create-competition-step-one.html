@@ -1,58 +1,64 @@
 <topbar page="{{'app.competitions.new' | translate}}"></topbar>
 
-<md-content layout-padding>
+<md-content>
     <form name="newCompetitionForm" ng-submit="$ctrl.submit(newCompetitionForm)" enctype="multipart/form-data" novalidate>
         <md-card class="step-1" layout-padding>
+            <md-card-content>
+                <md-input-container>
+                    <input type="text" name="name" placeholder="{{'app.account.signup.name' | translate}}" required ng-model="$ctrl.competition.name">
+                    <div ng-messages="newCompetitionForm.name.$error">
+                        <div ng-message="required">{{'required' | translate}}</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <input type="text" name="year" placeholder="{{'app.competitions.create.season' | translate}}" ng-pattern="/\d{4}\-\d{4}/"
+                        required ng-model="$ctrl.competition.year">
+                    <div ng-messages="newCompetitionForm.year.$error">
+                        <div ng-message="required">{{'required' | translate}}</div>
+                        <div ng-message-exp="['pattern']">{{'app.competitions.create.season.error' | translate}}</div>
+                    </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="select-container">
+                    <md-select mongoose-error placeholder="{{'category' | translate}}" name="category" ng-change="$ctrl.updateTeams()" md-container-class="select-padding"
+                        ng-model="$ctrl.competition.category" required>
+                        <md-option class="md-secondary" ng-value="category.name" ng-repeat="category in $ctrl.categories">{{category.name}}</md-option>
+                    </md-select>
+                    <div ng-messages="newCompetitionForm.category.$error">
+                        <div ng-message="required">{{'required' | translate}}</div>
+                    </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="select-container-multiple">
+                    <label>{{'app.teams.title' | translate}}</label>
+                    <md-select name="teams" ng-disabled="!$ctrl.hasTeams" md-container-class="select-padding" ng-model="$ctrl.competition.teamsSelected"
+                        multiple required>
+                        <md-option class="md-secondary" ng-value="team" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
+                    </md-select>
+                    <div ng-messages="newCompetitionForm.teams.$error">
+                        <div ng-message="required">{{'required' | translate}}</div>
+                    </div>
+                    </div>
+                </md-input-container>
 
-            <md-input-container md-no-float>
-                <input type="text" name="name" placeholder="{{'app.account.signup.name' | translate}}" required ng-model="$ctrl.competition.name">
-                <div ng-messages="newCompetitionForm.name.$error">
-                    <div ng-message="requireḍ"> {{'required' | translate}}</div>
-                </div>
-            </md-input-container>
-            <md-input-container md-no-float>
-                <input type="text" name="year" placeholder="{{'app.competitions.create.season' | translate}}" ng-pattern="/\d{4}\-\d{4}/" required ng-model="$ctrl.competition.year">
-                <div ng-messages="newCompetitionForm.year.$error">
-                    <div ng-message="required">{{'required' | translate}}</div>
-                    <div ng-message-exp="['pattern']">{{'app.competitions.create.season.error' | translate}}</div>
-                </div>
-                </div>
-            </md-input-container>
-            <md-input-container>
-                <md-select mongoose-error placeholder="{{'category' | translate}}" name="category" ng-change="$ctrl.updateTeams()" md-container-class="select-padding" ng-model="$ctrl.competition.category" required>
-                    <md-option class="md-secondary" ng-value="category.name" ng-repeat="category in $ctrl.categories">{{category.name}}</md-option>
-                </md-select>
-                <div ng-messages="newCompetitionForm.category.$error">
-                    <div ng-message="required">{{'required' | translate}}</div>
-                </div>
-                </div>
-            </md-input-container>
-            <md-input-container>
-                <label>{{'app.teams.title' | translate}}</label>
-                <md-select name="teams" ng-disabled="!$ctrl.hasTeams" md-container-class="select-padding" ng-model="$ctrl.competition.teamsSelected" multiple required>
-                    <md-option class="md-secondary" ng-value="team" ng-repeat="team in $ctrl.teams">{{team.name}}</md-option>
-                </md-select>
-                <div ng-messages="newCompetitionForm.teams.$error">
-                    <div ng-message="required">{{'required' | translate}}</div>
-                </div>
-                </div>
-            </md-input-container>
+                <md-input-container>
+                    <input type="number" name="numberofweeks" min="1" placeholder="{{'app.competitions.create.numberOfWeeks' | translate}}" required
+                        ng-model="$ctrl.numberOfWeeks" ng-change="$ctrl.onChangeWeeks()">
+                    <div ng-messages="newCompetitionForm.numberofweeks.$error">
+                        <div ng-message="required">{{'required' | translate}}</div>
+                        <div ng-message="min">{{'app.competitions.create.minWeeks' | translate}}</div>
+                    </div>
+                </md-input-container>
 
-            <md-input-container md-no-float>
-                <input type="number" name="numberofweeks" min="1" placeholder="{{'app.competitions.create.numberOfWeeks' | translate}}" required ng-model="$ctrl.numberOfWeeks" ng-change="$ctrl.onChangeWeeks()">
-                <div ng-messages="newCompetitionForm.numberofweeks.$error">
-                    <div ng-message="required">{{'required' | translate}}</div>
-                    <div ng-message="min">{{'app.competitions.create.minWeeks' | translate}}</div>
-                </div>
-            </md-input-container>
-
-            <md-input-container md-no-float>
-                <input type="number" name="numberofmatches" min="1" placeholder="{{'app.competitions.create.numberOfMatches' | translate}}" required ng-model="$ctrl.numberOfMatches" ng-change="$ctrl.onChangeMatches()">
-                <div ng-messages="newCompetitionForm.numberofmatches.$error">
-                    <div ng-message="required">{{'required' | translate}}</div>
-                    <div ng-message="min">{{'app.competitions.create.minMatches' | translate}}</div>
-                </div>
-            </md-input-container>
+                <md-input-container>
+                    <input type="number" name="numberofmatches" min="1" placeholder="{{'app.competitions.create.numberOfMatches' | translate}}"
+                        required ng-model="$ctrl.numberOfMatches" ng-change="$ctrl.onChangeMatches()">
+                    <div ng-messages="newCompetitionForm.numberofmatches.$error">
+                        <div ng-message="required">{{'required' | translate}}</div>
+                        <div ng-message="min">{{'app.competitions.create.minMatches' | translate}}</div>
+                    </div>
+                </md-input-container>
+            </md-card-content>
         </md-card>
 
         <div class="weeks-container" ng-show="$ctrl.canShowWeeks()">
@@ -62,7 +68,9 @@
                         <h4 class="md-title">{{'week' | translate}} {{week.number}}</h4>
                     </md-card-title-text>
                 </md-card-title>
-                <create-match teams="$ctrl.competition.teamsSelected" ng-model="match" match="match" ng-repeat="match in week.matches track by $index"></create-match>
+                <md-card-content>
+                    <create-match teams="$ctrl.competition.teamsSelected" ng-model="match" match="match" ng-repeat="match in week.matches track by $index"></create-match>
+                </md-card-content>
             </md-card>
         </div>
 

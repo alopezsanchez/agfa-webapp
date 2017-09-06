@@ -1,3 +1,16 @@
 .step-1 {
     display: flex;
 }
+
+create-competition-step-one form .select-container {
+    max-width: 300px;
+}
+
+create-competition-step-one form .select-container-multiple {
+    max-width: 800px;
+}
+
+create-competition-step-one .weeks-container md-card-title-text .md-title {
+    text-align: center;
+    margin: 0;
+}
