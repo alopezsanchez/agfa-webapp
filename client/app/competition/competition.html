@@ -11,9 +11,15 @@
 		</div>
 		<div>
 			<md-input-container>
-				<label>Nombre</label>
+				<label>{{'app.account.signup.name' | translate}}</label>
 				<input type="text" name="name" ng-model="$ctrl.filter.name" />
-			</md-input-container>
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container class="season-input">
+				<label>{{'app.competitions.create.season' | translate}}</label>
+				<input type="text" size="9" name="year" ng-model="$ctrl.filter.year" />
+            </md-input-container>
         </div>
         <md-button class="md-icon-button" ng-click="$ctrl.clearFilters()">
             <md-icon>clear</md-icon>

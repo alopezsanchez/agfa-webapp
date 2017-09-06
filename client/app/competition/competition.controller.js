@@ -34,6 +34,9 @@ class CompetitionController {
                 if (!newValue.name) {
                     delete newValue.name;
                 }
+                if (!newValue.year) {
+                    delete newValue.year;
+                }
 
                 this.$http({
                     url: '/api/competitions/',

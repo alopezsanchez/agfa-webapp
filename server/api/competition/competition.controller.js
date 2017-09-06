@@ -67,9 +67,12 @@ function handleError(res, statusCode) {
 // Gets a list of Competitions
 export function index(req, res) {
     if (req.query.name) {
-        const value = req.query.name;
-        const query = new RegExp(value, 'ig');
-        req.query.name = { '$regex': value, '$options': 'ig'};
+        const nameValue = req.query.name;
+        req.query.name = { '$regex': nameValue, '$options': 'ig'};
+    }
+    if (req.query.year) {
+        const yearValue = req.query.year;
+        req.query.year = { '$regex': yearValue, '$options': 'i'};
     }
 
     Competition.find(req.query)
