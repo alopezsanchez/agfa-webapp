@@ -46,7 +46,7 @@ describe('Team API Router:', function() {
   describe('GET /api/teams', function() {
     it('should route to team.controller.index', function() {
       expect(routerStub.get
-        .withArgs('/', 'authService.hasRole.admin', 'teamCtrl.index')
+        .withArgs('/', 'authService.isAuthenticated', 'teamCtrl.index')
         ).to.have.been.calledOnce;
     });
   });
