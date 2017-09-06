@@ -22,8 +22,6 @@ class CreateFieldController {
             this.errors = {
                 err
             };
-
-            console.log(err);
         });
     }
 

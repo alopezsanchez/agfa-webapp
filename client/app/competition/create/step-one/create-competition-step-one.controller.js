@@ -9,7 +9,7 @@ class CreateCompetitionStepOneController {
         this.$mdToast = $mdToast;
         this.$translate = $translate;
         this.$q = $q;
-        this.categories = appConfig.categories.map(function(item) {
+        this.categories = appConfig.categories.map(function (item) {
             return {
                 name: item,
                 value: item.toLowerCase()
@@ -114,13 +114,10 @@ class CreateCompetitionStepOneController {
                 });
 
                 this.competition.weeks = weeks;
-                this.$http.post('/api/competitions', this.competition)
-                    .then(() => {
-                        this.showToast();
-                        this.$state.go('competitions');
-                    }, (err) => {
-                        console.log(err);
-                    });
+                this.$http.post('/api/competitions', this.competition).then(() => {
+                    this.showToast();
+                    this.$state.go('competitions');
+                });
             });
         }
     }

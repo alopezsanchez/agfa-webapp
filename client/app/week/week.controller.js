@@ -18,7 +18,6 @@ class WeekController {
 
         this.unregisterEv = this.$rootScope.$on('updateCompetition', (ev, id) => {
             // upload records
-            console.log(this.files);
             this.week.matches.map((match) => {
                 if (match.file) {
                     this.upload.upload({
@@ -48,7 +47,6 @@ class WeekController {
                         this.$translate('app.account.settings.uploadError').then(value => {
                             this.errors.other = value;
                         });
-                        console.log('Error status: ' + resp);
                     });
                 } else {
                     this.$rootScope.$emit('weekUpdated', this.week);
@@ -74,7 +72,7 @@ class WeekController {
                 }).then((res) => {
                     match.fields = res.data;
                     return match;
-                }, err => console.log(err));
+                });
             });
         });
     }

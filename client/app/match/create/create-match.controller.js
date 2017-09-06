@@ -17,8 +17,6 @@ class CreateMatchController {
             this.fields = res.data;
             this.hasFields = true;
             this.match.field = '';
-        }, (err) => {
-            console.log(err);
         });
 
     }

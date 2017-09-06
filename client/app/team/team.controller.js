@@ -43,8 +43,6 @@ class TeamController {
             params: filters
         }).then((response) => {
             this.teams = response.data;
-        }, err => {
-            console.log(err);
         });
     }
 

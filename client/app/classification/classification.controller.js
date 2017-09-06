@@ -14,10 +14,6 @@ class ClassificationController {
             });
         });
     }
-
-    /*$onChanges(changes) {
-        console.log(changes);
-    }*/
 }
 
 angular.module('agfaWebappApp')

@@ -22,7 +22,7 @@ exports.sendMailUserConfirmed = (userName) => {
 
 	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
-			return console.log(error);
+			return console.error(error);
 		}
 		transporter.close();
 	});
@@ -48,7 +48,7 @@ exports.sendConfirm = (userName, mail, link) => {
 
 	transporter.sendMail(mailOptions, function(error, info) {
 		if (error) {
-			return console.log(error);
+			return console.error(error);
 		}
 		transporter.close();
 	});

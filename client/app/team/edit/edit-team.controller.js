@@ -64,8 +64,6 @@ class EditTeamController {
                 if (this.clubTeams.length) {
                     this.selectParentTeam = true;
                 }
-            }, err => {
-                console.log(err);
             });
     }
 
@@ -83,7 +81,6 @@ class EditTeamController {
                     this.showToast();
                     this.state.go('teams');
                 }, err => {
-                    console.log(err);
                     err = err.data;
                     this.errors = { err };
 

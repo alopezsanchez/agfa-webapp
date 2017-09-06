@@ -46,28 +46,5 @@ describe('Upload-image API: ', function() {
                     done();
                 });
         });
-
-        /* beforeEach(function(done) {
-            console.log(user);
-            request(app)
-                .post('/api/upload-images')
-                .type('multipart/form-data')
-                .set('authorization', 'Bearer ' + token)
-                .field('_id', user._id)
-                .field('email', user.email)
-                .attach('file', 'client/assets/images/agfa.jpg')
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        return done(err);
-                    }
-                    done();
-                });
-        });
-
-        it('should create a file in /client/assets/uploads', function() {
-            expect(user.avatar).to.be.instanceOf(String);
-        }); */
-
     })
 });

@@ -13,7 +13,7 @@ class EditFieldController {
             if (response.data.length) {
                 this.teams = response.data;
             }
-        }, (err) => console.log(err));
+        });
     }
 
     $onInit() {
@@ -25,7 +25,7 @@ class EditFieldController {
             this.$http.put(`/api/fields/${this.field._id}`, this.field).then(() => {
                 this.showToast();
                 this.$state.go('fields');
-            }, err => console.log(err));
+            });
         }
     }
 

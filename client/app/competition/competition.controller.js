@@ -17,12 +17,9 @@ class CompetitionController {
             category: ''
         };
 
-        this.$http.get('/api/competitions')
-            .then((res) => {
-                this.competitions = res.data;
-            }, (err) => {
-                console.log(err);
-            });
+        this.$http.get('/api/competitions').then((res) => {
+            this.competitions = res.data;
+        });
     }
 
     $onInit() {
@@ -44,8 +41,6 @@ class CompetitionController {
                     params: newValue
                 }).then((response) => {
                     this.competitions = response.data;
-                }, err => {
-                    console.log(err);
                 });
             }
         }, true);
@@ -70,7 +65,9 @@ class CompetitionController {
     }
 
     detail(id) {
-        this.$state.go('competitionDetail', { id: id });
+        this.$state.go('competitionDetail', {
+            id: id
+        });
     }
 
     delete(competition) {
@@ -106,7 +103,7 @@ class CompetitionController {
                 .targetEvent(ev)
                 .ok(values['app.admin.confirmOk'])
                 .cancel(values['cancel']);
-            this.$mdDialog.show(confirm).then(function() {
+            this.$mdDialog.show(confirm).then(function () {
                 _this.delete(competition);
             });
         });

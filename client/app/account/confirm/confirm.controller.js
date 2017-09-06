@@ -40,13 +40,11 @@ class ConfirmController {
                         _id: _id
                     }
                 }).then((resp) => {
-                    console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
                     // Include new avatar filename to avoid override
                     this.updateUser(form, resp.data.avatar);
                 })
-                .catch((resp) => {
+                .catch(() => {
                     this.errors.other = 'Error al subir la imagen.';
-                    console.log('Error status: ' + resp.status);
                 });
         } else {
             this.errors.other = 'Formato incorrecto. Por favor, inserta una imagen.';

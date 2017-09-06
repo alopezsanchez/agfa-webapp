@@ -91,14 +91,12 @@ class SettingsController {
                     _id: _id
                 }
             }).then((resp) => {
-                console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
                 // Include new avatar filename to avoid override
                 this.updateUser(form, resp.data.avatar);
-            }).catch((resp) => {
+            }).catch(() => {
                 this.$translate('app.account.settings.uploadError').then(value => {
                     this.errors.other = value;
                 });
-                console.log('Error status: ' + resp.status);
             });
         } else {
             this.$translate('app.account.settings.incorrectImageFormat').then(value => {

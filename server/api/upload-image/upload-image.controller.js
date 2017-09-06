@@ -45,7 +45,6 @@ function saveMatchUpdates(updates, matchId) {
 
         return entity.save()
             .then(updated => {
-                console.log(updated);
                 return updated;
             });
     };
@@ -61,7 +60,6 @@ function handleError(res, statusCode) {
 
 // Creates a new UploadImage in the DB
 export function create(req, res) {
-    console.log(req.body);
     if (req.body._id) {
         delete req.body._id;
     }
