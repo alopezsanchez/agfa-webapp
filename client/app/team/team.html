@@ -23,7 +23,11 @@
 				<input type="text" name="name" ng-model="$ctrl.filter.name">
 				<md-input-container>
 		</div>
-		<md-button class="md-primary" ng-click="$ctrl.clearFilters()">{{'app.teams.clearFilter' | translate}}</md-button>
+        <!-- <md-button class="md-primary" ng-click="$ctrl.clearFilters()">{{'app.teams.clearFilter' | translate}}</md-button> -->
+        <md-button class="md-icon-button" ng-click="$ctrl.clearFilters()">
+            <md-icon>clear</md-icon>
+            <md-tooltip>{{'app.teams.clearFilter' | translate}}</md-tooltip>
+        </md-button>
 	</div>
 </md-content>
 
