@@ -25,5 +25,5 @@ module.exports = {
 
   from: process.env.AGFA_GMAIL_MAIL ||'no-reply-agfa@agfa.gal',
 
-  mailTransport: 'smtps://' + process.env.AGFA_GMAIL_MAIL + ':' + process.env.AGFA + '@smtp.gmail.com'
+  mailTransport: 'smtps://' + process.env.AGFA_GMAIL_MAIL + ':' + process.env.AGFA_GMAIL_KEY + '@smtp.gmail.com'
 };

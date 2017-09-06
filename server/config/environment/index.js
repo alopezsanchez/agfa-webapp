@@ -2,6 +2,7 @@
 
 var path = require('path');
 var _ = require('lodash');
+require('dotenv').config();
 
 function requiredProcessEnv(name) {
   if (!process.env[name]) {
