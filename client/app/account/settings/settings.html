@@ -83,7 +83,7 @@
 
                 <md-input-container>
                     <label>{{'app.account.settings.newPassword' | translate}}</label>
-                    <input type="password" name="newPassword" ng-model="$ctrl.user.newPassword" ng-minlength="3" required>
+                    <input type="password" name="newPassword" ng-model="$ctrl.user.newPassword" ng-minlength="6" required>
                     <div ng-messages="userPasswordForm.newPassword.$error">
                         <div ng-message="required">{{'required' | translate}}</div>
                         <div ng-message="minlength">{{'app.account.settings.passwordMinLength' | translate}}</div>
@@ -92,7 +92,7 @@
 
                 <md-input-container>
                     <label>{{'app.account.settings.confirmNewPassword' | translate}}</label>
-                    <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword" ng-minlength="3" match="$ctrl.user.newPassword" required>
+                    <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword" ng-minlength="6" match="$ctrl.user.newPassword" required>
                     <div ng-messages="userPasswordForm.confirmPassword.$error">
                         <div ng-message="required">{{'required' | translate}}</div>
                         <div ng-message="minlength">{{'app.account.settings.passwordMinLength' | translate}}</div>

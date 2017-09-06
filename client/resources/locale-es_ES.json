@@ -14,6 +14,7 @@
     "cancel": "Cancelar",
     "categories": "Categorías",
     "category": "Categoría",
+    "password": "Contraseña",
     "categorie.flag": "Flag",
     "categorie.tackle": "Tackle masculino",
     "categorie.femTackle": "Tackle femenino",
@@ -56,7 +57,7 @@
     "app.account.settings.currentPassword": "Contraseña actual",
     "app.account.settings.newPassword": "Nueva contraseña",
     "app.account.settings.confirmNewPassword": "Confirmar nueva contraseña",
-    "app.account.settings.passwordMinLength": "La nueva contraseña debe tener mínimo 3 caracteres",
+    "app.account.settings.passwordMinLength": "La nueva contraseña debe tener mínimo 6 caracteres",
     "app.account.settings.passwordMatch": "Las contraseñas deben coincidir",
     "app.account.settings.dataSaved": "Cambios guardados correctamente",
     "app.account.settings.passwordChanged": "Contraseña cambiada correctamente",
@@ -69,6 +70,8 @@
     "app.account.login.password": "Contraseña",
     "app.account.login.error": "E-mail o contraseña incorrectos.",
     "app.account.login.login": "Iniciar sesión",
+    "app.account.confirm.title": "Por favor, completa tu registro en AGFA.",
+    "app.account.confirm.confirm": "Confirmar registro",
     "app.teams.title": "Equipos",
     "app.teams.clearFilter": "Limpiar filtros",
     "app.teams.editTooltip": "Editar equipo",
@@ -136,5 +139,6 @@
     "app.competitions.details.save": "Guardar cambios",
     "app.main.header": "Bienvenido al portal de gestión de la Asociación Gallega de Fútbol Americano",
     "app.notFound.title": "No se encontraron resultados",
-    "app.notFound.content": "Por favor, cambie el criterio de búsqueda"
+    "app.notFound.content": "Por favor, cambie el criterio de búsqueda",
+    "app.fileInput.tooltip": "Elegir foto de perfil"
 }
