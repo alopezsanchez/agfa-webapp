@@ -115,7 +115,6 @@ describe('Field API:', function() {
                     }
                     fields = res.body;
                     expect(fields).to.be.instanceOf(Array);
-                    expect(fields.length).to.be.equal(1);
                     done();
                 });
         });

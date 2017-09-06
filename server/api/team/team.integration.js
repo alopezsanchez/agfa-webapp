@@ -15,9 +15,8 @@ describe('Team API:', function() {
     var team;
 
     // Clear users before testing
-    before(function() {
-        Team.removeAsync();
-        return User.removeAsync().then(function() {
+    before(function (done) {
+        User.removeAsync().then(function () {
             user = new User({
                 name: 'Fake User',
                 email: 'test@example.com',
@@ -27,8 +26,7 @@ describe('Team API:', function() {
                 avatar: 'default.jpg',
                 address: 'address'
             });
-
-            user.saveAsync();
+            return user.saveAsync().then(() => done());
         });
     });
 
@@ -115,7 +113,7 @@ describe('Team API:', function() {
                                 .post('/api/teams')
                                 .set('authorization', 'Bearer ' + token)
                                 .send({
-                                    name: 'New Team',
+                                    name: 'New Team!',
                                     club: club,
                                     categories: ['Tackle masculino', 'Flag'],
                                     parentTeam: null,
@@ -136,7 +134,7 @@ describe('Team API:', function() {
         });
 
         it('should respond with the newly created team', () => {
-            expect(newTeam.name).to.equal('New Team');
+            expect(newTeam.name).to.equal('New Team!');
             expect(newTeam.categories).to.be.instanceOf(Array);
             expect(newTeam.categories[0]).to.be.equal('Tackle masculino');
             expect(newTeam.categories[1]).to.be.equal('Flag');
@@ -148,7 +146,7 @@ describe('Team API:', function() {
                 .post('/api/teams')
                 .set('authorization', 'Bearer ' + token)
                 .send({
-                    name: 'New Team',
+                    name: 'New Team!',
                     club: club,
                     categories: ['Tackle masculino', 'Flag'],
                     parentTeam: null,
@@ -200,7 +198,7 @@ describe('Team API:', function() {
         });
 
         it('should respond with the requested team', function() {
-            expect(team.name).to.equal('New Team');
+            expect(team.name).to.equal('New Team!');
             expect(newTeam.categories).to.be.instanceOf(Array);
             expect(newTeam.categories[0]).to.be.equal('Tackle masculino');
             expect(newTeam.categories[1]).to.be.equal('Flag');
@@ -323,11 +321,11 @@ describe('Team API:', function() {
                 });
         });
 
-        it('should respond with 204 on successful removal', function(done) {
+        it('should respond with 200 on successful removal', function(done) {
             request(app)
                 .delete(`/api/teams/${newTeam._id}`)
                 .set('authorization', 'Bearer ' + token)
-                .expect(204)
+                .expect(200)
                 .end(err => {
                     if (err) {
                         return done(err);

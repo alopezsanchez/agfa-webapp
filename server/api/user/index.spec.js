@@ -48,7 +48,7 @@ describe('User API Router:', function() {
 
     it('should verify admin role and route to user.controller.index', function() {
       expect(routerStub.get
-        .withArgs('/', 'authService.hasRole.admin', 'userCtrl.index')
+        .withArgs('/', 'authService.isAuthenticated', 'userCtrl.index')
         ).to.have.been.calledOnce;
     });
 
