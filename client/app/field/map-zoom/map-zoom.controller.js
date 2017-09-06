@@ -1,9 +1,8 @@
 'use strict';
 
 class MapZoomController {
-    constructor() {
+    constructor($mdDialog) {
         this.map = { center: { latitude: this.field.lat, longitude: this.field.lng }, zoom: 16 };
-
         this.marker = {
             id: 0,
             coords: {
@@ -11,6 +10,11 @@ class MapZoomController {
                 longitude: this.field.lng
             }
         };
+        this.$mdDialog = $mdDialog;
+    }
+
+    close() {
+        this.$mdDialog.hide();
     }
 }
 

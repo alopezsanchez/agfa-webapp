@@ -13,9 +13,7 @@ class EditFieldController {
             if (response.data.length) {
                 this.teams = response.data;
             }
-        }, (err) => {
-            console.log(err);
-        });
+        }, (err) => console.log(err));
     }
 
     $onInit() {

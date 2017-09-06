@@ -1,7 +1,11 @@
 <md-content>
     <md-toolbar class="modal-toolbar">
         <div class="md-toolbar-tools">
-            {{$ctrl.field.name}}
+            <span>{{$ctrl.field.name}}</span>
+            <span flex></span>
+            <md-button ng-click="$ctrl.close()" class="md-icon-button" aria-label="Close">
+                <md-icon>close</md-icon>
+            </md-button>
         </div>
     </md-toolbar>
     <md-content class="map-container">

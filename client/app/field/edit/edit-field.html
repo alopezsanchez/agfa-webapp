@@ -26,7 +26,7 @@
                     </div>
                 </md-input-container>
 
-                <md-input-container>
+                <md-input-container class="select-container">
                     <label>{{'app.fields.create.teams' | translate}}</label>
                     <md-select name="teams" ng-model="$ctrl.field.teams" multiple required />
                     <md-option ng-repeat="team in $ctrl.teams" value="{{team._id}}">
@@ -54,9 +54,9 @@
                     </div>
                 </md-input-container>
 
-                <p class="errorMessage">{{ $ctrl.errors.other }}</p>
+                <!-- <p class="errorMessage">{{ $ctrl.errors.other }}</p> -->
 
-                <section class="actions-container" layout-align="center center">
+                <section class="actions-container">
                     <md-button type="submit" class="md-raised md-primary">{{'app.account.settings.confirm' | translate}}</md-button>
                 </section>
             </form>

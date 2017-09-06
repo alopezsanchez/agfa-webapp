@@ -29,3 +29,7 @@ team md-card md-card-actions md-card-icon-actions {
     -webkit-justify-content: center;
     justify-content: center;
 }
+
+edit-team form .select-container {
+    max-width: 300px;
+}
