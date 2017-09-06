@@ -13,7 +13,7 @@ module.exports = {
   seedDB: false,
 
   DOMAIN:           'http://localhost:9000',
-  SESSION_SECRET:   'agfawebapp-secret',
+  SESSION_SECRET:   process.env.AGFA_SECRET || 'agfawebapp-secret',
 
   GOOGLE_ID:        'app-id',
   GOOGLE_SECRET:    'secret',
@@ -21,9 +21,9 @@ module.exports = {
   // Control debug level for modules using visionmedia/debug
   DEBUG: '',
 
-  adminEmail: 'alopezsanchez@gmail.com',
+  adminEmail: process.env.AGFA_ADMIN_MAIL || 'agfa@agfa.gal',
 
-  from: 'no-reply-agfa@agfa.gal',
+  from: process.env.AGFA_GMAIL_MAIL ||'no-reply-agfa@agfa.gal',
 
-  mailTransport: 'smtps://alopezsanchez18%40gmail.com:' + process.env.AGFA + '@smtp.gmail.com'
+  mailTransport: 'smtps://' + process.env.AGFA_GMAIL_MAIL + ':' + process.env.AGFA + '@smtp.gmail.com'
 };
