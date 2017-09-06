@@ -19,3 +19,7 @@
 td.actions-cell {
     display: flex;
 }
+
+td.not-editable {
+    cursor: text !important;
+}

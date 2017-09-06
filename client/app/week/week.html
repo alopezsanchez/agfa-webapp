@@ -13,28 +13,29 @@
                 <th md-column><span>{{'app.match.create.time' | translate}}</span></th>
                 <th md-column><span>{{'app.match.create.field' | translate}}</span></th>
                 <th md-column><span>{{'app.match.create.result' | translate}}</span></th>
-                <th md-column><span>{{'app.week.actions' | translate}}</span></th>
+                <th md-column ng-if="$ctrl.Auth.isAdmin()"><span>{{'app.week.actions' | translate}}</span></th>
             </tr>
         </thead>
         <tbody md-body>
             <tr md-row ng-repeat="match in $ctrl.week.matches track by $index">
                 <td md-cell>{{match.localTeam.name}}</td>
                 <td md-cell>{{match.visitingTeam.name}}</td>
-                <td md-cell ng-click="$ctrl.editDate($event, match)" ng-class="{'md-placeholder': !match.date}">
+                <td md-cell ng-click="$ctrl.editDate($event, match)" ng-class="{'md-placeholder': !match.date, 'not-editable': !$ctrl.Auth.isAdmin()}">
                     {{ match.date | date:'dd/MM/yyyy'}}
                 </td>
-                <td md-cell class="edit" ng-click="$ctrl.editTime($event, match)" ng-class="{'md-placeholder': !match.time}">
+                <td md-cell class="edit" ng-click="$ctrl.editTime($event, match)" ng-class="{'md-placeholder': !match.time, 'not-editable': !$ctrl.Auth.isAdmin()}">
                     {{match.time | date:'HH:mm'}}
                 </td>
                 <td md-cell class="edit">
-                    <md-select aria-label="Campo de juego" ng-model="match.field" placeholder="Campo de juego">
+                    <md-select ng-if="$ctrl.Auth.isAdmin()" aria-label="Campo de juego" ng-model="match.field" placeholder="Campo de juego">
                         <md-option ng-selected="field._id === match.field._id" ng-value="field" ng-repeat="field in match.fields">{{field.name}}</md-option>
                     </md-select>
+                    <span ng-if="!$ctrl.Auth.isAdmin()">{{match.field.name}}</span>
                 </td>
-                <td md-cell class="edit" ng-click="$ctrl.editResult($event, match)" ng-class="{'md-placeholder': !match.result}">
+                <td md-cell class="edit" ng-click="$ctrl.editResult($event, match)" ng-class="{'md-placeholder': !match.result, 'not-editable': !$ctrl.Auth.isAdmin()}">
                     {{match.result || ('app.match.create.result' | translate)}}
                 </td>
-                <td md-cell class="actions-cell">
+                <td ng-if="$ctrl.Auth.isAdmin()" md-cell class="actions-cell">
                     <input ngf-select type="file" name="record" class="ng-hide record-input-{{$index}}" ng-model="$ctrl.files[$index]" ngf-accept="'application/pdf'">
                     <md-button ng-if="match.result" class="md-icon-button record md-inline" ng-click="$ctrl.uploadPdf($event, match, $index)">
                         <md-tooltip>{{'newRecord' | translate}}</md-tooltip>

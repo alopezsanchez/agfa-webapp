@@ -43,7 +43,7 @@
 	<h2>{{'app.notFound.title' | translate}}</h2>
 </md-content>
 
-<md-button ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button" ui-sref="createCompetitionStepOne" aria-label="{{'app.competitions.new' | translate}}">
+<md-button ng-if="$ctrl.Auth.isAdmin()" ng-class="{ 'md-mini': !$ctrl.$mdMedia('gt-sm') }" class="md-fab md-secondary md-fab-bottom-right new-button" ui-sref="createCompetitionStepOne" aria-label="{{'app.competitions.new' | translate}}">
 	<md-tooltip md-direction="top">{{'app.competitions.new' | translate}}</md-tooltip>
 	<md-icon>add</md-icon>
 </md-button>

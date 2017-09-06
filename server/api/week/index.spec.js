@@ -49,7 +49,7 @@ describe('Week API Router:', function () {
 	describe('GET /api/weeks', function () {
 		it('should route to week.controller.index', function () {
 			expect(routerStub.get
-				.withArgs('/', 'authService.hasRole.admin', 'weekCtrl.index')
+				.withArgs('/', 'authService.isAuthenticated', 'weekCtrl.index')
 			).to.have.been.calledOnce;
 		});
 	});
@@ -57,7 +57,7 @@ describe('Week API Router:', function () {
 	describe('GET /api/weeks/:id', function () {
 		it('should route to week.controller.show', function () {
 			expect(routerStub.get
-				.withArgs('/:id', 'authService.hasRole.admin', 'weekCtrl.show')
+				.withArgs('/:id', 'authService.isAuthenticated', 'weekCtrl.show')
 			).to.have.been.calledOnce;
 		});
 	});

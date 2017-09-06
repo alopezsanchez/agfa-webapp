@@ -1,6 +1,6 @@
 <topbar page="{{$ctrl.competition.name}}"></topbar>
 
-<md-content layout-padding>
+<md-content>
     <md-card>
         <classification competition="$ctrl.competition"></classification>
     </md-card>
@@ -12,7 +12,7 @@
 
     </div>
 
-    <section class="actions-container" layout-align="center center">
+    <section ng-if="$ctrl.Auth.isAdmin()" class="actions-container" layout-align="center center">
         <md-button ng-click="$ctrl.updateCompetition()" class="md-raised md-primary">{{'app.competitions.details.save' | translate}}</md-button>
     </section>
 

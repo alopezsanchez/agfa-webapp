@@ -1,7 +1,7 @@
 'use strict';
 
 class CompetitionDetailController {
-    constructor($scope, $state, $http, $stateParams, $rootScope, $translate, $mdToast) {
+    constructor($scope, $state, $http, $stateParams, $rootScope, $translate, $mdToast, Auth) {
         this.$scope = $scope;
         this.$state = $state;
         this.$http = $http;
@@ -9,6 +9,7 @@ class CompetitionDetailController {
         this.$rootScope = $rootScope;
         this.$translate = $translate;
         this.$mdToast = $mdToast;
+        this.Auth = Auth;
 
         this.numberOfWeeks = 0;
         this.promises = [];

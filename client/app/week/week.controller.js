@@ -1,7 +1,7 @@
 'use strict';
 
 class WeekController {
-    constructor($mdEditDialog, $mdToast, $http, $scope, $rootScope, $translate, $mdDialog, Upload, $q) {
+    constructor($mdEditDialog, $mdToast, $http, $scope, $rootScope, $translate, $mdDialog, Upload, Auth) {
         this.$mdEditDialog = $mdEditDialog;
         this.$mdToast = $mdToast;
         this.$http = $http;
@@ -10,7 +10,8 @@ class WeekController {
         this.$translate = $translate;
         this.$mdDialog = $mdDialog;
         this.upload = Upload;
-        this.$q = $q;
+        this.Auth = Auth;
+
         this.fields = [];
         this.week = [];
         this.files = {};
@@ -79,53 +80,59 @@ class WeekController {
     }
 
     editDate(event, match) {
-        this.$mdEditDialog.small({
-            messages: {
-                'md-maxlength': 'Valor demasiado largo'
-            },
-            modelValue: match.date,
-            placeholder: 'Fecha',
-            save: function (input) {
-                match.date = input.$modelValue;
-            },
-            targetEvent: event,
-            validators: {
-                'md-maxlength': 10,
-                'aria-label': 'Fecha'
-            }
-        });
+        if (this.Auth.isAdmin()) {
+            this.$mdEditDialog.small({
+                messages: {
+                    'md-maxlength': 'Valor demasiado largo'
+                },
+                modelValue: match.date,
+                placeholder: 'Fecha',
+                save: function (input) {
+                    match.date = input.$modelValue;
+                },
+                targetEvent: event,
+                validators: {
+                    'md-maxlength': 10,
+                    'aria-label': 'Fecha'
+                }
+            });
+        }
     }
 
     editTime(event, match) {
-        this.$mdEditDialog.small({
-            messages: {
-                'md-maxlength': 'Valor demasiado largo'
-            },
-            modelValue: match.time,
-            placeholder: 'Hora',
-            save: function (input) {
-                match.time = input.$modelValue;
-            },
-            targetEvent: event,
-            validators: {
-                'md-maxlength': 5,
-                'aria-label': 'Hora'
-            }
-        });
+        if (this.Auth.isAdmin()) {
+            this.$mdEditDialog.small({
+                messages: {
+                    'md-maxlength': 'Valor demasiado largo'
+                },
+                modelValue: match.time,
+                placeholder: 'Hora',
+                save: function (input) {
+                    match.time = input.$modelValue;
+                },
+                targetEvent: event,
+                validators: {
+                    'md-maxlength': 5,
+                    'aria-label': 'Hora'
+                }
+            });
+        }
     }
 
     editResult(event, match) {
-        this.$mdEditDialog.small({
-            modelValue: match.result,
-            placeholder: 'Resultado',
-            save: function (input) {
-                match.result = input.$modelValue;
-            },
-            targetEvent: event,
-            validators: {
-                'aria-label': 'Resultado'
-            }
-        });
+        if (this.Auth.isAdmin()) {
+            this.$mdEditDialog.small({
+                modelValue: match.result,
+                placeholder: 'Resultado',
+                save: function (input) {
+                    match.result = input.$modelValue;
+                },
+                targetEvent: event,
+                validators: {
+                    'aria-label': 'Resultado'
+                }
+            });
+        }
     }
 
     uploadPdf(event, match, index) {
