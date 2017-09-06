@@ -8,7 +8,7 @@ angular.module('agfaWebappApp')
                 component: 'competition'
             })
             .state('createCompetitionStepOne', {
-                url: '/competitions/create/step-one',
+                url: '/competitions/create',
                 component: 'createCompetitionStepOne',
                 params: {
                     numberOfWeeks: null,
